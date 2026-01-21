@@ -30,8 +30,13 @@ type SoundfontModule = typeof import('soundfont-player')
 type SoundfontInstrument = Awaited<ReturnType<SoundfontModule['instrument']>>
 
 type ToneStatus = 'idle' | 'loading' | 'ready' | 'error'
+type MelodyEvent = {
+  note: string | null
+  duration: number
+}
 
 const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+const SOLFEGE_NAMES = ['ド', 'ド#', 'レ', 'レ#', 'ミ', 'ファ', 'ファ#', 'ソ', 'ソ#', 'ラ', 'ラ#', 'シ']
 
 const MIN_FREQUENCY = 80
 const MAX_FREQUENCY = 1000
@@ -146,6 +151,10 @@ app.innerHTML = `
     <section class="review">
       <h2>録音の振り返り</h2>
       <div class="review-grid">
+        <div class="review-card review-actions">
+          <div class="review-label">メロディ</div>
+          <button id="playMelodyButton" class="secondary" type="button" disabled>メロディ再生</button>
+        </div>
         <div class="review-card">
           <div class="review-label">簡易統計</div>
           <div id="reviewStats" class="review-stats">-</div>
@@ -203,6 +212,7 @@ const gaugeLabel = app.querySelector<HTMLDivElement>('#gaugeLabel')
 const reviewStats = app.querySelector<HTMLDivElement>('#reviewStats')
 const reviewScore = app.querySelector<HTMLDivElement>('#reviewScore')
 const reviewChallenge = app.querySelector<HTMLDivElement>('#reviewChallenge')
+const playMelodyButton = app.querySelector<HTMLButtonElement>('#playMelodyButton')
 const reviewList = app.querySelector<HTMLPreElement>('#reviewList')
 const reviewCanvas = app.querySelector<HTMLCanvasElement>('#reviewCanvas')
 
@@ -231,6 +241,7 @@ if (
   !reviewStats ||
   !reviewScore ||
   !reviewChallenge ||
+  !playMelodyButton ||
   !reviewList ||
   !reviewCanvas
 ) {
@@ -259,6 +270,10 @@ let pianoInstrument: SoundfontInstrument | null = null
 let pianoPromise: Promise<SoundfontInstrument> | null = null
 let isToneLoading = false
 let activeNote: { stop: () => void } | null = null
+let melodySequence: MelodyEvent[] = []
+let isMelodyPlaying = false
+let melodyNotes: Array<{ stop: () => void }> = []
+let melodyStopTimer: number | null = null
 
 const setStatus = (state: StatusState, message: string) => {
   statusPill.dataset.state = state
@@ -282,6 +297,10 @@ const setRecordButtonLabel = () => {
   recordStatus.textContent = isRecording ? '録音中…' : '停止中'
 }
 
+const setMelodyButtonLabel = () => {
+  playMelodyButton.textContent = isMelodyPlaying ? 'メロディ停止' : 'メロディ再生'
+}
+
 const setControls = (isWorking: boolean) => {
   startButton.disabled = isWorking
   retryButton.disabled = isWorking
@@ -290,6 +309,7 @@ const setControls = (isWorking: boolean) => {
   const toneDisabled = isWorking || isToneLoading
   playToneButton.disabled = toneDisabled
   playOctaveButton.disabled = toneDisabled
+  playMelodyButton.disabled = toneDisabled || melodySequence.length === 0
 
   if (isWorking) {
     playRecordButton.disabled = true
@@ -399,6 +419,12 @@ const midiToNote = (midi: number) => {
   return `${name}${octave}`
 }
 
+const midiToSolfege = (midi: number) => {
+  const rounded = Math.round(midi)
+  const name = SOLFEGE_NAMES[(rounded % 12 + 12) % 12]
+  return name
+}
+
 const autoCorrelate = (buffer: Float32Array, sampleRate: number): PitchResult => {
   const size = buffer.length
   let mean = 0
@@ -489,6 +515,48 @@ const analyzeVibrato = (frames: RecordedFrame[]) => {
   return { rate, depth, hasVibrato }
 }
 
+const buildMelodySequence = (frames: RecordedFrame[], stepSeconds: number) => {
+  if (frames.length === 0) return []
+  const sorted = [...frames].sort((a, b) => a.t - b.t)
+  const duration = sorted[sorted.length - 1].t
+  if (duration <= 0) return []
+
+  const events: MelodyEvent[] = []
+  let index = 0
+
+  for (let t = 0; t <= duration; t += stepSeconds) {
+    const bucketEnd = t + stepSeconds
+    const bucket: RecordedFrame[] = []
+
+    while (index < sorted.length && sorted[index].t < bucketEnd) {
+      bucket.push(sorted[index])
+      index += 1
+    }
+
+    const valid = bucket.filter((frame) => frame.frequency !== null && frame.confidence >= MIN_CONFIDENCE)
+    let note: string | null = null
+
+    if (valid.length > 0) {
+      const avgFrequency = valid.reduce((sum, frame) => sum + (frame.frequency ?? 0), 0) / valid.length
+      note = midiToNote(hzToMidi(avgFrequency))
+    }
+
+    events.push({ note, duration: stepSeconds })
+  }
+
+  const compressed: MelodyEvent[] = []
+  for (const event of events) {
+    const last = compressed[compressed.length - 1]
+    if (last && last.note === event.note) {
+      last.duration += event.duration
+    } else {
+      compressed.push({ ...event })
+    }
+  }
+
+  return compressed
+}
+
 const derivePitchMetrics = (frequency: number | null, confidence: number): PitchMetrics | null => {
   if (frequency === null || confidence < MIN_CONFIDENCE) {
     return null
@@ -539,7 +607,10 @@ const updatePitchDisplay = (metricsData: PitchMetrics | null, confidence: number
     centsValue.textContent = '…'
     updateGauge(null, confidence)
   } else {
-    currentNote.textContent = metricsData.note
+    const midi = hzToMidi(metricsData.frequency)
+    currentNote.innerHTML = `<span class="current-note-main">${midiToNote(midi)}</span><span class="current-note-sub">${midiToSolfege(
+      midi,
+    )}</span>`
     freqValue.textContent = `${metricsData.frequency.toFixed(2)} Hz`
     centsValue.textContent = `${metricsData.centsFromTarget >= 0 ? '+' : ''}${metricsData.centsFromTarget.toFixed(1)}¢`
     updateGauge(metricsData.centsFromTarget, confidence)
@@ -602,6 +673,11 @@ const renderReview = () => {
     reviewScore.textContent = '-'
     reviewChallenge.textContent = '-'
     reviewList.textContent = '-'
+    melodySequence = []
+    playMelodyButton.disabled = true
+    if (isMelodyPlaying) {
+      stopMelodyPlayback()
+    }
     const ctx = reviewCanvas.getContext('2d')
     if (ctx) {
       ctx.clearRect(0, 0, reviewCanvas.width, reviewCanvas.height)
@@ -646,6 +722,13 @@ const renderReview = () => {
     challenge = 'ビブラートが速めです。テンポを少し落ち着かせましょう。'
   }
   reviewChallenge.textContent = challenge
+
+  melodySequence = buildMelodySequence(recordedFrames, 0.1)
+  const hasMelody = melodySequence.some((event) => event.note !== null)
+  playMelodyButton.disabled = isToneLoading || !hasMelody
+  if (!hasMelody && isMelodyPlaying) {
+    stopMelodyPlayback()
+  }
 
   const step = Math.max(1, Math.ceil(recordedFrames.length / MAX_REVIEW_LINES))
   const lines: string[] = []
@@ -770,6 +853,7 @@ const stopAudio = () => {
   }
   stopStream()
   stopReferenceTone()
+  stopMelodyPlayback()
   isRunning = false
   smoothedFrequency = null
   updatePitchDisplay(null, 0)
@@ -784,7 +868,7 @@ const buildTargetOptions = () => {
   for (let midi = TARGET_START_MIDI; midi <= TARGET_END_MIDI; midi += 1) {
     const option = document.createElement('option')
     option.value = String(midi)
-    option.textContent = midiToNote(midi)
+    option.textContent = `${midiToNote(midi)} (${midiToSolfege(midi)})`
     fragment.appendChild(option)
   }
   targetSelect.appendChild(fragment)
@@ -806,6 +890,64 @@ const playReferenceTone = async (octaveShift: number) => {
   })
 }
 
+const stopMelodyPlayback = () => {
+  if (melodyStopTimer !== null) {
+    window.clearTimeout(melodyStopTimer)
+    melodyStopTimer = null
+  }
+  melodyNotes.forEach((note) => {
+    try {
+      note.stop()
+    } catch {
+      // ignore
+    }
+  })
+  melodyNotes = []
+  isMelodyPlaying = false
+  setMelodyButtonLabel()
+}
+
+const playMelody = async () => {
+  if (isMelodyPlaying) {
+    stopMelodyPlayback()
+    return
+  }
+
+  if (melodySequence.length === 0) return
+
+  const instrument = await loadPianoSoundfont()
+  if (!instrument) return
+
+  const context = await ensureAudioContext()
+  if (!context) return
+
+  stopReferenceTone()
+  stopMelodyPlayback()
+
+  isMelodyPlaying = true
+  setMelodyButtonLabel()
+
+  let time = context.currentTime + 0.05
+  let totalDuration = 0
+
+  for (const event of melodySequence) {
+    if (event.note) {
+      melodyNotes.push(
+        instrument.play(event.note, time, {
+          duration: event.duration,
+          gain: 0.9,
+        }),
+      )
+    }
+    time += event.duration
+    totalDuration += event.duration
+  }
+
+  melodyStopTimer = window.setTimeout(() => {
+    stopMelodyPlayback()
+  }, totalDuration * 1000 + 120)
+}
+
 const getSupportedMimeType = () => {
   if (typeof MediaRecorder === 'undefined') return null
   const candidates = ['audio/mp4', 'audio/webm;codecs=opus', 'audio/webm']
@@ -819,6 +961,9 @@ const getSupportedMimeType = () => {
 
 const startRecording = async () => {
   if (isRecording) return
+  if (isMelodyPlaying) {
+    stopMelodyPlayback()
+  }
 
   if (!isRunning) {
     const started = await initAudio()
@@ -884,7 +1029,9 @@ buildTargetOptions()
 targetSelect.value = String(targetMidi)
 setStartButtonLabel()
 setRecordButtonLabel()
+setMelodyButtonLabel()
 setToneStatus('idle', 'ピアノ音は未読み込み')
+playMelodyButton.disabled = true
 
 startButton.addEventListener('click', () => {
   if (isRunning) {
@@ -904,6 +1051,10 @@ playToneButton.addEventListener('click', () => {
 
 playOctaveButton.addEventListener('click', () => {
   void playReferenceTone(-12)
+})
+
+playMelodyButton.addEventListener('click', () => {
+  void playMelody()
 })
 
 recordButton.addEventListener('click', () => {
