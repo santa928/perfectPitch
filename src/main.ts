@@ -31,7 +31,7 @@ type SoundfontInstrument = Awaited<ReturnType<SoundfontModule['instrument']>>
 
 type ToneStatus = 'idle' | 'loading' | 'ready' | 'error'
 type MelodyEvent = {
-  note: string | null
+  midi: number | null
   duration: number
 }
 
@@ -425,6 +425,10 @@ const midiToSolfege = (midi: number) => {
   return name
 }
 
+const midiToSoundfontNote = (midi: number) => {
+  return midiToNote(midi).replace('#', 's')
+}
+
 const autoCorrelate = (buffer: Float32Array, sampleRate: number): PitchResult => {
   const size = buffer.length
   let mean = 0
@@ -534,20 +538,20 @@ const buildMelodySequence = (frames: RecordedFrame[], stepSeconds: number) => {
     }
 
     const valid = bucket.filter((frame) => frame.frequency !== null && frame.confidence >= MIN_CONFIDENCE)
-    let note: string | null = null
+    let midi: number | null = null
 
     if (valid.length > 0) {
       const avgFrequency = valid.reduce((sum, frame) => sum + (frame.frequency ?? 0), 0) / valid.length
-      note = midiToNote(hzToMidi(avgFrequency))
+      midi = Math.round(hzToMidi(avgFrequency))
     }
 
-    events.push({ note, duration: stepSeconds })
+    events.push({ midi, duration: stepSeconds })
   }
 
   const compressed: MelodyEvent[] = []
   for (const event of events) {
     const last = compressed[compressed.length - 1]
-    if (last && last.note === event.note) {
+    if (last && last.midi === event.midi) {
       last.duration += event.duration
     } else {
       compressed.push({ ...event })
@@ -724,7 +728,7 @@ const renderReview = () => {
   reviewChallenge.textContent = challenge
 
   melodySequence = buildMelodySequence(recordedFrames, 0.1)
-  const hasMelody = melodySequence.some((event) => event.note !== null)
+  const hasMelody = melodySequence.some((event) => event.midi !== null)
   playMelodyButton.disabled = isToneLoading || !hasMelody
   if (!hasMelody && isMelodyPlaying) {
     stopMelodyPlayback()
@@ -884,7 +888,7 @@ const playReferenceTone = async (octaveShift: number) => {
   stopReferenceTone()
 
   const midi = targetMidi + octaveShift
-  activeNote = instrument.play(midiToNote(midi), context.currentTime, {
+  activeNote = instrument.play(midiToSoundfontNote(midi), context.currentTime, {
     duration: 1.2,
     gain: 0.9,
   })
@@ -931,9 +935,9 @@ const playMelody = async () => {
   let totalDuration = 0
 
   for (const event of melodySequence) {
-    if (event.note) {
+    if (event.midi !== null) {
       melodyNotes.push(
-        instrument.play(event.note, time, {
+        instrument.play(midiToSoundfontNote(event.midi), time, {
           duration: event.duration,
           gain: 0.9,
         }),
