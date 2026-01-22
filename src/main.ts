@@ -291,6 +291,20 @@ let isMelodyPlaying = false
 let melodyNotes: Array<{ stop: () => void }> = []
 let melodyStopTimer: number | null = null
 let melodySpeed = 1
+let hasAudioUnlocked = false
+
+const formatError = (error: unknown) => {
+  if (error instanceof DOMException) {
+    return `${error.name}${error.message ? `: ${error.message}` : ''}`
+  }
+  if (error instanceof Error) {
+    return error.message
+  }
+  if (typeof error === 'string') {
+    return error
+  }
+  return null
+}
 
 const setStatus = (state: StatusState, message: string) => {
   statusPill.dataset.state = state
@@ -382,6 +396,41 @@ const ensureAudioContext = async () => {
   return audioContext
 }
 
+const unlockAudioContext = async (context: AudioContext) => {
+  if (hasAudioUnlocked) return true
+
+  try {
+    if (context.state === 'suspended') {
+      await context.resume()
+    }
+  } catch {
+    // resume失敗時は後続の無音再生で試行する
+  }
+
+  try {
+    const buffer = context.createBuffer(1, 1, context.sampleRate)
+    const source = context.createBufferSource()
+    const gain = context.createGain()
+    gain.gain.value = 0
+    source.buffer = buffer
+    source.connect(gain)
+    gain.connect(context.destination)
+    source.start(0)
+    source.stop(0)
+    hasAudioUnlocked = true
+    return true
+  } catch (error) {
+    const detail = formatError(error)
+    setToneStatus(
+      'error',
+      detail
+        ? `AudioContextの起動に失敗しました（${detail}）`
+        : 'AudioContextの起動に失敗しました。Safariでは「開始」後に再試行してください。',
+    )
+    return false
+  }
+}
+
 const soundfontUrl = (name: string, soundfont: string, format: string) => {
   return `${SOUND_FONT_BASE_URL}${soundfont}/${name}-${format}.js`
 }
@@ -415,9 +464,13 @@ const loadPianoSoundfont = async () => {
     pianoInstrument = await pianoPromise
     setToneStatus('ready', 'ピアノ音の準備完了')
     return pianoInstrument
-  } catch {
+  } catch (error) {
     pianoInstrument = null
-    setToneStatus('error', 'ピアノ音の読み込みに失敗しました')
+    const detail = formatError(error)
+    setToneStatus(
+      'error',
+      detail ? `ピアノ音の読み込みに失敗しました（${detail}）` : 'ピアノ音の読み込みに失敗しました',
+    )
     return null
   } finally {
     pianoPromise = null
@@ -904,6 +957,8 @@ const playReferenceTone = async (octaveShift: number) => {
 
   const context = await ensureAudioContext()
   if (!context) return
+  const unlocked = await unlockAudioContext(context)
+  if (!unlocked) return
 
   stopReferenceTone()
 
@@ -944,6 +999,8 @@ const playMelody = async () => {
 
   const context = await ensureAudioContext()
   if (!context) return
+  const unlocked = await unlockAudioContext(context)
+  if (!unlocked) return
 
   stopReferenceTone()
   stopMelodyPlayback()
