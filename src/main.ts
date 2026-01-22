@@ -952,13 +952,12 @@ const buildTargetOptions = () => {
 }
 
 const playReferenceTone = async (octaveShift: number) => {
-  const instrument = await loadPianoSoundfont()
-  if (!instrument) return
-
   const context = await ensureAudioContext()
   if (!context) return
   const unlocked = await unlockAudioContext(context)
   if (!unlocked) return
+  const instrument = await loadPianoSoundfont()
+  if (!instrument) return
 
   stopReferenceTone()
 
@@ -994,13 +993,12 @@ const playMelody = async () => {
 
   if (melodySequence.length === 0) return
 
-  const instrument = await loadPianoSoundfont()
-  if (!instrument) return
-
   const context = await ensureAudioContext()
   if (!context) return
   const unlocked = await unlockAudioContext(context)
   if (!unlocked) return
+  const instrument = await loadPianoSoundfont()
+  if (!instrument) return
 
   stopReferenceTone()
   stopMelodyPlayback()
