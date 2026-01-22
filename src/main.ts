@@ -47,6 +47,7 @@ const TARGET_END_MIDI = 83
 const MAX_GAUGE_CENTS = 50
 const RECORD_SAMPLE_EVERY = 6
 const MAX_REVIEW_LINES = 140
+const MELODY_STEP_SECONDS = 0.1
 
 const SOUND_FONT_BASE_URL = 'https://gleitz.github.io/midi-js-soundfonts/'
 const SOUND_FONT_NAME = 'FluidR3_GM'
@@ -153,7 +154,20 @@ app.innerHTML = `
       <div class="review-grid">
         <div class="review-card review-actions">
           <div class="review-label">メロディ</div>
-          <button id="playMelodyButton" class="secondary" type="button" disabled>メロディ再生</button>
+          <div class="melody-controls">
+            <button id="playMelodyButton" class="secondary" type="button" disabled>メロディ再生</button>
+            <label class="melody-speed">
+              <span>再生速度</span>
+              <select id="melodySpeedSelect" class="melody-speed-select" aria-label="メロディ再生速度">
+                <option value="0.5">0.5x</option>
+                <option value="0.75">0.75x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.25">1.25x</option>
+                <option value="1.5">1.5x</option>
+              </select>
+            </label>
+          </div>
+          <p class="review-hint">録音→停止後にメロディ再生できます。</p>
         </div>
         <div class="review-card">
           <div class="review-label">簡易統計</div>
@@ -213,6 +227,7 @@ const reviewStats = app.querySelector<HTMLDivElement>('#reviewStats')
 const reviewScore = app.querySelector<HTMLDivElement>('#reviewScore')
 const reviewChallenge = app.querySelector<HTMLDivElement>('#reviewChallenge')
 const playMelodyButton = app.querySelector<HTMLButtonElement>('#playMelodyButton')
+const melodySpeedSelect = app.querySelector<HTMLSelectElement>('#melodySpeedSelect')
 const reviewList = app.querySelector<HTMLPreElement>('#reviewList')
 const reviewCanvas = app.querySelector<HTMLCanvasElement>('#reviewCanvas')
 
@@ -242,6 +257,7 @@ if (
   !reviewScore ||
   !reviewChallenge ||
   !playMelodyButton ||
+  !melodySpeedSelect ||
   !reviewList ||
   !reviewCanvas
 ) {
@@ -274,6 +290,7 @@ let melodySequence: MelodyEvent[] = []
 let isMelodyPlaying = false
 let melodyNotes: Array<{ stop: () => void }> = []
 let melodyStopTimer: number | null = null
+let melodySpeed = 1
 
 const setStatus = (state: StatusState, message: string) => {
   statusPill.dataset.state = state
@@ -310,6 +327,7 @@ const setControls = (isWorking: boolean) => {
   playToneButton.disabled = toneDisabled
   playOctaveButton.disabled = toneDisabled
   playMelodyButton.disabled = toneDisabled || melodySequence.length === 0
+  melodySpeedSelect.disabled = toneDisabled || melodySequence.length === 0
 
   if (isWorking) {
     playRecordButton.disabled = true
@@ -679,6 +697,7 @@ const renderReview = () => {
     reviewList.textContent = '-'
     melodySequence = []
     playMelodyButton.disabled = true
+    melodySpeedSelect.disabled = true
     if (isMelodyPlaying) {
       stopMelodyPlayback()
     }
@@ -727,9 +746,10 @@ const renderReview = () => {
   }
   reviewChallenge.textContent = challenge
 
-  melodySequence = buildMelodySequence(recordedFrames, 0.1)
+  melodySequence = buildMelodySequence(recordedFrames, MELODY_STEP_SECONDS)
   const hasMelody = melodySequence.some((event) => event.midi !== null)
   playMelodyButton.disabled = isToneLoading || !hasMelody
+  melodySpeedSelect.disabled = isToneLoading || !hasMelody
   if (!hasMelody && isMelodyPlaying) {
     stopMelodyPlayback()
   }
@@ -933,18 +953,20 @@ const playMelody = async () => {
 
   let time = context.currentTime + 0.05
   let totalDuration = 0
+  const speed = melodySpeed > 0 ? melodySpeed : 1
 
   for (const event of melodySequence) {
+    const duration = event.duration / speed
     if (event.midi !== null) {
       melodyNotes.push(
         instrument.play(midiToSoundfontNote(event.midi), time, {
-          duration: event.duration,
+          duration,
           gain: 0.9,
         }),
       )
     }
-    time += event.duration
-    totalDuration += event.duration
+    time += duration
+    totalDuration += duration
   }
 
   melodyStopTimer = window.setTimeout(() => {
@@ -1036,6 +1058,7 @@ setRecordButtonLabel()
 setMelodyButtonLabel()
 setToneStatus('idle', 'ピアノ音は未読み込み')
 playMelodyButton.disabled = true
+melodySpeedSelect.disabled = true
 
 startButton.addEventListener('click', () => {
   if (isRunning) {
@@ -1059,6 +1082,16 @@ playOctaveButton.addEventListener('click', () => {
 
 playMelodyButton.addEventListener('click', () => {
   void playMelody()
+})
+
+melodySpeedSelect.addEventListener('change', () => {
+  const value = Number(melodySpeedSelect.value)
+  if (!Number.isNaN(value) && value > 0) {
+    melodySpeed = value
+  }
+  if (isMelodyPlaying) {
+    stopMelodyPlayback()
+  }
 })
 
 recordButton.addEventListener('click', () => {

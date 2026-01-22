@@ -1,0 +1,11 @@
+services:
+  build:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    command: sh -lc "npm ci && npm run build"
+
+volumes:
+  node_modules:
