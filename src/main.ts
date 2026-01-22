@@ -57,8 +57,11 @@ const SOUND_FONT_NOTES = Array.from(
   { length: TARGET_END_MIDI - Math.max(0, TARGET_START_MIDI - 12) + 1 },
   (_, index) => Math.max(0, TARGET_START_MIDI - 12) + index,
 )
-const IS_IOS_SAFARI =
-  /iP(hone|od|ad)/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|EdgiOS/.test(navigator.userAgent)
+const IS_IOS = /iP(hone|od|ad)/.test(navigator.userAgent)
+const IS_ANDROID = /Android/.test(navigator.userAgent)
+const IS_MOBILE = IS_IOS || IS_ANDROID
+const PREFER_MEDIA_TONE = IS_MOBILE
+const TONE_SAMPLE_RATE = 22050
 
 const app = document.querySelector<HTMLDivElement>('#app')
 if (!app) {
@@ -295,6 +298,9 @@ let melodyNotes: Array<{ stop: () => void }> = []
 let melodyStopTimer: number | null = null
 let melodySpeed = 1
 let hasAudioUnlocked = false
+let toneAudio: HTMLAudioElement | null = null
+let toneObjectUrl: string | null = null
+let forceMediaTone = false
 
 const formatError = (error: unknown) => {
   if (error instanceof DOMException) {
@@ -307,6 +313,36 @@ const formatError = (error: unknown) => {
     return error
   }
   return null
+}
+
+const shouldUseMediaTone = () => {
+  if (forceMediaTone || PREFER_MEDIA_TONE) return true
+  return !getAudioContextClass()
+}
+
+const getToneAudio = () => {
+  if (!toneAudio) {
+    toneAudio = new Audio()
+    toneAudio.preload = 'auto'
+    toneAudio.volume = 1
+    toneAudio.setAttribute('playsinline', '')
+  }
+  return toneAudio
+}
+
+const stopToneAudio = () => {
+  if (!toneAudio) return
+  toneAudio.onended = null
+  toneAudio.pause()
+  try {
+    toneAudio.currentTime = 0
+  } catch {
+    // ignore seek errors
+  }
+  if (toneObjectUrl) {
+    URL.revokeObjectURL(toneObjectUrl)
+    toneObjectUrl = null
+  }
 }
 
 const setStatus = (state: StatusState, message: string) => {
@@ -375,6 +411,7 @@ const stopReferenceTone = () => {
     activeNote = null
   }
   pianoInstrument?.stop()
+  stopToneAudio()
 }
 
 const getAudioContextClass = (): AudioContextClass | undefined => {
@@ -443,6 +480,7 @@ const unlockAudioContext = async (context: AudioContext) => {
     return true
   } catch (error) {
     const detail = formatError(error)
+    forceMediaTone = true
     setToneStatus(
       'error',
       detail
@@ -467,8 +505,8 @@ const loadSoundfontModule = async () => {
 const loadPianoSoundfont = async () => {
   if (pianoInstrument) return pianoInstrument
   if (pianoPromise) return pianoPromise
-  if (IS_IOS_SAFARI) {
-    setToneStatus('ready', 'iOS Safariでは簡易音を使用します')
+  if (shouldUseMediaTone()) {
+    setToneStatus('ready', '簡易音で再生します')
     return null
   }
 
@@ -492,10 +530,13 @@ const loadPianoSoundfont = async () => {
     return pianoInstrument
   } catch (error) {
     pianoInstrument = null
+    forceMediaTone = true
     const detail = formatError(error)
     setToneStatus(
       'error',
-      detail ? `ピアノ音の読み込みに失敗しました（${detail}）` : 'ピアノ音の読み込みに失敗しました',
+      detail
+        ? `ピアノ音の読み込みに失敗しました（${detail}）`
+        : 'ピアノ音の読み込みに失敗しました。簡易音で再生します。',
     )
     return null
   } finally {
@@ -561,6 +602,125 @@ const scheduleOscillatorNote = (
         // ignore
       }
     },
+  }
+}
+
+const encodeWav = (samples: Float32Array, sampleRate: number) => {
+  const length = samples.length
+  const buffer = new ArrayBuffer(44 + length * 2)
+  const view = new DataView(buffer)
+
+  const writeString = (offset: number, value: string) => {
+    for (let i = 0; i < value.length; i += 1) {
+      view.setUint8(offset + i, value.charCodeAt(i))
+    }
+  }
+
+  writeString(0, 'RIFF')
+  view.setUint32(4, 36 + length * 2, true)
+  writeString(8, 'WAVE')
+  writeString(12, 'fmt ')
+  view.setUint32(16, 16, true)
+  view.setUint16(20, 1, true)
+  view.setUint16(22, 1, true)
+  view.setUint32(24, sampleRate, true)
+  view.setUint32(28, sampleRate * 2, true)
+  view.setUint16(32, 2, true)
+  view.setUint16(34, 16, true)
+  writeString(36, 'data')
+  view.setUint32(40, length * 2, true)
+
+  let offset = 44
+  for (let i = 0; i < length; i += 1) {
+    const clamped = Math.max(-1, Math.min(1, samples[i]))
+    view.setInt16(offset, Math.round(clamped * 0x7fff), true)
+    offset += 2
+  }
+
+  return buffer
+}
+
+const buildSineSamples = (frequency: number, duration: number, sampleRate: number, amplitude: number) => {
+  const totalSamples = Math.max(1, Math.ceil(duration * sampleRate))
+  const buffer = new Float32Array(totalSamples)
+  const attackSamples = Math.max(1, Math.floor(Math.min(0.02, duration * 0.25) * sampleRate))
+  const releaseSamples = Math.max(1, Math.floor(Math.min(0.03, duration * 0.25) * sampleRate))
+  const sustainSamples = Math.max(0, totalSamples - attackSamples - releaseSamples)
+
+  for (let i = 0; i < totalSamples; i += 1) {
+    const t = i / sampleRate
+    let env = 1
+    if (i < attackSamples) {
+      env = i / attackSamples
+    } else if (i >= attackSamples + sustainSamples) {
+      const relIndex = i - attackSamples - sustainSamples
+      env = 1 - relIndex / Math.max(1, releaseSamples)
+    }
+    buffer[i] = Math.sin(2 * Math.PI * frequency * t) * amplitude * env
+  }
+
+  return buffer
+}
+
+const buildMelodySamples = (
+  events: MelodyEvent[],
+  speed: number,
+  sampleRate: number,
+  amplitude: number,
+) => {
+  const clampedSpeed = speed > 0 ? speed : 1
+  const durations = events.map((event) => event.duration / clampedSpeed)
+  const totalDuration = durations.reduce((sum, value) => sum + value, 0)
+  const totalSamples = Math.max(1, Math.ceil(totalDuration * sampleRate))
+  const buffer = new Float32Array(totalSamples)
+
+  let cursor = 0
+  for (let index = 0; index < events.length; index += 1) {
+    const event = events[index]
+    const duration = durations[index]
+    const samples = Math.max(1, Math.ceil(duration * sampleRate))
+    if (event.midi === null) {
+      cursor += samples
+      continue
+    }
+
+    const frequency = midiToFrequency(event.midi)
+    const attackSamples = Math.max(1, Math.floor(Math.min(0.02, duration * 0.25) * sampleRate))
+    const releaseSamples = Math.max(1, Math.floor(Math.min(0.03, duration * 0.25) * sampleRate))
+    const sustainSamples = Math.max(0, samples - attackSamples - releaseSamples)
+
+    for (let i = 0; i < samples && cursor + i < totalSamples; i += 1) {
+      const t = i / sampleRate
+      let env = 1
+      if (i < attackSamples) {
+        env = i / attackSamples
+      } else if (i >= attackSamples + sustainSamples) {
+        const relIndex = i - attackSamples - sustainSamples
+        env = 1 - relIndex / Math.max(1, releaseSamples)
+      }
+      buffer[cursor + i] = Math.sin(2 * Math.PI * frequency * t) * amplitude * env
+    }
+    cursor += samples
+  }
+
+  return buffer
+}
+
+const playSamplesViaMedia = async (samples: Float32Array, sampleRate: number, onEnded?: () => void) => {
+  stopToneAudio()
+  const audio = getToneAudio()
+  const wavBuffer = encodeWav(samples, sampleRate)
+  toneObjectUrl = URL.createObjectURL(new Blob([wavBuffer], { type: 'audio/wav' }))
+  audio.src = toneObjectUrl
+  audio.onended = onEnded ?? null
+  try {
+    await audio.play()
+  } catch (error) {
+    const detail = formatError(error)
+    setToneStatus(
+      'error',
+      detail ? `音声の再生に失敗しました（${detail}）` : '音声の再生に失敗しました',
+    )
   }
 }
 
@@ -1016,6 +1176,14 @@ const buildTargetOptions = () => {
 }
 
 const playReferenceTone = async (octaveShift: number) => {
+  if (shouldUseMediaTone()) {
+    setToneStatus('ready', '簡易音で再生します')
+    const midi = targetMidi + octaveShift
+    const samples = buildSineSamples(midiToFrequency(midi), 1.2, TONE_SAMPLE_RATE, 0.28)
+    await playSamplesViaMedia(samples, TONE_SAMPLE_RATE)
+    return
+  }
+
   const context = await ensurePlaybackContext()
   if (!context) return
   const unlocked = await unlockAudioContext(context)
@@ -1048,6 +1216,7 @@ const stopMelodyPlayback = () => {
     }
   })
   melodyNotes = []
+  stopToneAudio()
   isMelodyPlaying = false
   setMelodyButtonLabel()
 }
@@ -1059,6 +1228,20 @@ const playMelody = async () => {
   }
 
   if (melodySequence.length === 0) return
+
+  if (shouldUseMediaTone()) {
+    setToneStatus('ready', '簡易音で再生します')
+    stopReferenceTone()
+    stopMelodyPlayback()
+    isMelodyPlaying = true
+    setMelodyButtonLabel()
+    const samples = buildMelodySamples(melodySequence, melodySpeed, TONE_SAMPLE_RATE, 0.2)
+    await playSamplesViaMedia(samples, TONE_SAMPLE_RATE, () => {
+      isMelodyPlaying = false
+      setMelodyButtonLabel()
+    })
+    return
+  }
 
   const context = await ensurePlaybackContext()
   if (!context) return
