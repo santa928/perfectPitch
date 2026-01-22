@@ -41,6 +41,7 @@ const SOLFEGE_NAMES = ['ド', 'ド#', 'レ', 'レ#', 'ミ', 'ファ', 'ファ#',
 const MIN_FREQUENCY = 80
 const MAX_FREQUENCY = 1000
 const MIN_CONFIDENCE = 0.25
+const MIN_RMS = 0.02
 const SMOOTHING = 0.2
 const TARGET_START_MIDI = 48
 const TARGET_END_MIDI = 83
@@ -434,6 +435,15 @@ const ensureAudioContext = async () => {
   }
 
   return audioContext
+}
+
+const calculateRms = (buffer: Float32Array) => {
+  let sum = 0
+  for (let i = 0; i < buffer.length; i += 1) {
+    const value = buffer[i]
+    sum += value * value
+  }
+  return Math.sqrt(sum / buffer.length)
 }
 
 const ensurePlaybackContext = async () => {
@@ -952,6 +962,16 @@ const renderWaveform = () => {
     }
   }
 
+  const rms = calculateRms(floatData)
+  if (rms < MIN_RMS) {
+    lastConfidence = 0
+    smoothedFrequency = null
+    updatePitchDisplay(null, 0)
+    recordFrame(null, 0)
+    animationId = requestAnimationFrame(renderWaveform)
+    return
+  }
+
   const { frequency, confidence } = autoCorrelate(floatData, audioContext?.sampleRate ?? 44100)
   lastConfidence = confidence
 
@@ -1121,7 +1141,14 @@ const initAudio = async () => {
       return false
     }
 
-    mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    mediaStream = await navigator.mediaDevices.getUserMedia({
+      audio: {
+        echoCancellation: { ideal: true },
+        noiseSuppression: { ideal: true },
+        autoGainControl: { ideal: false },
+        channelCount: { ideal: 1 },
+      },
+    })
     const source = context.createMediaStreamSource(mediaStream)
     analyser = context.createAnalyser()
     analyser.fftSize = 2048
