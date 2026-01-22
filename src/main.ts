@@ -57,6 +57,8 @@ const SOUND_FONT_NOTES = Array.from(
   { length: TARGET_END_MIDI - Math.max(0, TARGET_START_MIDI - 12) + 1 },
   (_, index) => Math.max(0, TARGET_START_MIDI - 12) + index,
 )
+const IS_IOS_SAFARI =
+  /iP(hone|od|ad)/.test(navigator.userAgent) && /Safari/.test(navigator.userAgent) && !/CriOS|FxiOS|EdgiOS/.test(navigator.userAgent)
 
 const app = document.querySelector<HTMLDivElement>('#app')
 if (!app) {
@@ -265,6 +267,7 @@ if (
 }
 
 let audioContext: AudioContext | null = null
+let playbackContext: AudioContext | null = null
 let analyser: AnalyserNode | null = null
 let byteData: Uint8Array<ArrayBuffer> | null = null
 let floatData: Float32Array<ArrayBuffer> | null = null
@@ -396,6 +399,25 @@ const ensureAudioContext = async () => {
   return audioContext
 }
 
+const ensurePlaybackContext = async () => {
+  const AudioContextCtor = getAudioContextClass()
+  if (!AudioContextCtor) {
+    setToneStatus('error', 'このブラウザはAudioContextに未対応です。')
+    return null
+  }
+
+  if (!playbackContext || playbackContext.state === 'closed') {
+    playbackContext = new AudioContextCtor()
+    hasAudioUnlocked = false
+  }
+
+  if (playbackContext.state === 'suspended') {
+    await playbackContext.resume()
+  }
+
+  return playbackContext
+}
+
 const unlockAudioContext = async (context: AudioContext) => {
   if (hasAudioUnlocked) return true
 
@@ -445,8 +467,12 @@ const loadSoundfontModule = async () => {
 const loadPianoSoundfont = async () => {
   if (pianoInstrument) return pianoInstrument
   if (pianoPromise) return pianoPromise
+  if (IS_IOS_SAFARI) {
+    setToneStatus('ready', 'iOS Safariでは簡易音を使用します')
+    return null
+  }
 
-  const context = await ensureAudioContext()
+  const context = await ensurePlaybackContext()
   if (!context) return null
 
   isToneLoading = true
@@ -498,6 +524,44 @@ const midiToSolfege = (midi: number) => {
 
 const midiToSoundfontNote = (midi: number) => {
   return midiToNote(midi).replace('#', 's')
+}
+
+const scheduleOscillatorNote = (
+  context: AudioContext,
+  frequency: number,
+  startTime: number,
+  duration: number,
+  gainValue = 0.18,
+) => {
+  const osc = context.createOscillator()
+  const gain = context.createGain()
+  const safeDuration = Math.max(0.05, duration)
+  const attack = Math.min(0.02, safeDuration * 0.25)
+  const release = Math.min(0.03, safeDuration * 0.25)
+  const sustainStart = startTime + attack
+  const sustainEnd = Math.max(sustainStart, startTime + safeDuration - release)
+
+  gain.gain.setValueAtTime(0, startTime)
+  gain.gain.linearRampToValueAtTime(gainValue, sustainStart)
+  gain.gain.setValueAtTime(gainValue, sustainEnd)
+  gain.gain.linearRampToValueAtTime(0, startTime + safeDuration)
+
+  osc.type = 'sine'
+  osc.frequency.setValueAtTime(frequency, startTime)
+  osc.connect(gain)
+  gain.connect(context.destination)
+  osc.start(startTime)
+  osc.stop(startTime + safeDuration + 0.05)
+
+  return {
+    stop: () => {
+      try {
+        osc.stop()
+      } catch {
+        // ignore
+      }
+    },
+  }
 }
 
 const autoCorrelate = (buffer: Float32Array, sampleRate: number): PitchResult => {
@@ -952,20 +1016,23 @@ const buildTargetOptions = () => {
 }
 
 const playReferenceTone = async (octaveShift: number) => {
-  const context = await ensureAudioContext()
+  const context = await ensurePlaybackContext()
   if (!context) return
   const unlocked = await unlockAudioContext(context)
   if (!unlocked) return
   const instrument = await loadPianoSoundfont()
-  if (!instrument) return
 
   stopReferenceTone()
 
   const midi = targetMidi + octaveShift
-  activeNote = instrument.play(midiToSoundfontNote(midi), context.currentTime, {
-    duration: 1.2,
-    gain: 0.9,
-  })
+  if (instrument) {
+    activeNote = instrument.play(midiToSoundfontNote(midi), context.currentTime, {
+      duration: 1.2,
+      gain: 0.9,
+    })
+    return
+  }
+  activeNote = scheduleOscillatorNote(context, midiToFrequency(midi), context.currentTime, 1.2, 0.2)
 }
 
 const stopMelodyPlayback = () => {
@@ -993,12 +1060,11 @@ const playMelody = async () => {
 
   if (melodySequence.length === 0) return
 
-  const context = await ensureAudioContext()
+  const context = await ensurePlaybackContext()
   if (!context) return
   const unlocked = await unlockAudioContext(context)
   if (!unlocked) return
   const instrument = await loadPianoSoundfont()
-  if (!instrument) return
 
   stopReferenceTone()
   stopMelodyPlayback()
@@ -1013,12 +1079,16 @@ const playMelody = async () => {
   for (const event of melodySequence) {
     const duration = event.duration / speed
     if (event.midi !== null) {
-      melodyNotes.push(
-        instrument.play(midiToSoundfontNote(event.midi), time, {
-          duration,
-          gain: 0.9,
-        }),
-      )
+      if (instrument) {
+        melodyNotes.push(
+          instrument.play(midiToSoundfontNote(event.midi), time, {
+            duration,
+            gain: 0.9,
+          }),
+        )
+      } else {
+        melodyNotes.push(scheduleOscillatorNote(context, midiToFrequency(event.midi), time, duration, 0.12))
+      }
     }
     time += duration
     totalDuration += duration
