@@ -14,6 +14,7 @@ type GaugeLevel = 'off' | 'good' | 'ok' | 'bad'
 type PitchMetrics = {
   frequency: number
   confidence: number
+  midi: number
   note: string
   centsFromTarget: number
 }
@@ -21,6 +22,7 @@ type PitchMetrics = {
 type RecordedFrame = {
   t: number
   frequency: number | null
+  midi: number | null
   confidence: number
   cents: number | null
   note: string | null
@@ -43,6 +45,9 @@ const MAX_FREQUENCY = 1000
 const MIN_CONFIDENCE = 0.25
 const MIN_RMS = 0.02
 const SMOOTHING = 0.2
+const STABILITY_WINDOW = 7
+const STABILITY_HOLD_FRAMES = 5
+const STABILITY_SILENCE_FRAMES = 8
 const TARGET_START_MIDI = 48
 const TARGET_END_MIDI = 83
 const MAX_GAUGE_CENTS = 50
@@ -302,6 +307,12 @@ let hasAudioUnlocked = false
 let toneAudio: HTMLAudioElement | null = null
 let toneObjectUrl: string | null = null
 let forceMediaTone = false
+let frequencyWindow: number[] = []
+let candidateMidi: number | null = null
+let candidateFrames = 0
+let stableMidi: number | null = null
+let silenceFrames = 0
+let lastStableMetrics: PitchMetrics | null = null
 
 const formatError = (error: unknown) => {
   if (error instanceof DOMException) {
@@ -788,6 +799,16 @@ const average = (values: number[]) => {
   return values.reduce((sum, value) => sum + value, 0) / values.length
 }
 
+const median = (values: number[]) => {
+  if (values.length === 0) return null
+  const sorted = [...values].sort((a, b) => a - b)
+  const mid = Math.floor(sorted.length / 2)
+  if (sorted.length % 2 === 0) {
+    return (sorted[mid - 1] + sorted[mid]) / 2
+  }
+  return sorted[mid]
+}
+
 const standardDeviation = (values: number[]) => {
   const mean = average(values)
   if (mean === null) return null
@@ -842,13 +863,32 @@ const buildMelodySequence = (frames: RecordedFrame[], stepSeconds: number) => {
       index += 1
     }
 
-    const valid = bucket.filter((frame) => frame.frequency !== null && frame.confidence >= MIN_CONFIDENCE)
-    let midi: number | null = null
+  const valid = bucket.filter(
+    (frame) => frame.confidence >= MIN_CONFIDENCE && (frame.midi !== null || frame.frequency !== null),
+  )
+  let midi: number | null = null
 
-    if (valid.length > 0) {
+  if (valid.length > 0) {
+    const counts = new Map<number, number>()
+    for (const frame of valid) {
+      if (frame.midi === null) continue
+      counts.set(frame.midi, (counts.get(frame.midi) ?? 0) + 1)
+    }
+    if (counts.size > 0) {
+      let bestMidi = 0
+      let bestCount = -1
+      counts.forEach((count, note) => {
+        if (count > bestCount) {
+          bestCount = count
+          bestMidi = note
+        }
+      })
+      midi = bestMidi
+    } else {
       const avgFrequency = valid.reduce((sum, frame) => sum + (frame.frequency ?? 0), 0) / valid.length
       midi = Math.round(hzToMidi(avgFrequency))
     }
+  }
 
     events.push({ midi, duration: stepSeconds })
   }
@@ -866,19 +906,49 @@ const buildMelodySequence = (frames: RecordedFrame[], stepSeconds: number) => {
   return compressed
 }
 
-const derivePitchMetrics = (frequency: number | null, confidence: number): PitchMetrics | null => {
+const deriveStableMetrics = (frequency: number | null, confidence: number): PitchMetrics | null => {
   if (frequency === null || confidence < MIN_CONFIDENCE) {
+    silenceFrames += 1
+    frequencyWindow = []
+    candidateMidi = null
+    candidateFrames = 0
+    if (silenceFrames >= STABILITY_SILENCE_FRAMES) {
+      stableMidi = null
+    }
     return null
   }
 
-  const midi = hzToMidi(frequency)
+  silenceFrames = 0
+  frequencyWindow.push(frequency)
+  if (frequencyWindow.length > STABILITY_WINDOW) {
+    frequencyWindow.shift()
+  }
+  const medianFrequency = median(frequencyWindow)
+  if (medianFrequency === null) return null
+
+  const candidate = Math.round(hzToMidi(medianFrequency))
+  if (candidateMidi === candidate) {
+    candidateFrames += 1
+  } else {
+    candidateMidi = candidate
+    candidateFrames = 1
+  }
+
+  if (candidateFrames >= STABILITY_HOLD_FRAMES) {
+    stableMidi = candidate
+  }
+
+  if (stableMidi === null) return null
+
+  const stableFrequency = stableMidi === candidateMidi ? medianFrequency : midiToFrequency(stableMidi)
   const targetFrequency = midiToFrequency(targetMidi)
-  const centsFromTarget = 1200 * Math.log2(frequency / targetFrequency)
+  const centsFromTarget = 1200 * Math.log2(stableFrequency / targetFrequency)
 
   return {
-    frequency,
+    frequency: stableFrequency,
     confidence,
-    note: midiToNote(midi),
+    midi: stableMidi,
+    note: midiToNote(stableMidi),
     centsFromTarget,
   }
 }
@@ -916,7 +986,7 @@ const updatePitchDisplay = (metricsData: PitchMetrics | null, confidence: number
     centsValue.textContent = '…'
     updateGauge(null, confidence)
   } else {
-    const midi = hzToMidi(metricsData.frequency)
+    const midi = metricsData.midi
     currentNote.innerHTML = `<span class="current-note-main">${midiToNote(midi)}</span><span class="current-note-sub">${midiToSolfege(
       midi,
     )}</span>`
@@ -939,6 +1009,7 @@ const recordFrame = (metricsData: PitchMetrics | null, confidence: number) => {
   recordedFrames.push({
     t,
     frequency: metricsData?.frequency ?? null,
+    midi: metricsData?.midi ?? null,
     confidence,
     cents: metricsData?.centsFromTarget ?? null,
     note: metricsData?.note ?? null,
@@ -966,6 +1037,7 @@ const renderWaveform = () => {
   if (rms < MIN_RMS) {
     lastConfidence = 0
     smoothedFrequency = null
+    lastStableMetrics = deriveStableMetrics(null, 0)
     updatePitchDisplay(null, 0)
     recordFrame(null, 0)
     animationId = requestAnimationFrame(renderWaveform)
@@ -979,7 +1051,8 @@ const renderWaveform = () => {
     smoothedFrequency = smoothedFrequency === null ? frequency : smoothedFrequency + SMOOTHING * (frequency - smoothedFrequency)
   }
 
-  const metricsData = derivePitchMetrics(smoothedFrequency, confidence)
+  const metricsData = deriveStableMetrics(smoothedFrequency, confidence)
+  lastStableMetrics = metricsData
   updatePitchDisplay(metricsData, confidence)
   recordFrame(metricsData, confidence)
 
@@ -1445,7 +1518,12 @@ targetSelect.addEventListener('change', () => {
   const value = Number(targetSelect.value)
   if (!Number.isNaN(value)) {
     targetMidi = value
-    const metricsData = derivePitchMetrics(smoothedFrequency, lastConfidence)
-    updatePitchDisplay(metricsData, lastConfidence)
+    if (lastStableMetrics) {
+      const targetFrequency = midiToFrequency(targetMidi)
+      const centsFromTarget = 1200 * Math.log2(lastStableMetrics.frequency / targetFrequency)
+      updatePitchDisplay({ ...lastStableMetrics, centsFromTarget }, lastConfidence)
+    } else {
+      updatePitchDisplay(null, lastConfidence)
+    }
   }
 })
