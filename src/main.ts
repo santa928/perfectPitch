@@ -36,6 +36,13 @@ type MelodyEvent = {
   midi: number | null
   duration: number
 }
+type DisplayMode = 'single' | 'karaoke'
+type KaraokeEvent = {
+  midi: number
+  start: number
+  duration: number
+}
+type PlaybackMode = 'record' | 'piano'
 
 const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 const SOLFEGE_NAMES = ['ド', 'ド#', 'レ', 'レ#', 'ミ', 'ファ', 'ファ#', 'ソ', 'ソ#', 'ラ', 'ラ#', 'シ']
@@ -54,6 +61,13 @@ const MAX_GAUGE_CENTS = 50
 const RECORD_SAMPLE_EVERY = 6
 const MAX_REVIEW_LINES = 140
 const MELODY_STEP_SECONDS = 0.1
+const KARAOKE_WINDOW_SECONDS = 4
+const KARAOKE_TRAIL_SECONDS = 1.2
+const KARAOKE_MIN_BAR_WIDTH = 14
+const LANE_PADDING = 12
+const LANE_TOP_PADDING = 12
+const LANE_BOTTOM_PADDING = 12
+const LANE_BAR_HEIGHT = 12
 
 const SOUND_FONT_BASE_URL = 'https://gleitz.github.io/midi-js-soundfonts/'
 const SOUND_FONT_NAME = 'FluidR3_GM'
@@ -75,165 +89,176 @@ if (!app) {
 }
 
 app.innerHTML = `
-  <main class="app">
-    <header class="header">
-      <p class="eyebrow">MVP</p>
-      <h1>perfectPitch</h1>
-      <p class="subtitle">
-        「開始」ボタンでマイクを許可し、音名/Hz/centsを推定します。
-      </p>
-    </header>
+  <main class="pp-app" data-mode="single" data-recording="false" data-playing="false">
+    <div class="pp-bg">
+      <span class="pp-blob blob-1"></span>
+      <span class="pp-blob blob-2"></span>
+    </div>
 
-    <section class="panel">
-      <div class="status">
-        <span id="statusPill" class="status-pill" data-state="idle">READY</span>
-        <p id="statusText" class="status-text">開始ボタンを押してください。</p>
-      </div>
-
-      <div class="actions">
-        <button id="startButton" class="primary" type="button">開始</button>
-        <button id="retryButton" class="ghost" type="button" hidden>再試行</button>
-      </div>
-
-      <div class="tone-actions">
-        <button id="playToneButton" class="secondary" type="button">基準音を鳴らす</button>
-        <button id="playOctaveButton" class="secondary" type="button">1オク下を鳴らす</button>
-      </div>
-      <p id="toneStatus" class="tone-status" data-state="idle">ピアノ音は未読み込み</p>
-
-      <div class="recording">
-        <div class="recording-info">
-          <div class="recording-label">RECORDING</div>
-          <div id="recordStatus" class="recording-status">停止中</div>
+    <section class="pp-phone">
+      <header class="pp-header">
+        <h1 class="pp-title">PerfectPitch</h1>
+        <div class="pp-toggle" role="tablist">
+          <button id="modeSingle" class="pp-toggle-btn is-active" type="button">単音</button>
+          <button id="modeKaraoke" class="pp-toggle-btn" type="button">カラオケ</button>
         </div>
-        <div class="recording-actions">
-          <button id="recordButton" class="accent" type="button">録音開始</button>
-          <button id="playRecordButton" class="ghost" type="button" disabled>再生</button>
+      </header>
+
+      <div class="pp-status">
+        <div class="pp-status-row">
+          <div id="recordPill" class="pp-pill pp-pill-record" data-active="false">
+            <span class="pp-dot"></span>
+            <span id="recordStatus">停止中</span>
+          </div>
+          <div id="playPill" class="pp-pill pp-pill-play" data-active="false">
+            <span class="pp-dot"></span>
+            <span id="playStatusText">再生中</span>
+          </div>
+          <button id="startButton" class="pp-pill pp-pill-action" type="button">開始</button>
+          <button id="retryButton" class="pp-pill pp-pill-ghost" type="button" hidden>再試行</button>
         </div>
+        <div class="pp-system">
+          <span id="statusPill" class="pp-system-pill" data-state="idle">READY</span>
+          <span id="statusText" class="pp-system-text">開始ボタンを押してください。</span>
+        </div>
+      </div>
+
+      <section class="pp-card pitch-card">
+        <div class="pp-card-top">
+          <span class="pp-card-label">現在の音程</span>
+          <label class="pp-chip tune-chip">
+            <select id="targetSelect" class="tune-select" aria-label="ターゲット音"></select>
+          </label>
+        </div>
+        <div id="currentNote" class="pp-note">…</div>
+        <div id="metrics" class="pp-metrics" data-low="true">
+          <div class="pp-freq-row">
+            <span id="freqValue" class="pp-freq">…</span>
+            <span id="centsValue" class="pp-cents">…</span>
+          </div>
+          <span id="confidenceValue" class="pp-confidence">--%</span>
+        </div>
+        <div id="gauge" class="pp-pitch-bar" data-level="off">
+          <span class="pp-bar-tick tick-1"></span>
+          <span class="pp-bar-tick tick-2"></span>
+          <span class="pp-bar-tick tick-3"></span>
+          <span class="pp-bar-tick tick-4"></span>
+          <span class="pp-bar-center"></span>
+          <span id="gaugeNeedle" class="pp-bar-indicator"></span>
+          <span id="gaugeLabel" class="pp-bar-label">NO SIGNAL</span>
+        </div>
+      </section>
+
+      <section class="pp-card bar-card">
+        <div class="pp-card-top">
+          <span id="barLabel" class="pp-card-label">バー表示</span>
+          <span id="barStatus" class="pp-pill pp-pill-inline" data-state="rec">録音中</span>
+          <span id="barChip" class="pp-chip">カラオケ</span>
+        </div>
+        <div class="pp-lane">
+          <span class="pp-lane-line line-1"></span>
+          <span class="pp-lane-line line-2"></span>
+          <span class="pp-lane-line line-3"></span>
+          <span class="pp-lane-target t1"></span>
+          <span class="pp-lane-target t2"></span>
+          <span class="pp-lane-target t3"></span>
+          <span class="pp-lane-target t4"></span>
+          <span class="pp-lane-trail tr1"></span>
+          <span class="pp-lane-trail tr2"></span>
+          <span class="pp-lane-trail tr3"></span>
+          <span class="pp-lane-current"></span>
+          <span class="pp-lane-dot"></span>
+        </div>
+        <div class="pp-current-row">
+          <span id="laneCurrentText" class="pp-current-text">現在: --</span>
+          <span id="laneCentsText" class="pp-cents-chip">--</span>
+        </div>
+      </section>
+
+      <section class="pp-card session-card">
+        <div class="pp-section live-section">
+          <span class="pp-card-label">リアルタイム音階</span>
+          <div class="pp-chip-row">
+            <span class="pp-chip muted">A3</span>
+            <span class="pp-chip muted">B3</span>
+            <span class="pp-chip muted">C4</span>
+            <span class="pp-chip active">C#4</span>
+            <span class="pp-chip muted">D4</span>
+          </div>
+        </div>
+        <div class="pp-section">
+          <span class="pp-card-label">再生モード</span>
+          <div class="pp-segment">
+            <button id="playbackRecord" class="pp-seg" type="button">録音そのまま</button>
+            <button id="playbackPiano" class="pp-seg is-active" type="button">ピアノ音</button>
+          </div>
+        </div>
+        <div class="pp-controls">
+          <button id="playMelodyButton" class="pp-btn pp-btn-play" type="button" disabled>再生</button>
+          <button id="recordButton" class="pp-btn pp-btn-rec" type="button">録音</button>
+        </div>
+        <div class="pp-subcontrols">
+          <button id="playRecordButton" class="pp-btn pp-btn-sub" type="button" disabled>録音再生</button>
+          <label class="pp-speed">
+            <span>再生速度</span>
+            <select id="melodySpeedSelect" class="pp-speed-select" aria-label="メロディ再生速度">
+              <option value="0.5">0.5x</option>
+              <option value="0.75">0.75x</option>
+              <option value="1" selected>1x</option>
+              <option value="1.25">1.25x</option>
+              <option value="1.5">1.5x</option>
+            </select>
+          </label>
+        </div>
+        <div class="pp-tone-actions">
+          <button id="playToneButton" class="pp-btn pp-btn-ghost" type="button">基準音を鳴らす</button>
+          <button id="playOctaveButton" class="pp-btn pp-btn-ghost" type="button">1オク下を鳴らす</button>
+        </div>
+        <p id="toneStatus" class="pp-tone-status" data-state="idle">ピアノ音は未読み込み</p>
         <audio id="recordedAudio" class="recorded-audio" controls hidden></audio>
-      </div>
-
-      <div class="display">
-        <div class="current">
-          <div class="current-label">CURRENT NOTE</div>
-          <div id="currentNote" class="current-note">…</div>
-        </div>
-        <div class="target">
-          <div class="target-label">TARGET</div>
-          <div class="target-row">
-            <select id="targetSelect" class="target-select" aria-label="ターゲット音"></select>
-          </div>
-        </div>
-      </div>
-
-      <div class="metrics" data-low="true">
-        <div class="metric">
-          <div class="metric-label">FREQ</div>
-          <div id="freqValue" class="metric-value">…</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">CENTS (TARGET)</div>
-          <div id="centsValue" class="metric-value">…</div>
-        </div>
-        <div class="metric">
-          <div class="metric-label">CONF</div>
-          <div id="confidenceValue" class="metric-value">--%</div>
-        </div>
-      </div>
-
-      <div id="gauge" class="gauge" data-level="off">
-        <div class="gauge-bar">
-          <div class="gauge-track"></div>
-          <div id="gaugeNeedle" class="gauge-needle"></div>
-        </div>
-        <div id="gaugeLabel" class="gauge-label">NO SIGNAL</div>
-        <div class="gauge-scale">
-          <span>-50¢</span>
-          <span>0</span>
-          <span>+50¢</span>
-        </div>
-      </div>
-
-      <div class="debug">
-        <div class="debug-title">波形（先頭48サンプル）</div>
-        <pre id="waveform" class="debug-output">-</pre>
-      </div>
-    </section>
-
-    <section class="review">
-      <h2>録音の振り返り</h2>
-      <div class="review-grid">
-        <div class="review-card review-actions">
-          <div class="review-label">メロディ</div>
-          <div class="melody-controls">
-            <button id="playMelodyButton" class="secondary" type="button" disabled>メロディ再生</button>
-            <label class="melody-speed">
-              <span>再生速度</span>
-              <select id="melodySpeedSelect" class="melody-speed-select" aria-label="メロディ再生速度">
-                <option value="0.5">0.5x</option>
-                <option value="0.75">0.75x</option>
-                <option value="1" selected>1x</option>
-                <option value="1.25">1.25x</option>
-                <option value="1.5">1.5x</option>
-              </select>
-            </label>
-          </div>
-          <p class="review-hint">録音→停止後にメロディ再生できます。</p>
-        </div>
-        <div class="review-card">
-          <div class="review-label">簡易統計</div>
-          <div id="reviewStats" class="review-stats">-</div>
-        </div>
-        <div class="review-card">
-          <div class="review-label">スコア</div>
-          <div id="reviewScore" class="review-stats">-</div>
-        </div>
-        <div class="review-card">
-          <div class="review-label">今日の課題</div>
-          <div id="reviewChallenge" class="review-stats">-</div>
-        </div>
-        <div class="review-card review-wide">
-          <div class="review-label">時系列（cents）</div>
-          <canvas id="reviewCanvas" class="review-canvas" width="640" height="200"></canvas>
-        </div>
-      </div>
-      <pre id="reviewList" class="review-list">-</pre>
-    </section>
-
-    <section class="notes">
-      <h2>チェックポイント</h2>
-      <ul>
-        <li>iPhone Safariで「開始」をタップ → マイク許可 → 音名が追従する</li>
-        <li>無音時は表示が「…」になり、confidenceが低下する</li>
-        <li>ターゲット音を変えるとゲージ判定が切り替わる</li>
-        <li>基準音ボタンでターゲット音が鳴る</li>
-        <li>録音→停止→再生ができ、時系列が表示される</li>
-      </ul>
+      </section>
     </section>
   </main>
 `
 
+const appRoot = app.querySelector<HTMLElement>('.pp-app')
+const modeSingle = app.querySelector<HTMLButtonElement>('#modeSingle')
+const modeKaraoke = app.querySelector<HTMLButtonElement>('#modeKaraoke')
+const recordPill = app.querySelector<HTMLDivElement>('#recordPill')
+const playPill = app.querySelector<HTMLDivElement>('#playPill')
+const playStatusText = app.querySelector<HTMLSpanElement>('#playStatusText')
+const barLabel = app.querySelector<HTMLSpanElement>('#barLabel')
+const barStatus = app.querySelector<HTMLSpanElement>('#barStatus')
+const barChip = app.querySelector<HTMLSpanElement>('#barChip')
+const laneCurrentText = app.querySelector<HTMLSpanElement>('#laneCurrentText')
+const laneCentsText = app.querySelector<HTMLSpanElement>('#laneCentsText')
+const lane = app.querySelector<HTMLDivElement>('.pp-lane')
+const laneDot = app.querySelector<HTMLSpanElement>('.pp-lane-dot')
+const laneTargets = Array.from(app.querySelectorAll<HTMLSpanElement>('.pp-lane-target'))
+const laneTrails = Array.from(app.querySelectorAll<HTMLSpanElement>('.pp-lane-trail'))
 const startButton = app.querySelector<HTMLButtonElement>('#startButton')
 const retryButton = app.querySelector<HTMLButtonElement>('#retryButton')
 const playToneButton = app.querySelector<HTMLButtonElement>('#playToneButton')
 const playOctaveButton = app.querySelector<HTMLButtonElement>('#playOctaveButton')
 const toneStatus = app.querySelector<HTMLParagraphElement>('#toneStatus')
+const playbackRecordButton = app.querySelector<HTMLButtonElement>('#playbackRecord')
+const playbackPianoButton = app.querySelector<HTMLButtonElement>('#playbackPiano')
 const recordButton = app.querySelector<HTMLButtonElement>('#recordButton')
 const playRecordButton = app.querySelector<HTMLButtonElement>('#playRecordButton')
-const recordStatus = app.querySelector<HTMLDivElement>('#recordStatus')
+const recordStatus = app.querySelector<HTMLSpanElement>('#recordStatus')
 const recordedAudio = app.querySelector<HTMLAudioElement>('#recordedAudio')
 const statusPill = app.querySelector<HTMLSpanElement>('#statusPill')
-const statusText = app.querySelector<HTMLParagraphElement>('#statusText')
+const statusText = app.querySelector<HTMLSpanElement>('#statusText')
 const waveform = app.querySelector<HTMLPreElement>('#waveform')
-const metrics = app.querySelector<HTMLDivElement>('.metrics')
+const metrics = app.querySelector<HTMLDivElement>('#metrics')
 const currentNote = app.querySelector<HTMLDivElement>('#currentNote')
 const targetSelect = app.querySelector<HTMLSelectElement>('#targetSelect')
-const freqValue = app.querySelector<HTMLDivElement>('#freqValue')
-const centsValue = app.querySelector<HTMLDivElement>('#centsValue')
-const confidenceValue = app.querySelector<HTMLDivElement>('#confidenceValue')
+const freqValue = app.querySelector<HTMLSpanElement>('#freqValue')
+const centsValue = app.querySelector<HTMLSpanElement>('#centsValue')
+const confidenceValue = app.querySelector<HTMLSpanElement>('#confidenceValue')
 const gauge = app.querySelector<HTMLDivElement>('#gauge')
-const gaugeNeedle = app.querySelector<HTMLDivElement>('#gaugeNeedle')
-const gaugeLabel = app.querySelector<HTMLDivElement>('#gaugeLabel')
+const gaugeNeedle = app.querySelector<HTMLSpanElement>('#gaugeNeedle')
+const gaugeLabel = app.querySelector<HTMLSpanElement>('#gaugeLabel')
 const reviewStats = app.querySelector<HTMLDivElement>('#reviewStats')
 const reviewScore = app.querySelector<HTMLDivElement>('#reviewScore')
 const reviewChallenge = app.querySelector<HTMLDivElement>('#reviewChallenge')
@@ -243,18 +268,34 @@ const reviewList = app.querySelector<HTMLPreElement>('#reviewList')
 const reviewCanvas = app.querySelector<HTMLCanvasElement>('#reviewCanvas')
 
 if (
+  !appRoot ||
+  !modeSingle ||
+  !modeKaraoke ||
+  !recordPill ||
+  !playPill ||
+  !playStatusText ||
+  !barLabel ||
+  !barStatus ||
+  !barChip ||
+  !laneCurrentText ||
+  !laneCentsText ||
+  !lane ||
+  !laneDot ||
+  laneTargets.length === 0 ||
+  laneTrails.length === 0 ||
   !startButton ||
   !retryButton ||
   !playToneButton ||
   !playOctaveButton ||
   !toneStatus ||
+  !playbackRecordButton ||
+  !playbackPianoButton ||
   !recordButton ||
   !playRecordButton ||
   !recordStatus ||
   !recordedAudio ||
   !statusPill ||
   !statusText ||
-  !waveform ||
   !metrics ||
   !currentNote ||
   !targetSelect ||
@@ -264,13 +305,8 @@ if (
   !gauge ||
   !gaugeNeedle ||
   !gaugeLabel ||
-  !reviewStats ||
-  !reviewScore ||
-  !reviewChallenge ||
   !playMelodyButton ||
-  !melodySpeedSelect ||
-  !reviewList ||
-  !reviewCanvas
+  !melodySpeedSelect
 ) {
   throw new Error('Required UI elements not found')
 }
@@ -303,6 +339,12 @@ let isMelodyPlaying = false
 let melodyNotes: Array<{ stop: () => void }> = []
 let melodyStopTimer: number | null = null
 let melodySpeed = 1
+let karaokeEvents: KaraokeEvent[] = []
+let karaokeStartAt = 0
+let karaokeAnimationId: number | null = null
+let currentMode: DisplayMode = 'single'
+let playbackMode: PlaybackMode = 'piano'
+let isRecordPlaying = false
 let hasAudioUnlocked = false
 let toneAudio: HTMLAudioElement | null = null
 let toneObjectUrl: string | null = null
@@ -313,6 +355,7 @@ let candidateFrames = 0
 let stableMidi: number | null = null
 let silenceFrames = 0
 let lastStableMetrics: PitchMetrics | null = null
+let hasRecordedAudio = false
 
 const formatError = (error: unknown) => {
   if (error instanceof DOMException) {
@@ -330,6 +373,12 @@ const formatError = (error: unknown) => {
 const shouldUseMediaTone = () => {
   if (forceMediaTone || PREFER_MEDIA_TONE) return true
   return !getAudioContextClass()
+}
+
+const hasPianoBuffers = (instrument: SoundfontInstrument | null) => {
+  if (!instrument) return false
+  const buffers = (instrument as SoundfontInstrument & { buffers?: Record<string, AudioBuffer> }).buffers
+  return !!buffers && Object.keys(buffers).length > 0
 }
 
 const getToneAudio = () => {
@@ -370,17 +419,82 @@ const setToneStatus = (state: ToneStatus, message: string) => {
   toneStatus.textContent = message
 }
 
+const setMode = (mode: DisplayMode) => {
+  currentMode = mode
+  appRoot.dataset.mode = mode
+  modeSingle.classList.toggle('is-active', mode === 'single')
+  modeKaraoke.classList.toggle('is-active', mode === 'karaoke')
+  barLabel.textContent = mode === 'karaoke' ? 'カラオケバー' : '単音バー'
+  barChip.textContent = mode === 'karaoke' ? `Key ${NOTE_NAMES[targetMidi % 12]}` : '単音'
+  clearLaneBars()
+  syncStatusPills()
+}
+
+const setPlaybackMode = (mode: PlaybackMode) => {
+  playbackMode = mode
+  playbackRecordButton.classList.toggle('is-active', mode === 'record')
+  playbackPianoButton.classList.toggle('is-active', mode === 'piano')
+  if (mode === 'record' && isMelodyPlaying) {
+    stopMelodyPlayback()
+  }
+  if (mode === 'piano' && isRecordPlaying) {
+    recordedAudio.pause()
+  }
+  updateMelodyControls()
+  setMelodyButtonLabel()
+}
+
+const isPlaying = () => isMelodyPlaying || isRecordPlaying
+const hasPlayableMelody = () => melodySequence.some((event) => event.midi !== null)
+const isPlayButtonActive = () => (playbackMode === 'record' ? isRecordPlaying : isMelodyPlaying)
+
+const syncStatusPills = () => {
+  appRoot.dataset.recording = String(isRecording)
+  appRoot.dataset.playing = String(isPlaying())
+
+  recordPill.dataset.active = String(isRecording)
+  recordStatus.textContent = isRecording ? '録音中' : '停止中'
+
+  playPill.dataset.active = String(isPlaying())
+  playStatusText.textContent = isPlaying() ? '再生中' : '待機中'
+
+  if (isRecording) {
+    barStatus.dataset.state = 'rec'
+    barStatus.textContent = '録音中'
+  } else if (isPlaying()) {
+    barStatus.dataset.state = 'play'
+    barStatus.textContent = '再生中'
+  } else {
+    barStatus.dataset.state = 'idle'
+    barStatus.textContent = '待機中'
+  }
+}
+
 const setStartButtonLabel = () => {
   startButton.textContent = isRunning ? '停止' : '開始'
 }
 
 const setRecordButtonLabel = () => {
   recordButton.textContent = isRecording ? '録音停止' : '録音開始'
-  recordStatus.textContent = isRecording ? '録音中…' : '停止中'
+  recordStatus.textContent = isRecording ? '録音中' : '停止中'
+  syncStatusPills()
 }
 
 const setMelodyButtonLabel = () => {
-  playMelodyButton.textContent = isMelodyPlaying ? 'メロディ停止' : 'メロディ再生'
+  playMelodyButton.textContent = isPlayButtonActive() ? '停止' : '再生'
+  syncStatusPills()
+}
+
+const updateMelodyControls = () => {
+  if (playbackMode === 'record') {
+    playMelodyButton.disabled = isRecording || !hasRecordedAudio
+    melodySpeedSelect.disabled = true
+    return
+  }
+
+  const hasMelody = hasPlayableMelody()
+  playMelodyButton.disabled = isRecording || isToneLoading
+  melodySpeedSelect.disabled = isRecording || isToneLoading || !hasMelody
 }
 
 const setControls = (isWorking: boolean) => {
@@ -388,11 +502,10 @@ const setControls = (isWorking: boolean) => {
   retryButton.disabled = isWorking
   recordButton.disabled = isWorking
 
-  const toneDisabled = isWorking || isToneLoading
+  const toneDisabled = isWorking
   playToneButton.disabled = toneDisabled
   playOctaveButton.disabled = toneDisabled
-  playMelodyButton.disabled = toneDisabled || melodySequence.length === 0
-  melodySpeedSelect.disabled = toneDisabled || melodySequence.length === 0
+  updateMelodyControls()
 
   if (isWorking) {
     playRecordButton.disabled = true
@@ -547,6 +660,12 @@ const loadPianoSoundfont = async () => {
       nameToUrl: soundfontUrl,
     })
     pianoInstrument = await pianoPromise
+    if (!hasPianoBuffers(pianoInstrument)) {
+      pianoInstrument = null
+      forceMediaTone = true
+      setToneStatus('error', 'ピアノ音の読み込みに失敗しました。簡易音で再生します。')
+      return null
+    }
     setToneStatus('ready', 'ピアノ音の準備完了')
     return pianoInstrument
   } catch (error) {
@@ -906,6 +1025,160 @@ const buildMelodySequence = (frames: RecordedFrame[], stepSeconds: number) => {
   return compressed
 }
 
+const buildKaraokeEvents = (sequence: MelodyEvent[]) => {
+  const events: KaraokeEvent[] = []
+  let cursor = 0
+  for (const event of sequence) {
+    if (event.midi !== null) {
+      events.push({ midi: event.midi, start: cursor, duration: event.duration })
+    }
+    cursor += event.duration
+  }
+  return events
+}
+
+const getLaneMetrics = () => {
+  const rect = lane.getBoundingClientRect()
+  const width = Math.max(0, rect.width - LANE_PADDING * 2)
+  const height = Math.max(0, rect.height - LANE_TOP_PADDING - LANE_BOTTOM_PADDING)
+  return { rect, width, height }
+}
+
+const midiToLaneY = (midi: number, laneMetrics: { rect: DOMRect; width: number; height: number }) => {
+  const range = TARGET_END_MIDI - TARGET_START_MIDI
+  const clampedMidi = clamp(midi, TARGET_START_MIDI, TARGET_END_MIDI)
+  const ratio = range === 0 ? 0.5 : (clampedMidi - TARGET_START_MIDI) / range
+  const y =
+    LANE_TOP_PADDING +
+    (1 - ratio) * laneMetrics.height -
+    LANE_BAR_HEIGHT / 2
+  const maxY = laneMetrics.rect.height - LANE_BOTTOM_PADDING - LANE_BAR_HEIGHT
+  return clamp(y, LANE_TOP_PADDING, maxY)
+}
+
+const clearLaneBars = () => {
+  laneTargets.forEach((target) => {
+    target.style.opacity = '0'
+    target.style.transform = 'scaleX(0.6)'
+  })
+  laneTrails.forEach((trail) => {
+    trail.style.opacity = '0'
+    trail.style.transform = 'scaleX(0.6)'
+  })
+  laneDot.style.opacity = '0.4'
+}
+
+const renderKaraokeBar = () => {
+  if (currentMode !== 'karaoke') {
+    clearLaneBars()
+    return
+  }
+
+  laneDot.style.opacity = isRecording || isPlaying() ? '1' : '0.4'
+
+  const laneMetrics = getLaneMetrics()
+  if (laneMetrics.width <= 0 || laneMetrics.height <= 0) {
+    clearLaneBars()
+    return
+  }
+
+  if (isRecording) {
+    laneTargets.forEach((target) => {
+      target.style.opacity = '0'
+      target.style.transform = 'scaleX(0.6)'
+    })
+
+    const now = Math.max(0, (performance.now() - recordStartTime) / 1000)
+    const trailStart = Math.max(0, now - KARAOKE_TRAIL_SECONDS)
+    const recent = recordedFrames.filter(
+      (frame) => frame.midi !== null && frame.t >= trailStart,
+    )
+    if (recent.length === 0) {
+      laneTrails.forEach((trail) => {
+        trail.style.opacity = '0'
+      })
+      return
+    }
+
+    const maxWidth = laneMetrics.rect.width - LANE_PADDING * 2
+    const barWidth = Math.max(KARAOKE_MIN_BAR_WIDTH, maxWidth * 0.12)
+    const slots = laneTrails.length
+    for (let i = 0; i < slots; i += 1) {
+      const trail = laneTrails[i]
+      const ratio = (i + 1) / (slots + 1)
+      const index = Math.min(recent.length - 1, Math.floor(ratio * (recent.length - 1)))
+      const frame = recent[index]
+      const timeRatio = Math.min(1, Math.max(0, (frame.t - trailStart) / KARAOKE_TRAIL_SECONDS))
+      const left = LANE_PADDING + timeRatio * maxWidth
+      const top = midiToLaneY(frame.midi ?? TARGET_START_MIDI, laneMetrics)
+      trail.style.left = `${left}px`
+      trail.style.top = `${top}px`
+      trail.style.width = `${barWidth}px`
+      trail.style.opacity = '1'
+      trail.style.transform = 'scaleX(1)'
+    }
+    return
+  }
+
+  if (!isPlaying() || karaokeEvents.length === 0) {
+    clearLaneBars()
+    return
+  }
+
+  const now = Math.max(0, (performance.now() - karaokeStartAt) / 1000)
+  const windowEnd = now + KARAOKE_WINDOW_SECONDS
+  const visible = karaokeEvents.filter(
+    (event) => event.start < windowEnd && event.start + event.duration > now,
+  )
+
+  for (let i = 0; i < laneTargets.length; i += 1) {
+    const target = laneTargets[i]
+    const event = visible[i]
+    if (!event) {
+      target.style.opacity = '0'
+      target.style.transform = 'scaleX(0.6)'
+      continue
+    }
+
+    const start = Math.max(event.start, now)
+    const end = Math.min(event.start + event.duration, windowEnd)
+    const progressStart = (start - now) / KARAOKE_WINDOW_SECONDS
+    const progressEnd = (end - now) / KARAOKE_WINDOW_SECONDS
+    const left = LANE_PADDING + progressStart * laneMetrics.width
+    const right = LANE_PADDING + progressEnd * laneMetrics.width
+    const maxRight = LANE_PADDING + laneMetrics.width
+    const rawWidth = Math.max(KARAOKE_MIN_BAR_WIDTH, right - left)
+    const width = Math.max(KARAOKE_MIN_BAR_WIDTH, Math.min(rawWidth, maxRight - left))
+    const top = midiToLaneY(event.midi, laneMetrics)
+
+    target.style.left = `${left}px`
+    target.style.top = `${top}px`
+    target.style.width = `${width}px`
+    target.style.opacity = '1'
+    target.style.transform = 'scaleX(1)'
+  }
+
+  laneTrails.forEach((trail) => {
+    trail.style.opacity = '0'
+    trail.style.transform = 'scaleX(0.6)'
+  })
+}
+
+const startKaraokeAnimation = () => {
+  if (karaokeAnimationId !== null) return
+  const tick = () => {
+    karaokeAnimationId = requestAnimationFrame(tick)
+    renderKaraokeBar()
+  }
+  karaokeAnimationId = requestAnimationFrame(tick)
+}
+
+const stopKaraokeAnimation = () => {
+  if (karaokeAnimationId === null) return
+  cancelAnimationFrame(karaokeAnimationId)
+  karaokeAnimationId = null
+}
+
 const deriveStableMetrics = (frequency: number | null, confidence: number): PitchMetrics | null => {
   if (frequency === null || confidence < MIN_CONFIDENCE) {
     silenceFrames += 1
@@ -973,7 +1246,7 @@ const updateGauge = (cents: number | null, confidence: number) => {
   const clamped = Math.max(-MAX_GAUGE_CENTS, Math.min(MAX_GAUGE_CENTS, cents))
   const percent = 50 + (clamped / MAX_GAUGE_CENTS) * 50
   gaugeNeedle.style.left = `${percent}%`
-  gaugeLabel.textContent = `${cents >= 0 ? '+' : ''}${cents.toFixed(1)}¢ ${level.toUpperCase()}`
+  gaugeLabel.textContent = `${cents >= 0 ? '+' : ''}${cents.toFixed(1)}c`
 }
 
 const updatePitchDisplay = (metricsData: PitchMetrics | null, confidence: number) => {
@@ -984,14 +1257,18 @@ const updatePitchDisplay = (metricsData: PitchMetrics | null, confidence: number
     currentNote.textContent = '…'
     freqValue.textContent = '…'
     centsValue.textContent = '…'
+    laneCurrentText.textContent = '現在: --'
+    laneCentsText.textContent = '--'
     updateGauge(null, confidence)
   } else {
     const midi = metricsData.midi
-    currentNote.innerHTML = `<span class="current-note-main">${midiToNote(midi)}</span><span class="current-note-sub">${midiToSolfege(
+    currentNote.innerHTML = `<span class="pp-note-main">${midiToNote(midi)}</span><span class="pp-note-sub">${midiToSolfege(
       midi,
     )}</span>`
     freqValue.textContent = `${metricsData.frequency.toFixed(2)} Hz`
-    centsValue.textContent = `${metricsData.centsFromTarget >= 0 ? '+' : ''}${metricsData.centsFromTarget.toFixed(1)}¢`
+    centsValue.textContent = `${metricsData.centsFromTarget >= 0 ? '+' : ''}${metricsData.centsFromTarget.toFixed(1)} cents`
+    laneCurrentText.textContent = `現在: ${midiToSolfege(midi)}`
+    laneCentsText.textContent = `${metricsData.centsFromTarget >= 0 ? '+' : ''}${metricsData.centsFromTarget.toFixed(0)}c`
     updateGauge(metricsData.centsFromTarget, confidence)
   }
 
@@ -1023,7 +1300,9 @@ const renderWaveform = () => {
   const preview = Array.from(byteData.slice(0, 48))
     .map((value) => String(value).padStart(3, ' '))
     .join(' ')
-  waveform.textContent = preview
+  if (waveform) {
+    waveform.textContent = preview
+  }
 
   if (typeof analyser.getFloatTimeDomainData === 'function') {
     analyser.getFloatTimeDomainData(floatData)
@@ -1055,25 +1334,33 @@ const renderWaveform = () => {
   lastStableMetrics = metricsData
   updatePitchDisplay(metricsData, confidence)
   recordFrame(metricsData, confidence)
+  if (currentMode === 'karaoke') {
+    renderKaraokeBar()
+  }
 
   animationId = requestAnimationFrame(renderWaveform)
 }
 
 const renderReview = () => {
+  const hasReviewUI = !!(reviewStats && reviewScore && reviewChallenge && reviewList && reviewCanvas)
   if (recordedFrames.length === 0) {
-    reviewStats.textContent = '-'
-    reviewScore.textContent = '-'
-    reviewChallenge.textContent = '-'
-    reviewList.textContent = '-'
+    if (hasReviewUI) {
+      reviewStats.textContent = '-'
+      reviewScore.textContent = '-'
+      reviewChallenge.textContent = '-'
+      reviewList.textContent = '-'
+    }
     melodySequence = []
-    playMelodyButton.disabled = true
-    melodySpeedSelect.disabled = true
+    karaokeEvents = []
+    updateMelodyControls()
     if (isMelodyPlaying) {
       stopMelodyPlayback()
     }
-    const ctx = reviewCanvas.getContext('2d')
-    if (ctx) {
-      ctx.clearRect(0, 0, reviewCanvas.width, reviewCanvas.height)
+    if (hasReviewUI) {
+      const ctx = reviewCanvas.getContext('2d')
+      if (ctx) {
+        ctx.clearRect(0, 0, reviewCanvas.width, reviewCanvas.height)
+      }
     }
     return
   }
@@ -1088,9 +1375,11 @@ const renderReview = () => {
   const vibrato = analyzeVibrato(valid)
   const avgConfidence = recordedFrames.reduce((sum, frame) => sum + frame.confidence, 0) / recordedFrames.length
 
-  reviewStats.textContent = `平均|cents|: ${avgAbsCents ? avgAbsCents.toFixed(1) + '¢' : '--'} / 平均confidence: ${Math.round(
-    avgConfidence * 100,
-  )}% / 有効サンプル: ${valid.length}/${recordedFrames.length}`
+  if (hasReviewUI) {
+    reviewStats.textContent = `平均|cents|: ${avgAbsCents ? avgAbsCents.toFixed(1) + '¢' : '--'} / 平均confidence: ${Math.round(
+      avgConfidence * 100,
+    )}% / 有効サンプル: ${valid.length}/${recordedFrames.length}`
+  }
 
   const vibratoLabel = vibrato
     ? `揺れ周期: ${vibrato.rate.toFixed(1)}Hz / 幅: ${vibrato.depth.toFixed(1)}¢ / ${
@@ -1098,7 +1387,9 @@ const renderReview = () => {
       }`
     : 'ビブラート: --'
 
-  reviewScore.textContent = `安定度: ${stabilityScore ?? '--'} / 100\n${vibratoLabel}`
+  if (hasReviewUI) {
+    reviewScore.textContent = `安定度: ${stabilityScore ?? '--'} / 100\n${vibratoLabel}`
+  }
 
   let challenge = '録音結果は良好です。ターゲット音を変えて練習しましょう。'
   if (valid.length < 10) {
@@ -1114,70 +1405,74 @@ const renderReview = () => {
   } else if (vibrato && vibrato.rate > 8) {
     challenge = 'ビブラートが速めです。テンポを少し落ち着かせましょう。'
   }
-  reviewChallenge.textContent = challenge
+  if (hasReviewUI) {
+    reviewChallenge.textContent = challenge
+  }
 
   melodySequence = buildMelodySequence(recordedFrames, MELODY_STEP_SECONDS)
-  const hasMelody = melodySequence.some((event) => event.midi !== null)
-  playMelodyButton.disabled = isToneLoading || !hasMelody
-  melodySpeedSelect.disabled = isToneLoading || !hasMelody
+  karaokeEvents = buildKaraokeEvents(melodySequence)
+  updateMelodyControls()
+  const hasMelody = hasPlayableMelody()
   if (!hasMelody && isMelodyPlaying) {
     stopMelodyPlayback()
   }
 
-  const step = Math.max(1, Math.ceil(recordedFrames.length / MAX_REVIEW_LINES))
-  const lines: string[] = []
-  for (let i = 0; i < recordedFrames.length; i += step) {
-    const frame = recordedFrames[i]
-    const note = frame.note ?? '…'
-    const freq = frame.frequency !== null ? `${frame.frequency.toFixed(1)}Hz` : '…'
-    const cents = frame.cents !== null ? `${frame.cents >= 0 ? '+' : ''}${frame.cents.toFixed(1)}¢` : '…'
-    const conf = `${Math.round(frame.confidence * 100)}%`
-    lines.push(`${frame.t.toFixed(2)}s  ${note}  ${freq}  ${cents}  ${conf}`)
-  }
-  reviewList.textContent = lines.join('\n')
-
-  const ctx = reviewCanvas.getContext('2d')
-  if (!ctx) return
-
-  const rect = reviewCanvas.getBoundingClientRect()
-  const ratio = window.devicePixelRatio || 1
-  reviewCanvas.width = Math.max(1, Math.floor(rect.width * ratio))
-  reviewCanvas.height = Math.max(1, Math.floor(rect.height * ratio))
-  ctx.scale(ratio, ratio)
-
-  ctx.clearRect(0, 0, rect.width, rect.height)
-  ctx.fillStyle = '#fffaf4'
-  ctx.fillRect(0, 0, rect.width, rect.height)
-
-  ctx.strokeStyle = '#e6d6c7'
-  ctx.lineWidth = 1
-  ctx.beginPath()
-  ctx.moveTo(0, rect.height / 2)
-  ctx.lineTo(rect.width, rect.height / 2)
-  ctx.stroke()
-
-  const duration = recordedFrames[recordedFrames.length - 1].t || 1
-  ctx.strokeStyle = '#d96c4a'
-  ctx.lineWidth = 2
-  ctx.beginPath()
-  let started = false
-
-  for (const frame of recordedFrames) {
-    if (frame.cents === null) {
-      started = false
-      continue
+  if (hasReviewUI) {
+    const step = Math.max(1, Math.ceil(recordedFrames.length / MAX_REVIEW_LINES))
+    const lines: string[] = []
+    for (let i = 0; i < recordedFrames.length; i += step) {
+      const frame = recordedFrames[i]
+      const note = frame.note ?? '…'
+      const freq = frame.frequency !== null ? `${frame.frequency.toFixed(1)}Hz` : '…'
+      const cents = frame.cents !== null ? `${frame.cents >= 0 ? '+' : ''}${frame.cents.toFixed(1)}¢` : '…'
+      const conf = `${Math.round(frame.confidence * 100)}%`
+      lines.push(`${frame.t.toFixed(2)}s  ${note}  ${freq}  ${cents}  ${conf}`)
     }
-    const x = (frame.t / duration) * rect.width
-    const clamped = Math.max(-MAX_GAUGE_CENTS, Math.min(MAX_GAUGE_CENTS, frame.cents))
-    const y = rect.height / 2 - (clamped / MAX_GAUGE_CENTS) * (rect.height * 0.4)
-    if (!started) {
-      ctx.moveTo(x, y)
-      started = true
-    } else {
-      ctx.lineTo(x, y)
+    reviewList.textContent = lines.join('\n')
+
+    const ctx = reviewCanvas.getContext('2d')
+    if (!ctx) return
+
+    const rect = reviewCanvas.getBoundingClientRect()
+    const ratio = window.devicePixelRatio || 1
+    reviewCanvas.width = Math.max(1, Math.floor(rect.width * ratio))
+    reviewCanvas.height = Math.max(1, Math.floor(rect.height * ratio))
+    ctx.scale(ratio, ratio)
+
+    ctx.clearRect(0, 0, rect.width, rect.height)
+    ctx.fillStyle = '#fffaf4'
+    ctx.fillRect(0, 0, rect.width, rect.height)
+
+    ctx.strokeStyle = '#e6d6c7'
+    ctx.lineWidth = 1
+    ctx.beginPath()
+    ctx.moveTo(0, rect.height / 2)
+    ctx.lineTo(rect.width, rect.height / 2)
+    ctx.stroke()
+
+    const duration = recordedFrames[recordedFrames.length - 1].t || 1
+    ctx.strokeStyle = '#d96c4a'
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    let started = false
+
+    for (const frame of recordedFrames) {
+      if (frame.cents === null) {
+        started = false
+        continue
+      }
+      const x = (frame.t / duration) * rect.width
+      const clamped = Math.max(-MAX_GAUGE_CENTS, Math.min(MAX_GAUGE_CENTS, frame.cents))
+      const y = rect.height / 2 - (clamped / MAX_GAUGE_CENTS) * (rect.height * 0.4)
+      if (!started) {
+        ctx.moveTo(x, y)
+        started = true
+      } else {
+        ctx.lineTo(x, y)
+      }
     }
+    ctx.stroke()
   }
-  ctx.stroke()
 }
 
 const handleError = (error: unknown) => {
@@ -1258,10 +1553,14 @@ const stopAudio = () => {
   isRunning = false
   smoothedFrequency = null
   updatePitchDisplay(null, 0)
-  waveform.textContent = '-'
+  if (waveform) {
+    waveform.textContent = '-'
+  }
   setStartButtonLabel()
   setStatus('idle', '停止しました。開始ボタンを押してください。')
   setControls(false)
+  clearLaneBars()
+  stopKaraokeAnimation()
 }
 
 const buildTargetOptions = () => {
@@ -1276,6 +1575,20 @@ const buildTargetOptions = () => {
 }
 
 const playReferenceTone = async (octaveShift: number) => {
+  const context = await ensurePlaybackContext()
+  if (!context) {
+    setToneStatus('ready', '簡易音で再生します')
+    const midi = targetMidi + octaveShift
+    const samples = buildSineSamples(midiToFrequency(midi), 1.2, TONE_SAMPLE_RATE, 0.28)
+    await playSamplesViaMedia(samples, TONE_SAMPLE_RATE)
+    return
+  }
+
+  const unlocked = await unlockAudioContext(context)
+  if (!unlocked || context.state !== 'running') {
+    forceMediaTone = true
+  }
+
   if (shouldUseMediaTone()) {
     setToneStatus('ready', '簡易音で再生します')
     const midi = targetMidi + octaveShift
@@ -1284,10 +1597,6 @@ const playReferenceTone = async (octaveShift: number) => {
     return
   }
 
-  const context = await ensurePlaybackContext()
-  if (!context) return
-  const unlocked = await unlockAudioContext(context)
-  if (!unlocked) return
   const instrument = await loadPianoSoundfont()
 
   stopReferenceTone()
@@ -1298,6 +1607,12 @@ const playReferenceTone = async (octaveShift: number) => {
       duration: 1.2,
       gain: 0.9,
     })
+    return
+  }
+  if (shouldUseMediaTone()) {
+    setToneStatus('ready', '簡易音で再生します')
+    const samples = buildSineSamples(midiToFrequency(midi), 1.2, TONE_SAMPLE_RATE, 0.28)
+    await playSamplesViaMedia(samples, TONE_SAMPLE_RATE)
     return
   }
   activeNote = scheduleOscillatorNote(context, midiToFrequency(midi), context.currentTime, 1.2, 0.2)
@@ -1319,6 +1634,10 @@ const stopMelodyPlayback = () => {
   stopToneAudio()
   isMelodyPlaying = false
   setMelodyButtonLabel()
+  if (!isRunning && !isRecordPlaying) {
+    stopKaraokeAnimation()
+    renderKaraokeBar()
+  }
 }
 
 const playMelody = async () => {
@@ -1327,7 +1646,59 @@ const playMelody = async () => {
     return
   }
 
-  if (melodySequence.length === 0) return
+  if (isRecording) return
+
+  if (playbackMode === 'record') {
+    if (!hasRecordedAudio) {
+      setStatus('idle', '録音データがありません。録音してから再生してください。')
+      return
+    }
+    if (isRecordPlaying) {
+      recordedAudio.pause()
+      return
+    }
+    try {
+      await recordedAudio.play()
+      return
+    } catch (error) {
+      const detail = formatError(error)
+      setStatus('error', detail ? `録音再生に失敗しました（${detail}）` : '録音再生に失敗しました。')
+      return
+    }
+  }
+
+  if (!hasPlayableMelody()) {
+    setStatus('idle', '録音データがありません。録音してから再生してください。')
+    return
+  }
+
+  const context = await ensurePlaybackContext()
+  if (!context) {
+    setToneStatus('ready', '簡易音で再生します')
+    stopReferenceTone()
+    stopMelodyPlayback()
+    isMelodyPlaying = true
+    setMelodyButtonLabel()
+    karaokeStartAt = performance.now()
+    if (!isRunning) {
+      startKaraokeAnimation()
+    }
+    const samples = buildMelodySamples(melodySequence, melodySpeed, TONE_SAMPLE_RATE, 0.2)
+    await playSamplesViaMedia(samples, TONE_SAMPLE_RATE, () => {
+      isMelodyPlaying = false
+      setMelodyButtonLabel()
+      if (!isRunning && !isRecordPlaying) {
+        stopKaraokeAnimation()
+        renderKaraokeBar()
+      }
+    })
+    return
+  }
+
+  const unlocked = await unlockAudioContext(context)
+  if (!unlocked || context.state !== 'running') {
+    forceMediaTone = true
+  }
 
   if (shouldUseMediaTone()) {
     setToneStatus('ready', '簡易音で再生します')
@@ -1335,18 +1706,22 @@ const playMelody = async () => {
     stopMelodyPlayback()
     isMelodyPlaying = true
     setMelodyButtonLabel()
+    karaokeStartAt = performance.now()
+    if (!isRunning) {
+      startKaraokeAnimation()
+    }
     const samples = buildMelodySamples(melodySequence, melodySpeed, TONE_SAMPLE_RATE, 0.2)
     await playSamplesViaMedia(samples, TONE_SAMPLE_RATE, () => {
       isMelodyPlaying = false
       setMelodyButtonLabel()
+      if (!isRunning && !isRecordPlaying) {
+        stopKaraokeAnimation()
+        renderKaraokeBar()
+      }
     })
     return
   }
 
-  const context = await ensurePlaybackContext()
-  if (!context) return
-  const unlocked = await unlockAudioContext(context)
-  if (!unlocked) return
   const instrument = await loadPianoSoundfont()
 
   stopReferenceTone()
@@ -1354,6 +1729,10 @@ const playMelody = async () => {
 
   isMelodyPlaying = true
   setMelodyButtonLabel()
+  karaokeStartAt = performance.now()
+  if (!isRunning) {
+    startKaraokeAnimation()
+  }
 
   let time = context.currentTime + 0.05
   let totalDuration = 0
@@ -1362,15 +1741,20 @@ const playMelody = async () => {
   for (const event of melodySequence) {
     const duration = event.duration / speed
     if (event.midi !== null) {
-      if (instrument) {
+      if (instrument && hasPianoBuffers(instrument)) {
         melodyNotes.push(
           instrument.play(midiToSoundfontNote(event.midi), time, {
             duration,
             gain: 0.9,
           }),
         )
-      } else {
+      } else if (!instrument) {
         melodyNotes.push(scheduleOscillatorNote(context, midiToFrequency(event.midi), time, duration, 0.12))
+      } else {
+        forceMediaTone = true
+        stopMelodyPlayback()
+        await playMelody()
+        return
       }
     }
     time += duration
@@ -1416,6 +1800,9 @@ const startRecording = async () => {
 
   recordedChunks = []
   recordedFrames = []
+  melodySequence = []
+  karaokeEvents = []
+  hasRecordedAudio = false
   recordStartTime = performance.now()
   recordFrameCounter = 0
 
@@ -1441,12 +1828,19 @@ const startRecording = async () => {
     recordedAudio.src = recordObjectUrl
     recordedAudio.hidden = false
     playRecordButton.disabled = false
+    hasRecordedAudio = true
+    updateMelodyControls()
     renderReview()
   }
 
   mediaRecorder.start()
   isRecording = true
+  if (!recordedAudio.paused) {
+    recordedAudio.pause()
+  }
+  isRecordPlaying = false
   setRecordButtonLabel()
+  updateMelodyControls()
   playRecordButton.disabled = true
 }
 
@@ -1457,16 +1851,21 @@ const stopRecording = () => {
   }
   isRecording = false
   setRecordButtonLabel()
+  setControls(false)
 }
 
 buildTargetOptions()
 targetSelect.value = String(targetMidi)
+setMode('single')
+setPlaybackMode('piano')
 setStartButtonLabel()
 setRecordButtonLabel()
 setMelodyButtonLabel()
 setToneStatus('idle', 'ピアノ音は未読み込み')
-playMelodyButton.disabled = true
-melodySpeedSelect.disabled = true
+syncStatusPills()
+updateMelodyControls()
+setControls(false)
+renderKaraokeBar()
 
 startButton.addEventListener('click', () => {
   if (isRunning) {
@@ -1478,6 +1877,22 @@ startButton.addEventListener('click', () => {
 
 retryButton.addEventListener('click', () => {
   void initAudio()
+})
+
+modeSingle.addEventListener('click', () => {
+  setMode('single')
+})
+
+modeKaraoke.addEventListener('click', () => {
+  setMode('karaoke')
+})
+
+playbackRecordButton.addEventListener('click', () => {
+  setPlaybackMode('record')
+})
+
+playbackPianoButton.addEventListener('click', () => {
+  setPlaybackMode('piano')
 })
 
 playToneButton.addEventListener('click', () => {
@@ -1514,10 +1929,43 @@ playRecordButton.addEventListener('click', () => {
   void recordedAudio.play()
 })
 
+recordedAudio.addEventListener('play', () => {
+  isRecordPlaying = true
+  karaokeStartAt = performance.now() - recordedAudio.currentTime * 1000
+  if (!isRunning) {
+    startKaraokeAnimation()
+  }
+  syncStatusPills()
+  setMelodyButtonLabel()
+})
+
+recordedAudio.addEventListener('pause', () => {
+  isRecordPlaying = false
+  syncStatusPills()
+  setMelodyButtonLabel()
+  if (!isRunning && !isMelodyPlaying) {
+    stopKaraokeAnimation()
+    renderKaraokeBar()
+  }
+})
+
+recordedAudio.addEventListener('ended', () => {
+  isRecordPlaying = false
+  syncStatusPills()
+  setMelodyButtonLabel()
+  if (!isRunning && !isMelodyPlaying) {
+    stopKaraokeAnimation()
+    renderKaraokeBar()
+  }
+})
+
 targetSelect.addEventListener('change', () => {
   const value = Number(targetSelect.value)
   if (!Number.isNaN(value)) {
     targetMidi = value
+    if (currentMode === 'karaoke') {
+      barChip.textContent = `Key ${NOTE_NAMES[targetMidi % 12]}`
+    }
     if (lastStableMetrics) {
       const targetFrequency = midiToFrequency(targetMidi)
       const centsFromTarget = 1200 * Math.log2(lastStableMetrics.frequency / targetFrequency)
