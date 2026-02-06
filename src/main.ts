@@ -50,6 +50,7 @@ type KaraokeSegment = {
 type PlaybackMode = 'record' | 'piano'
 
 const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+const FLAT_NOTE_NAMES = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
 const SOLFEGE_NAMES = ['ド', 'ド#', 'レ', 'レ#', 'ミ', 'ファ', 'ファ#', 'ソ', 'ソ#', 'ラ', 'ラ#', 'シ']
 
 const MIN_FREQUENCY = 55
@@ -96,9 +97,9 @@ const SOUND_FONT_NOTES = Array.from(
   { length: SOUND_FONT_NOTE_END - SOUND_FONT_NOTE_START + 1 },
   (_, index) => {
     const midi = SOUND_FONT_NOTE_START + index
-    const name = NOTE_NAMES[(midi % 12 + 12) % 12]
+    const name = FLAT_NOTE_NAMES[(midi % 12 + 12) % 12]
     const octave = Math.floor(midi / 12) - 1
-    return `${name}${octave}`.replace('#', 's')
+    return `${name}${octave}`
   },
 )
 const IS_IOS = /iP(hone|od|ad)/.test(navigator.userAgent)
@@ -744,7 +745,7 @@ const midiToSolfege = (midi: number) => {
 }
 
 const midiToSoundfontNote = (midi: number) => {
-  return midiToNote(midi).replace('#', 's')
+  return midiToNote(midi)
 }
 
 const scheduleOscillatorNote = (
