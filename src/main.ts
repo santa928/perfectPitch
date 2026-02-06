@@ -42,6 +42,11 @@ type KaraokeEvent = {
   start: number
   duration: number
 }
+type KaraokeSegment = {
+  midi: number
+  start: number
+  end: number
+}
 type PlaybackMode = 'record' | 'piano'
 
 const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
@@ -49,25 +54,37 @@ const SOLFEGE_NAMES = ['ド', 'ド#', 'レ', 'レ#', 'ミ', 'ファ', 'ファ#',
 
 const MIN_FREQUENCY = 55
 const MAX_FREQUENCY = 1000
-const MIN_CONFIDENCE = 0.2
-const MIN_RMS = 0.015
-const SMOOTHING = 0.2
-const STABILITY_WINDOW = 5
+const MIN_CONFIDENCE = 0.18
+const MIN_RMS = 0.01
+const SMOOTHING = 0.18
+const STABILITY_WINDOW = 7
 const STABILITY_HOLD_FRAMES = 4
-const STABILITY_SILENCE_FRAMES = 6
+const STABILITY_SILENCE_FRAMES = 10
+const STABILITY_HANGOVER_FRAMES = 6
 const TARGET_START_MIDI = 48
 const TARGET_END_MIDI = 83
 const MAX_GAUGE_CENTS = 50
-const RECORD_SAMPLE_EVERY = 6
+const RECORD_SAMPLE_EVERY = 4
 const MAX_REVIEW_LINES = 140
 const MELODY_STEP_SECONDS = 0.1
-const KARAOKE_WINDOW_SECONDS = 4
+const KARAOKE_RANGE_PADDING = 3
+const KARAOKE_MIN_RANGE = 8
 const KARAOKE_TRAIL_SECONDS = 1.2
+const KARAOKE_GAP_TOLERANCE = 0.22
+const KARAOKE_MIDI_TOLERANCE = 1
+const KARAOKE_MIN_SEGMENT_SECONDS = 0.1
+const KARAOKE_HOLD_SECONDS = 0.12
 const KARAOKE_MIN_BAR_WIDTH = 14
 const LANE_PADDING = 12
 const LANE_TOP_PADDING = 12
 const LANE_BOTTOM_PADDING = 12
-const LANE_BAR_HEIGHT = 12
+const LANE_BAR_HEIGHT = 14
+const REFERENCE_SAMPLE_AMPLITUDE = 0.75
+const MELODY_SAMPLE_AMPLITUDE = 0.525
+const OSC_REFERENCE_GAIN = 0.42
+const OSC_MELODY_GAIN = 0.33
+const PIANO_REFERENCE_GAIN = 1.8
+const PIANO_MELODY_GAIN = 1.65
 
 const SOUND_FONT_BASE_URL = 'https://gleitz.github.io/midi-js-soundfonts/'
 const SOUND_FONT_NAME = 'FluidR3_GM'
@@ -340,6 +357,7 @@ let melodyNotes: Array<{ stop: () => void }> = []
 let melodyStopTimer: number | null = null
 let melodySpeed = 1
 let karaokeEvents: KaraokeEvent[] = []
+let karaokeSegments: KaraokeSegment[] = []
 let karaokeStartAt = 0
 let karaokeAnimationId: number | null = null
 let currentMode: DisplayMode = 'single'
@@ -541,6 +559,33 @@ const stopReferenceTone = () => {
 
 const getAudioContextClass = (): AudioContextClass | undefined => {
   return window.AudioContext ?? (window as Window & { webkitAudioContext?: AudioContextClass }).webkitAudioContext
+}
+
+const buildAudioConstraints = () => {
+  const supported = navigator.mediaDevices?.getSupportedConstraints
+    ? navigator.mediaDevices.getSupportedConstraints()
+    : {}
+  const constraints: MediaTrackConstraints = {}
+
+  if (supported.channelCount) {
+    constraints.channelCount = { ideal: 1 }
+  }
+  if (supported.sampleRate) {
+    constraints.sampleRate = { ideal: 44100 }
+  }
+  if (supported.sampleSize) {
+    constraints.sampleSize = { ideal: 16 }
+  }
+  if (supported.echoCancellation) {
+    constraints.echoCancellation = false
+  }
+  if (supported.noiseSuppression) {
+    constraints.noiseSuppression = false
+  }
+  if (supported.autoGainControl) {
+    constraints.autoGainControl = false
+  }
+  return constraints
 }
 
 const ensureAudioContext = async () => {
@@ -1037,6 +1082,57 @@ const buildKaraokeEvents = (sequence: MelodyEvent[]) => {
   return events
 }
 
+const buildKaraokeSegments = (
+  frames: RecordedFrame[],
+  gapToleranceSeconds: number,
+  midiTolerance: number,
+) => {
+  if (frames.length === 0) return []
+  const sorted = [...frames].sort((a, b) => a.t - b.t)
+  const segments: KaraokeSegment[] = []
+  let active: KaraokeSegment | null = null
+  let lastTime = 0
+
+  for (const frame of sorted) {
+    if (frame.midi === null || frame.confidence < MIN_CONFIDENCE) {
+      continue
+    }
+
+    if (!active) {
+      active = { midi: frame.midi, start: frame.t, end: frame.t }
+      lastTime = frame.t
+      continue
+    }
+
+    const gap = frame.t - lastTime
+    const midiDiff = Math.abs(frame.midi - active.midi)
+    if (gap <= gapToleranceSeconds && midiDiff <= midiTolerance) {
+      active.end = frame.t
+      lastTime = frame.t
+      continue
+    }
+
+    const holdEnd = Math.min(frame.t, active.end + KARAOKE_HOLD_SECONDS)
+    active.end = Math.max(active.end, holdEnd)
+    if (active.end - active.start < KARAOKE_MIN_SEGMENT_SECONDS) {
+      active.end = active.start + KARAOKE_MIN_SEGMENT_SECONDS
+    }
+    segments.push(active)
+    active = { midi: frame.midi, start: frame.t, end: frame.t }
+    lastTime = frame.t
+  }
+
+  if (active) {
+    active.end += KARAOKE_HOLD_SECONDS
+    if (active.end - active.start < KARAOKE_MIN_SEGMENT_SECONDS) {
+      active.end = active.start + KARAOKE_MIN_SEGMENT_SECONDS
+    }
+    segments.push(active)
+  }
+
+  return segments
+}
+
 const getLaneMetrics = () => {
   const rect = lane.getBoundingClientRect()
   const width = Math.max(0, rect.width - LANE_PADDING * 2)
@@ -1044,16 +1140,71 @@ const getLaneMetrics = () => {
   return { rect, width, height }
 }
 
-const midiToLaneY = (midi: number, laneMetrics: { rect: DOMRect; width: number; height: number }) => {
-  const range = TARGET_END_MIDI - TARGET_START_MIDI
-  const clampedMidi = clamp(midi, TARGET_START_MIDI, TARGET_END_MIDI)
-  const ratio = range === 0 ? 0.5 : (clampedMidi - TARGET_START_MIDI) / range
+const midiToLaneY = (
+  midi: number,
+  laneMetrics: { rect: DOMRect; width: number; height: number },
+  range: { min: number; max: number },
+) => {
+  const span = Math.max(1, range.max - range.min)
+  const clampedMidi = clamp(midi, range.min, range.max)
+  const ratio = span === 0 ? 0.5 : (clampedMidi - range.min) / span
   const y =
     LANE_TOP_PADDING +
     (1 - ratio) * laneMetrics.height -
     LANE_BAR_HEIGHT / 2
   const maxY = laneMetrics.rect.height - LANE_BOTTOM_PADDING - LANE_BAR_HEIGHT
   return clamp(y, LANE_TOP_PADDING, maxY)
+}
+
+const getKaraokeRange = () => {
+  let minMidi = targetMidi - 6
+  let maxMidi = targetMidi + 6
+  const samples: number[] = []
+
+  if (recordedFrames.length > 0 && (isRecording || isPlaying())) {
+    recordedFrames.forEach((frame) => {
+      if (frame.midi !== null) samples.push(frame.midi)
+    })
+  } else if (karaokeEvents.length > 0) {
+    karaokeEvents.forEach((event) => samples.push(event.midi))
+  } else if (lastStableMetrics) {
+    samples.push(lastStableMetrics.midi)
+  }
+
+  if (samples.length > 0) {
+    const rawMin = Math.min(...samples)
+    const rawMax = Math.max(...samples)
+    const center = (rawMin + rawMax) / 2
+    const halfRange = Math.max(KARAOKE_MIN_RANGE / 2, (rawMax - rawMin) / 2 + KARAOKE_RANGE_PADDING)
+    minMidi = center - halfRange
+    maxMidi = center + halfRange
+  } else {
+    minMidi -= KARAOKE_RANGE_PADDING
+    maxMidi += KARAOKE_RANGE_PADDING
+  }
+
+  const rangeSize = Math.max(KARAOKE_MIN_RANGE, maxMidi - minMidi)
+  if (maxMidi - minMidi < rangeSize) {
+    const mid = (maxMidi + minMidi) / 2
+    minMidi = mid - rangeSize / 2
+    maxMidi = mid + rangeSize / 2
+  }
+
+  if (minMidi < TARGET_START_MIDI) {
+    const diff = TARGET_START_MIDI - minMidi
+    minMidi = TARGET_START_MIDI
+    maxMidi += diff
+  }
+  if (maxMidi > TARGET_END_MIDI) {
+    const diff = maxMidi - TARGET_END_MIDI
+    maxMidi = TARGET_END_MIDI
+    minMidi -= diff
+  }
+
+  minMidi = clamp(minMidi, TARGET_START_MIDI, TARGET_END_MIDI - KARAOKE_MIN_RANGE)
+  maxMidi = clamp(maxMidi, TARGET_START_MIDI + KARAOKE_MIN_RANGE, TARGET_END_MIDI)
+
+  return { min: minMidi, max: maxMidi }
 }
 
 const clearLaneBars = () => {
@@ -1068,6 +1219,69 @@ const clearLaneBars = () => {
   laneDot.style.opacity = '0.4'
 }
 
+const hideLaneTrails = () => {
+  laneTrails.forEach((trail) => {
+    trail.style.opacity = '0'
+  })
+}
+
+const updateLaneCurrentState = (activeSegment: KaraokeSegment | undefined) => {
+  laneCurrentText.textContent = activeSegment
+    ? `現在: ${midiToSolfege(activeSegment.midi)}`
+    : '現在: --'
+  laneCentsText.textContent = '--'
+}
+
+const renderLaneTrails = (
+  visibleSegments: KaraokeSegment[],
+  trailStart: number,
+  now: number,
+  laneMetrics: { rect: DOMRect; width: number; height: number },
+  range: { min: number; max: number },
+) => {
+  if (visibleSegments.length === 0) {
+    hideLaneTrails()
+    return
+  }
+
+  const maxWidth = laneMetrics.rect.width - LANE_PADDING * 2
+  const windowDuration = Math.max(0.01, now - trailStart)
+  const slots = laneTrails.length
+  const recentSegments = visibleSegments.slice(-slots)
+  for (let i = 0; i < slots; i += 1) {
+    const trail = laneTrails[i]
+    const segment = recentSegments[i]
+    if (!segment) {
+      trail.style.opacity = '0'
+      continue
+    }
+    const start = Math.max(segment.start, trailStart)
+    const end = Math.min(segment.end, now)
+    const left = LANE_PADDING + ((start - trailStart) / windowDuration) * maxWidth
+    const right = LANE_PADDING + ((end - trailStart) / windowDuration) * maxWidth
+    const maxRight = LANE_PADDING + maxWidth
+    const rawWidth = Math.max(KARAOKE_MIN_BAR_WIDTH, right - left)
+    const width = Math.max(KARAOKE_MIN_BAR_WIDTH, Math.min(rawWidth, maxRight - left))
+    const top = midiToLaneY(segment.midi, laneMetrics, range)
+    trail.style.left = `${left}px`
+    trail.style.top = `${top}px`
+    trail.style.width = `${width}px`
+    trail.style.opacity = '1'
+    trail.style.transform = 'scaleX(1)'
+  }
+}
+
+const getPlaybackSeconds = () => {
+  if (isRecordPlaying) {
+    return Math.max(0, recordedAudio.currentTime)
+  }
+  if (isMelodyPlaying) {
+    const elapsed = Math.max(0, (performance.now() - karaokeStartAt) / 1000)
+    return elapsed * (melodySpeed > 0 ? melodySpeed : 1)
+  }
+  return 0
+}
+
 const renderKaraokeBar = () => {
   if (currentMode !== 'karaoke') {
     clearLaneBars()
@@ -1077,91 +1291,49 @@ const renderKaraokeBar = () => {
   laneDot.style.opacity = isRecording || isPlaying() ? '1' : '0.4'
 
   const laneMetrics = getLaneMetrics()
+  const range = getKaraokeRange()
   if (laneMetrics.width <= 0 || laneMetrics.height <= 0) {
     clearLaneBars()
     return
   }
 
-  if (isRecording) {
-    laneTargets.forEach((target) => {
-      target.style.opacity = '0'
-      target.style.transform = 'scaleX(0.6)'
-    })
+  laneTargets.forEach((target) => {
+    target.style.opacity = '0'
+    target.style.transform = 'scaleX(0.6)'
+  })
 
+  if (isRecording) {
     const now = Math.max(0, (performance.now() - recordStartTime) / 1000)
     const trailStart = Math.max(0, now - KARAOKE_TRAIL_SECONDS)
-    const recent = recordedFrames.filter(
-      (frame) => frame.midi !== null && frame.t >= trailStart,
+    const segments = buildKaraokeSegments(
+      recordedFrames,
+      KARAOKE_GAP_TOLERANCE,
+      KARAOKE_MIDI_TOLERANCE,
     )
-    if (recent.length === 0) {
-      laneTrails.forEach((trail) => {
-        trail.style.opacity = '0'
-      })
-      return
-    }
-
-    const maxWidth = laneMetrics.rect.width - LANE_PADDING * 2
-    const barWidth = Math.max(KARAOKE_MIN_BAR_WIDTH, maxWidth * 0.12)
-    const slots = laneTrails.length
-    for (let i = 0; i < slots; i += 1) {
-      const trail = laneTrails[i]
-      const ratio = (i + 1) / (slots + 1)
-      const index = Math.min(recent.length - 1, Math.floor(ratio * (recent.length - 1)))
-      const frame = recent[index]
-      const timeRatio = Math.min(1, Math.max(0, (frame.t - trailStart) / KARAOKE_TRAIL_SECONDS))
-      const left = LANE_PADDING + timeRatio * maxWidth
-      const top = midiToLaneY(frame.midi ?? TARGET_START_MIDI, laneMetrics)
-      trail.style.left = `${left}px`
-      trail.style.top = `${top}px`
-      trail.style.width = `${barWidth}px`
-      trail.style.opacity = '1'
-      trail.style.transform = 'scaleX(1)'
-    }
+    const visibleSegments = segments.filter(
+      (segment) => segment.end >= trailStart && segment.start <= now,
+    )
+    const activeSegment = segments.find((segment) => segment.start <= now && segment.end >= now)
+    updateLaneCurrentState(activeSegment)
+    renderLaneTrails(visibleSegments, trailStart, now, laneMetrics, range)
     return
   }
 
-  if (!isPlaying() || karaokeEvents.length === 0) {
+  if (!isPlaying() || karaokeSegments.length === 0) {
+    laneCurrentText.textContent = '現在: --'
+    laneCentsText.textContent = '--'
     clearLaneBars()
     return
   }
 
-  const now = Math.max(0, (performance.now() - karaokeStartAt) / 1000)
-  const windowEnd = now + KARAOKE_WINDOW_SECONDS
-  const visible = karaokeEvents.filter(
-    (event) => event.start < windowEnd && event.start + event.duration > now,
+  const now = getPlaybackSeconds()
+  const trailStart = Math.max(0, now - KARAOKE_TRAIL_SECONDS)
+  const visibleSegments = karaokeSegments.filter(
+    (segment) => segment.end >= trailStart && segment.start <= now,
   )
-
-  for (let i = 0; i < laneTargets.length; i += 1) {
-    const target = laneTargets[i]
-    const event = visible[i]
-    if (!event) {
-      target.style.opacity = '0'
-      target.style.transform = 'scaleX(0.6)'
-      continue
-    }
-
-    const start = Math.max(event.start, now)
-    const end = Math.min(event.start + event.duration, windowEnd)
-    const progressStart = (start - now) / KARAOKE_WINDOW_SECONDS
-    const progressEnd = (end - now) / KARAOKE_WINDOW_SECONDS
-    const left = LANE_PADDING + progressStart * laneMetrics.width
-    const right = LANE_PADDING + progressEnd * laneMetrics.width
-    const maxRight = LANE_PADDING + laneMetrics.width
-    const rawWidth = Math.max(KARAOKE_MIN_BAR_WIDTH, right - left)
-    const width = Math.max(KARAOKE_MIN_BAR_WIDTH, Math.min(rawWidth, maxRight - left))
-    const top = midiToLaneY(event.midi, laneMetrics)
-
-    target.style.left = `${left}px`
-    target.style.top = `${top}px`
-    target.style.width = `${width}px`
-    target.style.opacity = '1'
-    target.style.transform = 'scaleX(1)'
-  }
-
-  laneTrails.forEach((trail) => {
-    trail.style.opacity = '0'
-    trail.style.transform = 'scaleX(0.6)'
-  })
+  const activeSegment = karaokeSegments.find((segment) => segment.start <= now && segment.end >= now)
+  updateLaneCurrentState(activeSegment)
+  renderLaneTrails(visibleSegments, trailStart, now, laneMetrics, range)
 }
 
 const startKaraokeAnimation = () => {
@@ -1187,6 +1359,8 @@ const deriveStableMetrics = (frequency: number | null, confidence: number): Pitc
     candidateFrames = 0
     if (silenceFrames >= STABILITY_SILENCE_FRAMES) {
       stableMidi = null
+    } else if (lastStableMetrics && silenceFrames <= STABILITY_HANGOVER_FRAMES) {
+      return lastStableMetrics
     }
     return null
   }
@@ -1257,8 +1431,10 @@ const updatePitchDisplay = (metricsData: PitchMetrics | null, confidence: number
     currentNote.textContent = '…'
     freqValue.textContent = '…'
     centsValue.textContent = '…'
-    laneCurrentText.textContent = '現在: --'
-    laneCentsText.textContent = '--'
+    if (currentMode === 'single') {
+      laneCurrentText.textContent = '現在: --'
+      laneCentsText.textContent = '--'
+    }
     updateGauge(null, confidence)
   } else {
     const midi = metricsData.midi
@@ -1267,8 +1443,10 @@ const updatePitchDisplay = (metricsData: PitchMetrics | null, confidence: number
     )}</span>`
     freqValue.textContent = `${metricsData.frequency.toFixed(2)} Hz`
     centsValue.textContent = `${metricsData.centsFromTarget >= 0 ? '+' : ''}${metricsData.centsFromTarget.toFixed(1)} cents`
-    laneCurrentText.textContent = `現在: ${midiToSolfege(midi)}`
-    laneCentsText.textContent = `${metricsData.centsFromTarget >= 0 ? '+' : ''}${metricsData.centsFromTarget.toFixed(0)}c`
+    if (currentMode === 'single') {
+      laneCurrentText.textContent = `現在: ${midiToSolfege(midi)}`
+      laneCentsText.textContent = `${metricsData.centsFromTarget >= 0 ? '+' : ''}${metricsData.centsFromTarget.toFixed(0)}c`
+    }
     updateGauge(metricsData.centsFromTarget, confidence)
   }
 
@@ -1352,6 +1530,7 @@ const renderReview = () => {
     }
     melodySequence = []
     karaokeEvents = []
+    karaokeSegments = []
     updateMelodyControls()
     if (isMelodyPlaying) {
       stopMelodyPlayback()
@@ -1411,6 +1590,11 @@ const renderReview = () => {
 
   melodySequence = buildMelodySequence(recordedFrames, MELODY_STEP_SECONDS)
   karaokeEvents = buildKaraokeEvents(melodySequence)
+  karaokeSegments = buildKaraokeSegments(
+    recordedFrames,
+    KARAOKE_GAP_TOLERANCE,
+    KARAOKE_MIDI_TOLERANCE,
+  )
   updateMelodyControls()
   const hasMelody = hasPlayableMelody()
   if (!hasMelody && isMelodyPlaying) {
@@ -1509,14 +1693,19 @@ const initAudio = async () => {
       return false
     }
 
+    const audioConstraints = buildAudioConstraints()
+    const hasConstraints = Object.keys(audioConstraints).length > 0
     mediaStream = await navigator.mediaDevices.getUserMedia({
-      audio: {
-        echoCancellation: { ideal: true },
-        noiseSuppression: { ideal: true },
-        autoGainControl: { ideal: false },
-        channelCount: { ideal: 1 },
-      },
+      audio: hasConstraints ? audioConstraints : true,
     })
+    const track = mediaStream.getAudioTracks()[0]
+    if (track?.applyConstraints && hasConstraints) {
+      try {
+        await track.applyConstraints(audioConstraints)
+      } catch {
+        // ignore constraint errors and continue with default settings
+      }
+    }
     const source = context.createMediaStreamSource(mediaStream)
     analyser = context.createAnalyser()
     analyser.fftSize = 2048
@@ -1579,7 +1768,7 @@ const playReferenceTone = async (octaveShift: number) => {
   if (!context) {
     setToneStatus('ready', '簡易音で再生します')
     const midi = targetMidi + octaveShift
-    const samples = buildSineSamples(midiToFrequency(midi), 1.2, TONE_SAMPLE_RATE, 0.28)
+    const samples = buildSineSamples(midiToFrequency(midi), 1.2, TONE_SAMPLE_RATE, REFERENCE_SAMPLE_AMPLITUDE)
     await playSamplesViaMedia(samples, TONE_SAMPLE_RATE)
     return
   }
@@ -1592,7 +1781,7 @@ const playReferenceTone = async (octaveShift: number) => {
   if (shouldUseMediaTone()) {
     setToneStatus('ready', '簡易音で再生します')
     const midi = targetMidi + octaveShift
-    const samples = buildSineSamples(midiToFrequency(midi), 1.2, TONE_SAMPLE_RATE, 0.28)
+    const samples = buildSineSamples(midiToFrequency(midi), 1.2, TONE_SAMPLE_RATE, REFERENCE_SAMPLE_AMPLITUDE)
     await playSamplesViaMedia(samples, TONE_SAMPLE_RATE)
     return
   }
@@ -1605,17 +1794,23 @@ const playReferenceTone = async (octaveShift: number) => {
   if (instrument) {
     activeNote = instrument.play(midiToSoundfontNote(midi), context.currentTime, {
       duration: 1.2,
-      gain: 0.9,
+      gain: PIANO_REFERENCE_GAIN,
     })
     return
   }
   if (shouldUseMediaTone()) {
     setToneStatus('ready', '簡易音で再生します')
-    const samples = buildSineSamples(midiToFrequency(midi), 1.2, TONE_SAMPLE_RATE, 0.28)
+    const samples = buildSineSamples(midiToFrequency(midi), 1.2, TONE_SAMPLE_RATE, REFERENCE_SAMPLE_AMPLITUDE)
     await playSamplesViaMedia(samples, TONE_SAMPLE_RATE)
     return
   }
-  activeNote = scheduleOscillatorNote(context, midiToFrequency(midi), context.currentTime, 1.2, 0.2)
+  activeNote = scheduleOscillatorNote(
+    context,
+    midiToFrequency(midi),
+    context.currentTime,
+    1.2,
+    OSC_REFERENCE_GAIN,
+  )
 }
 
 const stopMelodyPlayback = () => {
@@ -1638,6 +1833,27 @@ const stopMelodyPlayback = () => {
     stopKaraokeAnimation()
     renderKaraokeBar()
   }
+}
+
+const playMelodyViaMediaTone = async () => {
+  setToneStatus('ready', '簡易音で再生します')
+  stopReferenceTone()
+  stopMelodyPlayback()
+  isMelodyPlaying = true
+  setMelodyButtonLabel()
+  karaokeStartAt = performance.now()
+  if (!isRunning) {
+    startKaraokeAnimation()
+  }
+  const samples = buildMelodySamples(melodySequence, melodySpeed, TONE_SAMPLE_RATE, MELODY_SAMPLE_AMPLITUDE)
+  await playSamplesViaMedia(samples, TONE_SAMPLE_RATE, () => {
+    isMelodyPlaying = false
+    setMelodyButtonLabel()
+    if (!isRunning && !isRecordPlaying) {
+      stopKaraokeAnimation()
+      renderKaraokeBar()
+    }
+  })
 }
 
 const playMelody = async () => {
@@ -1674,24 +1890,7 @@ const playMelody = async () => {
 
   const context = await ensurePlaybackContext()
   if (!context) {
-    setToneStatus('ready', '簡易音で再生します')
-    stopReferenceTone()
-    stopMelodyPlayback()
-    isMelodyPlaying = true
-    setMelodyButtonLabel()
-    karaokeStartAt = performance.now()
-    if (!isRunning) {
-      startKaraokeAnimation()
-    }
-    const samples = buildMelodySamples(melodySequence, melodySpeed, TONE_SAMPLE_RATE, 0.2)
-    await playSamplesViaMedia(samples, TONE_SAMPLE_RATE, () => {
-      isMelodyPlaying = false
-      setMelodyButtonLabel()
-      if (!isRunning && !isRecordPlaying) {
-        stopKaraokeAnimation()
-        renderKaraokeBar()
-      }
-    })
+    await playMelodyViaMediaTone()
     return
   }
 
@@ -1701,24 +1900,7 @@ const playMelody = async () => {
   }
 
   if (shouldUseMediaTone()) {
-    setToneStatus('ready', '簡易音で再生します')
-    stopReferenceTone()
-    stopMelodyPlayback()
-    isMelodyPlaying = true
-    setMelodyButtonLabel()
-    karaokeStartAt = performance.now()
-    if (!isRunning) {
-      startKaraokeAnimation()
-    }
-    const samples = buildMelodySamples(melodySequence, melodySpeed, TONE_SAMPLE_RATE, 0.2)
-    await playSamplesViaMedia(samples, TONE_SAMPLE_RATE, () => {
-      isMelodyPlaying = false
-      setMelodyButtonLabel()
-      if (!isRunning && !isRecordPlaying) {
-        stopKaraokeAnimation()
-        renderKaraokeBar()
-      }
-    })
+    await playMelodyViaMediaTone()
     return
   }
 
@@ -1745,11 +1927,13 @@ const playMelody = async () => {
         melodyNotes.push(
           instrument.play(midiToSoundfontNote(event.midi), time, {
             duration,
-            gain: 0.9,
+            gain: PIANO_MELODY_GAIN,
           }),
         )
       } else if (!instrument) {
-        melodyNotes.push(scheduleOscillatorNote(context, midiToFrequency(event.midi), time, duration, 0.12))
+        melodyNotes.push(
+          scheduleOscillatorNote(context, midiToFrequency(event.midi), time, duration, OSC_MELODY_GAIN),
+        )
       } else {
         forceMediaTone = true
         stopMelodyPlayback()
@@ -1802,6 +1986,7 @@ const startRecording = async () => {
   recordedFrames = []
   melodySequence = []
   karaokeEvents = []
+  karaokeSegments = []
   hasRecordedAudio = false
   recordStartTime = performance.now()
   recordFrameCounter = 0
@@ -1939,7 +2124,7 @@ recordedAudio.addEventListener('play', () => {
   setMelodyButtonLabel()
 })
 
-recordedAudio.addEventListener('pause', () => {
+const handleRecordedAudioStopped = () => {
   isRecordPlaying = false
   syncStatusPills()
   setMelodyButtonLabel()
@@ -1947,17 +2132,10 @@ recordedAudio.addEventListener('pause', () => {
     stopKaraokeAnimation()
     renderKaraokeBar()
   }
-})
+}
 
-recordedAudio.addEventListener('ended', () => {
-  isRecordPlaying = false
-  syncStatusPills()
-  setMelodyButtonLabel()
-  if (!isRunning && !isMelodyPlaying) {
-    stopKaraokeAnimation()
-    renderKaraokeBar()
-  }
-})
+recordedAudio.addEventListener('pause', handleRecordedAudioStopped)
+recordedAudio.addEventListener('ended', handleRecordedAudioStopped)
 
 targetSelect.addEventListener('change', () => {
   const value = Number(targetSelect.value)
