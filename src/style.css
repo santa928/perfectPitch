@@ -77,7 +77,8 @@ button:disabled {
   display: none;
 }
 
-.pp-app[data-mode='karaoke'] .pp-current-row {
+.pp-app[data-mode='karaoke'] .pp-tone-actions,
+.pp-app[data-mode='karaoke'] .pp-tone-status {
   display: none;
 }
 
@@ -523,6 +524,10 @@ button:disabled {
   overflow: hidden;
 }
 
+.pp-app[data-mode='karaoke'] .pp-lane {
+  height: 220px;
+}
+
 .pp-lane-line {
   position: absolute;
   left: 12px;
@@ -567,7 +572,7 @@ button:disabled {
 .pp-lane-target,
 .pp-lane-trail {
   position: absolute;
-  height: 12px;
+  height: 14px;
   border-radius: 6px;
   background: var(--green);
   opacity: 0;
@@ -601,8 +606,8 @@ button:disabled {
 }
 
 .pp-lane-trail {
-  height: 10px;
-  border-radius: 5px;
+  height: 12px;
+  border-radius: 6px;
   background: rgba(47, 122, 91, 0.4);
   opacity: 0;
 }
