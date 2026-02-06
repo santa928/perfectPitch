@@ -90,9 +90,16 @@ const SOUND_FONT_BASE_URL = 'https://gleitz.github.io/midi-js-soundfonts/'
 const SOUND_FONT_NAME = 'FluidR3_GM'
 const SOUND_FONT_FORMAT = 'mp3'
 const SOUND_FONT_INSTRUMENT = 'acoustic_grand_piano'
+const SOUND_FONT_NOTE_START = Math.max(0, TARGET_START_MIDI - 12)
+const SOUND_FONT_NOTE_END = TARGET_END_MIDI
 const SOUND_FONT_NOTES = Array.from(
-  { length: TARGET_END_MIDI - Math.max(0, TARGET_START_MIDI - 12) + 1 },
-  (_, index) => Math.max(0, TARGET_START_MIDI - 12) + index,
+  { length: SOUND_FONT_NOTE_END - SOUND_FONT_NOTE_START + 1 },
+  (_, index) => {
+    const midi = SOUND_FONT_NOTE_START + index
+    const name = NOTE_NAMES[(midi % 12 + 12) % 12]
+    const octave = Math.floor(midi / 12) - 1
+    return `${name}${octave}`.replace('#', 's')
+  },
 )
 const IS_IOS = /iP(hone|od|ad)/.test(navigator.userAgent)
 const IS_ANDROID = /Android/.test(navigator.userAgent)
@@ -391,12 +398,6 @@ const formatError = (error: unknown) => {
 const shouldUseMediaTone = () => {
   if (forceMediaTone || PREFER_MEDIA_TONE) return true
   return !getAudioContextClass()
-}
-
-const hasPianoBuffers = (instrument: SoundfontInstrument | null) => {
-  if (!instrument) return false
-  const buffers = (instrument as SoundfontInstrument & { buffers?: Record<string, AudioBuffer> }).buffers
-  return !!buffers && Object.keys(buffers).length > 0
 }
 
 const getToneAudio = () => {
@@ -705,12 +706,6 @@ const loadPianoSoundfont = async () => {
       nameToUrl: soundfontUrl,
     })
     pianoInstrument = await pianoPromise
-    if (!hasPianoBuffers(pianoInstrument)) {
-      pianoInstrument = null
-      forceMediaTone = true
-      setToneStatus('error', 'ピアノ音の読み込みに失敗しました。簡易音で再生します。')
-      return null
-    }
     setToneStatus('ready', 'ピアノ音の準備完了')
     return pianoInstrument
   } catch (error) {
@@ -1923,7 +1918,7 @@ const playMelody = async () => {
   for (const event of melodySequence) {
     const duration = event.duration / speed
     if (event.midi !== null) {
-      if (instrument && hasPianoBuffers(instrument)) {
+      if (instrument) {
         melodyNotes.push(
           instrument.play(midiToSoundfontNote(event.midi), time, {
             duration,
@@ -1934,11 +1929,6 @@ const playMelody = async () => {
         melodyNotes.push(
           scheduleOscillatorNote(context, midiToFrequency(event.midi), time, duration, OSC_MELODY_GAIN),
         )
-      } else {
-        forceMediaTone = true
-        stopMelodyPlayback()
-        await playMelody()
-        return
       }
     }
     time += duration
