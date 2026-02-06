@@ -82,10 +82,12 @@ const LANE_BOTTOM_PADDING = 12
 const LANE_BAR_HEIGHT = 14
 const REFERENCE_SAMPLE_AMPLITUDE = 0.75
 const MELODY_SAMPLE_AMPLITUDE = 0.525
-const OSC_REFERENCE_GAIN = 0.42
-const OSC_MELODY_GAIN = 0.33
-const PIANO_REFERENCE_GAIN = 1.8
-const PIANO_MELODY_GAIN = 1.65
+const OSC_REFERENCE_GAIN = 0.52
+const OSC_MELODY_GAIN = 0.42
+const PIANO_REFERENCE_GAIN = 2.4
+const PIANO_MELODY_GAIN = 2.1
+const PLAYBACK_MASTER_GAIN_DESKTOP = 1.45
+const PLAYBACK_MASTER_GAIN_MOBILE = 1.7
 
 const SOUND_FONT_BASE_URL = 'https://gleitz.github.io/midi-js-soundfonts/'
 const SOUND_FONT_NAME = 'FluidR3_GM'
@@ -338,6 +340,8 @@ if (
 
 let audioContext: AudioContext | null = null
 let playbackContext: AudioContext | null = null
+let playbackOutputGain: GainNode | null = null
+let playbackLimiter: DynamicsCompressorNode | null = null
 let analyser: AnalyserNode | null = null
 let byteData: Uint8Array<ArrayBuffer> | null = null
 let floatData: Float32Array<ArrayBuffer> | null = null
@@ -559,6 +563,31 @@ const stopReferenceTone = () => {
   stopToneAudio()
 }
 
+const ensurePlaybackOutputNode = (context: AudioContext) => {
+  if (
+    playbackOutputGain &&
+    playbackLimiter &&
+    playbackOutputGain.context === context &&
+    playbackLimiter.context === context
+  ) {
+    return playbackOutputGain
+  }
+
+  playbackOutputGain = context.createGain()
+  playbackOutputGain.gain.value = IS_MOBILE ? PLAYBACK_MASTER_GAIN_MOBILE : PLAYBACK_MASTER_GAIN_DESKTOP
+
+  playbackLimiter = context.createDynamicsCompressor()
+  playbackLimiter.threshold.value = -12
+  playbackLimiter.knee.value = 24
+  playbackLimiter.ratio.value = 8
+  playbackLimiter.attack.value = 0.003
+  playbackLimiter.release.value = 0.24
+
+  playbackOutputGain.connect(playbackLimiter)
+  playbackLimiter.connect(context.destination)
+  return playbackOutputGain
+}
+
 const getAudioContextClass = (): AudioContextClass | undefined => {
   return window.AudioContext ?? (window as Window & { webkitAudioContext?: AudioContextClass }).webkitAudioContext
 }
@@ -627,11 +656,15 @@ const ensurePlaybackContext = async () => {
   if (!playbackContext || playbackContext.state === 'closed') {
     playbackContext = new AudioContextCtor()
     hasAudioUnlocked = false
+    playbackOutputGain = null
+    playbackLimiter = null
   }
 
   if (playbackContext.state === 'suspended') {
     await playbackContext.resume()
   }
+
+  ensurePlaybackOutputNode(playbackContext)
 
   return playbackContext
 }
@@ -693,6 +726,7 @@ const loadPianoSoundfont = async () => {
 
   const context = await ensurePlaybackContext()
   if (!context) return null
+  const destination = ensurePlaybackOutputNode(context)
 
   isToneLoading = true
   setToneStatus('loading', 'ピアノ音を読み込み中…')
@@ -705,6 +739,7 @@ const loadPianoSoundfont = async () => {
       format: SOUND_FONT_FORMAT,
       notes: SOUND_FONT_NOTES,
       nameToUrl: soundfontUrl,
+      destination,
     })
     pianoInstrument = await pianoPromise
     setToneStatus('ready', 'ピアノ音の準備完了')
@@ -754,6 +789,7 @@ const scheduleOscillatorNote = (
   startTime: number,
   duration: number,
   gainValue = 0.18,
+  destination?: AudioNode,
 ) => {
   const osc = context.createOscillator()
   const gain = context.createGain()
@@ -771,7 +807,7 @@ const scheduleOscillatorNote = (
   osc.type = 'sine'
   osc.frequency.setValueAtTime(frequency, startTime)
   osc.connect(gain)
-  gain.connect(context.destination)
+  gain.connect(destination ?? context.destination)
   osc.start(startTime)
   osc.stop(startTime + safeDuration + 0.05)
 
@@ -1773,6 +1809,7 @@ const playReferenceTone = async (octaveShift: number) => {
   if (!unlocked || context.state !== 'running') {
     forceMediaTone = true
   }
+  const destination = ensurePlaybackOutputNode(context)
 
   if (shouldUseMediaTone()) {
     setToneStatus('ready', '簡易音で再生します')
@@ -1806,6 +1843,7 @@ const playReferenceTone = async (octaveShift: number) => {
     context.currentTime,
     1.2,
     OSC_REFERENCE_GAIN,
+    destination,
   )
 }
 
@@ -1901,6 +1939,7 @@ const playMelody = async () => {
   }
 
   const instrument = await loadPianoSoundfont()
+  const destination = ensurePlaybackOutputNode(context)
 
   stopReferenceTone()
   stopMelodyPlayback()
@@ -1928,7 +1967,7 @@ const playMelody = async () => {
         )
       } else if (!instrument) {
         melodyNotes.push(
-          scheduleOscillatorNote(context, midiToFrequency(event.midi), time, duration, OSC_MELODY_GAIN),
+          scheduleOscillatorNote(context, midiToFrequency(event.midi), time, duration, OSC_MELODY_GAIN, destination),
         )
       }
     }
