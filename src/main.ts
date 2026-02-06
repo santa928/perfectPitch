@@ -81,13 +81,15 @@ const LANE_TOP_PADDING = 12
 const LANE_BOTTOM_PADDING = 12
 const LANE_BAR_HEIGHT = 14
 const REFERENCE_SAMPLE_AMPLITUDE = 0.75
-const MELODY_SAMPLE_AMPLITUDE = 0.525
+const MELODY_SAMPLE_AMPLITUDE = 1.0
 const OSC_REFERENCE_GAIN = 0.52
-const OSC_MELODY_GAIN = 0.42
+const OSC_MELODY_GAIN = 1.1
 const PIANO_REFERENCE_GAIN = 2.4
-const PIANO_MELODY_GAIN = 2.1
+const PIANO_MELODY_GAIN = 6.3
 const PLAYBACK_MASTER_GAIN_DESKTOP = 1.45
 const PLAYBACK_MASTER_GAIN_MOBILE = 1.7
+const MELODY_NOTE_DURATION_MULTIPLIER = 1.45
+const MELODY_NOTE_MIN_DURATION = 0.14
 
 const SOUND_FONT_BASE_URL = 'https://gleitz.github.io/midi-js-soundfonts/'
 const SOUND_FONT_NAME = 'FluidR3_GM'
@@ -107,7 +109,7 @@ const SOUND_FONT_NOTES = Array.from(
 const IS_IOS = /iP(hone|od|ad)/.test(navigator.userAgent)
 const IS_ANDROID = /Android/.test(navigator.userAgent)
 const IS_MOBILE = IS_IOS || IS_ANDROID
-const PREFER_MEDIA_TONE = IS_MOBILE
+const PREFER_MEDIA_TONE = false
 const TONE_SAMPLE_RATE = 22050
 
 const app = document.querySelector<HTMLDivElement>('#app')
@@ -1956,23 +1958,35 @@ const playMelody = async () => {
   const speed = melodySpeed > 0 ? melodySpeed : 1
 
   for (const event of melodySequence) {
-    const duration = event.duration / speed
+    const stepDuration = event.duration / speed
+    const noteDuration = Math.max(MELODY_NOTE_MIN_DURATION, stepDuration * MELODY_NOTE_DURATION_MULTIPLIER)
     if (event.midi !== null) {
       if (instrument) {
         melodyNotes.push(
           instrument.play(midiToSoundfontNote(event.midi), time, {
-            duration,
+            duration: noteDuration,
             gain: PIANO_MELODY_GAIN,
+            attack: 0.001,
+            decay: 0.015,
+            sustain: 1,
+            release: 0.08,
           }),
         )
       } else if (!instrument) {
         melodyNotes.push(
-          scheduleOscillatorNote(context, midiToFrequency(event.midi), time, duration, OSC_MELODY_GAIN, destination),
+          scheduleOscillatorNote(
+            context,
+            midiToFrequency(event.midi),
+            time,
+            noteDuration,
+            OSC_MELODY_GAIN,
+            destination,
+          ),
         )
       }
     }
-    time += duration
-    totalDuration += duration
+    time += stepDuration
+    totalDuration += stepDuration
   }
 
   melodyStopTimer = window.setTimeout(() => {
