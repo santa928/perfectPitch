@@ -757,6 +757,76 @@ button:disabled {
   font-size: 12px;
 }
 
+.pp-settings {
+  gap: 10px;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid #ece7df;
+  background: #fbfaf7;
+}
+
+.pp-setting-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pp-setting-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  color: #4f4d55;
+}
+
+.pp-setting-value {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #2d2b32;
+  background: #edf1f8;
+}
+
+.pp-setting-slider {
+  width: 100%;
+  margin: 0;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #d7dbe3 0%, #f0cfbc 50%, #9fd8bf 100%);
+  outline: none;
+}
+
+.pp-setting-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: #1b1a1f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.pp-setting-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: #1b1a1f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.pp-setting-slider:disabled {
+  opacity: 0.5;
+}
+
 .pp-tone-actions {
   display: flex;
   gap: 8px;

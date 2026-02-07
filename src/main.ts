@@ -57,11 +57,14 @@ const SOLFEGE_NAMES = ['ド', 'ド#', 'レ', 'レ#', 'ミ', 'ファ', 'ファ#',
 
 const MIN_FREQUENCY = 55
 const MAX_FREQUENCY = 1000
-const MIN_CONFIDENCE = 0.18
-const MIN_RMS = 0.01
-const SMOOTHING = 0.18
+const DEFAULT_MIN_CONFIDENCE = 0.25
+const DEFAULT_MIN_RMS = 0.008
+const DEFAULT_SMOOTHING = 0.18
+const DEFAULT_STABILITY_HOLD_FRAMES = 4
+const DEFAULT_ANALYSER_SMOOTHING = 0.85
+const MIC_SENSITIVITY_DEFAULT = 50
+const TRACKING_SPEED_DEFAULT = 40
 const STABILITY_WINDOW = 7
-const STABILITY_HOLD_FRAMES = 4
 const STABILITY_SILENCE_FRAMES = 10
 const STABILITY_HANGOVER_FRAMES = 6
 const TARGET_START_MIDI = 48
@@ -239,6 +242,41 @@ app.innerHTML = `
             </select>
           </label>
         </div>
+        <div class="pp-section pp-settings">
+          <span class="pp-card-label">入力チューニング</span>
+          <label class="pp-setting-row" for="micSensitivitySlider">
+            <span class="pp-setting-head">
+              <span>マイク感度</span>
+              <span id="micSensitivityValue" class="pp-setting-value"></span>
+            </span>
+            <input
+              id="micSensitivitySlider"
+              class="pp-setting-slider"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value="${MIC_SENSITIVITY_DEFAULT}"
+              aria-label="マイク感度"
+            />
+          </label>
+          <label class="pp-setting-row" for="trackingSpeedSlider">
+            <span class="pp-setting-head">
+              <span>音程取得速度</span>
+              <span id="trackingSpeedValue" class="pp-setting-value"></span>
+            </span>
+            <input
+              id="trackingSpeedSlider"
+              class="pp-setting-slider"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value="${TRACKING_SPEED_DEFAULT}"
+              aria-label="音程取得速度"
+            />
+          </label>
+        </div>
         <div class="pp-tone-actions">
           <button id="playToneButton" class="pp-btn pp-btn-ghost" type="button">基準音を鳴らす</button>
           <button id="playOctaveButton" class="pp-btn pp-btn-ghost" type="button">1オク下を鳴らす</button>
@@ -285,6 +323,10 @@ const waveform = app.querySelector<HTMLPreElement>('#waveform')
 const metrics = app.querySelector<HTMLDivElement>('#metrics')
 const currentNote = app.querySelector<HTMLDivElement>('#currentNote')
 const targetSelect = app.querySelector<HTMLSelectElement>('#targetSelect')
+const micSensitivitySlider = app.querySelector<HTMLInputElement>('#micSensitivitySlider')
+const micSensitivityValue = app.querySelector<HTMLSpanElement>('#micSensitivityValue')
+const trackingSpeedSlider = app.querySelector<HTMLInputElement>('#trackingSpeedSlider')
+const trackingSpeedValue = app.querySelector<HTMLSpanElement>('#trackingSpeedValue')
 const freqValue = app.querySelector<HTMLSpanElement>('#freqValue')
 const centsValue = app.querySelector<HTMLSpanElement>('#centsValue')
 const confidenceValue = app.querySelector<HTMLSpanElement>('#confidenceValue')
@@ -334,6 +376,10 @@ if (
   !metrics ||
   !currentNote ||
   !targetSelect ||
+  !micSensitivitySlider ||
+  !micSensitivityValue ||
+  !trackingSpeedSlider ||
+  !trackingSpeedValue ||
   !freqValue ||
   !centsValue ||
   !confidenceValue ||
@@ -396,6 +442,13 @@ let laneFollowLatest = true
 let laneFollowPausedUntil = 0
 let laneRelativeRange: LaneRange | null = null
 let isProgrammaticLaneScroll = false
+let minRms = DEFAULT_MIN_RMS
+let minConfidence = DEFAULT_MIN_CONFIDENCE
+let pitchSmoothing = DEFAULT_SMOOTHING
+let stabilityHoldFrames = DEFAULT_STABILITY_HOLD_FRAMES
+let analyserSmoothing = DEFAULT_ANALYSER_SMOOTHING
+let micSensitivity = MIC_SENSITIVITY_DEFAULT
+let trackingSpeed = TRACKING_SPEED_DEFAULT
 
 const formatError = (error: unknown) => {
   if (error instanceof DOMException) {
@@ -539,6 +592,8 @@ const setControls = (isWorking: boolean) => {
   startButton.disabled = isWorking
   retryButton.disabled = isWorking
   recordButton.disabled = isWorking
+  micSensitivitySlider.disabled = isWorking
+  trackingSpeedSlider.disabled = isWorking
 
   const toneDisabled = isWorking
   playToneButton.disabled = toneDisabled
@@ -1004,6 +1059,53 @@ const autoCorrelate = (buffer: Float32Array, sampleRate: number): PitchResult =>
 
 const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
 
+const readSliderPercent = (input: HTMLInputElement, fallback: number) => {
+  const value = Number(input.value)
+  if (Number.isNaN(value)) return fallback
+  return clamp(value, 0, 100)
+}
+
+const describeMicSensitivity = (value: number) => {
+  if (value <= 25) return '低め'
+  if (value <= 65) return '標準'
+  if (value <= 85) return '高め'
+  return '最大'
+}
+
+const describeTrackingSpeed = (value: number) => {
+  if (value <= 25) return '安定重視'
+  if (value <= 65) return 'バランス'
+  if (value <= 85) return '高速'
+  return '最速'
+}
+
+const applyInputTuning = () => {
+  const sensitivityRatio = clamp(micSensitivity / 100, 0, 1)
+  const speedRatio = clamp(trackingSpeed / 100, 0, 1)
+
+  minRms = 0.012 - sensitivityRatio * 0.008
+  minConfidence = clamp(DEFAULT_MIN_CONFIDENCE + (0.5 - sensitivityRatio) * 0.08, 0.22, 0.28)
+  pitchSmoothing = 0.1 + speedRatio * 0.22
+  analyserSmoothing = clamp(0.92 - speedRatio * 0.2, 0.7, 0.92)
+  stabilityHoldFrames = Math.round(6 - speedRatio * 4)
+
+  if (analyser) {
+    analyser.smoothingTimeConstant = analyserSmoothing
+  }
+}
+
+const updateInputTuningLabels = () => {
+  micSensitivityValue.textContent = `${describeMicSensitivity(micSensitivity)} (${Math.round(micSensitivity)}%)`
+  trackingSpeedValue.textContent = `${describeTrackingSpeed(trackingSpeed)} (${Math.round(trackingSpeed)}%)`
+}
+
+const syncInputTuningFromUI = () => {
+  micSensitivity = readSliderPercent(micSensitivitySlider, MIC_SENSITIVITY_DEFAULT)
+  trackingSpeed = readSliderPercent(trackingSpeedSlider, TRACKING_SPEED_DEFAULT)
+  applyInputTuning()
+  updateInputTuningLabels()
+}
+
 const average = (values: number[]) => {
   if (values.length === 0) return null
   return values.reduce((sum, value) => sum + value, 0) / values.length
@@ -1074,7 +1176,7 @@ const buildMelodySequence = (frames: RecordedFrame[], stepSeconds: number) => {
     }
 
   const valid = bucket.filter(
-    (frame) => frame.confidence >= MIN_CONFIDENCE && (frame.midi !== null || frame.frequency !== null),
+    (frame) => frame.confidence >= minConfidence && (frame.midi !== null || frame.frequency !== null),
   )
   let midi: number | null = null
 
@@ -1119,7 +1221,7 @@ const buildMelodySequence = (frames: RecordedFrame[], stepSeconds: number) => {
 const buildKaraokePoints = (frames: RecordedFrame[]): KaraokePoint[] => {
   if (frames.length === 0) return []
   return frames
-    .filter((frame) => frame.midi !== null && frame.confidence >= MIN_CONFIDENCE)
+    .filter((frame) => frame.midi !== null && frame.confidence >= minConfidence)
     .map((frame) => ({ t: frame.t, midi: frame.midi as number }))
     .sort((a, b) => a.t - b.t)
 }
@@ -1365,7 +1467,7 @@ const stopKaraokeAnimation = () => {
 }
 
 const deriveStableMetrics = (frequency: number | null, confidence: number): PitchMetrics | null => {
-  if (frequency === null || confidence < MIN_CONFIDENCE) {
+  if (frequency === null || confidence < minConfidence) {
     silenceFrames += 1
     frequencyWindow = []
     candidateMidi = null
@@ -1394,7 +1496,7 @@ const deriveStableMetrics = (frequency: number | null, confidence: number): Pitc
     candidateFrames = 1
   }
 
-  if (candidateFrames >= STABILITY_HOLD_FRAMES) {
+  if (candidateFrames >= stabilityHoldFrames) {
     stableMidi = candidate
   }
 
@@ -1414,7 +1516,7 @@ const deriveStableMetrics = (frequency: number | null, confidence: number): Pitc
 }
 
 const updateGauge = (cents: number | null, confidence: number) => {
-  if (cents === null || confidence < MIN_CONFIDENCE) {
+  if (cents === null || confidence < minConfidence) {
     gauge.dataset.level = 'off'
     gaugeNeedle.style.left = '50%'
     gaugeLabel.textContent = 'NO SIGNAL'
@@ -1504,7 +1606,7 @@ const renderWaveform = () => {
   }
 
   const rms = calculateRms(floatData)
-  if (rms < MIN_RMS) {
+  if (rms < minRms) {
     lastConfidence = 0
     smoothedFrequency = null
     lastStableMetrics = deriveStableMetrics(null, 0)
@@ -1517,8 +1619,9 @@ const renderWaveform = () => {
   const { frequency, confidence } = autoCorrelate(floatData, audioContext?.sampleRate ?? 44100)
   lastConfidence = confidence
 
-  if (frequency !== null && confidence >= MIN_CONFIDENCE) {
-    smoothedFrequency = smoothedFrequency === null ? frequency : smoothedFrequency + SMOOTHING * (frequency - smoothedFrequency)
+  if (frequency !== null && confidence >= minConfidence) {
+    smoothedFrequency =
+      smoothedFrequency === null ? frequency : smoothedFrequency + pitchSmoothing * (frequency - smoothedFrequency)
   }
 
   const metricsData = deriveStableMetrics(smoothedFrequency, confidence)
@@ -1714,7 +1817,7 @@ const initAudio = async () => {
     const source = context.createMediaStreamSource(mediaStream)
     analyser = context.createAnalyser()
     analyser.fftSize = 2048
-    analyser.smoothingTimeConstant = 0.85
+    analyser.smoothingTimeConstant = analyserSmoothing
 
     source.connect(analyser)
     byteData = new Uint8Array(analyser.fftSize)
@@ -2056,6 +2159,7 @@ const stopRecording = () => {
 
 buildTargetOptions()
 targetSelect.value = String(targetMidi)
+syncInputTuningFromUI()
 setMode('single')
 setPlaybackMode('piano')
 setStartButtonLabel()
@@ -2148,6 +2252,18 @@ melodySpeedSelect.addEventListener('change', () => {
   if (isMelodyPlaying) {
     stopMelodyPlayback()
   }
+})
+
+micSensitivitySlider.addEventListener('input', () => {
+  micSensitivity = readSliderPercent(micSensitivitySlider, MIC_SENSITIVITY_DEFAULT)
+  applyInputTuning()
+  updateInputTuningLabels()
+})
+
+trackingSpeedSlider.addEventListener('input', () => {
+  trackingSpeed = readSliderPercent(trackingSpeedSlider, TRACKING_SPEED_DEFAULT)
+  applyInputTuning()
+  updateInputTuningLabels()
 })
 
 recordButton.addEventListener('click', () => {
