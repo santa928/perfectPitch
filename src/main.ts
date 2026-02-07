@@ -37,15 +37,17 @@ type MelodyEvent = {
   duration: number
 }
 type DisplayMode = 'single' | 'karaoke'
-type KaraokeEvent = {
+type KaraokePoint = {
+  t: number
   midi: number
-  start: number
-  duration: number
 }
-type KaraokeSegment = {
-  midi: number
-  start: number
-  end: number
+type LaneRange = {
+  min: number
+  max: number
+}
+type LaneViewport = {
+  startSec: number
+  endSec: number
 }
 type PlaybackMode = 'record' | 'piano'
 
@@ -68,18 +70,15 @@ const MAX_GAUGE_CENTS = 50
 const RECORD_SAMPLE_EVERY = 4
 const MAX_REVIEW_LINES = 140
 const MELODY_STEP_SECONDS = 0.1
-const KARAOKE_RANGE_PADDING = 3
-const KARAOKE_MIN_RANGE = 8
-const KARAOKE_TRAIL_SECONDS = 1.2
-const KARAOKE_GAP_TOLERANCE = 0.22
-const KARAOKE_MIDI_TOLERANCE = 1
-const KARAOKE_MIN_SEGMENT_SECONDS = 0.1
-const KARAOKE_HOLD_SECONDS = 0.12
-const KARAOKE_MIN_BAR_WIDTH = 14
+const LANE_PX_PER_SECOND = 48
+const LANE_MIN_RELATIVE_SPAN = 0.5
+const LANE_RANGE_SMOOTHING = 0.2
+const LANE_GAP_BREAK_SECONDS = 0.25
+const LANE_FOLLOW_RESUME_MS = 2000
+const LANE_RIGHT_EDGE_THRESHOLD_PX = 16
 const LANE_PADDING = 12
 const LANE_TOP_PADDING = 12
 const LANE_BOTTOM_PADDING = 12
-const LANE_BAR_HEIGHT = 14
 const REFERENCE_SAMPLE_AMPLITUDE = 0.75
 const MELODY_SAMPLE_AMPLITUDE = 1.0
 const OSC_REFERENCE_GAIN = 0.52
@@ -185,18 +184,19 @@ app.innerHTML = `
           <span id="barChip" class="pp-chip">カラオケ</span>
         </div>
         <div class="pp-lane">
-          <span class="pp-lane-line line-1"></span>
-          <span class="pp-lane-line line-2"></span>
-          <span class="pp-lane-line line-3"></span>
-          <span class="pp-lane-target t1"></span>
-          <span class="pp-lane-target t2"></span>
-          <span class="pp-lane-target t3"></span>
-          <span class="pp-lane-target t4"></span>
-          <span class="pp-lane-trail tr1"></span>
-          <span class="pp-lane-trail tr2"></span>
-          <span class="pp-lane-trail tr3"></span>
-          <span class="pp-lane-current"></span>
-          <span class="pp-lane-dot"></span>
+          <div class="pp-lane-viewport">
+            <div class="pp-lane-content">
+              <span class="pp-lane-line line-1"></span>
+              <span class="pp-lane-line line-2"></span>
+              <span class="pp-lane-line line-3"></span>
+              <svg class="pp-lane-svg" aria-hidden="true" preserveAspectRatio="none">
+                <path class="pp-lane-path"></path>
+              </svg>
+              <span class="pp-lane-dot"></span>
+            </div>
+            <span class="pp-lane-current"></span>
+          </div>
+          <button id="laneFollowButton" class="pp-lane-follow" type="button" hidden>最新へ戻る</button>
         </div>
         <div class="pp-current-row">
           <span id="laneCurrentText" class="pp-current-text">現在: --</span>
@@ -262,9 +262,12 @@ const barChip = app.querySelector<HTMLSpanElement>('#barChip')
 const laneCurrentText = app.querySelector<HTMLSpanElement>('#laneCurrentText')
 const laneCentsText = app.querySelector<HTMLSpanElement>('#laneCentsText')
 const lane = app.querySelector<HTMLDivElement>('.pp-lane')
+const laneViewport = app.querySelector<HTMLDivElement>('.pp-lane-viewport')
+const laneContent = app.querySelector<HTMLDivElement>('.pp-lane-content')
+const laneSvg = app.querySelector<SVGSVGElement>('.pp-lane-svg')
+const lanePath = app.querySelector<SVGPathElement>('.pp-lane-path')
 const laneDot = app.querySelector<HTMLSpanElement>('.pp-lane-dot')
-const laneTargets = Array.from(app.querySelectorAll<HTMLSpanElement>('.pp-lane-target'))
-const laneTrails = Array.from(app.querySelectorAll<HTMLSpanElement>('.pp-lane-trail'))
+const laneFollowButton = app.querySelector<HTMLButtonElement>('#laneFollowButton')
 const startButton = app.querySelector<HTMLButtonElement>('#startButton')
 const retryButton = app.querySelector<HTMLButtonElement>('#retryButton')
 const playToneButton = app.querySelector<HTMLButtonElement>('#playToneButton')
@@ -309,9 +312,12 @@ if (
   !laneCurrentText ||
   !laneCentsText ||
   !lane ||
+  !laneViewport ||
+  !laneContent ||
+  !laneSvg ||
+  !lanePath ||
   !laneDot ||
-  laneTargets.length === 0 ||
-  laneTrails.length === 0 ||
+  !laneFollowButton ||
   !startButton ||
   !retryButton ||
   !playToneButton ||
@@ -370,8 +376,6 @@ let isMelodyPlaying = false
 let melodyNotes: Array<{ stop: () => void }> = []
 let melodyStopTimer: number | null = null
 let melodySpeed = 1
-let karaokeEvents: KaraokeEvent[] = []
-let karaokeSegments: KaraokeSegment[] = []
 let karaokeStartAt = 0
 let karaokeAnimationId: number | null = null
 let currentMode: DisplayMode = 'single'
@@ -388,6 +392,10 @@ let stableMidi: number | null = null
 let silenceFrames = 0
 let lastStableMetrics: PitchMetrics | null = null
 let hasRecordedAudio = false
+let laneFollowLatest = true
+let laneFollowPausedUntil = 0
+let laneRelativeRange: LaneRange | null = null
+let isProgrammaticLaneScroll = false
 
 const formatError = (error: unknown) => {
   if (error instanceof DOMException) {
@@ -452,6 +460,10 @@ const setMode = (mode: DisplayMode) => {
   modeKaraoke.classList.toggle('is-active', mode === 'karaoke')
   barLabel.textContent = mode === 'karaoke' ? 'カラオケバー' : '単音バー'
   barChip.textContent = mode === 'karaoke' ? `Key ${NOTE_NAMES[targetMidi % 12]}` : '単音'
+  laneFollowLatest = true
+  laneFollowPausedUntil = 0
+  laneRelativeRange = null
+  updateLaneFollowButton()
   clearLaneBars()
   syncStatusPills()
 }
@@ -1104,205 +1116,126 @@ const buildMelodySequence = (frames: RecordedFrame[], stepSeconds: number) => {
   return compressed
 }
 
-const buildKaraokeEvents = (sequence: MelodyEvent[]) => {
-  const events: KaraokeEvent[] = []
-  let cursor = 0
-  for (const event of sequence) {
-    if (event.midi !== null) {
-      events.push({ midi: event.midi, start: cursor, duration: event.duration })
-    }
-    cursor += event.duration
-  }
-  return events
-}
-
-const buildKaraokeSegments = (
-  frames: RecordedFrame[],
-  gapToleranceSeconds: number,
-  midiTolerance: number,
-) => {
+const buildKaraokePoints = (frames: RecordedFrame[]): KaraokePoint[] => {
   if (frames.length === 0) return []
-  const sorted = [...frames].sort((a, b) => a.t - b.t)
-  const segments: KaraokeSegment[] = []
-  let active: KaraokeSegment | null = null
-  let lastTime = 0
-
-  for (const frame of sorted) {
-    if (frame.midi === null || frame.confidence < MIN_CONFIDENCE) {
-      continue
-    }
-
-    if (!active) {
-      active = { midi: frame.midi, start: frame.t, end: frame.t }
-      lastTime = frame.t
-      continue
-    }
-
-    const gap = frame.t - lastTime
-    const midiDiff = Math.abs(frame.midi - active.midi)
-    if (gap <= gapToleranceSeconds && midiDiff <= midiTolerance) {
-      active.end = frame.t
-      lastTime = frame.t
-      continue
-    }
-
-    const holdEnd = Math.min(frame.t, active.end + KARAOKE_HOLD_SECONDS)
-    active.end = Math.max(active.end, holdEnd)
-    if (active.end - active.start < KARAOKE_MIN_SEGMENT_SECONDS) {
-      active.end = active.start + KARAOKE_MIN_SEGMENT_SECONDS
-    }
-    segments.push(active)
-    active = { midi: frame.midi, start: frame.t, end: frame.t }
-    lastTime = frame.t
-  }
-
-  if (active) {
-    active.end += KARAOKE_HOLD_SECONDS
-    if (active.end - active.start < KARAOKE_MIN_SEGMENT_SECONDS) {
-      active.end = active.start + KARAOKE_MIN_SEGMENT_SECONDS
-    }
-    segments.push(active)
-  }
-
-  return segments
+  return frames
+    .filter((frame) => frame.midi !== null && frame.confidence >= MIN_CONFIDENCE)
+    .map((frame) => ({ t: frame.t, midi: frame.midi as number }))
+    .sort((a, b) => a.t - b.t)
 }
 
 const getLaneMetrics = () => {
-  const rect = lane.getBoundingClientRect()
-  const width = Math.max(0, rect.width - LANE_PADDING * 2)
-  const height = Math.max(0, rect.height - LANE_TOP_PADDING - LANE_BOTTOM_PADDING)
-  return { rect, width, height }
+  const rect = laneViewport.getBoundingClientRect()
+  const width = Math.max(0, rect.width)
+  const height = Math.max(0, rect.height)
+  const innerHeight = Math.max(1, height - LANE_TOP_PADDING - LANE_BOTTOM_PADDING)
+  return { rect, width, height, innerHeight }
+}
+
+const timeToLaneX = (seconds: number) => LANE_PADDING + Math.max(0, seconds) * LANE_PX_PER_SECOND
+
+const xToLaneTime = (x: number) => Math.max(0, (x - LANE_PADDING) / LANE_PX_PER_SECOND)
+
+const getLaneViewport = (): LaneViewport => {
+  const startSec = xToLaneTime(laneViewport.scrollLeft)
+  const endSec = xToLaneTime(laneViewport.scrollLeft + laneViewport.clientWidth)
+  return { startSec, endSec }
+}
+
+const updateLaneFollowButton = () => {
+  laneFollowButton.hidden = laneFollowLatest || currentMode !== 'karaoke'
+}
+
+const scrollLaneToLatest = () => {
+  const maxScroll = Math.max(0, laneViewport.scrollWidth - laneViewport.clientWidth)
+  isProgrammaticLaneScroll = true
+  laneViewport.scrollLeft = maxScroll
+  requestAnimationFrame(() => {
+    isProgrammaticLaneScroll = false
+  })
+}
+
+const getCurrentLaneSeconds = () => {
+  if (isRecording) {
+    return Math.max(0, (performance.now() - recordStartTime) / 1000)
+  }
+  if (isPlaying()) {
+    return getPlaybackSeconds()
+  }
+  return recordedFrames[recordedFrames.length - 1]?.t ?? 0
+}
+
+const resolveLaneRange = (visiblePoints: KaraokePoint[], fallbackMidi: number | null): LaneRange | null => {
+  let nextRange: LaneRange | null = null
+
+  if (visiblePoints.length > 0) {
+    const minMidi = Math.min(...visiblePoints.map((point) => point.midi))
+    const maxMidi = Math.max(...visiblePoints.map((point) => point.midi))
+    const center = (minMidi + maxMidi) / 2
+    const halfSpan = Math.max((maxMidi - minMidi) / 2, LANE_MIN_RELATIVE_SPAN / 2)
+    let min = center - halfSpan
+    let max = center + halfSpan
+
+    if (min < TARGET_START_MIDI) {
+      const diff = TARGET_START_MIDI - min
+      min = TARGET_START_MIDI
+      max += diff
+    }
+    if (max > TARGET_END_MIDI) {
+      const diff = max - TARGET_END_MIDI
+      max = TARGET_END_MIDI
+      min -= diff
+    }
+
+    nextRange = {
+      min: clamp(min, TARGET_START_MIDI, TARGET_END_MIDI - 0.01),
+      max: clamp(max, TARGET_START_MIDI + 0.01, TARGET_END_MIDI),
+    }
+  } else if (fallbackMidi !== null) {
+    const half = LANE_MIN_RELATIVE_SPAN / 2
+    nextRange = {
+      min: clamp(fallbackMidi - half, TARGET_START_MIDI, TARGET_END_MIDI - 0.01),
+      max: clamp(fallbackMidi + half, TARGET_START_MIDI + 0.01, TARGET_END_MIDI),
+    }
+  }
+
+  if (!nextRange) return laneRelativeRange
+  if (!laneRelativeRange) {
+    laneRelativeRange = nextRange
+    return nextRange
+  }
+
+  const smoothed: LaneRange = {
+    min: laneRelativeRange.min + (nextRange.min - laneRelativeRange.min) * LANE_RANGE_SMOOTHING,
+    max: laneRelativeRange.max + (nextRange.max - laneRelativeRange.max) * LANE_RANGE_SMOOTHING,
+  }
+  laneRelativeRange = smoothed
+  return smoothed
 }
 
 const midiToLaneY = (
   midi: number,
-  laneMetrics: { rect: DOMRect; width: number; height: number },
-  range: { min: number; max: number },
+  laneMetrics: { rect: DOMRect; width: number; height: number; innerHeight: number },
+  range: LaneRange,
 ) => {
-  const span = Math.max(1, range.max - range.min)
-  const clampedMidi = clamp(midi, range.min, range.max)
-  const ratio = span === 0 ? 0.5 : (clampedMidi - range.min) / span
-  const y =
-    LANE_TOP_PADDING +
-    (1 - ratio) * laneMetrics.height -
-    LANE_BAR_HEIGHT / 2
-  const maxY = laneMetrics.rect.height - LANE_BOTTOM_PADDING - LANE_BAR_HEIGHT
-  return clamp(y, LANE_TOP_PADDING, maxY)
+  const span = Math.max(0.001, range.max - range.min)
+  const ratio = clamp((midi - range.min) / span, 0, 1)
+  return LANE_TOP_PADDING + (1 - ratio) * laneMetrics.innerHeight
 }
 
-const getKaraokeRange = () => {
-  let minMidi = targetMidi - 6
-  let maxMidi = targetMidi + 6
-  const samples: number[] = []
-
-  if (recordedFrames.length > 0 && (isRecording || isPlaying())) {
-    recordedFrames.forEach((frame) => {
-      if (frame.midi !== null) samples.push(frame.midi)
-    })
-  } else if (karaokeEvents.length > 0) {
-    karaokeEvents.forEach((event) => samples.push(event.midi))
-  } else if (lastStableMetrics) {
-    samples.push(lastStableMetrics.midi)
-  }
-
-  if (samples.length > 0) {
-    const rawMin = Math.min(...samples)
-    const rawMax = Math.max(...samples)
-    const center = (rawMin + rawMax) / 2
-    const halfRange = Math.max(KARAOKE_MIN_RANGE / 2, (rawMax - rawMin) / 2 + KARAOKE_RANGE_PADDING)
-    minMidi = center - halfRange
-    maxMidi = center + halfRange
-  } else {
-    minMidi -= KARAOKE_RANGE_PADDING
-    maxMidi += KARAOKE_RANGE_PADDING
-  }
-
-  const rangeSize = Math.max(KARAOKE_MIN_RANGE, maxMidi - minMidi)
-  if (maxMidi - minMidi < rangeSize) {
-    const mid = (maxMidi + minMidi) / 2
-    minMidi = mid - rangeSize / 2
-    maxMidi = mid + rangeSize / 2
-  }
-
-  if (minMidi < TARGET_START_MIDI) {
-    const diff = TARGET_START_MIDI - minMidi
-    minMidi = TARGET_START_MIDI
-    maxMidi += diff
-  }
-  if (maxMidi > TARGET_END_MIDI) {
-    const diff = maxMidi - TARGET_END_MIDI
-    maxMidi = TARGET_END_MIDI
-    minMidi -= diff
-  }
-
-  minMidi = clamp(minMidi, TARGET_START_MIDI, TARGET_END_MIDI - KARAOKE_MIN_RANGE)
-  maxMidi = clamp(maxMidi, TARGET_START_MIDI + KARAOKE_MIN_RANGE, TARGET_END_MIDI)
-
-  return { min: minMidi, max: maxMidi }
-}
-
-const clearLaneBars = () => {
-  laneTargets.forEach((target) => {
-    target.style.opacity = '0'
-    target.style.transform = 'scaleX(0.6)'
-  })
-  laneTrails.forEach((trail) => {
-    trail.style.opacity = '0'
-    trail.style.transform = 'scaleX(0.6)'
-  })
-  laneDot.style.opacity = '0.4'
-}
-
-const hideLaneTrails = () => {
-  laneTrails.forEach((trail) => {
-    trail.style.opacity = '0'
-  })
-}
-
-const updateLaneCurrentState = (activeSegment: KaraokeSegment | undefined) => {
-  laneCurrentText.textContent = activeSegment
-    ? `現在: ${midiToSolfege(activeSegment.midi)}`
-    : '現在: --'
+const updateLaneCurrentState = (point: KaraokePoint | null) => {
+  laneCurrentText.textContent = point ? `現在: ${midiToSolfege(point.midi)}` : '現在: --'
   laneCentsText.textContent = '--'
 }
 
-const renderLaneTrails = (
-  visibleSegments: KaraokeSegment[],
-  trailStart: number,
-  now: number,
-  laneMetrics: { rect: DOMRect; width: number; height: number },
-  range: { min: number; max: number },
-) => {
-  if (visibleSegments.length === 0) {
-    hideLaneTrails()
-    return
-  }
-
-  const maxWidth = laneMetrics.rect.width - LANE_PADDING * 2
-  const windowDuration = Math.max(0.01, now - trailStart)
-  const slots = laneTrails.length
-  const recentSegments = visibleSegments.slice(-slots)
-  for (let i = 0; i < slots; i += 1) {
-    const trail = laneTrails[i]
-    const segment = recentSegments[i]
-    if (!segment) {
-      trail.style.opacity = '0'
-      continue
-    }
-    const start = Math.max(segment.start, trailStart)
-    const end = Math.min(segment.end, now)
-    const left = LANE_PADDING + ((start - trailStart) / windowDuration) * maxWidth
-    const right = LANE_PADDING + ((end - trailStart) / windowDuration) * maxWidth
-    const maxRight = LANE_PADDING + maxWidth
-    const rawWidth = Math.max(KARAOKE_MIN_BAR_WIDTH, right - left)
-    const width = Math.max(KARAOKE_MIN_BAR_WIDTH, Math.min(rawWidth, maxRight - left))
-    const top = midiToLaneY(segment.midi, laneMetrics, range)
-    trail.style.left = `${left}px`
-    trail.style.top = `${top}px`
-    trail.style.width = `${width}px`
-    trail.style.opacity = '1'
-    trail.style.transform = 'scaleX(1)'
-  }
+const clearLaneBars = () => {
+  lanePath.setAttribute('d', '')
+  lanePath.style.opacity = '0'
+  laneDot.style.opacity = '0'
+  laneCurrentText.textContent = '現在: --'
+  laneCentsText.textContent = '--'
+  laneFollowButton.hidden = true
+  laneRelativeRange = null
 }
 
 const getPlaybackSeconds = () => {
@@ -1322,52 +1255,98 @@ const renderKaraokeBar = () => {
     return
   }
 
-  laneDot.style.opacity = isRecording || isPlaying() ? '1' : '0.4'
-
   const laneMetrics = getLaneMetrics()
-  const range = getKaraokeRange()
   if (laneMetrics.width <= 0 || laneMetrics.height <= 0) {
     clearLaneBars()
     return
   }
 
-  laneTargets.forEach((target) => {
-    target.style.opacity = '0'
-    target.style.transform = 'scaleX(0.6)'
-  })
-
-  if (isRecording) {
-    const now = Math.max(0, (performance.now() - recordStartTime) / 1000)
-    const trailStart = Math.max(0, now - KARAOKE_TRAIL_SECONDS)
-    const segments = buildKaraokeSegments(
-      recordedFrames,
-      KARAOKE_GAP_TOLERANCE,
-      KARAOKE_MIDI_TOLERANCE,
-    )
-    const visibleSegments = segments.filter(
-      (segment) => segment.end >= trailStart && segment.start <= now,
-    )
-    const activeSegment = segments.find((segment) => segment.start <= now && segment.end >= now)
-    updateLaneCurrentState(activeSegment)
-    renderLaneTrails(visibleSegments, trailStart, now, laneMetrics, range)
-    return
-  }
-
-  if (!isPlaying() || karaokeSegments.length === 0) {
-    laneCurrentText.textContent = '現在: --'
-    laneCentsText.textContent = '--'
-    clearLaneBars()
-    return
-  }
-
-  const now = getPlaybackSeconds()
-  const trailStart = Math.max(0, now - KARAOKE_TRAIL_SECONDS)
-  const visibleSegments = karaokeSegments.filter(
-    (segment) => segment.end >= trailStart && segment.start <= now,
+  const points = buildKaraokePoints(recordedFrames)
+  const now = getCurrentLaneSeconds()
+  const latestPointTime = points[points.length - 1]?.t ?? 0
+  const timelineDuration = Math.max(now, latestPointTime, 0)
+  const contentWidth = Math.max(
+    laneMetrics.width,
+    Math.ceil(timeToLaneX(timelineDuration) + LANE_PADDING),
   )
-  const activeSegment = karaokeSegments.find((segment) => segment.start <= now && segment.end >= now)
-  updateLaneCurrentState(activeSegment)
-  renderLaneTrails(visibleSegments, trailStart, now, laneMetrics, range)
+  laneContent.style.width = `${contentWidth}px`
+  laneSvg.setAttribute('viewBox', `0 0 ${contentWidth} ${laneMetrics.height}`)
+
+  if (!laneFollowLatest && performance.now() >= laneFollowPausedUntil) {
+    const maxScroll = Math.max(0, laneViewport.scrollWidth - laneViewport.clientWidth)
+    if (maxScroll - laneViewport.scrollLeft <= LANE_RIGHT_EDGE_THRESHOLD_PX) {
+      laneFollowLatest = true
+    }
+  }
+  if (laneFollowLatest) {
+    scrollLaneToLatest()
+  }
+  updateLaneFollowButton()
+
+  if (points.length === 0) {
+    lanePath.setAttribute('d', '')
+    lanePath.style.opacity = '0'
+    laneDot.style.opacity = '0'
+    updateLaneCurrentState(null)
+    laneRelativeRange = null
+    return
+  }
+
+  const viewport = getLaneViewport()
+  const visiblePoints = points.filter(
+    (point) =>
+      point.t >= viewport.startSec - LANE_GAP_BREAK_SECONDS &&
+      point.t <= viewport.endSec + LANE_GAP_BREAK_SECONDS,
+  )
+  const fallbackMidi = points[points.length - 1]?.midi ?? lastStableMetrics?.midi ?? null
+  const range = resolveLaneRange(visiblePoints, fallbackMidi)
+  if (!range || visiblePoints.length === 0) {
+    lanePath.setAttribute('d', '')
+    lanePath.style.opacity = '0'
+    laneDot.style.opacity = '0'
+    updateLaneCurrentState(null)
+    return
+  }
+
+  const pathParts: string[] = []
+  let lastPoint: KaraokePoint | null = null
+  for (const point of visiblePoints) {
+    const x = timeToLaneX(point.t)
+    const y = midiToLaneY(point.midi, laneMetrics, range)
+    if (!lastPoint || point.t - lastPoint.t > LANE_GAP_BREAK_SECONDS) {
+      pathParts.push(`M ${x.toFixed(2)} ${y.toFixed(2)}`)
+    } else {
+      pathParts.push(`L ${x.toFixed(2)} ${y.toFixed(2)}`)
+    }
+    lastPoint = point
+  }
+  lanePath.setAttribute('d', pathParts.join(' '))
+  lanePath.style.opacity = pathParts.length > 0 ? '1' : '0'
+
+  let currentPoint: KaraokePoint | null = null
+  for (let i = points.length - 1; i >= 0; i -= 1) {
+    if (points[i].t <= now) {
+      currentPoint = points[i]
+      break
+    }
+  }
+  if (!currentPoint) {
+    currentPoint = points[0] ?? null
+  }
+
+  if (!currentPoint) {
+    laneDot.style.opacity = '0'
+    updateLaneCurrentState(null)
+    return
+  }
+
+  const currentTime = isRecording || isPlaying() ? now : currentPoint.t
+  const dotX = timeToLaneX(Math.max(currentPoint.t, currentTime))
+  const dotY = midiToLaneY(currentPoint.midi, laneMetrics, range)
+  laneDot.style.left = `${dotX}px`
+  laneDot.style.top = `${dotY}px`
+  laneDot.style.opacity = '1'
+  updateLaneCurrentState(currentPoint)
 }
 
 const startKaraokeAnimation = () => {
@@ -1563,8 +1542,6 @@ const renderReview = () => {
       reviewList.textContent = '-'
     }
     melodySequence = []
-    karaokeEvents = []
-    karaokeSegments = []
     updateMelodyControls()
     if (isMelodyPlaying) {
       stopMelodyPlayback()
@@ -1623,12 +1600,6 @@ const renderReview = () => {
   }
 
   melodySequence = buildMelodySequence(recordedFrames, MELODY_STEP_SECONDS)
-  karaokeEvents = buildKaraokeEvents(melodySequence)
-  karaokeSegments = buildKaraokeSegments(
-    recordedFrames,
-    KARAOKE_GAP_TOLERANCE,
-    KARAOKE_MIDI_TOLERANCE,
-  )
   updateMelodyControls()
   const hasMelody = hasPlayableMelody()
   if (!hasMelody && isMelodyPlaying) {
@@ -2029,8 +2000,8 @@ const startRecording = async () => {
   recordedChunks = []
   recordedFrames = []
   melodySequence = []
-  karaokeEvents = []
-  karaokeSegments = []
+  laneRelativeRange = null
+  laneFollowLatest = true
   hasRecordedAudio = false
   recordStartTime = performance.now()
   recordFrameCounter = 0
@@ -2095,6 +2066,39 @@ syncStatusPills()
 updateMelodyControls()
 setControls(false)
 renderKaraokeBar()
+
+laneViewport.addEventListener('scroll', () => {
+  if (isProgrammaticLaneScroll) return
+  const maxScroll = Math.max(0, laneViewport.scrollWidth - laneViewport.clientWidth)
+  const distanceFromRight = maxScroll - laneViewport.scrollLeft
+  if (distanceFromRight <= LANE_RIGHT_EDGE_THRESHOLD_PX) {
+    laneFollowLatest = true
+    laneFollowPausedUntil = 0
+  } else {
+    laneFollowLatest = false
+    laneFollowPausedUntil = performance.now() + LANE_FOLLOW_RESUME_MS
+  }
+  updateLaneFollowButton()
+  if (currentMode === 'karaoke') {
+    renderKaraokeBar()
+  }
+})
+
+laneFollowButton.addEventListener('click', () => {
+  laneFollowLatest = true
+  laneFollowPausedUntil = 0
+  scrollLaneToLatest()
+  updateLaneFollowButton()
+  if (currentMode === 'karaoke') {
+    renderKaraokeBar()
+  }
+})
+
+window.addEventListener('resize', () => {
+  if (currentMode === 'karaoke') {
+    renderKaraokeBar()
+  }
+})
 
 startButton.addEventListener('click', () => {
   if (isRunning) {
