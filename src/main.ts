@@ -1498,13 +1498,15 @@ const renderKaraokeBar = () => {
     return
   }
 
-  const currentTime = isRecording || isPlaying() ? now : currentPoint.t
-  const dotX = timeToLaneX(Math.max(currentPoint.t, currentTime))
+  const isLiveTracking = isRecording || isPlaying()
+  const hasCurrentPoint = currentPoint.t <= now
+  const dotTime = isLiveTracking ? now : currentPoint.t
+  const dotX = timeToLaneX(dotTime)
   const dotY = midiToLaneY(currentPoint.midi, laneMetrics, range)
   laneDot.style.left = `${dotX}px`
   laneDot.style.top = `${dotY}px`
   laneDot.style.opacity = '1'
-  updateLaneCurrentState(currentPoint)
+  updateLaneCurrentState(hasCurrentPoint ? currentPoint : null)
 }
 
 const startKaraokeAnimation = () => {
