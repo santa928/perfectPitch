@@ -1436,7 +1436,15 @@ const renderKaraokeBar = () => {
   if (points.length === 0) {
     lanePath.setAttribute('d', '')
     lanePath.style.opacity = '0'
-    laneDot.style.opacity = '0'
+    if (isRecording || isPlaying()) {
+      const dotX = timeToLaneX(now)
+      const dotY = LANE_TOP_PADDING + laneMetrics.innerHeight / 2
+      laneDot.style.left = `${dotX}px`
+      laneDot.style.top = `${dotY}px`
+      laneDot.style.opacity = '1'
+    } else {
+      laneDot.style.opacity = '0'
+    }
     updateLaneCurrentState(null)
     laneRelativeRange = null
     return
@@ -1450,7 +1458,7 @@ const renderKaraokeBar = () => {
   )
   const fallbackMidi = points[points.length - 1]?.midi ?? lastStableMetrics?.midi ?? null
   const range = resolveLaneRange(visiblePoints, fallbackMidi)
-  if (!range || visiblePoints.length === 0) {
+  if (!range) {
     lanePath.setAttribute('d', '')
     lanePath.style.opacity = '0'
     laneDot.style.opacity = '0'
