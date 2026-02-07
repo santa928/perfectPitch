@@ -456,6 +456,9 @@ let laneFollowLatest = true
 let laneFollowPausedUntil = 0
 let laneRelativeRange: LaneRange | null = null
 let isProgrammaticLaneScroll = false
+let karaokePointsCache: KaraokePoint[] = []
+let karaokePointsCacheFrameCount = -1
+let karaokePointsCacheMinConfidence = -1
 let minRms = DEFAULT_MIN_RMS
 let minConfidence = DEFAULT_MIN_CONFIDENCE
 let pitchSmoothing = DEFAULT_SMOOTHING
@@ -1266,12 +1269,19 @@ const buildMelodySequence = (frames: RecordedFrame[], stepSeconds: number) => {
   return compressed
 }
 
-const buildKaraokePoints = (frames: RecordedFrame[]): KaraokePoint[] => {
-  if (frames.length === 0) return []
-  return frames
+const getKaraokePoints = (): KaraokePoint[] => {
+  if (
+    karaokePointsCacheFrameCount === recordedFrames.length &&
+    karaokePointsCacheMinConfidence === minConfidence
+  ) {
+    return karaokePointsCache
+  }
+  karaokePointsCache = recordedFrames
     .filter((frame) => frame.midi !== null && frame.confidence >= minConfidence)
     .map((frame) => ({ t: frame.t, midi: frame.midi as number }))
-    .sort((a, b) => a.t - b.t)
+  karaokePointsCacheFrameCount = recordedFrames.length
+  karaokePointsCacheMinConfidence = minConfidence
+  return karaokePointsCache
 }
 
 const getLaneMetrics = () => {
@@ -1411,7 +1421,7 @@ const renderKaraokeBar = () => {
     return
   }
 
-  const points = buildKaraokePoints(recordedFrames)
+  const points = getKaraokePoints()
   const now = getCurrentLaneSeconds()
   const latestPointTime = points[points.length - 1]?.t ?? 0
   const timelineDuration = Math.max(now, latestPointTime, 0)
@@ -2024,6 +2034,32 @@ const playMelodyViaMediaTone = async () => {
   })
 }
 
+const playRecordedAudioWithLaneSync = async () => {
+  if (!hasRecordedAudio) {
+    setStatus('idle', '録音データがありません。録音してから再生してください。')
+    return false
+  }
+
+  karaokeStartAt = performance.now() - recordedAudio.currentTime * 1000
+  if (!isRunning) {
+    startKaraokeAnimation()
+    renderKaraokeBar()
+  }
+
+  try {
+    await recordedAudio.play()
+    return true
+  } catch (error) {
+    if (!isRunning && !isMelodyPlaying && !isRecordPlaying) {
+      stopKaraokeAnimation()
+      renderKaraokeBar()
+    }
+    const detail = formatError(error)
+    setStatus('error', detail ? `録音再生に失敗しました（${detail}）` : '録音再生に失敗しました。')
+    return false
+  }
+}
+
 const playMelody = async () => {
   if (isMelodyPlaying) {
     stopMelodyPlayback()
@@ -2033,22 +2069,12 @@ const playMelody = async () => {
   if (isRecording) return
 
   if (playbackMode === 'record') {
-    if (!hasRecordedAudio) {
-      setStatus('idle', '録音データがありません。録音してから再生してください。')
-      return
-    }
     if (isRecordPlaying) {
       recordedAudio.pause()
       return
     }
-    try {
-      await recordedAudio.play()
-      return
-    } catch (error) {
-      const detail = formatError(error)
-      setStatus('error', detail ? `録音再生に失敗しました（${detail}）` : '録音再生に失敗しました。')
-      return
-    }
+    await playRecordedAudioWithLaneSync()
+    return
   }
 
   if (!hasPlayableMelody()) {
@@ -2343,7 +2369,7 @@ recordButton.addEventListener('click', () => {
 })
 
 playRecordButton.addEventListener('click', () => {
-  void recordedAudio.play()
+  void playRecordedAudioWithLaneSync()
 })
 
 recordedAudio.addEventListener('play', () => {
