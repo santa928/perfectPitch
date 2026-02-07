@@ -50,6 +50,7 @@ type LaneViewport = {
   endSec: number
 }
 type PlaybackMode = 'record' | 'piano'
+type NoiseReductionMode = 'precision' | 'balanced' | 'noisy'
 
 const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
 const FLAT_NOTE_NAMES = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
@@ -62,6 +63,7 @@ const DEFAULT_MIN_RMS = 0.008
 const DEFAULT_SMOOTHING = 0.18
 const DEFAULT_STABILITY_HOLD_FRAMES = 4
 const DEFAULT_ANALYSER_SMOOTHING = 0.85
+const DEFAULT_NOISE_REDUCTION_MODE: NoiseReductionMode = 'balanced'
 const MIC_SENSITIVITY_DEFAULT = 50
 const TRACKING_SPEED_DEFAULT = 40
 const STABILITY_WINDOW = 7
@@ -244,6 +246,16 @@ app.innerHTML = `
         </div>
         <div class="pp-section pp-settings">
           <span class="pp-card-label">入力チューニング</span>
+          <label class="pp-setting-row" for="noiseModeSelect">
+            <span class="pp-setting-head">
+              <span>ノイズ抑制モード</span>
+            </span>
+            <select id="noiseModeSelect" class="pp-setting-select" aria-label="ノイズ抑制モード">
+              <option value="precision">精度優先</option>
+              <option value="balanced" selected>バランス</option>
+              <option value="noisy">騒音環境優先</option>
+            </select>
+          </label>
           <label class="pp-setting-row" for="micSensitivitySlider">
             <span class="pp-setting-head">
               <span>マイク感度</span>
@@ -323,6 +335,7 @@ const waveform = app.querySelector<HTMLPreElement>('#waveform')
 const metrics = app.querySelector<HTMLDivElement>('#metrics')
 const currentNote = app.querySelector<HTMLDivElement>('#currentNote')
 const targetSelect = app.querySelector<HTMLSelectElement>('#targetSelect')
+const noiseModeSelect = app.querySelector<HTMLSelectElement>('#noiseModeSelect')
 const micSensitivitySlider = app.querySelector<HTMLInputElement>('#micSensitivitySlider')
 const micSensitivityValue = app.querySelector<HTMLSpanElement>('#micSensitivityValue')
 const trackingSpeedSlider = app.querySelector<HTMLInputElement>('#trackingSpeedSlider')
@@ -376,6 +389,7 @@ if (
   !metrics ||
   !currentNote ||
   !targetSelect ||
+  !noiseModeSelect ||
   !micSensitivitySlider ||
   !micSensitivityValue ||
   !trackingSpeedSlider ||
@@ -449,6 +463,7 @@ let stabilityHoldFrames = DEFAULT_STABILITY_HOLD_FRAMES
 let analyserSmoothing = DEFAULT_ANALYSER_SMOOTHING
 let micSensitivity = MIC_SENSITIVITY_DEFAULT
 let trackingSpeed = TRACKING_SPEED_DEFAULT
+let noiseReductionMode: NoiseReductionMode = DEFAULT_NOISE_REDUCTION_MODE
 
 const formatError = (error: unknown) => {
   if (error instanceof DOMException) {
@@ -592,6 +607,7 @@ const setControls = (isWorking: boolean) => {
   startButton.disabled = isWorking
   retryButton.disabled = isWorking
   recordButton.disabled = isWorking
+  noiseModeSelect.disabled = isWorking
   micSensitivitySlider.disabled = isWorking
   trackingSpeedSlider.disabled = isWorking
 
@@ -661,11 +677,28 @@ const getAudioContextClass = (): AudioContextClass | undefined => {
   return window.AudioContext ?? (window as Window & { webkitAudioContext?: AudioContextClass }).webkitAudioContext
 }
 
+const NOISE_REDUCTION_PRESETS: Record<
+  NoiseReductionMode,
+  { echoCancellation: boolean; noiseSuppression: boolean; autoGainControl: boolean }
+> = {
+  precision: { echoCancellation: false, noiseSuppression: false, autoGainControl: false },
+  balanced: { echoCancellation: true, noiseSuppression: true, autoGainControl: false },
+  noisy: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+}
+
+const parseNoiseReductionMode = (value: string): NoiseReductionMode | null => {
+  if (value === 'precision' || value === 'balanced' || value === 'noisy') {
+    return value
+  }
+  return null
+}
+
 const buildAudioConstraints = () => {
   const supported = navigator.mediaDevices?.getSupportedConstraints
     ? navigator.mediaDevices.getSupportedConstraints()
     : {}
   const constraints: MediaTrackConstraints = {}
+  const preset = NOISE_REDUCTION_PRESETS[noiseReductionMode]
 
   if (supported.channelCount) {
     constraints.channelCount = { ideal: 1 }
@@ -677,15 +710,30 @@ const buildAudioConstraints = () => {
     constraints.sampleSize = { ideal: 16 }
   }
   if (supported.echoCancellation) {
-    constraints.echoCancellation = false
+    constraints.echoCancellation = preset.echoCancellation
   }
   if (supported.noiseSuppression) {
-    constraints.noiseSuppression = false
+    constraints.noiseSuppression = preset.noiseSuppression
   }
   if (supported.autoGainControl) {
-    constraints.autoGainControl = false
+    constraints.autoGainControl = preset.autoGainControl
   }
   return constraints
+}
+
+const applyAudioConstraintsToCurrentTrack = async () => {
+  const track = mediaStream?.getAudioTracks()[0]
+  if (!track?.applyConstraints) return
+
+  const audioConstraints = buildAudioConstraints()
+  const hasConstraints = Object.keys(audioConstraints).length > 0
+  if (!hasConstraints) return
+
+  try {
+    await track.applyConstraints(audioConstraints)
+  } catch {
+    setStatus('error', 'ノイズ抑制モードの適用に失敗しました。再試行してください。')
+  }
 }
 
 const ensureAudioContext = async () => {
@@ -2159,6 +2207,7 @@ const stopRecording = () => {
 
 buildTargetOptions()
 targetSelect.value = String(targetMidi)
+noiseModeSelect.value = noiseReductionMode
 syncInputTuningFromUI()
 setMode('single')
 setPlaybackMode('piano')
@@ -2251,6 +2300,15 @@ melodySpeedSelect.addEventListener('change', () => {
   }
   if (isMelodyPlaying) {
     stopMelodyPlayback()
+  }
+})
+
+noiseModeSelect.addEventListener('change', () => {
+  const mode = parseNoiseReductionMode(noiseModeSelect.value)
+  if (!mode) return
+  noiseReductionMode = mode
+  if (isRunning) {
+    void applyAudioConstraintsToCurrentTrack()
   }
 })
 
