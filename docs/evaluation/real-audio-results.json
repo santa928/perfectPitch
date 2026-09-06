@@ -1,0 +1,1031 @@
+{
+  "date": "2026-09-06T01:19:44.433Z",
+  "environment": {
+    "node": "v24.20.0",
+    "platform": "linux",
+    "architecture": "arm64"
+  },
+  "calibration": {
+    "prependedDigitalSilenceSeconds": 0.4,
+    "reason": "PitchAnalyzerの先頭0.3秒校正へ発声を混ぜないため。実マイクの環境音校正とは異なる。"
+  },
+  "interpretation": [
+    "正解F0ラベルがないため、精度・正解率・cents誤差は算出しない。",
+    "voicedFractionは元クリップ時間内に中心を持つ10ms間隔フレームに対する比率。",
+    "estimatedVoicedSecondsは有声フレーム数×10msで、連続区間の厳密な長さではない。",
+    "legacyOfflineEmulationは旧UIのrAF頻度・平滑化・4フレームごとの記録を再現しない。",
+    "旧検出器との件数差と推定レンジは、どちらが正しいかを示さない。",
+    "MusicXMLはサンプル選定だけに使い、解析結果の正解ラベルには使わない。"
+  ],
+  "elapsedMilliseconds": 42692.71852,
+  "results": [
+    {
+      "filename": "pjs056_song.wav",
+      "mode": "song",
+      "role": "公式個別サンプル歌声",
+      "path": "tests/fixtures/downloads/pjs056_song.wav",
+      "sampleRate": 48000,
+      "originalDurationSeconds": 16,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 1597,
+        "stateCounts": {
+          "voiced": 508,
+          "unvoiced": 397,
+          "uncertain": 392,
+          "silence": 300,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.31809643080776456,
+        "estimatedVoicedSeconds": 5.08,
+        "estimatedFrequencyHzRange": [
+          216.56287349567913,
+          453.02672193959575
+        ],
+        "estimatedMidiRange": [
+          56.72738893979429,
+          69.50511152283441
+        ],
+        "continuousNoteCount": 54,
+        "roundedNoteCount": 60,
+        "continuousNotesPerEstimatedVoicedSecond": 10.62992125984252,
+        "roundedNotesPerEstimatedVoicedSecond": 11.811023622047244,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 821,
+            "fraction": 0.5140889167188478,
+            "seconds": 8.21
+          },
+          "0.80": {
+            "count": 702,
+            "fraction": 0.4395742016280526,
+            "seconds": 7.0200000000000005
+          },
+          "0.85": {
+            "count": 628,
+            "fraction": 0.39323731997495304,
+            "seconds": 6.28
+          },
+          "0.90": {
+            "count": 508,
+            "fraction": 0.31809643080776456,
+            "seconds": 5.08
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 296,
+            "fraction": 0.18534752661239826,
+            "seconds": 2.96
+          },
+          "active0.001To0.008": {
+            "count": 220,
+            "fraction": 0.13775829680651222,
+            "seconds": 2.2
+          },
+          "activeAtOrAbove0.008": {
+            "count": 1081,
+            "fraction": 0.6768941765810895,
+            "seconds": 10.81
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.6117720726361928,
+          "estimatedMidiRange": [
+            49.784395980616395,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 505,
+            "newOnly": 3,
+            "legacyOnly": 472
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      },
+      "unmodifiedClip": {
+        "frameCount": 1593,
+        "stateCounts": {
+          "voiced": 508,
+          "unvoiced": 261,
+          "uncertain": 392,
+          "silence": 409,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.31889516635279347,
+        "estimatedVoicedSeconds": 5.08,
+        "estimatedFrequencyHzRange": [
+          216.56287349567913,
+          453.02672193959575
+        ],
+        "estimatedMidiRange": [
+          56.72738893979429,
+          69.50511152283441
+        ],
+        "continuousNoteCount": 54,
+        "roundedNoteCount": 60,
+        "continuousNotesPerEstimatedVoicedSecond": 10.62992125984252,
+        "roundedNotesPerEstimatedVoicedSecond": 11.811023622047244,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 821,
+            "fraction": 0.5153797865662273,
+            "seconds": 8.21
+          },
+          "0.80": {
+            "count": 702,
+            "fraction": 0.4406779661016949,
+            "seconds": 7.0200000000000005
+          },
+          "0.85": {
+            "count": 628,
+            "fraction": 0.39422473320778406,
+            "seconds": 6.28
+          },
+          "0.90": {
+            "count": 508,
+            "fraction": 0.31889516635279347,
+            "seconds": 5.08
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 292,
+            "fraction": 0.18330194601381042,
+            "seconds": 2.92
+          },
+          "active0.001To0.008": {
+            "count": 220,
+            "fraction": 0.13810420590081607,
+            "seconds": 2.2
+          },
+          "activeAtOrAbove0.008": {
+            "count": 1081,
+            "fraction": 0.6785938480853735,
+            "seconds": 10.81
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.613308223477715,
+          "estimatedMidiRange": [
+            49.784395980616395,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 505,
+            "newOnly": 3,
+            "legacyOnly": 472
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      }
+    },
+    {
+      "filename": "pjs012_song.wav",
+      "mode": "song",
+      "role": "楽譜上の低音域",
+      "path": "tests/fixtures/downloads/pjs012_song.wav",
+      "sampleRate": 48000,
+      "originalDurationSeconds": 18,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 1797,
+        "stateCounts": {
+          "voiced": 735,
+          "unvoiced": 633,
+          "uncertain": 278,
+          "silence": 151,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.4090150250417362,
+        "estimatedVoicedSeconds": 7.3500000000000005,
+        "estimatedFrequencyHzRange": [
+          194.62821184699115,
+          419.50923511613405
+        ],
+        "estimatedMidiRange": [
+          54.87860788545744,
+          68.17438856268434
+        ],
+        "continuousNoteCount": 43,
+        "roundedNoteCount": 59,
+        "continuousNotesPerEstimatedVoicedSecond": 5.850340136054421,
+        "roundedNotesPerEstimatedVoicedSecond": 8.02721088435374,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 952,
+            "fraction": 0.5297718419588202,
+            "seconds": 9.52
+          },
+          "0.80": {
+            "count": 878,
+            "fraction": 0.4885920979410128,
+            "seconds": 8.78
+          },
+          "0.85": {
+            "count": 829,
+            "fraction": 0.46132442960489706,
+            "seconds": 8.290000000000001
+          },
+          "0.90": {
+            "count": 735,
+            "fraction": 0.4090150250417362,
+            "seconds": 7.3500000000000005
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 151,
+            "fraction": 0.08402893711741792,
+            "seconds": 1.51
+          },
+          "active0.001To0.008": {
+            "count": 461,
+            "fraction": 0.2565386755703951,
+            "seconds": 4.61
+          },
+          "activeAtOrAbove0.008": {
+            "count": 1185,
+            "fraction": 0.659432387312187,
+            "seconds": 11.85
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.6126878130217028,
+          "estimatedMidiRange": [
+            40.223627112322156,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 735,
+            "newOnly": 0,
+            "legacyOnly": 366
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      },
+      "unmodifiedClip": {
+        "frameCount": 1793,
+        "stateCounts": {
+          "voiced": 735,
+          "unvoiced": 330,
+          "uncertain": 278,
+          "silence": 427,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.4099274958170664,
+        "estimatedVoicedSeconds": 7.3500000000000005,
+        "estimatedFrequencyHzRange": [
+          194.62821184699115,
+          419.50923511613405
+        ],
+        "estimatedMidiRange": [
+          54.87860788545744,
+          68.17438856268434
+        ],
+        "continuousNoteCount": 43,
+        "roundedNoteCount": 59,
+        "continuousNotesPerEstimatedVoicedSecond": 5.850340136054421,
+        "roundedNotesPerEstimatedVoicedSecond": 8.02721088435374,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 952,
+            "fraction": 0.5309537088678193,
+            "seconds": 9.52
+          },
+          "0.80": {
+            "count": 878,
+            "fraction": 0.48968209704406024,
+            "seconds": 8.78
+          },
+          "0.85": {
+            "count": 829,
+            "fraction": 0.46235359732292247,
+            "seconds": 8.290000000000001
+          },
+          "0.90": {
+            "count": 735,
+            "fraction": 0.4099274958170664,
+            "seconds": 7.3500000000000005
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 147,
+            "fraction": 0.08198549916341327,
+            "seconds": 1.47
+          },
+          "active0.001To0.008": {
+            "count": 461,
+            "fraction": 0.2571109871723369,
+            "seconds": 4.61
+          },
+          "activeAtOrAbove0.008": {
+            "count": 1185,
+            "fraction": 0.6609035136642498,
+            "seconds": 11.85
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.6140546569994423,
+          "estimatedMidiRange": [
+            40.223627112322156,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 735,
+            "newOnly": 0,
+            "legacyOnly": 366
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      }
+    },
+    {
+      "filename": "pjs068_song.wav",
+      "mode": "song",
+      "role": "楽譜上のロングトーン",
+      "path": "tests/fixtures/downloads/pjs068_song.wav",
+      "sampleRate": 48000,
+      "originalDurationSeconds": 11.999979166666666,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 1196,
+        "stateCounts": {
+          "voiced": 323,
+          "unvoiced": 343,
+          "uncertain": 409,
+          "silence": 121,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.270066889632107,
+        "estimatedVoicedSeconds": 3.23,
+        "estimatedFrequencyHzRange": [
+          132.6183573838396,
+          245.69005719910226
+        ],
+        "estimatedMidiRange": [
+          48.23732360624792,
+          58.912031410586316
+        ],
+        "continuousNoteCount": 38,
+        "roundedNoteCount": 40,
+        "continuousNotesPerEstimatedVoicedSecond": 11.764705882352942,
+        "roundedNotesPerEstimatedVoicedSecond": 12.38390092879257,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 614,
+            "fraction": 0.5133779264214047,
+            "seconds": 6.140000000000001
+          },
+          "0.80": {
+            "count": 489,
+            "fraction": 0.4088628762541806,
+            "seconds": 4.89
+          },
+          "0.85": {
+            "count": 411,
+            "fraction": 0.34364548494983277,
+            "seconds": 4.11
+          },
+          "0.90": {
+            "count": 323,
+            "fraction": 0.270066889632107,
+            "seconds": 3.23
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 121,
+            "fraction": 0.10117056856187291,
+            "seconds": 1.21
+          },
+          "active0.001To0.008": {
+            "count": 162,
+            "fraction": 0.1354515050167224,
+            "seconds": 1.62
+          },
+          "activeAtOrAbove0.008": {
+            "count": 913,
+            "fraction": 0.7633779264214047,
+            "seconds": 9.13
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.6981605351170569,
+          "estimatedMidiRange": [
+            42.165150271976465,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 318,
+            "newOnly": 5,
+            "legacyOnly": 517
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      },
+      "unmodifiedClip": {
+        "frameCount": 1192,
+        "stateCounts": {
+          "voiced": 323,
+          "unvoiced": 343,
+          "uncertain": 409,
+          "silence": 94,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.2709731543624161,
+        "estimatedVoicedSeconds": 3.23,
+        "estimatedFrequencyHzRange": [
+          132.6183573838396,
+          245.69005719910226
+        ],
+        "estimatedMidiRange": [
+          48.23732360624792,
+          58.912031410586316
+        ],
+        "continuousNoteCount": 38,
+        "roundedNoteCount": 40,
+        "continuousNotesPerEstimatedVoicedSecond": 11.764705882352942,
+        "roundedNotesPerEstimatedVoicedSecond": 12.38390092879257,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 614,
+            "fraction": 0.5151006711409396,
+            "seconds": 6.140000000000001
+          },
+          "0.80": {
+            "count": 489,
+            "fraction": 0.41023489932885904,
+            "seconds": 4.89
+          },
+          "0.85": {
+            "count": 411,
+            "fraction": 0.3447986577181208,
+            "seconds": 4.11
+          },
+          "0.90": {
+            "count": 323,
+            "fraction": 0.2709731543624161,
+            "seconds": 3.23
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 117,
+            "fraction": 0.09815436241610738,
+            "seconds": 1.17
+          },
+          "active0.001To0.008": {
+            "count": 162,
+            "fraction": 0.13590604026845637,
+            "seconds": 1.62
+          },
+          "activeAtOrAbove0.008": {
+            "count": 913,
+            "fraction": 0.7659395973154363,
+            "seconds": 9.13
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.700503355704698,
+          "estimatedMidiRange": [
+            42.165150271976465,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 318,
+            "newOnly": 5,
+            "legacyOnly": 517
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      }
+    },
+    {
+      "filename": "pjs087_song.wav",
+      "mode": "song",
+      "role": "楽譜上の高音域",
+      "path": "tests/fixtures/downloads/pjs087_song.wav",
+      "sampleRate": 48000,
+      "originalDurationSeconds": 22.2856875,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 2225,
+        "stateCounts": {
+          "voiced": 860,
+          "unvoiced": 640,
+          "uncertain": 417,
+          "silence": 308,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.3865168539325843,
+        "estimatedVoicedSeconds": 8.6,
+        "estimatedFrequencyHzRange": [
+          151.18994343734363,
+          520.5591122101812
+        ],
+        "estimatedMidiRange": [
+          50.50630387894765,
+          71.91070169574678
+        ],
+        "continuousNoteCount": 70,
+        "roundedNoteCount": 80,
+        "continuousNotesPerEstimatedVoicedSecond": 8.13953488372093,
+        "roundedNotesPerEstimatedVoicedSecond": 9.30232558139535,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 1204,
+            "fraction": 0.541123595505618,
+            "seconds": 12.040000000000001
+          },
+          "0.80": {
+            "count": 1107,
+            "fraction": 0.49752808988764047,
+            "seconds": 11.07
+          },
+          "0.85": {
+            "count": 1008,
+            "fraction": 0.45303370786516856,
+            "seconds": 10.08
+          },
+          "0.90": {
+            "count": 860,
+            "fraction": 0.3865168539325843,
+            "seconds": 8.6
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 294,
+            "fraction": 0.13213483146067415,
+            "seconds": 2.94
+          },
+          "active0.001To0.008": {
+            "count": 486,
+            "fraction": 0.21842696629213484,
+            "seconds": 4.86
+          },
+          "activeAtOrAbove0.008": {
+            "count": 1445,
+            "fraction": 0.6494382022471911,
+            "seconds": 14.450000000000001
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.6022471910112359,
+          "estimatedMidiRange": [
+            47.57757864217136,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 849,
+            "newOnly": 11,
+            "legacyOnly": 491
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      },
+      "unmodifiedClip": {
+        "frameCount": 2221,
+        "stateCounts": {
+          "voiced": 860,
+          "unvoiced": 390,
+          "uncertain": 417,
+          "silence": 531,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.38721296713192255,
+        "estimatedVoicedSeconds": 8.6,
+        "estimatedFrequencyHzRange": [
+          151.18994343734363,
+          520.5591122101812
+        ],
+        "estimatedMidiRange": [
+          50.50630387894765,
+          71.91070169574678
+        ],
+        "continuousNoteCount": 70,
+        "roundedNoteCount": 80,
+        "continuousNotesPerEstimatedVoicedSecond": 8.13953488372093,
+        "roundedNotesPerEstimatedVoicedSecond": 9.30232558139535,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 1204,
+            "fraction": 0.5420981539846916,
+            "seconds": 12.040000000000001
+          },
+          "0.80": {
+            "count": 1107,
+            "fraction": 0.4984241332733003,
+            "seconds": 11.07
+          },
+          "0.85": {
+            "count": 1008,
+            "fraction": 0.45384961728950923,
+            "seconds": 10.08
+          },
+          "0.90": {
+            "count": 860,
+            "fraction": 0.38721296713192255,
+            "seconds": 8.6
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 294,
+            "fraction": 0.13237280504277352,
+            "seconds": 2.94
+          },
+          "active0.001To0.008": {
+            "count": 482,
+            "fraction": 0.21701936064835659,
+            "seconds": 4.82
+          },
+          "activeAtOrAbove0.008": {
+            "count": 1445,
+            "fraction": 0.6506078343088699,
+            "seconds": 14.450000000000001
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.6033318325078794,
+          "estimatedMidiRange": [
+            47.57757864217136,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 849,
+            "newOnly": 11,
+            "legacyOnly": 491
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      }
+    },
+    {
+      "filename": "pjs091_song.wav",
+      "mode": "song",
+      "role": "短い歌唱",
+      "path": "tests/fixtures/downloads/pjs091_song.wav",
+      "sampleRate": 48000,
+      "originalDurationSeconds": 6.545458333333333,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 651,
+        "stateCounts": {
+          "voiced": 167,
+          "unvoiced": 212,
+          "uncertain": 178,
+          "silence": 94,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.2565284178187404,
+        "estimatedVoicedSeconds": 1.67,
+        "estimatedFrequencyHzRange": [
+          124.146034676146,
+          272.0969160684264
+        ],
+        "estimatedMidiRange": [
+          47.09441589197721,
+          60.679404978043024
+        ],
+        "continuousNoteCount": 19,
+        "roundedNoteCount": 22,
+        "continuousNotesPerEstimatedVoicedSecond": 11.377245508982037,
+        "roundedNotesPerEstimatedVoicedSecond": 13.173652694610778,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 305,
+            "fraction": 0.4685099846390169,
+            "seconds": 3.0500000000000003
+          },
+          "0.80": {
+            "count": 244,
+            "fraction": 0.37480798771121354,
+            "seconds": 2.44
+          },
+          "0.85": {
+            "count": 208,
+            "fraction": 0.3195084485407066,
+            "seconds": 2.08
+          },
+          "0.90": {
+            "count": 167,
+            "fraction": 0.2565284178187404,
+            "seconds": 1.67
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 94,
+            "fraction": 0.1443932411674347,
+            "seconds": 0.9400000000000001
+          },
+          "active0.001To0.008": {
+            "count": 161,
+            "fraction": 0.24731182795698925,
+            "seconds": 1.61
+          },
+          "activeAtOrAbove0.008": {
+            "count": 396,
+            "fraction": 0.6082949308755761,
+            "seconds": 3.96
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.5791090629800307,
+          "estimatedMidiRange": [
+            46.94468109730768,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 167,
+            "newOnly": 0,
+            "legacyOnly": 210
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      },
+      "unmodifiedClip": {
+        "frameCount": 647,
+        "stateCounts": {
+          "voiced": 167,
+          "unvoiced": 89,
+          "uncertain": 178,
+          "silence": 190,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.2581143740340031,
+        "estimatedVoicedSeconds": 1.67,
+        "estimatedFrequencyHzRange": [
+          124.146034676146,
+          272.0969160684264
+        ],
+        "estimatedMidiRange": [
+          47.09441589197721,
+          60.679404978043024
+        ],
+        "continuousNoteCount": 19,
+        "roundedNoteCount": 22,
+        "continuousNotesPerEstimatedVoicedSecond": 11.377245508982037,
+        "roundedNotesPerEstimatedVoicedSecond": 13.173652694610778,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 305,
+            "fraction": 0.4714064914992272,
+            "seconds": 3.0500000000000003
+          },
+          "0.80": {
+            "count": 244,
+            "fraction": 0.37712519319938176,
+            "seconds": 2.44
+          },
+          "0.85": {
+            "count": 208,
+            "fraction": 0.321483771251932,
+            "seconds": 2.08
+          },
+          "0.90": {
+            "count": 167,
+            "fraction": 0.2581143740340031,
+            "seconds": 1.67
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 90,
+            "fraction": 0.1391035548686244,
+            "seconds": 0.9
+          },
+          "active0.001To0.008": {
+            "count": 161,
+            "fraction": 0.24884080370942813,
+            "seconds": 1.61
+          },
+          "activeAtOrAbove0.008": {
+            "count": 396,
+            "fraction": 0.6120556414219475,
+            "seconds": 3.96
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.5826893353941267,
+          "estimatedMidiRange": [
+            46.94468109730768,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 167,
+            "newOnly": 0,
+            "legacyOnly": 210
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      }
+    },
+    {
+      "filename": "pjs056_speech.wav",
+      "mode": "speech",
+      "role": "通常の日本語話声",
+      "path": "tests/fixtures/downloads/pjs056_speech.wav",
+      "sampleRate": 48000,
+      "originalDurationSeconds": 6.25,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 623,
+        "stateCounts": {
+          "voiced": 105,
+          "unvoiced": 316,
+          "uncertain": 176,
+          "silence": 26,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.16853932584269662,
+        "estimatedVoicedSeconds": 1.05,
+        "estimatedFrequencyHzRange": [
+          121.07901886095019,
+          262.9135827406354
+        ],
+        "estimatedMidiRange": [
+          46.66134439189784,
+          60.08502183823795
+        ],
+        "continuousNoteCount": 24,
+        "roundedNoteCount": 29,
+        "continuousNotesPerEstimatedVoicedSecond": 22.857142857142858,
+        "roundedNotesPerEstimatedVoicedSecond": 27.619047619047617,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 226,
+            "fraction": 0.36276083467094705,
+            "seconds": 2.2600000000000002
+          },
+          "0.80": {
+            "count": 158,
+            "fraction": 0.2536115569823435,
+            "seconds": 1.58
+          },
+          "0.85": {
+            "count": 105,
+            "fraction": 0.16853932584269662,
+            "seconds": 1.05
+          },
+          "0.90": {
+            "count": 73,
+            "fraction": 0.11717495987158909,
+            "seconds": 0.73
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 26,
+            "fraction": 0.04173354735152488,
+            "seconds": 0.26
+          },
+          "active0.001To0.008": {
+            "count": 145,
+            "fraction": 0.23274478330658105,
+            "seconds": 1.45
+          },
+          "activeAtOrAbove0.008": {
+            "count": 452,
+            "fraction": 0.7255216693418941,
+            "seconds": 4.5200000000000005
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.6243980738362761,
+          "estimatedMidiRange": [
+            45.99463853610438,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 101,
+            "newOnly": 4,
+            "legacyOnly": 288
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      },
+      "unmodifiedClip": {
+        "frameCount": 620,
+        "stateCounts": {
+          "voiced": 105,
+          "unvoiced": 314,
+          "uncertain": 176,
+          "silence": 0,
+          "calibrating": 25
+        },
+        "voicedFraction": 0.1693548387096774,
+        "estimatedVoicedSeconds": 1.05,
+        "estimatedFrequencyHzRange": [
+          121.07901886095019,
+          262.9135827406354
+        ],
+        "estimatedMidiRange": [
+          46.66134439189784,
+          60.08502183823795
+        ],
+        "continuousNoteCount": 24,
+        "roundedNoteCount": 29,
+        "continuousNotesPerEstimatedVoicedSecond": 22.857142857142858,
+        "roundedNotesPerEstimatedVoicedSecond": 27.619047619047617,
+        "rawPeriodicityAtLeast": {
+          "0.70": {
+            "count": 226,
+            "fraction": 0.36451612903225805,
+            "seconds": 2.2600000000000002
+          },
+          "0.80": {
+            "count": 158,
+            "fraction": 0.25483870967741934,
+            "seconds": 1.58
+          },
+          "0.85": {
+            "count": 105,
+            "fraction": 0.1693548387096774,
+            "seconds": 1.05
+          },
+          "0.90": {
+            "count": 73,
+            "fraction": 0.11774193548387096,
+            "seconds": 0.73
+          }
+        },
+        "rmsFrameDistribution": {
+          "quietBelow0.001": {
+            "count": 23,
+            "fraction": 0.037096774193548385,
+            "seconds": 0.23
+          },
+          "active0.001To0.008": {
+            "count": 145,
+            "fraction": 0.23387096774193547,
+            "seconds": 1.45
+          },
+          "activeAtOrAbove0.008": {
+            "count": 452,
+            "fraction": 0.7290322580645161,
+            "seconds": 4.5200000000000005
+          }
+        },
+        "legacyOfflineEmulation": {
+          "acceptedFraction": 0.6274193548387097,
+          "estimatedMidiRange": [
+            45.99463853610438,
+            83.21309485364912
+          ],
+          "alignedFrameCounts": {
+            "both": 101,
+            "newOnly": 4,
+            "legacyOnly": 288
+          },
+          "settings": {
+            "windowSamples": 2048,
+            "minRms": 0.008,
+            "minConfidence": 0.25
+          }
+        }
+      }
+    }
+  ]
+}

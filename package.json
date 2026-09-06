@@ -6,12 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "soundfont-player": "^0.12.0"
+    "preview": "vite preview",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "test:browser": "playwright test",
+    "benchmark": "node --experimental-strip-types scripts/benchmark-pitch.ts"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "typescript": "~5.9.3",
     "vite": "^7.2.4"
   }
