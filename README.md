@@ -9,6 +9,7 @@
 3. 「録音を止める」のあと再解析が終わったら、「元の声 / ピアノ」を選び、ひとつの再生ボタンで聴きます。
 4. 再生設定で「元のズレを残す（ピアノ風）」と「鍵盤に丸める」を切り替えられます。歌声は前者、話し声は後者が初期設定です。
 5. 表示音域を明示的に切り替えられます。再生位置スライダーで8秒表示範囲と再生開始位置を移動します。声の種類変更は保持PCMから再解析します。
+6. 録音後に「楽譜とドレミを見る」を開くと、推定の五線譜と固定ドのカタカナ音名を表示します。ド4が中央のド、♯は半音上です。仮のテンポ120を歌に合わせて40〜240 BPMへ調整できます。
 
 青い線が連続した声の高さ、薄いバーが近くの半音です。「正解メロディ」や採点ではありません。無音・無声音・不明な区間は空白です。
 
@@ -40,6 +41,7 @@ docker compose -f docker-compose.test.yml run --rm browser
 - 録音と原音再生はmono Float32 PCMを使用し、MediaRecorderのMP4/WebMコーデック差を避けます。60秒上限、48kHzで1コピー11.52MB。再解析・再生時には追加コピーが必要です。
 - 10dB SNRの合成雑音条件は精度目標未達です。周期的環境音・テレビ・伴奏・他人の声の分離は保証しません。
 - 窓内で音程が変わる境界は不確実になります。音符終端は最大約半窓分、元音声より短くなる場合があります。
+- 楽譜は最初の検出音を1拍目とする4/4・16分単位の表示です。調・拍子・テンポを自動推定した正解の採譜ではありません。量子化で消えた短音は件数を表示します。楽譜設定は音程解析と再生を変更しません。PDF/MIDI出力、楽譜通りの再生は含みません。
 - iPhone Safari / Android Chromeの実機マイク、電話等のOS音声中断、実際の騒音環境は未検証です。自動化ブラウザ確認と区別します。
 
 [要件と受け入れ状況](docs/要件定義書.md)・[実装仕様](docs/仕様書.md)・[検証報告](docs/evaluation/verification.md)・[合成音の比較](docs/evaluation/synthetic-report.md)・[実音声の出典](docs/evaluation/real-audio-sources.md)を参照してください。
@@ -52,8 +54,10 @@ Piano: FluidR3_GM acoustic grand piano、[Benjamin Gleitzman / MIDI.js Soundfont
 
 実音声評価にはCC BY-SA 4.0のPJS corpusをローカル取得して使用します。評価音声はGitやアプリの配布物へ含めません。出典・取得コマンド・ハッシュは上記資料を参照してください。
 
+楽譜は[VexFlow 5.0.0](https://github.com/vexflow/vexflow)のBravura同梱版をパネル展開時に読み込みます。MITとSIL OFL 1.1のライセンス全文を `public/licenses/` に同梱し、画面から参照できます。楽譜表示にも音声送信・外部フォント取得はありません。
+
 ## GitHub Pages
 
-`vite.config.ts` の `base: '/perfectPitch/'` と `.github/workflows/deploy.yml` は維持しています。main push / workflow_dispatchで公開される既存設定です。このリニューアルのPR作成では、マージ・公開・Issueクローズは行いません。
+`vite.config.ts` の `base: '/perfectPitch/'` と `.github/workflows/deploy.yml` は維持しています。main push / workflow_dispatchで公開される既存設定です。リニューアルPR #14はユーザー承認後にマージ・公開済みです。Issue #13は未完了項目を追跡するため開いたままです。楽譜追加は別PRで扱います。
 
 UIの現行資料は [docs/UI設計.md](docs/UI設計.md)。既存の `design/perfectPitch-ui.pen` と `docs/issues/ui-redesign.md` は旧デザイン資料です。

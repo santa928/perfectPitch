@@ -15,6 +15,7 @@ export function mountView(root: HTMLElement) {
         <label class="seek-label"><span class="sr-only">再生位置</span><input id="seek" type="range" min="0" max="0" step="0.01" value="0" aria-label="再生位置"></label>
         <details class="settings"><summary>再生・解析の設定</summary><div class="settings-body"><label>ピアノの音高<select id="pitchMode"><option value="continuous">元のズレを残す（ピアノ風）</option><option value="rounded">鍵盤に丸める</option></select></label><p id="pitchHelp">中間の音も使い、しゃくりや細かな揺れを残します。</p><button id="reanalyze" class="text-button">元音声から再解析する</button><p id="pianoStatus">ピアノは選択後の再生時に音源を読み込みます。</p></div></details>
       </section>
+      <section id="score" aria-label="録音から作る推定の楽譜" hidden></section>
     </section>
     <section class="notes"><div><h2>声から生まれる、小さなメロディ。</h2><p>歌声は細かなズレを残すピアノ風再生。話し声は鍵盤に丸めたメロディが初期設定です。どちらもあとから切り替えられます。</p></div><details><summary>録音について・使える環境</summary><p>一人の近くの声を、静かな場所で。息や雑音、判定できない区間は空白になります。対応音域は55〜1000 Hzです。伴奏や他の人の声の分離はできません。</p><p>音声はブラウザ内で処理し、サーバーへ送信しません。録音は保存されず、この画面を閉じると消えます。ピアノ音源の取得時だけ外部サイトへ接続します。</p><p>HTTPSとAudioWorkletに対応したブラウザが必要です。画面を離れた場合は録音・再生を停止します。iPhone／Androidの実機評価は未完了です。</p><p id="micSettings">マイクの適用設定は録音後に表示します。</p></details></section>
     <footer>perfectPitch <span>声を、音楽の入り口に。</span><small>Piano: FluidR3 / <a href="https://github.com/gleitz/midi-js-soundfonts">MIDI.js Soundfonts</a> · <a href="https://creativecommons.org/licenses/by/3.0/us/">CC BY 3.0</a></small></footer>
@@ -45,6 +46,7 @@ export function mountView(root: HTMLElement) {
     position: get('position'),
     micSettings: get('micSettings'),
     stateDot: get('stateDot'),
+    score: get('score'),
     modes: Array.from(
       root.querySelectorAll<HTMLInputElement>('input[name="voiceMode"]'),
     ),
