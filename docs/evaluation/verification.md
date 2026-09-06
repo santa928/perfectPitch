@@ -77,3 +77,7 @@ Docker Chromiumで撮影した画像を実際に目視確認。375×812の録音
 独立レビューは修正後の限定再確認でR1/R2/R3すべて解消、新たな重大不具合なしと判定。再レビューは静的確認で、上記テスト実行と区別する。最終Vite 7.3.6 / TypeScriptの本番ビルドもDocker Node20で成功。main公開workflowとVite baseの差分は0。
 
 最終本番Artifactもローカルpreviewで確認: `TEST_PREVIEW=1 playwright test tests/browser/studio.spec.ts -g 音源失敗` 1/1成功。`/perfectPitch/`下のWorklet/Workerロード、録音→停止→音源失敗→再試行→ピアノ→再録音を通過。GitHub Pagesの公開URLは未実行。
+
+## 後続変更について
+
+本書はリニューアルPR #14の検証記録です。同PRは後続のユーザー承認でマージ・自動公開済みですが、実声精度・実機確認等の未完了条件は継続しています。追加の楽譜・固定ド表示は [score-verification.md](score-verification.md) に分けて記録します。

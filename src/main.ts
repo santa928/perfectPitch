@@ -8,6 +8,7 @@ import type { PitchMode } from './analysis/notes.ts'
 import { mountView } from './ui/view.ts'
 import { drawTimeline, noteLabel } from './ui/timeline.ts'
 import type { PitchRange } from './ui/timeline.ts'
+import { mountScorePanel } from './ui/score-panel.ts'
 
 type Phase =
   | 'idle'
@@ -19,6 +20,7 @@ type Phase =
   | 'playing'
 const root = document.querySelector<HTMLDivElement>('#app')!
 const ui = mountView(root)
+const scorePanel = mountScorePanel(ui.score)
 const player = new VoicePlayer()
 let phase: Phase = 'idle'
 let mode: AnalysisMode = 'song'
@@ -91,6 +93,7 @@ function sync(): void {
   ui.seek.max = String(duration)
   ui.review.hidden =
     !recording || phase === 'recording' || phase === 'requesting'
+  scorePanel.update(recording && !busy ? frames : null, duration, mode)
   ui.empty.hidden =
     frames.length > 0 || phase === 'recording' || phase === 'analyzing'
   ui.stateDot.classList.toggle('recording', phase === 'recording')
