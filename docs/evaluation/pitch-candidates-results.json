@@ -1,0 +1,651 @@
+{
+  "date": "2026-09-06T07:35:35.465Z",
+  "environment": {
+    "node": "v24.18.0",
+    "architecture": "arm64",
+    "platform": "linux"
+  },
+  "method": "Same PCM for all detectors; tuning set, not held-out accuracy. Seed 93. Docker Node detector-only CPU; cents exclude misses, gross rates include all voiced cases. Per-frame contours and individual failures omitted from this summary; CLI output retains them.",
+  "rows": [
+    {
+      "detector": "legacy",
+      "windowMs": 40,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 11.110494579770778,
+      "p95Cents": 5021.309485364914,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.45625,
+      "octaveRate": 0.23125,
+      "falseVoicedRate": 0.75,
+      "p95Ms": 0.9169999999999732
+    },
+    {
+      "detector": "yin",
+      "windowMs": 40,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 0.003971761559305438,
+      "p95Cents": 0.2816343631811375,
+      "missRate": 0,
+      "grossOver50CentsRate": 0,
+      "octaveRate": 0,
+      "falseVoicedRate": 0,
+      "p95Ms": 1.0499589999999444
+    },
+    {
+      "detector": "firstThresholdYin",
+      "windowMs": 40,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 0.050931421182365974,
+      "p95Cents": 1211.8973283176033,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.35,
+      "octaveRate": 0.35,
+      "falseVoicedRate": 0,
+      "p95Ms": 0.7264579999998659
+    },
+    {
+      "detector": "mpm",
+      "windowMs": 40,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 0.0024787109657191777,
+      "p95Cents": 1203.8435280819358,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.175,
+      "octaveRate": 0.175,
+      "falseVoicedRate": 0,
+      "p95Ms": 1.1767500000000837
+    },
+    {
+      "detector": "legacy",
+      "windowMs": 60,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 4.975614791419713,
+      "p95Cents": 4995.239643804347,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.290625,
+      "octaveRate": 0.165625,
+      "falseVoicedRate": 0.75,
+      "p95Ms": 1.5214169999999285
+    },
+    {
+      "detector": "yin",
+      "windowMs": 60,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 0.003651456907909259,
+      "p95Cents": 0.29184390406302785,
+      "missRate": 0,
+      "grossOver50CentsRate": 0,
+      "octaveRate": 0,
+      "falseVoicedRate": 0,
+      "p95Ms": 1.3747919999996157
+    },
+    {
+      "detector": "firstThresholdYin",
+      "windowMs": 60,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 0.06129428265670432,
+      "p95Cents": 1214.76851680962,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.35,
+      "octaveRate": 0.35,
+      "falseVoicedRate": 0,
+      "p95Ms": 1.3672919999999067
+    },
+    {
+      "detector": "mpm",
+      "windowMs": 60,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 0.0017156006811910214,
+      "p95Cents": 1202.7557469886433,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.175,
+      "octaveRate": 0.175,
+      "falseVoicedRate": 0,
+      "p95Ms": 1.9398339999997916
+    },
+    {
+      "detector": "legacy",
+      "windowMs": 80,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 3.93015843943305,
+      "p95Cents": 4355.174292807193,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.225,
+      "octaveRate": 0.15,
+      "falseVoicedRate": 0.75,
+      "p95Ms": 2.1220839999996315
+    },
+    {
+      "detector": "yin",
+      "windowMs": 80,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 0.003614301738606288,
+      "p95Cents": 0.2950758398672977,
+      "missRate": 0,
+      "grossOver50CentsRate": 0,
+      "octaveRate": 0,
+      "falseVoicedRate": 0,
+      "p95Ms": 2.01575000000048
+    },
+    {
+      "detector": "firstThresholdYin",
+      "windowMs": 80,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 0.06281075671300325,
+      "p95Cents": 1207.5767092016429,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.35,
+      "octaveRate": 0.35,
+      "falseVoicedRate": 0,
+      "p95Ms": 2.0166659999995318
+    },
+    {
+      "detector": "mpm",
+      "windowMs": 80,
+      "voicedCases": 640,
+      "negativeCases": 64,
+      "medianCents": 0.0010562679346862868,
+      "p95Cents": 1200.8036953816795,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.175,
+      "octaveRate": 0.175,
+      "falseVoicedRate": 0,
+      "p95Ms": 2.684624999999869
+    }
+  ],
+  "noisyRows": [
+    {
+      "detector": "legacy",
+      "windowMs": 40,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 9.403007296925212,
+      "p95Cents": 5025.239643804346,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.2916666666666667
+    },
+    {
+      "detector": "yin",
+      "windowMs": 40,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 16.485353108425766,
+      "p95Cents": 30.891795298177634,
+      "missRate": 0,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "firstThresholdYin",
+      "windowMs": 40,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 18.55752386504026,
+      "p95Cents": 70.75926921169639,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.3333333333333333
+    },
+    {
+      "detector": "mpm",
+      "windowMs": 40,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 8.226725911073,
+      "p95Cents": 71.86509080840865,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.25
+    },
+    {
+      "detector": "legacy",
+      "windowMs": 40,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 7.711522991319705,
+      "p95Cents": 5025.239643804346,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.3333333333333333
+    },
+    {
+      "detector": "yin",
+      "windowMs": 40,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 1.3197167530519096,
+      "p95Cents": 8.885680400852136,
+      "missRate": 0.041666666666666664,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "firstThresholdYin",
+      "windowMs": 40,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 1.3164199192944992,
+      "p95Cents": 8.885680400852136,
+      "missRate": 0,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "mpm",
+      "windowMs": 40,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 1.021649104264767,
+      "p95Cents": 6.79237443299872,
+      "missRate": 0,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "legacy",
+      "windowMs": 60,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 4.704443245611705,
+      "p95Cents": 5025.239643804346,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.16666666666666666
+    },
+    {
+      "detector": "yin",
+      "windowMs": 60,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 17.04402510457033,
+      "p95Cents": 29.108530631185342,
+      "missRate": 0.041666666666666664,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "firstThresholdYin",
+      "windowMs": 60,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 17.04402510457033,
+      "p95Cents": 76.27431878162704,
+      "missRate": 0.041666666666666664,
+      "grossOver50CentsRate": 0.2916666666666667
+    },
+    {
+      "detector": "mpm",
+      "windowMs": 60,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 10.26796354439028,
+      "p95Cents": 69.25973810175526,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.2916666666666667
+    },
+    {
+      "detector": "legacy",
+      "windowMs": 60,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 3.93015843943305,
+      "p95Cents": 5025.239643804346,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.16666666666666666
+    },
+    {
+      "detector": "yin",
+      "windowMs": 60,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 0.9300098848367165,
+      "p95Cents": 9.01022294641351,
+      "missRate": 0,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "firstThresholdYin",
+      "windowMs": 60,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 0.9300098848367165,
+      "p95Cents": 9.01022294641351,
+      "missRate": 0,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "mpm",
+      "windowMs": 60,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 0.4082939065659714,
+      "p95Cents": 8.381799955254946,
+      "missRate": 0,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "legacy",
+      "windowMs": 80,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 4.704443245611705,
+      "p95Cents": 5025.239643804346,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.16666666666666666
+    },
+    {
+      "detector": "yin",
+      "windowMs": 80,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 12.249257307356427,
+      "p95Cents": 29.989980080985518,
+      "missRate": 0.041666666666666664,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "firstThresholdYin",
+      "windowMs": 80,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 12.249257307356427,
+      "p95Cents": 66.93073522301009,
+      "missRate": 0.041666666666666664,
+      "grossOver50CentsRate": 0.20833333333333334
+    },
+    {
+      "detector": "mpm",
+      "windowMs": 80,
+      "snrDb": 10,
+      "voicedCases": 24,
+      "medianCents": 11.267768004172673,
+      "p95Cents": 66.7447443629039,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.20833333333333334
+    },
+    {
+      "detector": "legacy",
+      "windowMs": 80,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 3.93015843943305,
+      "p95Cents": 5025.239643804346,
+      "missRate": 0,
+      "grossOver50CentsRate": 0.16666666666666666
+    },
+    {
+      "detector": "yin",
+      "windowMs": 80,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 0.8069695612249482,
+      "p95Cents": 3.4177226052300065,
+      "missRate": 0,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "firstThresholdYin",
+      "windowMs": 80,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 0.8069695612249482,
+      "p95Cents": 3.4177226052300065,
+      "missRate": 0,
+      "grossOver50CentsRate": 0
+    },
+    {
+      "detector": "mpm",
+      "windowMs": 80,
+      "snrDb": 20,
+      "voicedCases": 24,
+      "medianCents": 0.7189182060619186,
+      "p95Cents": 3.369428048605309,
+      "missRate": 0,
+      "grossOver50CentsRate": 0
+    }
+  ],
+  "transitions": [
+    {
+      "mode": "song",
+      "sr": 44100,
+      "notes": [
+        {
+          "start": 0.345,
+          "end": 0.585,
+          "midi": 57.041984460417524
+        },
+        {
+          "start": 0.585,
+          "end": 0.775,
+          "midi": 69.000720685835
+        },
+        {
+          "start": 0.875,
+          "end": 0.925,
+          "midi": 39.946387700896366
+        },
+        {
+          "start": 1.0750000000000002,
+          "end": 1.135,
+          "midi": 43.04868365543934
+        }
+      ],
+      "events": [
+        {
+          "start": 0.35,
+          "end": 0.55,
+          "hz": 220,
+          "firstCorrectFrameCenter": 0.35,
+          "causalLatencyMs": 39.99999999999998,
+          "retained": true
+        },
+        {
+          "start": 0.55,
+          "end": 0.75,
+          "hz": 440,
+          "firstCorrectFrameCenter": 0.59,
+          "causalLatencyMs": 79.99999999999996,
+          "retained": true
+        },
+        {
+          "start": 0.85,
+          "end": 0.95,
+          "hz": 82.41,
+          "firstCorrectFrameCenter": 0.88,
+          "causalLatencyMs": 70.00000000000006,
+          "retained": true
+        },
+        {
+          "start": 1.05,
+          "end": 1.15,
+          "hz": 98,
+          "firstCorrectFrameCenter": 1.08,
+          "causalLatencyMs": 70.00000000000006,
+          "retained": true
+        }
+      ]
+    },
+    {
+      "mode": "song",
+      "sr": 48000,
+      "notes": [
+        {
+          "start": 0.345,
+          "end": 0.585,
+          "midi": 57.0418974802739
+        },
+        {
+          "start": 0.585,
+          "end": 0.775,
+          "midi": 69.00069272567286
+        },
+        {
+          "start": 0.875,
+          "end": 0.925,
+          "midi": 39.9463890838169
+        },
+        {
+          "start": 1.0750000000000002,
+          "end": 1.135,
+          "midi": 43.048661423208245
+        }
+      ],
+      "events": [
+        {
+          "start": 0.35,
+          "end": 0.55,
+          "hz": 220,
+          "firstCorrectFrameCenter": 0.35,
+          "causalLatencyMs": 39.99999999999998,
+          "retained": true
+        },
+        {
+          "start": 0.55,
+          "end": 0.75,
+          "hz": 440,
+          "firstCorrectFrameCenter": 0.59,
+          "causalLatencyMs": 79.99999999999996,
+          "retained": true
+        },
+        {
+          "start": 0.85,
+          "end": 0.95,
+          "hz": 82.41,
+          "firstCorrectFrameCenter": 0.88,
+          "causalLatencyMs": 70.00000000000006,
+          "retained": true
+        },
+        {
+          "start": 1.05,
+          "end": 1.15,
+          "hz": 98,
+          "firstCorrectFrameCenter": 1.08,
+          "causalLatencyMs": 70.00000000000006,
+          "retained": true
+        }
+      ]
+    },
+    {
+      "mode": "speech",
+      "sr": 44100,
+      "notes": [
+        {
+          "start": 0.355,
+          "end": 0.575,
+          "midi": 57.041984460661965
+        },
+        {
+          "start": 0.575,
+          "end": 0.775,
+          "midi": 69.0007248019434
+        },
+        {
+          "start": 0.865,
+          "end": 0.9349999999999999,
+          "midi": 39.91208583401967
+        },
+        {
+          "start": 1.0750000000000002,
+          "end": 1.145,
+          "midi": 43.00024791229575
+        }
+      ],
+      "events": [
+        {
+          "start": 0.35,
+          "end": 0.55,
+          "hz": 220,
+          "firstCorrectFrameCenter": 0.36,
+          "causalLatencyMs": 40.000000000000036,
+          "retained": true
+        },
+        {
+          "start": 0.55,
+          "end": 0.75,
+          "hz": 440,
+          "firstCorrectFrameCenter": 0.58,
+          "causalLatencyMs": 59.99999999999994,
+          "retained": true
+        },
+        {
+          "start": 0.85,
+          "end": 0.95,
+          "hz": 82.41,
+          "firstCorrectFrameCenter": 0.87,
+          "causalLatencyMs": 50.00000000000004,
+          "retained": true
+        },
+        {
+          "start": 1.05,
+          "end": 1.15,
+          "hz": 98,
+          "firstCorrectFrameCenter": 1.08,
+          "causalLatencyMs": 60.00000000000006,
+          "retained": true
+        }
+      ]
+    },
+    {
+      "mode": "speech",
+      "sr": 48000,
+      "notes": [
+        {
+          "start": 0.355,
+          "end": 0.575,
+          "midi": 57.04189748011662
+        },
+        {
+          "start": 0.575,
+          "end": 0.775,
+          "midi": 69.00069713936419
+        },
+        {
+          "start": 0.865,
+          "end": 0.9349999999999999,
+          "midi": 39.912085761927074
+        },
+        {
+          "start": 1.0750000000000002,
+          "end": 1.145,
+          "midi": 43.00023565978856
+        }
+      ],
+      "events": [
+        {
+          "start": 0.35,
+          "end": 0.55,
+          "hz": 220,
+          "firstCorrectFrameCenter": 0.36,
+          "causalLatencyMs": 40.000000000000036,
+          "retained": true
+        },
+        {
+          "start": 0.55,
+          "end": 0.75,
+          "hz": 440,
+          "firstCorrectFrameCenter": 0.58,
+          "causalLatencyMs": 59.99999999999994,
+          "retained": true
+        },
+        {
+          "start": 0.85,
+          "end": 0.95,
+          "hz": 82.41,
+          "firstCorrectFrameCenter": 0.87,
+          "causalLatencyMs": 50.00000000000004,
+          "retained": true
+        },
+        {
+          "start": 1.05,
+          "end": 1.15,
+          "hz": 98,
+          "firstCorrectFrameCenter": 1.08,
+          "causalLatencyMs": 60.00000000000006,
+          "retained": true
+        }
+      ]
+    }
+  ]
+}

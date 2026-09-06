@@ -320,7 +320,7 @@ const output = {
 }
 
 writeFileSync(
-  'docs/evaluation/real-audio-results.json',
+  process.argv[2] ?? 'docs/evaluation/real-audio-results.json',
   `${JSON.stringify(output, null, 2)}\n`,
 )
 for (const result of results) {

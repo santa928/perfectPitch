@@ -81,7 +81,7 @@ function sync(): void {
   })
   ui.pitchMode.disabled = busy || playing
   ui.reanalyze.disabled = busy || playing || !recording
-  const hasNotes = frames.some((frame) => frame.state === 'voiced')
+  const hasNotes = buildNotes(frames, mode, pitchMode, duration).length > 0
   ui.play.disabled = !recording || busy || (source === 'piano' && !hasNotes)
   ui.play.textContent =
     phase === 'loading'
@@ -265,9 +265,9 @@ async function finishRecording(
       value === undefined ? '未報告' : value ? '有効' : '無効'
     ui.micSettings.textContent = `実際の入力: ${result.sampleRate} Hz / PCM mono。ノイズ抑制 ${setting(result.settings.noiseSuppression)}・エコー抑制 ${setting(result.settings.echoCancellation)}・自動音量 ${setting(result.settings.autoGainControl)}。ブラウザの報告値です。`
     status(
-      frames.some((frame) => frame.state === 'voiced')
+      buildNotes(frames, mode, pitchMode, duration).length > 0
         ? message
-        : '録音しましたが有効な音程が見つかりませんでした。元の声は再生できます。静かな場所で近くから録音してみてください。',
+        : '録音しましたがピアノにできる持続した音程が見つかりませんでした。元の声は再生できます。静かな場所で近くから録音してみてください。',
     )
     sync()
   } catch (error) {
@@ -406,9 +406,9 @@ ui.sources.forEach((input) =>
     status(
       source === 'original'
         ? '元の声を選びました。再生ボタンで聴けます。'
-        : frames.some((frame) => frame.state === 'voiced')
+        : buildNotes(frames, mode, pitchMode, duration).length > 0
           ? 'ピアノを選びました。再生ボタンで聴けます。'
-          : 'ピアノにできる音程がありません。元の声は再生できます。',
+          : 'ピアノにできる持続した音程がありません。元の声は再生できます。',
     )
     sync()
   }),
@@ -416,7 +416,7 @@ ui.sources.forEach((input) =>
 ui.modes.forEach((input) =>
   input.addEventListener('change', () => {
     mode = input.value as AnalysisMode
-    pitchMode = mode === 'song' ? 'continuous' : 'rounded'
+    pitchMode = 'continuous'
     ui.pitchMode.value = pitchMode
     if (recording) void analyzeAgain()
     else {

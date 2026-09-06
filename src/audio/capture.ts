@@ -74,13 +74,13 @@ export class CaptureError extends Error {
   }
 }
 
-/** 対応しているブラウザ制約だけを使って mono 音声取得条件を組み立てる。 */
+/** 弱い基音をノイズ抑制で失わないよう、対応制約だけで mono 入力を要求する。 */
 export function buildAudioConstraints(
   supported: MediaTrackSupportedConstraints,
 ): MediaStreamConstraints {
   const audio: MediaTrackConstraints = {}
   if (supported.channelCount) audio.channelCount = { ideal: 1 }
-  if (supported.noiseSuppression) audio.noiseSuppression = { ideal: true }
+  if (supported.noiseSuppression) audio.noiseSuppression = { ideal: false }
   if (supported.echoCancellation) audio.echoCancellation = { ideal: true }
   if (supported.autoGainControl) audio.autoGainControl = { ideal: false }
   return { audio }

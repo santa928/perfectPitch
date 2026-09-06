@@ -2,6 +2,7 @@ import { performance } from 'node:perf_hooks'
 import { writeFileSync } from 'node:fs'
 import { autoCorrelate } from '../tests/fixtures/legacy-detector.ts'
 import { detectYin, detectMpm } from '../src/analysis/detectors.ts'
+import { detectYin as firstThresholdYin } from '../tests/fixtures/first-threshold-yin.ts'
 import { analyze, ANALYSIS_SETTINGS } from '../src/analysis/pipeline.ts'
 import { buildNotes } from '../src/analysis/notes.ts'
 const detectors = {
@@ -10,6 +11,7 @@ const detectors = {
     return { frequency: result.frequency, periodicity: result.confidence }
   },
   yin: detectYin,
+  firstThresholdYin,
   mpm: detectMpm,
 }
 /** Deterministic synthetic source: exact frequency labels and no downloaded voice data. */
@@ -56,7 +58,7 @@ for (const windowMs of [40, 60, 80]) {
         if (hz < 55 || hz > 1000) continue
         for (const amplitude of [0.01, 0.25])
           for (const phase of [0, 1.3])
-            for (const harmonics of [[1], [1, 0.5, 0.25], [0.3, 1, 0.4]])
+            for (const harmonics of [[1], [1, 0.5, 0.25], [0.3, 1, 0.4], [0.25, 1], [0.1, 1]])
               signals.push({
                 sr,
                 hz,
@@ -241,14 +243,14 @@ const output = {
     platform: process.platform,
   },
   method:
-    'All detectors receive identical unwindowed, phase-controlled PCM. Detector-only scores use returned frequency (no pipeline energy gating). Timing is warmed per detector/window; single process Docker CPU, not mobile hardware. Seeds=93; threshold fixed before comparison. Gross and octave denominator is all voiced cases; cents quantiles exclude misses. Causal latency includes right half of analysis window.',
+    'All detectors receive identical unwindowed, phase-controlled PCM. Detector-only scores use returned frequency (no pipeline energy gating). Timing is warmed per detector/window; single process Docker CPU, not mobile hardware. Seed=93; this expanded set includes tuning cases and is not a held-out accuracy estimate. Gross and octave denominator is all voiced cases; cents quantiles exclude misses. Causal latency includes right half of analysis window.',
   rows,
   noisyRows,
   transitions,
   failures,
 }
 writeFileSync(
-  'docs/evaluation/synthetic-results.json',
+  process.argv[2] ?? 'docs/evaluation/synthetic-results.json',
   JSON.stringify(output, null, 2) + '\n',
 )
 console.table(rows)
