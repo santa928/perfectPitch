@@ -416,7 +416,7 @@ ui.sources.forEach((input) =>
 ui.modes.forEach((input) =>
   input.addEventListener('change', () => {
     mode = input.value as AnalysisMode
-    pitchMode = mode === 'song' ? 'continuous' : 'rounded'
+    pitchMode = 'continuous'
     ui.pitchMode.value = pitchMode
     if (recording) void analyzeAgain()
     else {
