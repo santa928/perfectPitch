@@ -25,3 +25,13 @@ for (let i = 0; i < rate * seconds; i++) {
 }
 mkdirSync('output', { recursive: true })
 writeFileSync('output/test-voice.wav', buffer)
+/** 弱い基音の母音風信号と本物のオクターブ跳躍を、ブラウザの合成マイクへ与える。 */
+for (let i = 0; i < rate * seconds; i++) {
+  const t = i / rate
+  const frequency = t < 2 ? 130 : 260
+  const angle = 2 * Math.PI * frequency * t
+  const value = t < .5 || (t > 1.5 && t < 1.8) || t > 3.5
+    ? 0 : .025 * Math.sin(angle) + .25 * Math.sin(2 * angle)
+  buffer.writeInt16LE(Math.round(value * 32767), 44 + i * 2)
+}
+writeFileSync('output/test-dominant-second.wav', buffer)

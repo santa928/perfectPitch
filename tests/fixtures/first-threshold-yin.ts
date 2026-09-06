@@ -1,4 +1,4 @@
-/** Detector estimates are unrounded; periodicity is a signal score, not a probability. */
+/** PR #15時点のYINを比較用に保存。出典: d2b48d5/src/analysis/detectors.ts。 */
 export type Detection = { frequency: number | null; periodicity: number }
 const MIN_HZ = 55
 const MAX_HZ = 1000
@@ -41,10 +41,7 @@ function result(
   }
 }
 
-/**
- * YIN固定支持区間のCMNDF。最良の谷に近い最短周期を選び、弱い倍音候補への即決を避ける。
- * 絶対閾値0.15に加えて最良値との差0.01を要求し、補間後も連続音高を保持する。
- */
+/** YIN fixed-support squared difference, CMNDF threshold 0.15 and parabolic refinement. */
 export function detectYin(input: Float32Array, sampleRate: number): Detection {
   const data = centered(input)
   const maxLag = Math.min(
@@ -67,15 +64,10 @@ export function detectYin(input: Float32Array, sampleRate: number): Detection {
     normalized[lag] = sum > 1e-15 ? (difference * lag) / sum : 1
   }
   let best = minLag
-  for (let lag = minLag + 1; lag < maxLag; lag++)
-    if (normalized[lag] < normalized[best]) best = lag
-  const limit = Math.min(0.15, normalized[best] + 0.01)
   for (let lag = minLag; lag < maxLag; lag++) {
-    if (
-      normalized[lag] < limit &&
-      normalized[lag] <= normalized[lag - 1] &&
-      normalized[lag] <= normalized[lag + 1]
-    ) {
+    if (normalized[lag] < normalized[best]) best = lag
+    if (normalized[lag] < 0.15) {
+      while (lag + 1 < maxLag && normalized[lag + 1] < normalized[lag]) lag++
       return result(
         interpolate(normalized, lag),
         sampleRate,
@@ -84,44 +76,4 @@ export function detectYin(input: Float32Array, sampleRate: number): Detection {
     }
   }
   return { frequency: null, periodicity: Math.max(0, 1 - normalized[best]) }
-}
-
-/** MPM normalized square difference and first strong positive-lobe peak (90% of maximum). */
-export function detectMpm(input: Float32Array, sampleRate: number): Detection {
-  const data = centered(input)
-  const maxLag = Math.min(Math.ceil(sampleRate / MIN_HZ) + 2, data.length - 2)
-  const minLag = Math.max(2, Math.floor(sampleRate / MAX_HZ) - 1)
-  if (maxLag <= minLag) return { frequency: null, periodicity: 0 }
-  const nsdf = new Float64Array(maxLag + 1)
-  for (let lag = 0; lag <= maxLag; lag++) {
-    let correlation = 0,
-      energy = 0
-    for (let i = 0; i < data.length - lag; i++) {
-      const a = data[i],
-        b = data[i + lag]
-      correlation += a * b
-      energy += a * a + b * b
-    }
-    nsdf[lag] = energy > 1e-15 ? (2 * correlation) / energy : 0
-  }
-  const peaks: number[] = []
-  let crossedZero = false
-  for (let lag = 1; lag < maxLag; lag++) {
-    if (nsdf[lag] <= 0) crossedZero = true
-    if (
-      crossedZero &&
-      lag >= minLag &&
-      nsdf[lag] > 0 &&
-      nsdf[lag] >= nsdf[lag - 1] &&
-      nsdf[lag] > nsdf[lag + 1]
-    )
-      peaks.push(lag)
-  }
-  const highest = Math.max(0, ...peaks.map((lag) => nsdf[lag]))
-  const selected = peaks.find(
-    (lag) => nsdf[lag] >= Math.max(0.85, highest * 0.9),
-  )
-  return selected === undefined
-    ? { frequency: null, periodicity: highest }
-    : result(interpolate(nsdf, selected), sampleRate, nsdf[selected])
 }

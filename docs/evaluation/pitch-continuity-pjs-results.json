@@ -1,0 +1,268 @@
+{
+  "date": "2026-09-06T07:49:43.818Z",
+  "environment": {
+    "node": "v24.18.0",
+    "platform": "linux",
+    "architecture": "arm64"
+  },
+  "calibration": {
+    "prependedDigitalSilenceSeconds": 0.4,
+    "reason": "PitchAnalyzerの先頭0.3秒校正へ発声を混ぜないため。実マイクの環境音校正とは異なる。"
+  },
+  "interpretation": [
+    "正解F0ラベルがないため、精度・正解率・cents誤差は算出しない。",
+    "voicedFractionは元クリップ時間内に中心を持つ10ms間隔フレームに対する比率。",
+    "estimatedVoicedSecondsは有声フレーム数×10msで、連続区間の厳密な長さではない。",
+    "legacyOfflineEmulationは旧UIのrAF頻度・平滑化・4フレームごとの記録を再現しない。",
+    "旧検出器との件数差と推定レンジは、どちらが正しいかを示さない。",
+    "MusicXMLはサンプル選定だけに使い、解析結果の正解ラベルには使わない。"
+  ],
+  "results": [
+    {
+      "filename": "pjs056_song.wav",
+      "mode": "song",
+      "originalDurationSeconds": 16,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 1597,
+        "stateCounts": {
+          "voiced": 510,
+          "unvoiced": 397,
+          "uncertain": 390,
+          "silence": 300,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.319348778960551,
+        "estimatedVoicedSeconds": 5.1000000000000005,
+        "estimatedFrequencyHzRange": [
+          216.56287349567913,
+          453.02672193959575
+        ],
+        "continuousNoteCount": 40,
+        "roundedNoteCount": 46
+      },
+      "unmodifiedClip": {
+        "frameCount": 1593,
+        "stateCounts": {
+          "voiced": 510,
+          "unvoiced": 261,
+          "uncertain": 390,
+          "silence": 409,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.32015065913371,
+        "estimatedVoicedSeconds": 5.1000000000000005,
+        "estimatedFrequencyHzRange": [
+          216.56287349567913,
+          453.02672193959575
+        ],
+        "continuousNoteCount": 40,
+        "roundedNoteCount": 46
+      }
+    },
+    {
+      "filename": "pjs012_song.wav",
+      "mode": "song",
+      "originalDurationSeconds": 18,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 1797,
+        "stateCounts": {
+          "voiced": 735,
+          "unvoiced": 633,
+          "uncertain": 278,
+          "silence": 151,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.4090150250417362,
+        "estimatedVoicedSeconds": 7.3500000000000005,
+        "estimatedFrequencyHzRange": [
+          148.5234538676226,
+          419.50923511613405
+        ],
+        "continuousNoteCount": 41,
+        "roundedNoteCount": 57
+      },
+      "unmodifiedClip": {
+        "frameCount": 1793,
+        "stateCounts": {
+          "voiced": 735,
+          "unvoiced": 330,
+          "uncertain": 278,
+          "silence": 427,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.4099274958170664,
+        "estimatedVoicedSeconds": 7.3500000000000005,
+        "estimatedFrequencyHzRange": [
+          148.5234538676226,
+          419.50923511613405
+        ],
+        "continuousNoteCount": 41,
+        "roundedNoteCount": 57
+      }
+    },
+    {
+      "filename": "pjs068_song.wav",
+      "mode": "song",
+      "originalDurationSeconds": 11.999979166666666,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 1196,
+        "stateCounts": {
+          "voiced": 324,
+          "unvoiced": 343,
+          "uncertain": 408,
+          "silence": 121,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.2709030100334448,
+        "estimatedVoicedSeconds": 3.24,
+        "estimatedFrequencyHzRange": [
+          132.6183573838396,
+          245.69005719910226
+        ],
+        "continuousNoteCount": 29,
+        "roundedNoteCount": 31
+      },
+      "unmodifiedClip": {
+        "frameCount": 1192,
+        "stateCounts": {
+          "voiced": 324,
+          "unvoiced": 343,
+          "uncertain": 408,
+          "silence": 94,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.27181208053691275,
+        "estimatedVoicedSeconds": 3.24,
+        "estimatedFrequencyHzRange": [
+          132.6183573838396,
+          245.69005719910226
+        ],
+        "continuousNoteCount": 29,
+        "roundedNoteCount": 31
+      }
+    },
+    {
+      "filename": "pjs087_song.wav",
+      "mode": "song",
+      "originalDurationSeconds": 22.2856875,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 2225,
+        "stateCounts": {
+          "voiced": 860,
+          "unvoiced": 640,
+          "uncertain": 417,
+          "silence": 308,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.3865168539325843,
+        "estimatedVoicedSeconds": 8.6,
+        "estimatedFrequencyHzRange": [
+          151.18994343734363,
+          520.5591122101812
+        ],
+        "continuousNoteCount": 57,
+        "roundedNoteCount": 67
+      },
+      "unmodifiedClip": {
+        "frameCount": 2221,
+        "stateCounts": {
+          "voiced": 860,
+          "unvoiced": 390,
+          "uncertain": 417,
+          "silence": 531,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.38721296713192255,
+        "estimatedVoicedSeconds": 8.6,
+        "estimatedFrequencyHzRange": [
+          151.18994343734363,
+          520.5591122101812
+        ],
+        "continuousNoteCount": 57,
+        "roundedNoteCount": 67
+      }
+    },
+    {
+      "filename": "pjs091_song.wav",
+      "mode": "song",
+      "originalDurationSeconds": 6.545458333333333,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 651,
+        "stateCounts": {
+          "voiced": 167,
+          "unvoiced": 212,
+          "uncertain": 178,
+          "silence": 94,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.2565284178187404,
+        "estimatedVoicedSeconds": 1.67,
+        "estimatedFrequencyHzRange": [
+          124.146034676146,
+          272.0969160684264
+        ],
+        "continuousNoteCount": 13,
+        "roundedNoteCount": 16
+      },
+      "unmodifiedClip": {
+        "frameCount": 647,
+        "stateCounts": {
+          "voiced": 167,
+          "unvoiced": 89,
+          "uncertain": 178,
+          "silence": 190,
+          "calibrating": 23
+        },
+        "voicedFraction": 0.2581143740340031,
+        "estimatedVoicedSeconds": 1.67,
+        "estimatedFrequencyHzRange": [
+          124.146034676146,
+          272.0969160684264
+        ],
+        "continuousNoteCount": 13,
+        "roundedNoteCount": 16
+      }
+    },
+    {
+      "filename": "pjs056_speech.wav",
+      "mode": "speech",
+      "originalDurationSeconds": 6.25,
+      "withPrependedCalibrationSilence": {
+        "frameCount": 623,
+        "stateCounts": {
+          "voiced": 105,
+          "unvoiced": 316,
+          "uncertain": 176,
+          "silence": 26,
+          "calibrating": 0
+        },
+        "voicedFraction": 0.16853932584269662,
+        "estimatedVoicedSeconds": 1.05,
+        "estimatedFrequencyHzRange": [
+          121.07901886095019,
+          262.9135827406354
+        ],
+        "continuousNoteCount": 12,
+        "roundedNoteCount": 16
+      },
+      "unmodifiedClip": {
+        "frameCount": 620,
+        "stateCounts": {
+          "voiced": 105,
+          "unvoiced": 314,
+          "uncertain": 176,
+          "silence": 0,
+          "calibrating": 25
+        },
+        "voicedFraction": 0.1693548387096774,
+        "estimatedVoicedSeconds": 1.05,
+        "estimatedFrequencyHzRange": [
+          121.07901886095019,
+          262.9135827406354
+        ],
+        "continuousNoteCount": 12,
+        "roundedNoteCount": 16
+      }
+    }
+  ]
+}

@@ -187,7 +187,7 @@ test('audio constraints request only supported voice processing settings', () =>
     {
       audio: {
         channelCount: { ideal: 1 },
-        noiseSuppression: { ideal: true },
+        noiseSuppression: { ideal: false },
         echoCancellation: { ideal: true },
       },
     },
