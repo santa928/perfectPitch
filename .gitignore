@@ -28,3 +28,11 @@ dist-ssr
 playwright-*.png
 playwright-*.webm
 playwright-*.zip
+
+# Local execution notes and evaluation downloads
+progress.md
+docs/superpowers/
+.superpowers/
+output/
+.test-build/
+tests/fixtures/downloads/
