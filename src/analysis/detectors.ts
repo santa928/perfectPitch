@@ -1,7 +1,49 @@
 /** Detector estimates are unrounded; periodicity is a signal score, not a probability. */
-export type Detection = { frequency: number | null; periodicity: number }
+export type Detection = {
+  frequency: number | null
+  periodicity: number
+  /** Context-assisted estimates cannot authorize another consecutive correction. */
+  usedContinuity?: boolean
+}
 const MIN_HZ = 55
 const MAX_HZ = 1000
+
+/** Prefer an evidenced neighboring period only for an ambiguous downward octave switch. */
+function continuousCandidate(
+  normalized: Float64Array,
+  best: number,
+  minLag: number,
+  primaryLag: number,
+  sampleRate: number,
+  previous: Detection | null,
+): Detection {
+  const primary = result(
+    interpolate(normalized, primaryLag), sampleRate, 1 - normalized[primaryLag],
+  )
+  if (
+    !primary.frequency || !previous?.frequency || previous.usedContinuity ||
+    !Number.isFinite(previous.frequency) ||
+    Math.abs(1200 * Math.log2(previous.frequency / primary.frequency) - 1200) >= 100
+  ) return primary
+
+  // An override needs >=0.9 periodicity even in speech mode. A marginal noisy
+  // candidate must not displace the ordinary estimate just because it is nearby.
+  const mismatch = normalized[best]
+  const limit = Math.min(0.1, mismatch * 4 + 0.01)
+  for (let lag = minLag; lag < primaryLag; lag++) {
+    if (
+      normalized[lag] >= limit || normalized[lag] > normalized[lag - 1] ||
+      normalized[lag] > normalized[lag + 1]
+    ) continue
+    const candidate = result(interpolate(normalized, lag), sampleRate, 1 - normalized[lag])
+    if (
+      candidate.frequency &&
+      Math.abs(1200 * Math.log2(candidate.frequency / previous.frequency)) < 100 &&
+      Math.abs(1200 * Math.log2(candidate.frequency / primary.frequency) - 1200) < 60
+    ) return { ...candidate, usedContinuity: true }
+  }
+  return primary
+}
 
 /** Remove DC once so lag comparisons do not confuse microphone bias with periodicity. */
 function centered(input: Float32Array): Float32Array {
@@ -43,9 +85,14 @@ function result(
 
 /**
  * YIN固定支持区間のCMNDF。最良の谷に近い最短周期を選び、弱い倍音候補への即決を避ける。
- * 絶対閾値0.15に加えて最良値との差0.01を要求し、補間後も連続音高を保持する。
+ * 通常は最良値との差0.01を要求する。直前の未補正の有声音高がある場合だけ、
+ * 下方オクターブの競合を1フレーム判定する。補正した候補を次の補正の根拠にしない。
  */
-export function detectYin(input: Float32Array, sampleRate: number): Detection {
+export function detectYin(
+  input: Float32Array,
+  sampleRate: number,
+  previous: Detection | null = null,
+): Detection {
   const data = centered(input)
   const maxLag = Math.min(
     Math.ceil(sampleRate / MIN_HZ) + 1,
@@ -76,11 +123,7 @@ export function detectYin(input: Float32Array, sampleRate: number): Detection {
       normalized[lag] <= normalized[lag - 1] &&
       normalized[lag] <= normalized[lag + 1]
     ) {
-      return result(
-        interpolate(normalized, lag),
-        sampleRate,
-        1 - normalized[lag],
-      )
+      return continuousCandidate(normalized, best, minLag, lag, sampleRate, previous)
     }
   }
   return { frequency: null, periodicity: Math.max(0, 1 - normalized[best]) }

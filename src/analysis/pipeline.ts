@@ -1,4 +1,4 @@
-import { detectYin } from './detectors.ts'
+import { detectYin, type Detection } from './detectors.ts'
 export type AnalysisMode = 'song' | 'speech'
 export type PitchFrame = {
   t: number
@@ -13,7 +13,7 @@ export const ANALYSIS_SETTINGS = {
   speech: { windowMs: 60, hopMs: 10, periodicity: 0.85 },
 } as const
 
-/** PCM sample-clock analyzer shared by live capture and offline review; memory is one window. */
+/** PCM sample-clock analyzer shared by live/offline review; one window and one accepted estimate. */
 export class PitchAnalyzer {
   private readonly sampleRate: number
   private readonly mode: AnalysisMode
@@ -24,6 +24,7 @@ export class PitchAnalyzer {
   private noiseFloor = 0.001
   private quietRms: number[] = []
   private ended = false
+  private previousDetection: Detection | null = null
 
   /** Configure a fresh recording. Calibration occupies the first 300 ms of PCM. */
   constructor(sampleRate: number, mode: AnalysisMode) {
@@ -69,7 +70,7 @@ export class PitchAnalyzer {
     const rms = Math.sqrt(energy / this.buffer.length)
     const detection =
       rms > 0.0001
-        ? detectYin(this.buffer, this.sampleRate)
+        ? detectYin(this.buffer, this.sampleRate, this.previousDetection)
         : { frequency: null, periodicity: 0 }
     const t = (this.count - this.buffer.length / 2) / this.sampleRate
     let state: PitchFrame['state']
@@ -95,6 +96,8 @@ export class PitchAnalyzer {
     if (state === 'silence')
       this.noiseFloor = Math.max(0.0003, this.noiseFloor * 0.995 + rms * 0.005)
     const frequency = state === 'voiced' ? detection.frequency : null
+    // Only consecutive accepted frames provide context; never bridge gaps or recordings.
+    this.previousDetection = frequency === null ? null : detection
     return {
       t,
       frequency,
