@@ -6,12 +6,15 @@ export type PianoVoice = {
   gain: GainNode
   stop: () => void
 }
+export type PianoSound = 'piano' | 'continuous'
+export const PIANO_RELEASE_SECONDS = 0.12
 type VoiceOptions = {
   sample: AudioBuffer
   sampleMidi: number
   note: PianoNote
   startedAt: number
   offset: number
+  sound?: PianoSound
   onEnded?: () => void
 }
 
@@ -90,35 +93,41 @@ function sustainSample(
   return prepared
 }
 
-/** PCM sampleを録音時刻のcontourで発音する。本番とOfflineAudioContext評価で同じ予約処理を使う。 */
+/** 鍵盤の打鍵と減衰を再生する。明示した連続モードだけ音源を持続させcontourを追う。 */
 export function schedulePianoVoice(
   context: BaseAudioContext,
   options: VoiceOptions,
 ): PianoVoice {
-  const { sample, sampleMidi, note, startedAt, offset, onEnded } = options
+  const { sample, sampleMidi, note, startedAt, offset, onEnded, sound = 'piano' } = options
+  const piano = sound === 'piano'
   const start = Math.max(note.start, offset)
   const when = startedAt + start - offset
   const end = startedAt + note.end - offset
   const source = context.createBufferSource()
-  const sustain = sustainSample(context, sample, sampleMidi)
-  source.buffer = sustain.buffer
-  source.loop = true
-  source.loopStart = sustain.loopStart
-  source.loopEnd = sustain.loopEnd
+  if (piano) {
+    source.buffer = sample
+    source.loop = false
+  } else {
+    const sustain = sustainSample(context, sample, sampleMidi)
+    source.buffer = sustain.buffer
+    source.loop = true
+    source.loopStart = sustain.loopStart
+    source.loopEnd = sustain.loopEnd
+  }
   const gain = context.createGain()
-  const attack = Math.min(0.008, (end - when) / 3)
-  const release = Math.min(0.012, (end - when) / 3)
+  const attack = Math.min(piano ? 0.003 : 0.008, (end - when) / 3)
+  const release = piano ? PIANO_RELEASE_SECONDS : Math.min(0.012, (end - when) / 3)
+  const finish = piano ? end + release : end
   gain.gain.setValueAtTime(0, when)
   gain.gain.linearRampToValueAtTime(0.65, when + attack)
-  gain.gain.setValueAtTime(0.65, end - release)
-  gain.gain.linearRampToValueAtTime(0, end)
+  gain.gain.setValueAtTime(0.65, piano ? end : end - release)
+  gain.gain.linearRampToValueAtTime(0, finish)
   source.connect(gain).connect(context.destination)
-  const previous = note.contour.filter((point) => point.t <= start).at(-1)
-  source.playbackRate.setValueAtTime(
-    rateForMidi(previous?.midi ?? note.midi, sampleMidi),
-    when,
-  )
-  for (const point of note.contour) {
+  const initialMidi = piano ? Math.round(note.midi)
+    : note.contour.filter((point) => point.t <= start).at(-1)?.midi ?? note.midi
+  const rate = rateForMidi(initialMidi, sampleMidi)
+  source.playbackRate.setValueAtTime(rate, when)
+  for (const point of piano ? [] : note.contour) {
     if (point.t > start && point.t < note.end)
       source.playbackRate.linearRampToValueAtTime(
         rateForMidi(point.midi, sampleMidi),
@@ -149,8 +158,10 @@ export function schedulePianoVoice(
     },
   }
   try {
-    source.start(when)
-    source.stop(end)
+    // 途中再開でも打鍵し直さず、元サンプルの減衰した位置から聴く。
+    const sampleOffset = piano ? (start - note.start) * rate : 0
+    source.start(when, Math.min(sample.duration, sampleOffset))
+    source.stop(finish)
   } catch (error) {
     voice.stop()
     throw error

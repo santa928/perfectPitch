@@ -1,18 +1,31 @@
 import type { PianoNote } from '../analysis/notes.ts'
 import { parseSoundfont, playbackPosition } from './playback-model.ts'
-import { schedulePianoVoice } from './piano-voice.ts'
-import type { PianoVoice } from './piano-voice.ts'
+import { PIANO_RELEASE_SECONDS, schedulePianoVoice } from './piano-voice.ts'
+import type { PianoSound, PianoVoice } from './piano-voice.ts'
 
 const PIANO_URL =
   'https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3.js'
 const SAMPLE_MIDIS = [33, 45, 57, 69, 81]
-const SAMPLE_NAMES = ['A1', 'A2', 'A3', 'A4', 'A5']
 export type PianoStatus = 'idle' | 'loading' | 'ready' | 'error'
 
-/** 原音と連続音高のサンプル再生を同じAudioContext時計で管理する。 */
+/** 通常は対象鍵盤そのもの、連続音高だけ従来の基準サンプルを使う。 */
+function sampleMidiFor(midi: number, sound: PianoSound): number {
+  return sound === 'piano'
+    ? Math.max(21, Math.min(108, Math.round(midi)))
+    : SAMPLE_MIDIS.reduce((a, b) => Math.abs(b - midi) < Math.abs(a - midi) ? b : a)
+}
+
+/** MIDI鍵盤番号を既存SoundFontのフラット表記へ変換する。 */
+function sampleName(midi: number): string {
+  const names = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B']
+  return `${names[midi % 12]}${Math.floor(midi / 12) - 1}`
+}
+
+/** 原音・鍵盤のピアノ・連続音高を同じAudioContext時計で管理する。 */
 export class VoicePlayer {
   private context: AudioContext | null = null
   private samples = new Map<number, AudioBuffer>()
+  private soundfont: Record<string, string> | null = null
   private loadTask: Promise<void> | null = null
   private abort: AbortController | null = null
   private sources = new Set<AudioBufferSourceNode>()
@@ -47,9 +60,13 @@ export class VoicePlayer {
       throw new Error('音声を再生できません。もう一度再生を押してください。')
   }
 
-  /** 外部音源はデータとして取得。タイムアウトとキャンセル時も次回に再試行できる。 */
-  private loadPiano(generation: number): Promise<void> {
-    if (this.samples.size === SAMPLE_MIDIS.length) return Promise.resolve()
+  /** 必要な鍵盤だけをデコードして再利用する。取得・デコード失敗後も次回に再試行できる。 */
+  private loadPiano(generation: number, requested: readonly number[]): Promise<void> {
+    const missing = [...new Set(requested)].filter(midi => !this.samples.has(midi))
+    if (missing.length === 0) {
+      this.onStatus('ready')
+      return Promise.resolve()
+    }
     if (this.loadTask) return this.loadTask
     const context = this.context!
     const abort = new AbortController()
@@ -57,34 +74,39 @@ export class VoicePlayer {
     this.onStatus('loading')
     const timeout = setTimeout(() => abort.abort(), 20000)
     const task = (async () => {
-      const response = await fetch(PIANO_URL, { signal: abort.signal })
-      if (generation !== this.generation || abort.signal.aborted)
-        throw new DOMException('中止', 'AbortError')
-      if (!response.ok) throw new Error('ピアノ音源を取得できませんでした。')
-      const text = await response.text()
-      if (generation !== this.generation || abort.signal.aborted)
-        throw new DOMException('中止', 'AbortError')
-      const data = parseSoundfont(text)
+      if (!this.soundfont) {
+        const response = await fetch(PIANO_URL, { signal: abort.signal })
+        if (generation !== this.generation || abort.signal.aborted)
+          throw new DOMException('中止', 'AbortError')
+        if (!response.ok) throw new Error('ピアノ音源を取得できませんでした。')
+        const text = await response.text()
+        if (generation !== this.generation || abort.signal.aborted)
+          throw new DOMException('中止', 'AbortError')
+        this.soundfont = parseSoundfont(text)
+      }
+      const data = this.soundfont
       const buffers = await Promise.all(
-        SAMPLE_NAMES.map(async (name, index) => {
-          const uri = data[name]
+        missing.map(async (midi) => {
+          const uri = data[sampleName(midi)]
           if (!uri) throw new Error('必要なピアノ音がありません。')
           const raw = atob(uri.split(',')[1])
           const bytes = Uint8Array.from(raw, (character) =>
             character.charCodeAt(0),
           )
           const buffer = await context.decodeAudioData(bytes.buffer)
-          return [SAMPLE_MIDIS[index], buffer] as const
+          return [midi, buffer] as const
         }),
       )
       if (generation !== this.generation || abort.signal.aborted)
         throw new DOMException('中止', 'AbortError')
-      this.samples = new Map(buffers)
+      for (const [midi, buffer] of buffers) this.samples.set(midi, buffer)
       this.onStatus('ready')
     })()
       .catch((error) => {
-        if (generation === this.generation && this.abort === abort)
+        if (generation === this.generation && this.abort === abort) {
+          this.soundfont = null
           this.onStatus('error')
+        }
         throw error
       })
       .finally(() => {
@@ -106,6 +128,7 @@ export class VoicePlayer {
     notes: PianoNote[] | null,
     offset = 0,
     playbackDuration?: number,
+    sound: PianoSound = 'piano',
   ): Promise<boolean> {
     const duration = notes !== null && playbackDuration !== undefined
       ? playbackDuration : pcm.length / sampleRate
@@ -118,7 +141,8 @@ export class VoicePlayer {
       await this.unlock()
       if (generation !== this.generation) return false
       this.preparing = true
-      if (notes) await this.loadPiano(generation)
+      if (notes) await this.loadPiano(generation, notes.length
+        ? notes.map(note => sampleMidiFor(note.midi, sound)) : SAMPLE_MIDIS)
     } catch (error) {
       if (generation !== this.generation) return false
       this.preparing = false
@@ -144,9 +168,7 @@ export class VoicePlayer {
       } else {
         for (const note of notes) {
           if (note.end <= this.offset) continue
-          const sampleMidi = SAMPLE_MIDIS.reduce((a, b) =>
-            Math.abs(b - note.midi) < Math.abs(a - note.midi) ? b : a,
-          )
+          const sampleMidi = sampleMidiFor(note.midi, sound)
           let voice: PianoVoice | undefined
           voice = schedulePianoVoice(context, {
             sample: this.samples.get(sampleMidi)!,
@@ -154,6 +176,7 @@ export class VoicePlayer {
             note,
             startedAt: this.startedAt,
             offset: this.offset,
+            sound,
             onEnded: () => {
               if (voice) this.voices.delete(voice)
             },
@@ -163,12 +186,13 @@ export class VoicePlayer {
       }
       this.preparing = false
       this.active = true
+      const tail = notes !== null && sound === 'piano' ? PIANO_RELEASE_SECONDS : 0
       this.endTimer = setTimeout(
         () => {
           this.stop()
           this.onEnded()
         },
-        (this.duration - this.offset + 0.06) * 1000,
+        (this.duration - this.offset + 0.06 + tail) * 1000,
       )
       return true
     } catch (error) {
@@ -230,6 +254,7 @@ export class VoicePlayer {
   dispose(): void {
     this.stop()
     this.samples.clear()
+    this.soundfont = null
     if (this.context) {
       this.context.onstatechange = null
       void this.context.close()
