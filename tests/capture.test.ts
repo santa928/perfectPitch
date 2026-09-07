@@ -396,6 +396,30 @@ test('reanalyze transfers a copy and keeps the caller PCM attached', async () =>
   }
 })
 
+test('cancelling file reanalysis releases its worker and ignores late progress', async () => {
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'Worker')
+  const worker = new FakeWorker()
+  worker.respondToReanalysis = false
+  Object.defineProperty(globalThis, 'Worker', { configurable: true, value: class { constructor() { return worker } } })
+  const controller = new AbortController()
+  const progress: number[] = []
+  const samples = Float32Array.from([.1, .2])
+  try {
+    const result = reanalyze(samples, 48000, 'song', p => progress.push(p), { signal: controller.signal, calibrate: false })
+    const rejected = assert.rejects(result, (error: CaptureError) => error.code === 'cancelled')
+    controller.abort()
+    await rejected
+    worker.emit({ type: 'progress', progress: 1 })
+    worker.emit({ type: 'done', frames: [voicedFrame] })
+    assert.equal(worker.terminated, true)
+    assert.deepEqual(progress, [])
+    assert.equal(samples.byteLength, 8)
+  } finally {
+    if (descriptor) Object.defineProperty(globalThis, 'Worker', descriptor)
+    else Reflect.deleteProperty(globalThis, 'Worker')
+  }
+})
+
 test('muted and ended tracks report interruption and reject the capture', async (t) => {
   for (const eventName of ['mute', 'ended']) {
     await t.test(eventName, async () => {

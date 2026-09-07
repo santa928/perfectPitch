@@ -31,7 +31,11 @@ export type CaptureResult = {
   settings: MediaTrackSettings
   /** PCM is complete, but derived pitch data must be retried. */
   analysisError?: string
+  /** ファイル入力では冒頭の校正待ちを作らない。マイク録音は既定true。 */
+  calibrate?: boolean
 }
+
+export type ReanalysisOptions = { calibrate?: boolean; signal?: AbortSignal }
 
 /** ブラウザ境界を差し替え可能にする CaptureSession の実行環境。 */
 export type CaptureRuntime = {
@@ -96,7 +100,9 @@ export async function reanalyze(
   sampleRate: number,
   mode: AnalysisMode,
   onProgress?: (progress: number) => void,
+  options: ReanalysisOptions = {},
 ): Promise<PitchFrame[]> {
+  if (options.signal?.aborted) throw new CaptureError('cancelled', '音声の分析を中止しました。')
   if (typeof Worker === 'undefined') {
     throw new CaptureError(
       'unsupported',
@@ -105,7 +111,7 @@ export async function reanalyze(
   }
   const worker = createBrowserWorker()
   try {
-    return await analyzeWithWorker(worker, samples, sampleRate, mode, undefined, onProgress)
+    return await analyzeWithWorker(worker, samples, sampleRate, mode, undefined, onProgress, options)
   } finally {
     worker.terminate()
   }
@@ -565,6 +571,7 @@ function analyzeWithWorker(
     reject: (error: CaptureError) => void,
   ) => void,
   onProgress?: (progress: number) => void,
+  options: ReanalysisOptions = {},
 ): Promise<PitchFrame[]> {
   return new Promise<PitchFrame[]>((resolve, reject) => {
     let settled = false
@@ -577,14 +584,19 @@ function analyzeWithWorker(
       if (settled) return
       settled = true
       globalThis.clearTimeout(timeout)
+      options.signal?.removeEventListener('abort', abort)
       resolve(frames)
     }
     const settleReject = (error: CaptureError): void => {
       if (settled) return
       settled = true
       globalThis.clearTimeout(timeout)
+      options.signal?.removeEventListener('abort', abort)
       reject(error)
     }
+    const abort = (): void => settleReject(new CaptureError('cancelled', '音声の分析を中止しました。'))
+    options.signal?.addEventListener('abort', abort, { once: true })
+    if (options.signal?.aborted) { abort(); return }
     if (installCallbacks) {
       installCallbacks(settleResolve, settleReject)
     } else {
@@ -606,9 +618,11 @@ function analyzeWithWorker(
       }
     }
     const copy = samples.slice()
-    worker.postMessage({ type: 'reanalyze', samples: copy, sampleRate, mode }, [
-      copy.buffer,
-    ])
+    try {
+      worker.postMessage({ type: 'reanalyze', samples: copy, sampleRate, mode, calibrate: options.calibrate }, [copy.buffer])
+    } catch (error) {
+      settleReject(new CaptureError('worker', '解析を開始できませんでした。', { cause: error }))
+    }
   })
 }
 

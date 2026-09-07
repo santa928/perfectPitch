@@ -91,3 +91,20 @@ test('analysis worker streams sample-clock frames and performs final offline rea
     await worker.terminate()
   }
 })
+
+test('file analysis retains an immediate first note without inventing a calibration prelude', async () => {
+  const worker = await analysisWorker()
+  const samples = Float32Array.from({ length: sampleRate / 2 }, (_, i) =>
+    i < sampleRate * .15 ? .2 * Math.sin(2 * Math.PI * 220 * i / sampleRate) : 0)
+  const original = samples.slice()
+  try {
+    const response = nextMessage(worker, message => message.type === 'done')
+    worker.postMessage({ type: 'reanalyze', samples, sampleRate, mode: 'song', calibrate: false })
+    const frames = (await response).frames as PitchFrame[]
+    assert.ok(frames.some(f => f.t < .1 && f.midi !== null && Math.abs(f.midi - 57) < .2))
+    assert.ok(frames.every(f => f.state !== 'calibrating'))
+    assert.ok(frames.filter(f => f.t > .2).every(f => f.frequency === null))
+    assert.equal(frames[0].t, .04)
+    assert.deepEqual(samples, original)
+  } finally { await worker.terminate() }
+})

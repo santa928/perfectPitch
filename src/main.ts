@@ -1,5 +1,6 @@
 import './style.css'
 import { CaptureSession, reanalyze } from './audio/capture.ts'
+import { importAudio } from './audio/import.ts'
 import type { CaptureResult } from './audio/capture.ts'
 import { VoicePlayer } from './audio/player.ts'
 import type { AnalysisMode, PitchFrame } from './analysis/pipeline.ts'
@@ -15,6 +16,7 @@ type Phase =
   | 'requesting'
   | 'recording'
   | 'analyzing'
+  | 'importing'
   | 'ready'
   | 'loading'
   | 'playing'
@@ -28,12 +30,14 @@ let pitchMode: PitchMode = 'continuous'
 let source: 'original' | 'piano' = 'original'
 let capture: CaptureSession | null = null
 let recording: CaptureResult | null = null
+let recordingMode: AnalysisMode = 'song'
 let frames: PitchFrame[] = []
 let duration = 0
 let cursor = 0
 let revision = 0
 let frameId = 0
 let analysisProgress = 0
+let importController: AbortController | null = null
 const ranges: Record<string, PitchRange> = {
   wide: { min: 33, max: 83 },
   low: { min: 33, max: 57 },
@@ -62,9 +66,12 @@ function showAnalysisProgress(progress: number): void {
 /** 状態をネイティブの操作可否・ラベル・補助文へ同時に反映する。 */
 function sync(): void {
   const busy =
-    phase === 'requesting' || phase === 'recording' || phase === 'analyzing'
+    phase === 'requesting' || phase === 'recording' || phase === 'analyzing' || phase === 'importing'
   const playing = phase === 'playing' || phase === 'loading'
-  ui.record.disabled = phase === 'analyzing'
+  ui.record.disabled = phase === 'analyzing' || phase === 'importing'
+  ui.importAudio.disabled = busy
+  ui.audioFile.disabled = busy
+  ui.cancelImport.hidden = importController === null
   ui.record.innerHTML =
     phase === 'analyzing'
       ? '分析中…'
@@ -105,7 +112,7 @@ function sync(): void {
   ui.seek.max = String(duration)
   ui.review.hidden =
     !recording || phase === 'recording' || phase === 'requesting'
-  scorePanel.update(recording && !busy ? frames : null, duration, mode)
+  scorePanel.update(recording ? frames : null, duration, recording ? recordingMode : mode, !busy, recording)
   ui.empty.hidden =
     frames.length > 0 || phase === 'recording' || phase === 'analyzing'
   ui.stateDot.classList.toggle('recording', phase === 'recording')
@@ -114,6 +121,7 @@ function sync(): void {
     requesting: 'マイク準備',
     recording: '録音中・暫定',
     analyzing: `分析中 ${analysisProgress}%`,
+    importing: 'ファイル読込中',
     ready: '録音済み',
     loading: '音源読込中',
     playing: '再生中',
@@ -275,6 +283,7 @@ async function finishRecording(
     if (token !== revision) return
     capture = null
     recording = result
+    recordingMode = mode
     frames = result.frames
     duration = result.samples.length / result.sampleRate
     cursor = 0
@@ -319,9 +328,10 @@ async function analyzeAgain(): Promise<void> {
   sync()
   try {
     const next = await reanalyze(recording.samples, recording.sampleRate, mode,
-      progress => { if (token === revision) showAnalysisProgress(progress) })
+      progress => { if (token === revision) showAnalysisProgress(progress) }, { calibrate: recording.calibrate })
     if (token !== revision) return
     recording.frames = next
+    recordingMode = mode
     delete recording.analysisError
     frames = next
     cursor = 0
@@ -330,16 +340,83 @@ async function analyzeAgain(): Promise<void> {
     sync()
   } catch (error) {
     if (token !== revision) return
+    mode = recordingMode
+    ui.modes.forEach(input => { input.checked = input.value === mode })
     phase = 'ready'
     status(
-      error instanceof Error
-        ? error.message
-        : '再解析に失敗しました。再試行できます。',
+      `${error instanceof Error ? error.message : '再解析に失敗しました。再試行できます。'} 前の解析結果・声の種類・手直しを保持しています。`,
       true,
     )
     sync()
   }
 }
+
+/** 入力中は直前の録音を保持し、検証済みPCMだけを同じ解析・再生経路へ渡す。 */
+async function openAudioFile(file: File): Promise<void> {
+  stopPlayback()
+  const token = ++revision
+  const controller = new AbortController()
+  importController = controller
+  phase = 'importing'
+  status('音声ファイルをこの端末で確認しています。')
+  sync()
+  try {
+    const input = await importAudio(file, { signal: controller.signal, onProgress: event => {
+      if (token !== revision) return
+      status({ metadata: '音声の長さを確認しています。', reading: '音声ファイルを読み込んでいます。',
+        decoding: '音声を準備しています。', normalizing: '音声を解析できる形にしています。', complete: '音声の準備ができました。' }[event.stage])
+    } })
+    if (token !== revision) return
+    phase = 'analyzing'
+    analysisProgress = 0
+    status('分析中です。ファイルの冒頭から音程を確認しています。')
+    sync()
+    let result: PitchFrame[] = []
+    let analysisError: string | undefined
+    try {
+      result = await reanalyze(input.samples, input.sampleRate, mode,
+        p => { if (token === revision) showAnalysisProgress(p) }, { calibrate: false, signal: controller.signal })
+    } catch (error) {
+      if (controller.signal.aborted) throw error
+      analysisError = error instanceof Error ? error.message : '音程を分析できませんでした。'
+    }
+    if (token !== revision) return
+    recording = { samples: input.samples, sampleRate: input.sampleRate, frames: result, settings: {}, calibrate: false, analysisError }
+    recordingMode = mode
+    frames = result
+    duration = input.duration
+    cursor = 0
+    phase = 'ready'
+    ui.micSettings.textContent = `ファイル入力: ${input.sampleRate} Hz / PCM mono。マイクは使用していません。`
+    status(analysisError ? `音程の分析に失敗しました。${analysisError} 元の声は再生できます。「元音声から再解析する」で再試行できます。`
+      : '音声ファイルを読み込みました。元の声・ピアノ・楽譜を確かめられます。', Boolean(analysisError))
+  } catch (error) {
+    if (token !== revision) return
+    phase = recording ? 'ready' : 'idle'
+    status(error instanceof Error ? error.message : '音声ファイルを読み込めませんでした。別のファイルで試してください。', true)
+  } finally {
+    if (token === revision) {
+      importController = null
+      ui.audioFile.value = ''
+      sync()
+    }
+  }
+}
+ui.importAudio.addEventListener('click', () => ui.audioFile.click())
+ui.audioFile.addEventListener('change', () => {
+  const file = ui.audioFile.files?.[0]
+  if (file) void openAudioFile(file)
+})
+ui.cancelImport.addEventListener('click', () => {
+  if (!importController) return
+  revision++
+  importController.abort()
+  importController = null
+  ui.audioFile.value = ''
+  phase = recording ? 'ready' : 'idle'
+  status('音声ファイルの読み込みを中止しました。')
+  sync()
+})
 ui.record.addEventListener('click', () => {
   if (phase === 'requesting') {
     revision++
@@ -489,6 +566,7 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('pagehide', () => {
   scorePanel.dispose()
   revision++
+  importController?.abort()
   capture?.cancel()
   capture = null
   player.dispose()

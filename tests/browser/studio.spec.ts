@@ -40,12 +40,22 @@ test('録音から再解析・原音再生・停止・歌/話の切替まで実�
   await page.locator('#pitchMode').selectOption('rounded')
   await expect(page.locator('#pitchHelp')).toContainText('近くの半音へ丸めます')
   await page.locator('#pitchMode').selectOption('continuous')
-  await page.locator('#scoreDetails summary').click()
+  await page.locator('#scoreDetails > summary').click()
   await expect(page.locator('#scoreMeasures svg').first()).toBeVisible()
   for (const href of await page.locator('.score-credits a').evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href))) {
     const response = await page.request.get(href)
     expect(response.ok()).toBe(true)
-    expect(await response.text()).toMatch(/Permission is hereby granted|SIL OPEN FONT LICENSE/)
+    const licenseName = new URL(href).pathname.split('/').at(-1)!
+    const notices: Record<string, RegExp> = {
+      'VexFlow.txt': /Permission is hereby granted/,
+      'Bravura.txt': /SIL OPEN FONT LICENSE/,
+      'Academico.txt': /SIL OPEN FONT LICENSE/,
+      'BasicPitch.txt': /Apache License/,
+      'ONNXRuntime.txt': /Permission is hereby granted/,
+      'ONNXRuntime-ThirdPartyNotices.txt': /THIRD PARTY SOFTWARE NOTICES AND INFORMATION/,
+    }
+    expect(notices[licenseName]).toBeDefined()
+    expect(await response.text()).toMatch(notices[licenseName])
   }
   await expect(page.locator('#scoreStatus')).toContainText('最初の検出音')
   const recordingLength = await page.locator('#seek').getAttribute('max')

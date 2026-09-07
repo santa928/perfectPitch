@@ -14,6 +14,7 @@ type AnalysisWorkerInput =
       samples: Float32Array
       sampleRate: number
       mode: AnalysisMode
+      calibrate?: boolean
     }
 
 type AnalysisWorkerOutput =
@@ -55,7 +56,7 @@ workerScope.onmessage = (event: MessageEvent<AnalysisWorkerInput>): void => {
     workerScope.postMessage({
       type: 'done',
       frames: analyzeOffline(message.samples, message.sampleRate, message.mode,
-        progress => workerScope.postMessage({ type: 'progress', progress })),
+        progress => workerScope.postMessage({ type: 'progress', progress }), message.calibrate),
     })
   } catch (error) {
     workerScope.postMessage({

@@ -1,0 +1,11 @@
+Basic Pitch model provenance
+
+File: /models/basic-pitch.onnx
+Upstream project: Spotify Basic Pitch
+Upstream revision: fa5997af0a8210982619003269994a1be25eddf3
+Source: https://github.com/spotify/basic-pitch/blob/fa5997af0a8210982619003269994a1be25eddf3/basic_pitch/saved_models/icassp_2022/nmp.onnx
+Bytes: 230444
+SHA-256: 2c3c1d144bfa61ad236e92e169c13535c880469a12a047d4e73451f2c059a0ec
+Modification: None. The model file is redistributed unchanged.
+License: Apache License 2.0 (BasicPitch.txt)
+Notice: BasicPitch-NOTICE.txt

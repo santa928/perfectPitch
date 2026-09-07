@@ -26,10 +26,11 @@ export class PitchAnalyzer {
   private ended = false
   private previousDetection: Detection | null = null
   private readonly onEvidence?: (frame: PitchFrame, candidates: YinCandidate[]) => void
+  private readonly calibrate: boolean
 
-  /** Configure a fresh recording. Calibration occupies the first 300 ms of PCM. */
+  /** マイクは最初の300msで校正。録音済みファイルは冒頭の発声を除外しない。 */
   constructor(sampleRate: number, mode: AnalysisMode,
-    onEvidence?: (frame: PitchFrame, candidates: YinCandidate[]) => void) {
+    onEvidence?: (frame: PitchFrame, candidates: YinCandidate[]) => void, calibrate = true) {
     if (
       !Number.isFinite(sampleRate) ||
       sampleRate < 8000 ||
@@ -39,6 +40,7 @@ export class PitchAnalyzer {
     this.sampleRate = sampleRate
     this.mode = mode
     this.onEvidence = onEvidence
+    this.calibrate = calibrate
     this.buffer = new Float32Array(
       Math.round((sampleRate * ANALYSIS_SETTINGS[mode].windowMs) / 1000),
     )
@@ -79,7 +81,7 @@ export class PitchAnalyzer {
         : { frequency: null, periodicity: 0 }
     const t = (this.count - this.buffer.length / 2) / this.sampleRate
     let state: PitchFrame['state']
-    if (this.count / this.sampleRate <= 0.3) {
+    if (this.calibrate && this.count / this.sampleRate <= 0.3) {
       state = 'calibrating'
       if (detection.periodicity < 0.6) {
         this.quietRms.push(rms)

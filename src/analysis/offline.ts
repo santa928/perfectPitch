@@ -89,7 +89,7 @@ function recoverUncertain(samples: Float32Array, sampleRate: number, frames: Pit
 
 /** Revisit recorded PCM with future evidence while preserving live analysis, clock and silence. */
 export function analyzeOffline(samples: Float32Array, sampleRate: number, mode: AnalysisMode,
-  onProgress?: (progress: number) => void): PitchFrame[] {
+  onProgress?: (progress: number) => void, calibrate = true): PitchFrame[] {
   const observations: Observation[] = []
   const settings = ANALYSIS_SETTINGS[mode]
   const total = Math.max(1, Math.floor((samples.length - Math.round(sampleRate * settings.windowMs / 1000)) /
@@ -98,7 +98,7 @@ export function analyzeOffline(samples: Float32Array, sampleRate: number, mode: 
   const analyzer = new PitchAnalyzer(sampleRate, mode, (frame, candidates) => {
     observations.push({ frame, candidates })
     if (observations.length % 64 === 0) onProgress?.(.8 * observations.length / total)
-  })
+  }, calibrate)
   const frames = [...analyzer.push(samples), ...analyzer.finish()]
   onProgress?.(.8)
   let start = 0

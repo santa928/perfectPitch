@@ -6,6 +6,9 @@ import { scoreToPiano } from '../notation/score-playback.ts'
 import { extractMelody, suggestTempo } from '../analysis/melody.ts'
 import type { PianoNote } from '../analysis/notes.ts'
 import { VoicePlayer } from '../audio/player.ts'
+import { ScoreEditor } from '../notation/score-editor.ts'
+import { mountScoreEditor } from './score-editor-panel.ts'
+import { mountTranscriptionPanel, type TranscriptionInput } from './transcription-panel.ts'
 
 /** 同じScoreを表示とピアノへ渡す。譜面の拍時計は原音の秒時計とは独立させる。 */
 export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?: () => void } = {}) {
@@ -14,13 +17,15 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
       <summary>楽譜とドレミを見る <span>推定</span></summary>
       <div class="score-body">
         <div class="score-heading"><h2>あなたの声の楽譜</h2><label>テンポ <input id="scoreTempo" type="number" min="40" max="240" step="1" value="120" inputmode="numeric" aria-describedby="scoreHelp"> BPM</label></div>
-        <p id="scoreHelp">4/4拍子・16分音符単位の推定です。テンポを調整すると、この楽譜と「譜面どおりに聴く」が一緒に変わります。元の声と上のピアノ再生は変わりません。</p>
+        <p id="scoreHelp">4/4拍子・16分音符単位の推定です。テンポを指定して音符の長さを推定します。手直しした後は音符の長さを保って演奏速度を変えます。元の声と上のピアノ再生は変わりません。</p>
         <p id="scoreTempoHint"></p>
+        <div id="transcriptionPanel" hidden></div>
         <div class="score-playback"><button id="scorePlay" type="button" class="play-button" disabled>▶ 譜面どおりに聴く</button><p id="scorePlaybackStatus" role="status" aria-live="polite">鼻歌の揺れを音符にまとめ、五線譜と同じ音程・長さで聴けます。</p></div>
         <p class="score-legend">カタカナは固定ド（C＝ド）。ド4が中央のド、数字はオクターブです。半音は♯で表します。線で繋いだ同じ音は、続けて伸ばす音です。</p>
         <p id="scoreStatus" role="status" aria-live="polite"></p>
         <div id="scoreMeasures" class="score-measures"></div>
         <div class="score-navigation"><button id="scorePrevious" type="button">前の小節</button><span id="scorePage"></span><button id="scoreNext" type="button">次の小節</button></div>
+        <div id="scoreEditor"></div>
         <p class="score-limit">検出できなかった声は休符になります。短い音や揺れ、話し声のリズムは正確に楽譜化できないことがあります。最後の小節は休符で埋めています。長い小節は横にスクロールできます。</p>
         <p class="score-credits">記譜: <a href="./licenses/VexFlow.txt">VexFlow（MIT）</a> · フォント: <a href="./licenses/Bravura.txt">Bravura</a> / <a href="./licenses/Academico.txt">Academico</a>（SIL OFL 1.1）</p>
       </div>
@@ -41,11 +46,53 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
   let page = 0
   let generation = 0
   let notes: PianoNote[] = []
+  let originalNotes: PianoNote[] = []
+  let variant: 'original' | 'model' = 'original'
+  const variantEditors = new Map<string, ScoreEditor>()
   let score: Score | null = null
+  let editor: ScoreEditor | null = null
+  let automaticTempoHint = ''
   let playbackGeneration = 0
   let playbackPhase: 'idle' | 'loading' | 'playing' = 'idle'
   const player = new VoicePlayer()
   const perPage = 4
+  const transcriptionPanel = mountTranscriptionPanel(host.querySelector<HTMLElement>('#transcriptionPanel')!, {
+    onResult: alternate => {
+      stop()
+      if (editor) variantEditors.set(variant, editor)
+      variant = alternate ? 'model' : 'original'
+      notes = alternate ?? originalNotes
+      editor = variantEditors.get(variant) ?? null
+      suggestForNotes()
+      if (editor) tempo.value = String(editor.bpm)
+      updateTempoHelp()
+      page = 0
+      void render()
+    },
+  })
+  const editorPanel = mountScoreEditor(host.querySelector<HTMLElement>('#scoreEditor')!, {
+    editor: () => editor,
+    onChange: () => {
+      stop()
+      if (editor) tempo.value = String(editor.bpm)
+      updateTempoHelp()
+      void render()
+    },
+    onSelect: tick => { page = Math.floor(tick / 16 / perPage); void render() },
+  })
+  /** 手直しした音符の音価はテンポ入力で再推定しないことを明示する。 */
+  function updateTempoHelp(): void {
+    tempoHint.textContent = editor?.modified ? '編集した音符の長さを保ち、テンポだけ変えて演奏します。自動推定へ戻すと音価を再推定できます。' : automaticTempoHint
+  }
+  /** 現在の音符列の候補と仮値を分け、推定ごとにテンポを案内する。 */
+  function suggestForNotes(): void {
+    const suggestion = suggestTempo(notes)
+    tempo.value = String(suggestion.reliable ? suggestion.bpm : 120)
+    automaticTempoHint = suggestion.reliable
+      ? `テンポ候補 ${suggestion.bpm} BPM${suggestion.alternatives.length ? `（別の候補 ${suggestion.alternatives.join(' / ')}）` : ''}。拍の取り方は一意に決まらないため、聴いて調整してください。`
+      : '自動テンポは未確定です。初期値は仮の120 BPMです。音符が少ない、または拍が揃わないため推定できません。聴いて調整してください。'
+    updateTempoHelp()
+  }
   /** 再生ボタンを実際の譜面・読み込み状態と同期する。 */
   function syncPlayback(): void {
     play.disabled = playbackPhase === 'idle' && (!score?.measures.length || host.hidden || !tempo.validity.valid)
@@ -96,11 +143,14 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
     if (!frames || !details.open || host.hidden) { syncPlayback(); return }
     if (!tempo.validity.valid || !Number.isFinite(tempo.valueAsNumber)) {
       score = null
+      editorPanel.setEnabled(false)
       syncPlayback()
       status.textContent = 'テンポは40〜240の整数で入力してください。'
       return
     }
-    score = buildScore(notes, duration, tempo.valueAsNumber)
+    if (!editor) editor = new ScoreEditor(buildScore(notes, duration, tempo.valueAsNumber))
+    score = editor.score
+    editorPanel.setEnabled(true)
     syncPlayback()
     if (!score.measures.length) {
       status.textContent = score.omittedNotes
@@ -121,11 +171,11 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
       staging.style.width = `${measures.clientWidth}px`
       host.append(staging)
       try {
-        await renderMeasures(staging, score.measures.slice(start, end), start)
+        await renderMeasures(staging, score.measures.slice(start, end), start, { onSelect: tick => editorPanel.select(tick) })
         if (token !== generation) return
         measures.replaceChildren(...staging.childNodes)
       } finally { staging.remove() }
-      status.textContent = `最初の検出音（録音${score.origin.toFixed(2)}秒）を1拍目にしています。${score.omittedNotes ? `短い音${score.omittedNotes}個は丸めにより省略されました。` : ''}`
+      status.textContent = `${editor?.modified ? '手直しした楽譜です。' : ''}最初の検出音（録音${score.origin.toFixed(2)}秒）を1拍目にしています。${score.omittedNotes ? `自動推定時の短い音${score.omittedNotes}個は丸めにより省略されました。` : ''}`
       pageLabel.textContent = `${start + 1}〜${end} / ${score.measures.length}小節`
       previous.disabled = page === 0
       next.disabled = end === score.measures.length
@@ -135,7 +185,15 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
     }
   }
   details.addEventListener('toggle', () => { if (!details.open) stop(); void render() })
-  tempo.addEventListener('input', () => { stop(); page = 0; void render() })
+  tempo.addEventListener('input', () => {
+    stop(); page = 0
+    if (tempo.validity.valid && Number.isFinite(tempo.valueAsNumber)) {
+      if (editor?.modified) editor.setTempo(tempo.valueAsNumber)
+      else editor = new ScoreEditor(buildScore(notes, duration, tempo.valueAsNumber))
+      updateTempoHelp()
+    }
+    void render()
+  })
   previous.addEventListener('click', () => { page--; void render() })
   next.addEventListener('click', () => { page++; void render() })
   let width = 0
@@ -147,30 +205,35 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
   return {
     stop,
     /** ページを離れたときに譜面専用の音声資源を解放する。 */
-    dispose(): void { stop(); player.dispose() },
+    dispose(): void { stop(); transcriptionPanel.cancel(); player.dispose() },
     /** ready時のフレーム参照が変わった場合だけ派生データを更新する。 */
-    update(nextFrames: PitchFrame[] | null, nextDuration: number, nextMode: AnalysisMode): void {
+    update(nextFrames: PitchFrame[] | null, nextDuration: number, nextMode: AnalysisMode, available = true,
+      input: TranscriptionInput | null = null): void {
+      const wasHidden = host.hidden
       const changed = frames !== nextFrames || duration !== nextDuration || mode !== nextMode
       frames = nextFrames
       duration = nextDuration
       mode = nextMode
-      host.hidden = frames === null
+      host.hidden = frames === null || !available
+      transcriptionPanel.update(mode === 'song' ? input : null, available)
+      if (host.hidden) stop()
       if (changed) {
         stop()
+        transcriptionPanel.reset()
         score = null
+        editor = null
+        variantEditors.clear()
+        variant = 'original'
+        editorPanel.clear()
         notes = frames ? mode === 'song' ? extractMelody(frames, duration) : buildNotes(frames, mode, 'rounded', duration) : []
-        const suggestion = suggestTempo(notes)
-        tempo.value = String(suggestion.bpm)
-        tempoHint.textContent = suggestion.reliable
-          ? `テンポ候補 ${suggestion.bpm} BPM${suggestion.alternatives.length ? `（別の候補 ${suggestion.alternatives.join(' / ')}）` : ''}。拍の取り方は一意に決まらないため、聴いて調整してください。`
-          : 'テンポは仮の120 BPMです。音符が少ない、または拍が揃わないため推定できません。聴いて調整してください。'
-        if (!suggestion.reliable) tempo.value = '120'
+        originalNotes = notes
+        suggestForNotes()
         playbackStatus.textContent = mode === 'song'
           ? '鼻歌の揺れを音符にまとめ、五線譜と同じ音程・長さで聴けます。推定違いは残るため元の声と聴き比べてください。'
           : '話し声を鍵盤と音符の長さに丸めた推定です。五線譜と同じ内容で聴けます。'
         page = 0
         void render()
-      }
+      } else if (wasHidden !== host.hidden) void render()
     },
   }
 }

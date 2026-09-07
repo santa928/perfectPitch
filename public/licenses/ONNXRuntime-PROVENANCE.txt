@@ -1,0 +1,9 @@
+ONNX Runtime Web provenance
+
+Package: onnxruntime-web 1.29.0
+Source: https://www.npmjs.com/package/onnxruntime-web/v/1.29.0
+Runtime source: node_modules/onnxruntime-web/dist
+Distributed runtime files are copied by scripts/copy-transcription-assets.mjs.
+ort-wasm-simd-threaded.wasm SHA-256: ec8580a9d7b9476ceee52e10a7f94124e4dc71a019d666ed6d4726697c109a4d
+License: MIT (ONNXRuntime.txt)
+Third-party notices: ONNXRuntime-ThirdPartyNotices.txt

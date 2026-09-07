@@ -40,7 +40,7 @@ for (const mode of ['song', 'speech']) {
     }
     await page.locator('input[name="source"][value="piano"]').check()
     await expect(page.locator('#play')).toBeEnabled()
-    await page.locator('#scoreDetails summary').click()
+    await page.locator('#scoreDetails > summary').click()
     await expect(page.locator('#scoreMeasures svg').first()).toBeVisible()
     await expect(page.locator('#scoreMeasures')).toContainText('ド3')
     await expect(page.locator('#scoreMeasures')).toContainText('ド4')

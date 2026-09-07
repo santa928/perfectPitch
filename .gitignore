@@ -36,3 +36,6 @@ docs/superpowers/
 output/
 .test-build/
 tests/fixtures/downloads/
+
+# Generated from the pinned onnxruntime-web package by the build/dev preparation.
+public/runtime/
