@@ -58,6 +58,8 @@ Piano: FluidR3_GM acoustic grand piano、[Benjamin Gleitzman / MIDI.js Soundfont
 
 実音声評価にはCC BY-SA 4.0のPJS corpusをローカル取得して使用します。評価音声はGitやアプリの配布物へ含めません。出典・取得コマンド・ハッシュは上記資料を参照してください。
 
+追加で原テンポ80/120/180 BPMの単独歌唱3曲を公式MusicXMLと比較しました。[取得方法](docs/evaluation/vocal-score-sources.md)・[曲別結果と残る誤り](docs/evaluation/vocal-score-verification.md)。記譜時の不要な再打鍵を修正しましたが、自動テンポの確定や正確な全音符復元は未達です。公式譜面との一致を実歌唱のF0精度とは呼びません。
+
 楽譜は[VexFlow 5.0.0](https://github.com/vexflow/vexflow)のBravura同梱版をパネル展開時に読み込みます。MITとSIL OFL 1.1のライセンス全文を `public/licenses/` に同梱し、画面から参照できます。楽譜表示にも音声送信・外部フォント取得はありません。
 
 ## GitHub Pages

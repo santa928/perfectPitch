@@ -34,6 +34,25 @@ test('score playback preserves rests and changes seconds with the displayed temp
   assert.deepEqual(scoreToPiano(buildScore([], 2, 120)), { notes: [], duration: 0 })
 })
 
+test('quantizing away an intervening pitch does not manufacture a same-key reattack', () => {
+  const note = (start: number, end: number, midi: number) => ({ start, end, midi, contour: [] })
+  const input = [note(0, .46, 60), note(.46, .48, 48), note(.48, 1, 60)]
+  const before = structuredClone(input)
+  const score = buildScore(input, 1, 120)
+  assert.equal(score.omittedNotes, 1)
+  assert.deepEqual(scoreToPiano(score).notes.map(n => [n.start, n.end, n.midi]), [[0, 1, 60]])
+  assert.deepEqual(input, before)
+  // A source gap remains an articulation even if the grid rounds it to zero time.
+  const separated = buildScore([note(0, .45, 60), note(.45, .46, 48), note(.5, 1, 60)], 1, 120)
+  assert.equal(scoreToPiano(separated).notes.length, 2)
+  const interruptedBridge = buildScore([note(0, .45, 60), note(.46, .47, 48), note(.47, .48, 49), note(.48, 1, 60)], 1, 120)
+  assert.equal(scoreToPiano(interruptedBridge).notes.length, 2)
+  const omittedReattack = buildScore([note(0, .46, 60), note(.46, .48, 60), note(.48, 1, 60)], 1, 120)
+  assert.equal(scoreToPiano(omittedReattack).notes.length, 2)
+  const repeated = buildScore([note(0, .5, 60), note(.5, 1, 60)], 1, 120)
+  assert.equal(scoreToPiano(repeated).notes.length, 2)
+})
+
 test('tie flags alone cannot join a rest, gap or different pitch', () => {
   const score: Score = { bpm: 120, origin: 0, omittedNotes: 0, measures: [[
     { tick: 0, ticks: 2, midi: 60, tieIn: false, tieOut: true },

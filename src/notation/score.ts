@@ -41,11 +41,29 @@ export function buildScore(notes: readonly PianoNote[], duration: number, bpm: n
   const tickSeconds = 60 / bpm / 4
   const intervals: { start: number; end: number; midi: number }[] = []
   let previousEnd = 0
+  let sourceEnd = -Infinity
+  let omittedBridge = false
+  let bridgeIntact = true
   for (const note of valid) {
+    // Only a continuous source passage may bridge an omitted pitch. A gap or
+    // an explicit same-key reattack is still an articulation after rounding.
+    const continuous = Math.abs(note.start - sourceEnd) < 1e-8
+    if (!continuous) bridgeIntact = false
     const start = Math.max(previousEnd, Math.round((note.start - origin) / tickSeconds))
     const end = Math.round((Math.min(duration, note.end) - origin) / tickSeconds)
-    if (end <= start) { score.omittedNotes++; continue }
-    intervals.push({ start, end, midi: Math.round(note.midi) })
+    sourceEnd = Math.min(duration, note.end)
+    if (end <= start) {
+      score.omittedNotes++
+      omittedBridge = true
+      if (Math.round(note.midi) === intervals.at(-1)?.midi) bridgeIntact = false
+      continue
+    }
+    const previous = intervals.at(-1), midi = Math.round(note.midi)
+    if (omittedBridge && bridgeIntact && previous?.midi === midi && previous.end === start)
+      previous.end = end
+    else intervals.push({ start, end, midi })
+    omittedBridge = false
+    bridgeIntact = true
     previousEnd = end
   }
   if (!intervals.length) return score
