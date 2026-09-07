@@ -1,5 +1,6 @@
 import type { PitchFrame } from './pipeline.ts'
 import type { PianoNote } from './notes.ts'
+import { stabilizePitchFrames } from './continuity.ts'
 
 /** A tempo is a grid proposal, not a claim about the singer's intended beat or meter. */
 export type TempoSuggestion = { bpm: number; alternatives: number[]; reliable: boolean }
@@ -82,6 +83,7 @@ function islandNotes(frames: readonly PitchFrame[], start: number, end: number, 
 /** Derive a humming melody without filling unvoiced/uncertain gaps or modifying raw cents and PCM. */
 export function extractMelody(frames: readonly PitchFrame[], duration: number): PianoNote[] {
   if (!Number.isFinite(duration) || duration <= 0 || !frames.length) return []
+  frames = stabilizePitchFrames(frames)
   const differences = frames.slice(1).map((f, i) => f.t - frames[i].t).filter(t => t > 0 && t <= .04).sort((a,b) => a-b)
   const hop = differences.length ? differences[Math.floor(differences.length / 2)] : .01
   const valid = (frame: PitchFrame): boolean => frame.state === 'voiced' && frame.midi !== null &&
