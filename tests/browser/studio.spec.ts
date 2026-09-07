@@ -8,7 +8,7 @@ test('録音から再解析・原音再生・停止・歌/話の切替まで実�
   page.on('pageerror', (error) => errors.push(error.message))
   await page.goto('./')
   await expect(
-    page.getByRole('heading', { name: /声のかたちを、.*ピアノで聴こう。/ }),
+    page.getByRole('heading', { name: /鼻歌から、.*ピアノと楽譜へ。/ }),
   ).toBeVisible()
   await expect(
     page.getByRole('button', { name: '再生する', exact: false }),
@@ -40,7 +40,7 @@ test('録音から再解析・原音再生・停止・歌/話の切替まで実�
   await page.locator('#pitchMode').selectOption('rounded')
   await expect(page.locator('#pitchHelp')).toContainText('近くの半音へ丸めます')
   await page.locator('#pitchMode').selectOption('continuous')
-  await page.getByText('楽譜とドレミを見る', { exact: false }).click()
+  await page.locator('#scoreDetails summary').click()
   await expect(page.locator('#scoreMeasures svg').first()).toBeVisible()
   for (const href of await page.locator('.score-credits a').evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href))) {
     const response = await page.request.get(href)

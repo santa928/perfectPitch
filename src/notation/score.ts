@@ -1,6 +1,6 @@
 import type { PianoNote } from '../analysis/notes.ts'
 
-/** 1 tick は16分音符。秒時計とは独立した、表示専用の記譜データ。 */
+/** 1 tick は16分音符。原音の秒時計とは独立し、記譜と譜面再生で共有する。 */
 export type ScoreEvent = {
   tick: number
   ticks: number

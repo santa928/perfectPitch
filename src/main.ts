@@ -20,7 +20,7 @@ type Phase =
   | 'playing'
 const root = document.querySelector<HTMLDivElement>('#app')!
 const ui = mountView(root)
-const scorePanel = mountScorePanel(ui.score)
+const scorePanel = mountScorePanel(ui.score, { onPlaybackStart: () => { stopPlayback(); sync() } })
 const player = new VoicePlayer()
 let phase: Phase = 'idle'
 let mode: AnalysisMode = 'song'
@@ -172,6 +172,7 @@ function animate(): void {
 }
 /** 再生予約や読み込みを無効化し、マイクへの混入を防ぐ。 */
 function stopPlayback(): void {
+  scorePanel.stop()
   revision++
   cursor = phase === 'playing' ? player.position() : cursor
   player.stop()
@@ -351,6 +352,7 @@ ui.record.addEventListener('click', () => {
   else if (phase !== 'analyzing') void startRecording()
 })
 ui.play.addEventListener('click', async () => {
+  scorePanel.stop()
   if (phase === 'playing' || phase === 'loading') {
     stopPlayback()
     status('再生を停止しました。')
@@ -465,6 +467,7 @@ ui.seek.addEventListener('input', () => {
 new ResizeObserver(draw).observe(ui.canvas)
 /** 背景へ移った録音は停止。許可待ちはキャンセルし、復帰時に自動録音しない。 */
 function interrupt(): void {
+  scorePanel.stop()
   if (phase === 'recording')
     void finishRecording('画面を離れたため録音を停止しました。')
   else if (phase === 'requesting') {
@@ -484,6 +487,7 @@ document.addEventListener('visibilitychange', () => {
   if (document.hidden) interrupt()
 })
 window.addEventListener('pagehide', () => {
+  scorePanel.dispose()
   revision++
   capture?.cancel()
   capture = null

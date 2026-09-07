@@ -27,6 +27,16 @@
   margin-top: 20px;
   min-width: 0;
 }
+.score-playback {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  min-width: 0;
+}
+.score-playback button {
+  max-width: 100%;
+  white-space: normal;
+}
 .score-heading,
 .score-navigation {
   display: flex;

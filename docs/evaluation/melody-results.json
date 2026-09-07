@@ -1,0 +1,6226 @@
+{
+  "environment": {
+    "node": "v24.18.0",
+    "arch": "arm64",
+    "platform": "linux"
+  },
+  "method": "Legacy=existing rounded notes. Melody=integer-note candidate sequence. Known frames isolate note inference; synthetic PCM includes the production offline detector. These are tuning/regression fixtures, not held-out real voice accuracy. Runtime covers note inference only.",
+  "rows": [
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.7728749999999991
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 4.8359999999999985
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3069579999999945
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.3673750000000098
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.28941700000000026
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.7734579999999909
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3212919999999997
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.6307919999999996
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.20404200000000117
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.035499999999999
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.17637500000000728
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3222909999999928
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.17225000000000534
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.30220799999999315
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.17258300000000304
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.34600000000000364
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.20758400000001132
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.49166599999999505
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1874169999999964
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.6602079999999972
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1709160000000054
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.35833399999999926
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.09791699999999537
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.34266700000000583
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.07679199999999753
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3983750000000015
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.094333000000006
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.27641699999999503
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.10662499999999397
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.24354200000000503
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05825000000000102
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.8867499999999922
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05787499999999568
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.629833000000005
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.056416999999996165
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.0037910000000068
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.057749999999998636
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.0826250000000073
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.07608300000001122
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.4922089999999884
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.025874999999999204
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.183334000000002
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02183300000000088
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.22033399999999403
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02287499999999909
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.23000000000000398
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019834000000003016
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.5690000000000026
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019750000000001933
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1877499999999941
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.04449999999999932
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.18395800000000406
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018582999999992467
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1828750000000099
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019249999999999545
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.18695900000000165
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018458999999992898
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.514166000000003
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020624999999995453
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.19354199999999366
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.01983300000000554
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.21612499999999102
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018541999999996506
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.24049999999999727
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.01870799999998951
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.2206250000000125
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018458000000009633
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.9557499999999948
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018666000000010285
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.1927499999999895
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.01962500000000489
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.9493749999999892
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13120900000001257
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.320333000000005
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1097910000000013
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.4879999999999995
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.17349999999999
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 1.40870799999999
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.023374999999987267
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.15054100000000403
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018583000000006678
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.35141699999999787
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.0201669999999865
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.17983300000000213
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019666999999998325
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.18529100000000653
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018416000000001986
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1505420000000015
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019790999999997894
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1354170000000181
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02137500000000614
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1369579999999928
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.01870800000000372
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.45754199999998946
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022291999999993095
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.14266699999998878
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020375000000001364
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1533330000000035
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018709000000001197
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1831250000000182
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020125000000007276
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.14329200000000242
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.026125000000007503
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3608329999999853
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018583000000006678
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.7455830000000105
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.030875000000008868
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.4471249999999998
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.026999999999986812
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.42720800000000736
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.025834000000003243
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.49912499999999227
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.031542000000001735
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.4122910000000104
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020749999999992497
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.18941599999999426
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019749999999987722
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.45349999999999113
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019915999999994938
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.16508400000000734
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019249999999999545
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.2410419999999931
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02199999999999136
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.15462499999998158
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02079100000000267
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12416699999999992
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019417000000004236
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12270799999998871
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.0191250000000025
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12108299999999872
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.369624999999985
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1351669999999956
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019958000000002585
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12891700000000128
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.019000000000005457
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12812499999998295
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.01870800000000372
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1739170000000172
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.01895799999999781
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3480830000000026
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020666000000005624
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.31733399999998824
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.01937500000002501
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3238749999999868
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.06295900000000643
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.4427909999999997
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.02258399999999483
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.37791599999999903
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.022999999999996135
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.47508300000001213
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.02549999999999386
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.2859579999999937
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.03725000000000023
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.17129099999999653
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.02400000000000091
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13829200000000696
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 31,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 79.99999999999996,
+        "ms": 0.022125000000016826
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 39.99999999999992,
+        "endErrorMs": 69.99999999999996,
+        "ms": 0.3452909999999747
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.021957999999983713
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 10.000000000000009,
+        "ms": 0.12604200000001242
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.021666999999979453
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 20.000000000000018,
+        "endErrorMs": 0,
+        "ms": 0.1267920000000231
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.021874999999994316
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 20.000000000000018,
+        "endErrorMs": 0,
+        "ms": 0.1265420000000006
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 33,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.022124999999988404
+      },
+      "melody": {
+        "notes": 1,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": null,
+        "endErrorMs": null,
+        "ms": 0.13837500000002478
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 31,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 79.99999999999996,
+        "ms": 0.022208000000006223
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 39.99999999999992,
+        "endErrorMs": 69.99999999999996,
+        "ms": 0.12191699999999628
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.02174999999999727
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.15441699999999514
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.021874999999994316
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": null,
+        "endErrorMs": null,
+        "ms": 0.5782910000000072
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.025249999999999773
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1559999999999775
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.02287499999999909
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3556250000000034
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.021791000000007443
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3443749999999852
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.043707999999980984
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.34454200000001833
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.02420799999998735
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.34495800000001964
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.023834000000022115
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.4299579999999992
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.038250000000005
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.8766660000000002
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.02545900000001211
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.14699999999999136
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.023541000000022905
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.14112499999998818
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.022208000000006223
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13970900000001052
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 47,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 20.000000000000018,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.02199999999999136
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 30.00000000000003,
+        "endErrorMs": 50.00000000000004,
+        "ms": 0.13945799999999053
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 49,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 39.99999999999992,
+        "ms": 0.024459000000007336
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.156833000000006
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": -1,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.02266700000001265
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 10.000000000000009,
+        "endErrorMs": 0,
+        "ms": 0.36991599999998925
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.022999999999996135
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 10.000000000000009,
+        "endErrorMs": 0,
+        "ms": 0.12941599999999198
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.023333000000008042
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13291699999999196
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 47,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 20.000000000000018,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.021791000000007443
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 30.00000000000003,
+        "endErrorMs": 50.00000000000004,
+        "ms": 0.14229199999999764
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.024291999999974223
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13962500000002365
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.023667000000017424
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.14024999999998045
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.024665999999996302
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1357500000000016
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.04220900000001393
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.746957999999978
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.028332999999975073
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.34200000000001296
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.023082999999985532
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3505000000000109
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05612500000000864
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.2847500000000025
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05449999999999022
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.2831250000000125
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.054667000000023336
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.2815829999999835
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.055415999999979704
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1078340000000253
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05333399999997823
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3276250000000118
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.0559159999999963
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.11299999999999955
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.0539579999999944
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1044170000000122
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.053792000000015605
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.09824999999997885
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05350000000001387
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.09770799999998303
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05324999999999136
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.10304100000001881
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05383399999999483
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12391600000000835
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05391699999998423
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.47991700000000037
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05712499999998499
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.10870800000000713
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.0742089999999962
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12487500000000296
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.054458000000011
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.10554199999998559
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05416600000000926
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3072919999999897
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.018167000000005373
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.27354199999999196
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.01762500000000955
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.26887499999998
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.017082999999985304
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.749291999999997
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.032583999999985735
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3263330000000053
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02870800000002305
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3072080000000028
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.0217089999999871
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13325000000000387
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02174999999999727
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12462500000000887
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.021500000000003183
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.11895799999999213
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020916999999997188
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1165420000000097
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020832999999981894
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3949580000000026
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022375000000010914
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.11462499999998954
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.023333000000008042
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.11112499999998704
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.029124999999993406
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.18933300000000486
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022999999999996135
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.11249999999998295
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.035333000000008496
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1363749999999868
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.0216660000000104
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.11979199999998968
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.021666999999979453
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.29808300000001964
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022124999999988404
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3113749999999982
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.021208000000001448
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.32945799999998826
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.021666999999979453
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3125830000000178
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022957999999988488
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.37479200000001356
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02266700000001265
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3406659999999988
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022958999999985963
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.34541600000000017
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02266700000001265
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.16608299999998621
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.20341600000000426
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.14391699999998764
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02375000000000682
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13891699999999219
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.02241700000001856
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12749999999999773
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.021457999999995536
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.14595799999997894
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022749999999973625
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12854200000001015
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022666000000015174
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.14816700000000083
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.021707999999989624
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1384999999999934
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.8650420000000167
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13749999999998863
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.30433400000001143
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13679099999998812
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.16366700000000378
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13087500000000318
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1962919999999997
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13133300000001213
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.21450000000001523
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.32637499999998454
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.18137500000000273
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3150420000000054
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.2144580000000076
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.7195419999999899
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.2562080000000151
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3760000000000048
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.03108299999999531
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.44991699999999923
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.05662499999999682
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3323750000000132
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.050249999999977035
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12920800000000554
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020833000000010315
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12891700000000128
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.04895799999999895
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.14887500000000387
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.22220799999999485
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13800000000000523
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.021500000000003183
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12841600000001563
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.050749999999993634
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12433300000000713
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.050459000000017795
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13758299999997803
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020625000000023874
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.11958299999997735
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.04958300000001259
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.11912499999999682
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.04979200000002493
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12758299999998712
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.021250000000009095
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.15037499999999682
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.048459000000008245
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12808300000000372
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.06954200000001265
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.32483300000001236
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.020458999999988237
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3467500000000143
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.3,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.03670799999997598
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.31125000000000114
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.07012499999999022
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3500829999999837
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.06920800000000327
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.48775000000000546
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.04804100000001199
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.34166700000000105
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.0609579999999994
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13100000000000023
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.04866599999999721
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.12924999999998477
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.04754199999999287
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1304580000000044
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 31,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 79.99999999999996,
+        "ms": 0.046999999999997044
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 39.99999999999992,
+        "endErrorMs": 69.99999999999996,
+        "ms": 0.12191699999999628
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.048042000000009466
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 10.000000000000009,
+        "ms": 0.12195800000000645
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.06066699999999514
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 20.000000000000018,
+        "endErrorMs": 0,
+        "ms": 0.41312500000000796
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.04800000000000182
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 20.000000000000018,
+        "endErrorMs": 0,
+        "ms": 0.12683400000000233
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 33,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.08104100000002745
+      },
+      "melody": {
+        "notes": 1,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": null,
+        "endErrorMs": null,
+        "ms": 0.12687499999998408
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 31,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 79.99999999999996,
+        "ms": 0.047167000000001735
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 39.99999999999992,
+        "endErrorMs": 69.99999999999996,
+        "ms": 0.14495800000000258
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.046582999999998265
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.13395900000000438
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.06591599999998721
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": null,
+        "endErrorMs": null,
+        "ms": 0.13279199999999491
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.022249999999985448
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.5515410000000145
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 0,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.02141600000001631
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.33287500000000136
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 35,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.020666999999974678
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3190830000000062
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 4,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 34,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 0,
+        "ms": 0.02083399999997937
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3327500000000043
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.022582999999997355
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.33199999999999363
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022582999999997355
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.42987499999998136
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.021917000000001963
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3377079999999921
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.02158299999999258
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.15729200000001242
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.03699999999997772
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.19537500000001273
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.03262499999999591
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.19212500000000432
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 47,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 20.000000000000018,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.03366700000000833
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 30.00000000000003,
+        "endErrorMs": 50.00000000000004,
+        "ms": 0.18233299999999986
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 49,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 39.99999999999992,
+        "ms": 0.03300000000001546
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 49.999999999999936,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.1799999999999784
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": -1,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.24191700000000083
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 10.000000000000009,
+        "endErrorMs": 0,
+        "ms": 0.18016599999998562
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.03391700000000242
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 10.000000000000009,
+        "endErrorMs": 0,
+        "ms": 0.1792079999999885
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.033084000000002334
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.7315830000000005
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 47,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 20.000000000000018,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.022209000000003698
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 1,
+        "shortRetained": true,
+        "onsetErrorMs": 30.00000000000003,
+        "endErrorMs": 50.00000000000004,
+        "ms": 0.1337079999999844
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.023041000000006306
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1419170000000065
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.022540999999989708
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1385840000000087
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 2,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.021250000000009095
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.1560000000000059
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 0,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.02199999999999136
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.3273330000000101
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 1.5707963267948966,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.023083999999983007
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.317875000000015
+      }
+    },
+    {
+      "kind": "known-frames",
+      "depth": 0.7,
+      "speed": 6,
+      "phase": 3.141592653589793,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 50,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": 19.999999999999908,
+        "endErrorMs": 40.000000000000036,
+        "ms": 0.03320799999997348
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 0,
+        "endErrorMs": 0,
+        "ms": 0.39400000000000546
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 14.999999999999902,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.22612500000002456
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 5.000000000000004,
+        "endErrorMs": 5.000000000000004,
+        "ms": 0.9321249999999281
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0.3,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.16291599999999562
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 14.999999999999902,
+        "endErrorMs": 15.000000000000014,
+        "ms": 1.049167000000125
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0.7,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 25.00000000000002,
+        "ms": 0.17183399999998983
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.37212499999986903
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 2,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": null,
+        "endErrorMs": null,
+        "ms": 0.23066599999992832
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.5386250000001382
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0.3,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 2,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": null,
+        "endErrorMs": null,
+        "ms": 0.22733299999981682
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.7274999999999636
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0.7,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 4,
+        "exactSequence": false,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.1924999999996544
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 5.000000000000004,
+        "ms": 0.25062500000012733
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 14.999999999999902,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.2007090000001881
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 5.000000000000004,
+        "endErrorMs": 5.000000000000004,
+        "ms": 0.22941599999967366
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0.3,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 25.00000000000002,
+        "ms": 0.3675829999992857
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 14.999999999999902,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.29470800000035524
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0.7,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 25.00000000000002,
+        "ms": 0.11766699999952834
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.7047499999998763
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.09437499999967258
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.6794589999999516
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0.3,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.13479199999983393
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.638875000000553
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 44100,
+      "depth": 0.7,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 4,
+        "exactSequence": false,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.06345899999996618
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 2.1622910000005504
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 14.999999999999902,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.0889580000002752
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 5.000000000000004,
+        "endErrorMs": 5.000000000000004,
+        "ms": 0.20141700000021956
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0.3,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.08975000000009459
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 14.999999999999902,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.20545799999945302
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0.7,
+      "center": 46,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 25.00000000000002,
+        "ms": 0.0634169999993901
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.245375000000422
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 2,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": null,
+        "endErrorMs": null,
+        "ms": 0.09545799999978044
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.44904200000019046
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0.3,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 2,
+        "exactSequence": false,
+        "wrongCenters": 1,
+        "shortRetained": false,
+        "onsetErrorMs": null,
+        "endErrorMs": null,
+        "ms": 0.08812500000021828
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.44929099999899336
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0.7,
+      "center": 46,
+      "step": 12,
+      "legacy": {
+        "notes": 4,
+        "exactSequence": false,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.07016699999985576
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 5.000000000000004,
+        "ms": 0.17149999999855936
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 14.999999999999902,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.11958299999969313
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 5.000000000000004,
+        "endErrorMs": 5.000000000000004,
+        "ms": 0.2932920000002923
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0.3,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 25.00000000000002,
+        "ms": 0.0779579999998532
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 14.999999999999902,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.21691699999973935
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0.7,
+      "center": 60,
+      "step": 1,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 25.00000000000002,
+        "ms": 0.07295799999883457
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 24.99999999999991,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.21387500000128057
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.08883299999979499
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.6224999999994907
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0.3,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.08279099999890605
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.6896250000008877
+      }
+    },
+    {
+      "kind": "synthetic-pcm",
+      "sr": 48000,
+      "depth": 0.7,
+      "center": 60,
+      "step": 12,
+      "legacy": {
+        "notes": 4,
+        "exactSequence": false,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.06599999999889405
+      },
+      "melody": {
+        "notes": 3,
+        "exactSequence": true,
+        "wrongCenters": 0,
+        "shortRetained": true,
+        "onsetErrorMs": 34.99999999999992,
+        "endErrorMs": 15.000000000000014,
+        "ms": 0.22920800000065356
+      }
+    }
+  ]
+}

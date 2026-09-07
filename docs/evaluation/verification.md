@@ -82,4 +82,6 @@ Docker Chromiumで撮影した画像を実際に目視確認。375×812の録音
 
 ## 後続変更について
 
+鼻歌の音符推定と同じ譜面からのピアノ再生は [melody-verification.md](melody-verification.md) に比較・回帰・実録音・未達事項を分けて記録します。
+
 本書はリニューアルPR #14の検証記録です。同PRは後続のユーザー承認でマージ・自動公開済みですが、実声精度・実機確認等の未完了条件は継続しています。追加の楽譜・固定ド表示は [score-verification.md](score-verification.md) に分けて記録します。
