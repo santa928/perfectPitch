@@ -1,4 +1,4 @@
-import { detectYin, type Detection } from './detectors.ts'
+import { detectYin, type Detection, type YinCandidate } from './detectors.ts'
 export type AnalysisMode = 'song' | 'speech'
 export type PitchFrame = {
   t: number
@@ -25,9 +25,11 @@ export class PitchAnalyzer {
   private quietRms: number[] = []
   private ended = false
   private previousDetection: Detection | null = null
+  private readonly onEvidence?: (frame: PitchFrame, candidates: YinCandidate[]) => void
 
   /** Configure a fresh recording. Calibration occupies the first 300 ms of PCM. */
-  constructor(sampleRate: number, mode: AnalysisMode) {
+  constructor(sampleRate: number, mode: AnalysisMode,
+    onEvidence?: (frame: PitchFrame, candidates: YinCandidate[]) => void) {
     if (
       !Number.isFinite(sampleRate) ||
       sampleRate < 8000 ||
@@ -36,6 +38,7 @@ export class PitchAnalyzer {
       throw new Error('Unsupported sample rate')
     this.sampleRate = sampleRate
     this.mode = mode
+    this.onEvidence = onEvidence
     this.buffer = new Float32Array(
       Math.round((sampleRate * ANALYSIS_SETTINGS[mode].windowMs) / 1000),
     )
@@ -68,9 +71,11 @@ export class PitchAnalyzer {
     let energy = 0
     for (const value of this.buffer) energy += value * value
     const rms = Math.sqrt(energy / this.buffer.length)
+    let candidates: YinCandidate[] = []
     const detection =
       rms > 0.0001
-        ? detectYin(this.buffer, this.sampleRate, this.previousDetection)
+        ? detectYin(this.buffer, this.sampleRate, this.previousDetection,
+          this.onEvidence ? values => { candidates = values } : undefined)
         : { frequency: null, periodicity: 0 }
     const t = (this.count - this.buffer.length / 2) / this.sampleRate
     let state: PitchFrame['state']
@@ -98,7 +103,7 @@ export class PitchAnalyzer {
     const frequency = state === 'voiced' ? detection.frequency : null
     // Only consecutive accepted frames provide context; never bridge gaps or recordings.
     this.previousDetection = frequency === null ? null : detection
-    return {
+    const frame: PitchFrame = {
       t,
       frequency,
       midi: frequency === null ? null : 69 + 12 * Math.log2(frequency / 440),
@@ -106,6 +111,8 @@ export class PitchAnalyzer {
       periodicity: detection.periodicity,
       state,
     }
+    this.onEvidence?.(frame, candidates)
+    return frame
   }
 }
 

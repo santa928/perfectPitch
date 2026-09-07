@@ -33,6 +33,7 @@ let duration = 0
 let cursor = 0
 let revision = 0
 let frameId = 0
+let analysisProgress = 0
 const ranges: Record<string, PitchRange> = {
   wide: { min: 33, max: 83 },
   low: { min: 33, max: 57 },
@@ -51,6 +52,13 @@ function status(message: string, error = false): void {
   ui.status.textContent = message
   ui.status.classList.toggle('error', error)
 }
+/** Display progress reported by the analysis worker; never simulate completion with a timer. */
+function showAnalysisProgress(progress: number): void {
+  if (phase !== 'analyzing' || !Number.isFinite(progress)) return
+  analysisProgress = Math.max(analysisProgress, Math.min(100, Math.floor(progress * 100)))
+  ui.phase.textContent = `分析中 ${analysisProgress}%`
+  status(`分析中です（${analysisProgress}%）。前後の音を確認しています。`)
+}
 /** 状態をネイティブの操作可否・ラベル・補助文へ同時に反映する。 */
 function sync(): void {
   const busy =
@@ -58,20 +66,24 @@ function sync(): void {
   const playing = phase === 'playing' || phase === 'loading'
   ui.record.disabled = phase === 'analyzing'
   ui.record.innerHTML =
-    phase === 'requesting'
-      ? 'キャンセル'
-      : phase === 'recording'
-        ? '■ 録音を止める'
-        : `<span aria-hidden="true">●</span> ${recording ? 'もう一度録音する' : '録音する'}`
+    phase === 'analyzing'
+      ? '分析中…'
+      : phase === 'requesting'
+        ? 'キャンセル'
+        : phase === 'recording'
+          ? '■ 録音を止める'
+          : `<span aria-hidden="true">●</span> ${recording ? 'もう一度録音する' : '録音する'}`
   ui.record.setAttribute(
     'aria-label',
-    phase === 'recording'
-      ? '録音を止める'
-      : phase === 'requesting'
-        ? 'マイク準備をキャンセル'
-        : recording
-          ? 'もう一度録音する'
-          : '録音する',
+    phase === 'analyzing'
+      ? '音声を分析中'
+      : phase === 'recording'
+        ? '録音を止める'
+        : phase === 'requesting'
+          ? 'マイク準備をキャンセル'
+          : recording
+            ? 'もう一度録音する'
+            : '録音する',
   )
   ui.modes.forEach((input) => {
     input.disabled = busy || playing
@@ -101,11 +113,12 @@ function sync(): void {
     idle: '録音前',
     requesting: 'マイク準備',
     recording: '録音中・暫定',
-    analyzing: '再解析中',
+    analyzing: `分析中 ${analysisProgress}%`,
     ready: '録音済み',
     loading: '音源読込中',
     playing: '再生中',
   }[phase]
+  ui.canvas.setAttribute('aria-busy', String(phase === 'analyzing'))
   ui.duration.textContent = `${formatTime(duration)} / 1:00`
   ui.pitchHelp.textContent =
     pitchMode === 'continuous'
@@ -178,6 +191,9 @@ async function startRecording(): Promise<void> {
     onFrames: (next) => {
       if (capture === session && phase === 'recording') frames.push(...next)
     },
+    onAnalysisProgress: (progress) => {
+      if (capture === session) showAnalysisProgress(progress)
+    },
     onDuration: (seconds) => {
       if (capture !== session || phase !== 'recording') return
       duration = seconds
@@ -249,8 +265,9 @@ async function finishRecording(
   const session = capture
   const token = ++revision
   phase = 'analyzing'
+  analysisProgress = 0
   cancelAnimationFrame(frameId)
-  status('元音声から音程を見直しています。')
+  status('分析中です。前後の音を確認してから、聴き比べられます。')
   sync()
   try {
     const result = await session.stop()
@@ -265,9 +282,12 @@ async function finishRecording(
       value === undefined ? '未報告' : value ? '有効' : '無効'
     ui.micSettings.textContent = `実際の入力: ${result.sampleRate} Hz / PCM mono。ノイズ抑制 ${setting(result.settings.noiseSuppression)}・エコー抑制 ${setting(result.settings.echoCancellation)}・自動音量 ${setting(result.settings.autoGainControl)}。ブラウザの報告値です。`
     status(
-      buildNotes(frames, mode, pitchMode, duration).length > 0
-        ? message
-        : '録音しましたがピアノにできる持続した音程が見つかりませんでした。元の声は再生できます。静かな場所で近くから録音してみてください。',
+      result.analysisError
+        ? `音程の分析に失敗しました。${result.analysisError} 元の声は再生できます。「元音声から再解析する」で再試行できます。`
+        : buildNotes(frames, mode, pitchMode, duration).length > 0
+          ? message
+          : '録音しましたがピアノにできる持続した音程が見つかりませんでした。元の声は再生できます。静かな場所で近くから録音してみてください。',
+      Boolean(result.analysisError),
     )
     sync()
   } catch (error) {
@@ -293,12 +313,15 @@ async function analyzeAgain(): Promise<void> {
   stopPlayback()
   const token = ++revision
   phase = 'analyzing'
-  status('保持している元音声を再解析しています。')
+  analysisProgress = 0
+  status('分析中です。保持している元音声から前後の音を確認しています。')
   sync()
   try {
-    const next = await reanalyze(recording.samples, recording.sampleRate, mode)
+    const next = await reanalyze(recording.samples, recording.sampleRate, mode,
+      progress => { if (token === revision) showAnalysisProgress(progress) })
     if (token !== revision) return
     recording.frames = next
+    delete recording.analysisError
     frames = next
     cursor = 0
     phase = 'ready'

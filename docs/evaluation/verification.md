@@ -1,6 +1,6 @@
 # 検証報告 — Issue #13
 
-以下は初版PR #14の検証記録。楽譜追加は [score-verification.md](score-verification.md)、倍音誤り・分断修正の現在の結果は [pitch-continuity.md](pitch-continuity.md) を参照。
+以下は初版PR #14の検証記録。楽譜追加は [score-verification.md](score-verification.md)、倍音誤り・分断修正は [pitch-continuity.md](pitch-continuity.md)、録音後の前後関係解析・分析待ちの最新評価は [offline-review.md](offline-review.md) を参照。
 
 このPRは全受け入れ条件を達成したリリースではない。実装・自動検証・限定した実録音評価までをレビュー可能にし、残る実機/精度/聴感評価を明示する。
 

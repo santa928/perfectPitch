@@ -320,6 +320,29 @@ test('stop returns capped PCM, applied settings and final worker reanalysis', as
   assert.ok(fixture.workers.every((worker) => worker.terminated))
 })
 
+test('a failed offline analysis preserves acknowledged PCM for original playback and retry', async () => {
+  const fixture = runtimeFixture(), progress: number[] = [], failures: CaptureError[] = []
+  const session = new CaptureSession('song', {
+    onAnalysisProgress: value => progress.push(value), onFailure: error => failures.push(error),
+  }, fixture.runtime)
+  await session.start()
+  fixture.workers[0].respondToReanalysis = false
+  const samples = Float32Array.from([.1, .2, .3])
+  fixture.node.port.emit({ type: 'samples', samples })
+  const stopping = session.stop()
+  await new Promise(resolve => setTimeout(resolve, 0))
+  fixture.workers[0].emit({ type: 'progress', progress: .4 })
+  fixture.workers[0].emit({ type: 'error', message: 'analysis failed' })
+  const result = await stopping
+  assert.deepEqual(result.samples, samples)
+  assert.deepEqual(result.frames, [])
+  assert.equal(result.analysisError, 'analysis failed')
+  assert.deepEqual(progress, [.4])
+  assert.deepEqual(failures, [])
+  assert.equal(fixture.track.stopCount, 1)
+  assert.ok(fixture.workers[0].terminated)
+})
+
 test('sample limit is the final worklet acknowledgement before auto-stop callback', async () => {
   let autoStops = 0
   const fixture = runtimeFixture()

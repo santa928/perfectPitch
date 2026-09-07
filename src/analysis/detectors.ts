@@ -5,6 +5,7 @@ export type Detection = {
   /** Context-assisted estimates cannot authorize another consecutive correction. */
   usedContinuity?: boolean
 }
+export type YinCandidate = { frequency: number; error: number }
 const MIN_HZ = 55
 const MAX_HZ = 1000
 
@@ -92,6 +93,7 @@ export function detectYin(
   input: Float32Array,
   sampleRate: number,
   previous: Detection | null = null,
+  onCandidates?: (candidates: YinCandidate[]) => void,
 ): Detection {
   const data = centered(input)
   const maxLag = Math.min(
@@ -112,6 +114,18 @@ export function detectYin(
     }
     sum += difference
     normalized[lag] = sum > 1e-15 ? (difference * lag) / sum : 1
+  }
+  // Offline review reuses this exact waveform computation; live calls allocate no bank.
+  if (onCandidates) {
+    const candidates: YinCandidate[] = []
+    for (let lag = minLag; lag < maxLag; lag++) {
+      if (normalized[lag] >= .15 || normalized[lag] > normalized[lag - 1] ||
+        normalized[lag] > normalized[lag + 1]) continue
+      const candidate = result(interpolate(normalized, lag), sampleRate, 1 - normalized[lag])
+      if (candidate.frequency !== null)
+        candidates.push({ frequency: candidate.frequency, error: normalized[lag] })
+    }
+    onCandidates(candidates)
   }
   let best = minLag
   for (let lag = minLag + 1; lag < maxLag; lag++)
