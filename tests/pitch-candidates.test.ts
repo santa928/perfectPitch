@@ -5,6 +5,40 @@ import { buildNotes } from '../src/analysis/notes.ts'
 import type { PitchFrame } from '../src/analysis/pipeline.ts'
 import { analyze } from '../src/analysis/pipeline.ts'
 
+/** 短い急落と本物の低音を、同じ前後の声に挟んで比較する。 */
+function lowExcursion(count: number, drop: number): PitchFrame[] {
+  return Array.from({ length: 40 + count }, (_, i) => {
+    const midi = 60.2 - (i >= 20 && i < 20 + count ? drop : 0)
+    return { t: i * .01, midi, frequency: 440 * 2 ** ((midi - 69) / 12), rms: .1, periodicity: .99, state: 'voiced' }
+  })
+}
+
+test('すぐ同じ声へ戻る10–20msの大きな急落をピアノへ発音しない', () => {
+  for (const count of [1, 2]) for (const drop of [12, 19, 24, 27]) {
+    const frames = lowExcursion(count, drop)
+    const before = structuredClone(frames)
+    for (const mode of ['song', 'speech'] as const) for (const pitchMode of ['continuous', 'rounded'] as const) {
+      const notes = buildNotes(frames, mode, pitchMode, 1)
+      assert.equal(notes.length, 1, `${count * 10}ms / ${drop} semitones / ${mode} / ${pitchMode}`)
+      assert.ok(notes[0].contour.every(point => point.midi >= 60))
+    }
+    assert.deepEqual(frames, before)
+  }
+})
+
+test('続く低音・短い小さな音程変化・休符を挟む低音は残す', () => {
+  for (const [count, drop] of [[3, 12], [4, 19], [6, 12], [10, 19], [2, 3]]) {
+    const notes = buildNotes(lowExcursion(count, drop), 'speech', 'continuous', 1)
+    assert.equal(notes.length, 3)
+    assert.ok(Math.abs(notes[1].midi - (60.2 - drop)) < .001)
+  }
+  const frames = lowExcursion(4, 19)
+  frames[19] = { ...frames[19], midi: null, frequency: null, state: 'unvoiced' }
+  const notes = buildNotes(frames, 'speech', 'continuous', 1)
+  assert.ok(notes.some(note => note.midi < 42))
+  assert.ok(notes[1].start > notes[0].end)
+})
+
 /** 弱い基音と強い第2倍音で、最初の谷だけを選ぶオクターブ誤りを再現する。 */
 function dominantSecond(hz: number, rate: number, phase: number, fundamental: number): Float32Array {
   return Float32Array.from({ length: Math.round(rate * .08) }, (_, i) => {

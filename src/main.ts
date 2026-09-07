@@ -5,6 +5,7 @@ import type { CaptureResult } from './audio/capture.ts'
 import { VoicePlayer } from './audio/player.ts'
 import type { AnalysisMode, PitchFrame } from './analysis/pipeline.ts'
 import { buildNotes } from './analysis/notes.ts'
+import { stabilizePitchFrames } from './analysis/continuity.ts'
 import type { PitchMode } from './analysis/notes.ts'
 import { mountView } from './ui/view.ts'
 import { drawTimeline, noteLabel } from './ui/timeline.ts'
@@ -137,9 +138,10 @@ function sync(): void {
 /** 軌跡の表示は解析データを読むだけで、記録を進めない。 */
 function draw(): void {
   const range = ranges[ui.range.value]
+  const displayFrames = stabilizePitchFrames(frames)
   drawTimeline(
     ui.canvas,
-    frames,
+    displayFrames,
     duration,
     cursor,
     range,
@@ -147,13 +149,13 @@ function draw(): void {
   )
   ui.position.textContent = formatTime(cursor)
   ui.seek.value = String(cursor)
-  const voiced = frames.filter(
+  const voiced = displayFrames.filter(
     (frame) => frame.state === 'voiced' && frame.midi !== null,
   )
   const current =
     phase === 'recording'
-      ? frames.at(-1)
-      : frames.find((frame) => frame.t >= cursor)
+      ? displayFrames.at(-1)
+      : displayFrames.find((frame) => frame.t >= cursor)
   if (current?.state === 'voiced' && current.midi !== null) {
     const cents = Math.round((current.midi - Math.round(current.midi)) * 100)
     ui.summary.textContent = `${noteLabel(current.midi)} ${cents >= 0 ? '+' : ''}${cents} cents${phase === 'recording' ? ' · 暫定' : ''}`

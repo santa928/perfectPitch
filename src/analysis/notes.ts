@@ -1,4 +1,5 @@
 import type { AnalysisMode, PitchFrame } from './pipeline.ts'
+import { stabilizePitchFrames } from './continuity.ts'
 export type PitchMode = 'continuous' | 'rounded'
 export type PianoNote = {
   start: number
@@ -74,7 +75,7 @@ export function buildNotes(
   const notes: PianoNote[] = []
   const hop =
     frames.length > 1 ? Math.min(0.04, frames[1].t - frames[0].t) : 0.01
-  const pitches = playbackPitches(frames, hop)
+  const pitches = playbackPitches(stabilizePitchFrames(frames), hop)
   let current: PianoNote | null = null
   let lastPitch: number | null = null
   /** Close at the frame boundary so silence never becomes a sustained piano note. */
