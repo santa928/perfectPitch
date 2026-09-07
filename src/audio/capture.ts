@@ -4,7 +4,7 @@ import type { AnalysisMode, PitchFrame } from '../analysis/pipeline.ts'
 const MAX_CAPTURE_SECONDS = 60
 const WORKLET_CHUNK_SIZE = 1024
 const STOP_ACK_TIMEOUT_MS = 1000
-const ANALYSIS_TIMEOUT_MS = 15000
+const ANALYSIS_TIMEOUT_MS = 60000
 
 export type CaptureErrorCode =
   | 'unsupported'
@@ -21,6 +21,7 @@ export type CaptureCallbacks = {
   onDuration?(seconds: number): void
   onFailure?(error: CaptureError): void
   onAutoStop?(): void
+  onAnalysisProgress?(progress: number): void
 }
 
 export type CaptureResult = {
@@ -28,7 +29,13 @@ export type CaptureResult = {
   sampleRate: number
   frames: PitchFrame[]
   settings: MediaTrackSettings
+  /** PCM is complete, but derived pitch data must be retried. */
+  analysisError?: string
+  /** ファイル入力では冒頭の校正待ちを作らない。マイク録音は既定true。 */
+  calibrate?: boolean
 }
+
+export type ReanalysisOptions = { calibrate?: boolean; signal?: AbortSignal }
 
 /** ブラウザ境界を差し替え可能にする CaptureSession の実行環境。 */
 export type CaptureRuntime = {
@@ -47,6 +54,7 @@ export type CaptureRuntime = {
 type WorkerOutput =
   | { type: 'frames'; frames: PitchFrame[] }
   | { type: 'done'; frames: PitchFrame[] }
+  | { type: 'progress'; progress: number }
   | { type: 'error'; message: string }
 
 type WorkletOutput =
@@ -91,7 +99,10 @@ export async function reanalyze(
   samples: Float32Array,
   sampleRate: number,
   mode: AnalysisMode,
+  onProgress?: (progress: number) => void,
+  options: ReanalysisOptions = {},
 ): Promise<PitchFrame[]> {
+  if (options.signal?.aborted) throw new CaptureError('cancelled', '音声の分析を中止しました。')
   if (typeof Worker === 'undefined') {
     throw new CaptureError(
       'unsupported',
@@ -100,7 +111,7 @@ export async function reanalyze(
   }
   const worker = createBrowserWorker()
   try {
-    return await analyzeWithWorker(worker, samples, sampleRate, mode)
+    return await analyzeWithWorker(worker, samples, sampleRate, mode, undefined, onProgress, options)
   } finally {
     worker.terminate()
   }
@@ -314,15 +325,21 @@ export class CaptureSession {
       'worker',
       event.message || '音程解析 Worker でエラーが発生しました。',
     )
+    const reviewing = this.reanalysisReject !== null
     this.reanalysisReject?.(error)
     this.clearReanalysisCallbacks()
-    this.failAndStop(error)
+    if (!reviewing) this.failAndStop(error)
   }
 
   private readonly handleWorkerMessage = (
     event: MessageEvent<WorkerOutput>,
   ): void => {
     const message = event.data
+    if (message.type === 'progress') {
+      if (this.reanalysisResolve)
+        callSafely(() => this.callbacks.onAnalysisProgress?.(message.progress))
+      return
+    }
     if (message.type === 'frames') {
       callSafely(() => this.callbacks.onFrames?.(message.frames))
       return
@@ -334,9 +351,10 @@ export class CaptureSession {
     }
     if (message.type === 'error') {
       const error = new CaptureError('worker', message.message)
+      const reviewing = this.reanalysisReject !== null
       this.reanalysisReject?.(error)
       this.clearReanalysisCallbacks()
-      this.failAndStop(error)
+      if (!reviewing) this.failAndStop(error)
     }
   }
 
@@ -394,15 +412,22 @@ export class CaptureSession {
       const samples = joinChunks(this.chunks, this.totalSamples)
       this.stopTrackAndAudioGraph()
       if (this.terminalError) throw this.terminalError
-      const frames = this.worker
-        ? await analyzeWithWorker(
+      let frames: PitchFrame[] = []
+      let analysisError: string | undefined
+      try {
+        if (this.worker) {
+          frames = await analyzeWithWorker(
             this.worker,
             samples,
             this.sampleRate,
             this.mode,
             this.setReanalysisCallbacks,
           )
-        : []
+        }
+      } catch (error) {
+        if (error instanceof CaptureError && error.code === 'cancelled') throw error
+        analysisError = error instanceof Error ? error.message : '音程を分析できませんでした。'
+      }
       if (generation !== this.generation)
         throw new CaptureError(
           'cancelled',
@@ -413,6 +438,7 @@ export class CaptureSession {
         sampleRate: this.sampleRate,
         frames,
         settings: { ...this.settings },
+        ...(analysisError ? { analysisError } : {}),
       }
       this.result = result
       this.state = 'stopped'
@@ -544,6 +570,8 @@ function analyzeWithWorker(
     resolve: (frames: PitchFrame[]) => void,
     reject: (error: CaptureError) => void,
   ) => void,
+  onProgress?: (progress: number) => void,
+  options: ReanalysisOptions = {},
 ): Promise<PitchFrame[]> {
   return new Promise<PitchFrame[]>((resolve, reject) => {
     let settled = false
@@ -556,20 +584,28 @@ function analyzeWithWorker(
       if (settled) return
       settled = true
       globalThis.clearTimeout(timeout)
+      options.signal?.removeEventListener('abort', abort)
       resolve(frames)
     }
     const settleReject = (error: CaptureError): void => {
       if (settled) return
       settled = true
       globalThis.clearTimeout(timeout)
+      options.signal?.removeEventListener('abort', abort)
       reject(error)
     }
+    const abort = (): void => settleReject(new CaptureError('cancelled', '音声の分析を中止しました。'))
+    options.signal?.addEventListener('abort', abort, { once: true })
+    if (options.signal?.aborted) { abort(); return }
     if (installCallbacks) {
       installCallbacks(settleResolve, settleReject)
     } else {
       worker.onmessage = (event: MessageEvent<WorkerOutput>): void => {
         if (event.data.type === 'done') settleResolve(event.data.frames)
-        else if (event.data.type === 'error')
+        else if (event.data.type === 'progress' && !settled) {
+          const progress = event.data.progress
+          callSafely(() => onProgress?.(progress))
+        } else if (event.data.type === 'error')
           settleReject(new CaptureError('worker', event.data.message))
       }
       worker.onerror = (event: ErrorEvent): void => {
@@ -582,9 +618,11 @@ function analyzeWithWorker(
       }
     }
     const copy = samples.slice()
-    worker.postMessage({ type: 'reanalyze', samples: copy, sampleRate, mode }, [
-      copy.buffer,
-    ])
+    try {
+      worker.postMessage({ type: 'reanalyze', samples: copy, sampleRate, mode, calibrate: options.calibrate }, [copy.buffer])
+    } catch (error) {
+      settleReject(new CaptureError('worker', '解析を開始できませんでした。', { cause: error }))
+    }
   })
 }
 

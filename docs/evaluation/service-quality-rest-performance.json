@@ -1,0 +1,232 @@
+{
+  "schema": 1,
+  "date": "2026-09-07T13:49:33.369Z",
+  "mode": "performance",
+  "sourceHashes": {
+    "src/analysis/detectors.ts": "a2efbef9252544fd7ac1122bffbc023e9de349e9eda6e17858327e53712e7a1b",
+    "src/analysis/melody.ts": "fd8ff08dda6dc4cfe915bd498694699304121689971e3d6ed9e5674cad68c87a",
+    "src/analysis/model-notes.ts": "fed039e5e389893c22e4cf4ff57ad978659a6550ee91b06abfebf89c7c1c45bc",
+    "src/analysis/notes.ts": "896e2aacb07c8cb93a62859c90b3dcb098461ded371f00d7fa44019a78be84d2",
+    "src/analysis/offline.ts": "9de88c7a58fb39601f09cd927101e32ca7f7b9b1b0bae26a6d5a8d20299227e6",
+    "src/analysis/pipeline.ts": "9d32d33a32e2dfe82973a695c414ee4e4d47a016a9ac82c6ba019439526685ce",
+    "src/audio/analysis-worker.ts": "0ddb0e39e1ae3f40f5ca5b7b7aefe94993ab4735617fe2933f59cbf8c0366204",
+    "src/audio/capture-worklet.js": "0d96446f90dbd3e7d0713daf267b8cd7a99c20f8be46e199e6e34ea817020f9b",
+    "src/audio/capture.ts": "1d95202a5f718e488f236772bee3b65b6c5bf89c6d3dbe121828998fb407fea7",
+    "src/audio/import.ts": "7123992b8aa338a19ebb9f66be185b68ad52d2e16bf209f88c31107235c7bd3f",
+    "src/audio/piano-voice.ts": "58ec7871cdcb7d93c2d456ccbc0a9373d6053c1c53663eb5235de162bab1c5fe",
+    "src/audio/playback-model.ts": "3d76bed14ff3a45f9c7de1ca679b31ad9820f5ec852da53cd55603d832ab341e",
+    "src/audio/player.ts": "60964b824ff83ac38f3f82112f40383b6455a210c3e839fd2cb023281c449dcd",
+    "src/audio/transcription-worker.ts": "81db461d8aedf166fd9c98b9d8886c489fb8f6dd2b4f867c8be135ef73a584ac",
+    "src/audio/transcription.ts": "d0a332e892cf8304ab031bc2d000dc262e4b524fcc4e45016e0bf224b0eb1198",
+    "src/counter.ts": "7580ce935ad5fd8f5598ee53533fbddbd5d34e5aaf6cfbb7f81f3ef1969bf4e3",
+    "src/main.ts": "2fffaadb91fcc59fb6370103856777bc073175b2d9ada1c6eb42fa3beb8cf189",
+    "src/notation/midi.ts": "dc93e66056e03636652980acc7d7255bfe677ef2ef31d0470a5a5c51584d2531",
+    "src/notation/score-editor.ts": "16f2a76ccb062c5fec3ba72227cba438c460856993133587c0892b338167f60e",
+    "src/notation/score-playback.ts": "35211fb451d3b3b7461af12c40a8615def08c8ace1dd39fa350d9e1bceb91255",
+    "src/notation/score.ts": "87b834a34419c08d24d0ac8de074d7a5e5b30fdd2e0a00ebd0216011dd9432a2",
+    "src/style.css": "d91629f6bd6d5b7416f61119e7a5c1500e00f8ea310153739231389f5dbd0235",
+    "src/typescript.svg": "f6ead1af17acc3f55ad857f3bc936df8754281e2932c1b472dbb9b36ab873f1c",
+    "src/ui/score-editor-panel.ts": "deffd6a22dccbe9f83e6918115d73d253c75a3c9cd215aff02cf792cf93731f3",
+    "src/ui/score-panel.ts": "114b069aa83552f60b64297453eb46ef620fcc53a5b5d2de409094a1b22943b6",
+    "src/ui/score-renderer.ts": "2fd4fa20cdb77ddd0f1fcb6349e6d8d805477f6da980305061600b2adb16c76e",
+    "src/ui/timeline.ts": "44f738c0da49465c9cb510bf8821d24ed6becd1ab323ea545b5e7ec684303104",
+    "src/ui/transcription-panel.ts": "0049890995189279df153307cc15e4a1a8331ef9c4979e959c784cf78042d4e3",
+    "src/ui/view.ts": "d4f921c264ce29ad70b95e2c2a4af4c0f9b338135beb8eabc148b70b5eaed589",
+    "dist/assets/analysis-worker-DdZypqZv.js": "71f40220616ec4603958cf6068ecb2a5938f23beb267f13d61d671aa8e14a97f",
+    "dist/assets/index-DJf-XKKq.css": "496d64c3ccd6c3b6ad44c0ad2386d4177de1404adb4e40d9b832842fc297b49d",
+    "dist/assets/index-DsRWS89e.js": "24f0044ea61e3cd56ee7f96407d52c8fc33d33591ec72c87e689f67e626c3835",
+    "dist/assets/score-renderer-B5d9Xt-m.js": "7f11991b312b0a1dde798ecd29900090aa0d58f634d2cc801c0cb18f4ed4c5c8",
+    "dist/assets/transcription-worker-Qt-8f6cF.js": "afe91543b6eb06d5ad4e9c42c05d7b15111c6b3f90a6455e14cdaecb336debe5",
+    "dist/index.html": "dcb001f5cfe33b41c794559e4830514d1acc3e3ba6ba28658f64010940d9a1c7",
+    "dist/licenses/Academico.txt": "da623fe9d67fd535caf746690c6678cda62ce23b44cf23453b2d71f3e6961720",
+    "dist/licenses/BasicPitch-NOTICE.txt": "b810e55c0e3b520fabb45fc2ccc74880187bf84e309971968541cc812dcde905",
+    "dist/licenses/BasicPitch-PROVENANCE.txt": "8ce9033f90cb663fd80b440bc8dba2f83586326ac9f89dfe5b096d1584ea19d2",
+    "dist/licenses/BasicPitch.txt": "929c910bae2152fa87199a5d0660e09263419b7eee6d4b301d05ee2aaf211c37",
+    "dist/licenses/Bravura.txt": "eaf7e8faffbe4e404fc19e625c89cef03992dc736051ae7e2fefe205cd6c93db",
+    "dist/licenses/ONNXRuntime-PROVENANCE.txt": "af065e44a5d0c9c2163167c7407ff27a30a8068ef66ef81b86f4126225d76e84",
+    "dist/licenses/ONNXRuntime-ThirdPartyNotices.txt": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3",
+    "dist/licenses/ONNXRuntime.txt": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+    "dist/licenses/VexFlow.txt": "5522a52057a68b081dd3e06a878584b565c6a3f7e7ddb154dd24f25b5630216f",
+    "dist/models/basic-pitch.onnx": "2c3c1d144bfa61ad236e92e169c13535c880469a12a047d4e73451f2c059a0ec",
+    "dist/runtime/ort-wasm-simd-threaded.mjs": "5a15f1fd086b3f6c2baf1f35105b8f502653b567e165cef80028870b39748747",
+    "dist/runtime/ort-wasm-simd-threaded.wasm": "ec8580a9d7b9476ceee52e10a7f94124e4dc71a019d666ed6d4726697c109a4d",
+    "dist/runtime/ort.wasm.min.mjs": "14a0a63ad1a0fe8127722929fd16fb26c2e5352ea221bc9034d12daf314d0b92",
+    "dist/vite.svg": "4a748afd443918bb16591c834c401dae33e87861ab5dbad0811c3a3b4a9214fb",
+    "package-lock.json": "d737284471feda615ec30c9eb29e326155d39011c6fa13404962d1bfb907c5c9"
+  },
+  "build": "Separate minified harness compiling unchanged production APIs and workers",
+  "conditions": {
+    "parallelWork": "No other test/browser analysis running; documentation-only work during measurement",
+    "cold": "New browser context/page and first API call for each duration; HTTP assets served on localhost",
+    "warm": "Second call in same page/context; each production call still creates/releases a fresh Worker and ONNX session. A fully warm HTTP/WASM cache is not claimed.",
+    "transfer": "Localhost without bandwidth emulation; initial transfer time is not production-network performance",
+    "modelRuntime": "onnxruntime-web1.29.0 wasm CPU numThreads1",
+    "samples": "Deterministic harmonic scale; no real-voice quality claim",
+    "timing": "performance.now; one cold and one warm per length; no statistical confidence interval",
+    "render": "960x260 timeline; first up to4 measures (production page size); render completion and two-RAF paint opportunity separated",
+    "memory": "Not measured; Worker constructor/terminate counts do not prove complete WASM/native memory reclamation",
+    "webkit": "Playwright WebKit on Linux Docker, not Safari or an iPhone device",
+    "pianoSoundfontAllowedGet": "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3.js"
+  },
+  "rows": [
+    {
+      "cache": "cold",
+      "duration": 60,
+      "sampleRate": 48000,
+      "pcmSamples": 2880000,
+      "pcmSha256": "beba0da3ce9f74f0921de7216b4858270052a8b44595428d59d6f04c2cb01881",
+      "pcmUnchanged": true,
+      "yinMilliseconds": 23615.90000000596,
+      "extractionMilliseconds": 7.799999997019768,
+      "modelMilliseconds": 3445.0999999940395,
+      "modelProgressMilestones": [
+        {
+          "stage": "loading",
+          "elapsedMilliseconds": 113.29999999701977
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.027255735431551655,
+          "elapsedMilliseconds": 620.9000000059605
+        },
+        {
+          "stage": "notes",
+          "elapsedMilliseconds": 3251.4000000059605
+        }
+      ],
+      "timelineMilliseconds": 11.200000002980232,
+      "timelinePaintOpportunityMilliseconds": 3.2999999970197678,
+      "rendererModuleMilliseconds": 51.30000001192093,
+      "yinDelivery": {
+        "notes": 120,
+        "scoreNotes": 120,
+        "measures": 30,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0.3999999910593033,
+        "scoreToPianoMilliseconds": 0.29999999701976776,
+        "renderMeasuresMilliseconds": 41.5,
+        "renderPaintOpportunityMilliseconds": 2
+      },
+      "modelDelivery": {
+        "notes": 120,
+        "scoreNotes": 120,
+        "measures": 30,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0.20000000298023224,
+        "scoreToPianoMilliseconds": 0,
+        "renderMeasuresMilliseconds": 9.100000008940697,
+        "renderPaintOpportunityMilliseconds": 15.5
+      },
+      "workerObservation": {
+        "created": 2,
+        "terminated": 2,
+        "active": 0
+      },
+      "memory": {
+        "measured": false,
+        "reason": "No reliable full Worker/WASM/process memory measurement collected"
+      },
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10,
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "devicePixelRatio": 1
+      },
+      "modelNetwork": [
+        {
+          "path": "/perfectPitch/runtime/ort.wasm.min.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 475,
+            "responseBodySize": 16214,
+            "responseHeadersSize": 355
+          },
+          "timing": {
+            "startTime": 1788788997475.054,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.164,
+            "responseStart": 3.001,
+            "responseEnd": 3.903
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 470,
+            "responseBodySize": 9131,
+            "responseHeadersSize": 355
+          },
+          "timing": {
+            "startTime": 1788788997483.665,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.134,
+            "responseStart": 2.099,
+            "responseEnd": 3.056
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.wasm",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 453,
+            "responseBodySize": 13961845,
+            "responseHeadersSize": 280
+          },
+          "timing": {
+            "startTime": 1788788997490,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.135,
+            "responseStart": 3.063,
+            "responseEnd": 46.491
+          }
+        },
+        {
+          "path": "/perfectPitch/models/basic-pitch.onnx",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 441,
+            "responseBodySize": 112167,
+            "responseHeadersSize": 288
+          },
+          "timing": {
+            "startTime": 1788788997645.163,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.187,
+            "responseStart": 3.689,
+            "responseEnd": 9.529
+          }
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "sourceUnchanged": true,
+  "completedAt": "2026-09-07T13:50:01.070Z"
+}

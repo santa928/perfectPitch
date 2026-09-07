@@ -8,6 +8,7 @@ import {
   type PitchFrame,
 } from '../src/analysis/pipeline.ts'
 import { buildNotes } from '../src/analysis/notes.ts'
+import { analyzeOffline } from '../src/analysis/offline.ts'
 import { autoCorrelate } from '../tests/fixtures/legacy-detector.ts'
 
 type Wav = { samples: Float32Array; sampleRate: number; duration: number }
@@ -265,12 +266,14 @@ function summarize(
 }
 
 const started = performance.now()
+const offlineReview = process.argv.includes('--offline')
+const evaluate = offlineReview ? analyzeOffline : analyze
 const results = fixtures.map((fixture) => {
   const path = join('tests/fixtures/downloads', fixture.filename)
   const wav = readPcm24MonoWav(path)
   const prepared = withCalibrationSilence(wav.samples, wav.sampleRate)
-  const preparedFrames = analyze(prepared, wav.sampleRate, fixture.mode)
-  const unmodifiedFrames = analyze(wav.samples, wav.sampleRate, fixture.mode)
+  const preparedFrames = evaluate(prepared, wav.sampleRate, fixture.mode)
+  const unmodifiedFrames = evaluate(wav.samples, wav.sampleRate, fixture.mode)
   return {
     ...fixture,
     path,
@@ -296,6 +299,7 @@ const results = fixtures.map((fixture) => {
 })
 
 const output = {
+  analysis: offlineReview ? 'offline-future-evidence' : 'causal-live',
   date: new Date().toISOString(),
   environment: {
     node: process.version,
@@ -320,7 +324,7 @@ const output = {
 }
 
 writeFileSync(
-  process.argv[2] ?? 'docs/evaluation/real-audio-results.json',
+  process.argv.slice(2).find(argument => argument !== '--offline') ?? 'docs/evaluation/real-audio-results.json',
   `${JSON.stringify(output, null, 2)}\n`,
 )
 for (const result of results) {

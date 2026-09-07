@@ -96,13 +96,22 @@ export class VoicePlayer {
     return task
   }
 
-  /** 原音または音符を再生。読み込み中の停止・切替を世代番号で無効化する。 */
+  /**
+   * 原音または音符を再生。音符のみ別の譜面長を指定でき、原音は常にPCM長を使う。
+   * 読み込み中の停止・切替を世代番号で無効化し、位置と終了を同じ長さで管理する。
+   */
   async play(
     pcm: Float32Array,
     sampleRate: number,
     notes: PianoNote[] | null,
     offset = 0,
+    playbackDuration?: number,
   ): Promise<boolean> {
+    const duration = notes !== null && playbackDuration !== undefined
+      ? playbackDuration : pcm.length / sampleRate
+    // ブラウザのsetTimeoutが32bit範囲を超えて即終了する値を拒否する。
+    if (!Number.isFinite(duration) || duration < 0 || duration > 2_147_483 || !Number.isFinite(offset))
+      throw new RangeError('再生時間と開始位置に有効な秒数を指定してください。')
     this.stop()
     const generation = this.generation
     try {
@@ -122,7 +131,7 @@ export class VoicePlayer {
       this.onInterrupted()
       return false
     }
-    this.duration = pcm.length / sampleRate
+    this.duration = duration
     this.offset = Math.max(0, Math.min(offset, this.duration))
     this.startedAt = context.currentTime + 0.04
     try {

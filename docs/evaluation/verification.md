@@ -1,6 +1,6 @@
 # 検証報告 — Issue #13
 
-以下は初版PR #14の検証記録。楽譜追加は [score-verification.md](score-verification.md)、倍音誤り・分断修正の現在の結果は [pitch-continuity.md](pitch-continuity.md) を参照。
+以下は初版PR #14の検証記録。楽譜追加は [score-verification.md](score-verification.md)、倍音誤り・分断修正は [pitch-continuity.md](pitch-continuity.md)、録音後の前後関係解析・分析待ちの最新評価は [offline-review.md](offline-review.md) を参照。
 
 このPRは全受け入れ条件を達成したリリースではない。実装・自動検証・限定した実録音評価までをレビュー可能にし、残る実機/精度/聴感評価を明示する。
 
@@ -81,5 +81,7 @@ Docker Chromiumで撮影した画像を実際に目視確認。375×812の録音
 最終本番Artifactもローカルpreviewで確認: `TEST_PREVIEW=1 playwright test tests/browser/studio.spec.ts -g 音源失敗` 1/1成功。`/perfectPitch/`下のWorklet/Workerロード、録音→停止→音源失敗→再試行→ピアノ→再録音を通過。GitHub Pagesの公開URLは未実行。
 
 ## 後続変更について
+
+鼻歌の音符推定と同じ譜面からのピアノ再生は [melody-verification.md](melody-verification.md) に比較・回帰・実録音・未達事項を分けて記録します。
 
 本書はリニューアルPR #14の検証記録です。同PRは後続のユーザー承認でマージ・自動公開済みですが、実声精度・実機確認等の未完了条件は継続しています。追加の楽譜・固定ド表示は [score-verification.md](score-verification.md) に分けて記録します。

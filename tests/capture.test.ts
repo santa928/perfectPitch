@@ -320,6 +320,29 @@ test('stop returns capped PCM, applied settings and final worker reanalysis', as
   assert.ok(fixture.workers.every((worker) => worker.terminated))
 })
 
+test('a failed offline analysis preserves acknowledged PCM for original playback and retry', async () => {
+  const fixture = runtimeFixture(), progress: number[] = [], failures: CaptureError[] = []
+  const session = new CaptureSession('song', {
+    onAnalysisProgress: value => progress.push(value), onFailure: error => failures.push(error),
+  }, fixture.runtime)
+  await session.start()
+  fixture.workers[0].respondToReanalysis = false
+  const samples = Float32Array.from([.1, .2, .3])
+  fixture.node.port.emit({ type: 'samples', samples })
+  const stopping = session.stop()
+  await new Promise(resolve => setTimeout(resolve, 0))
+  fixture.workers[0].emit({ type: 'progress', progress: .4 })
+  fixture.workers[0].emit({ type: 'error', message: 'analysis failed' })
+  const result = await stopping
+  assert.deepEqual(result.samples, samples)
+  assert.deepEqual(result.frames, [])
+  assert.equal(result.analysisError, 'analysis failed')
+  assert.deepEqual(progress, [.4])
+  assert.deepEqual(failures, [])
+  assert.equal(fixture.track.stopCount, 1)
+  assert.ok(fixture.workers[0].terminated)
+})
+
 test('sample limit is the final worklet acknowledgement before auto-stop callback', async () => {
   let autoStops = 0
   const fixture = runtimeFixture()
@@ -369,6 +392,30 @@ test('reanalyze transfers a copy and keeps the caller PCM attached', async () =>
   } finally {
     if (originalWorker)
       Object.defineProperty(globalThis, 'Worker', originalWorker)
+    else Reflect.deleteProperty(globalThis, 'Worker')
+  }
+})
+
+test('cancelling file reanalysis releases its worker and ignores late progress', async () => {
+  const descriptor = Object.getOwnPropertyDescriptor(globalThis, 'Worker')
+  const worker = new FakeWorker()
+  worker.respondToReanalysis = false
+  Object.defineProperty(globalThis, 'Worker', { configurable: true, value: class { constructor() { return worker } } })
+  const controller = new AbortController()
+  const progress: number[] = []
+  const samples = Float32Array.from([.1, .2])
+  try {
+    const result = reanalyze(samples, 48000, 'song', p => progress.push(p), { signal: controller.signal, calibrate: false })
+    const rejected = assert.rejects(result, (error: CaptureError) => error.code === 'cancelled')
+    controller.abort()
+    await rejected
+    worker.emit({ type: 'progress', progress: 1 })
+    worker.emit({ type: 'done', frames: [voicedFrame] })
+    assert.equal(worker.terminated, true)
+    assert.deepEqual(progress, [])
+    assert.equal(samples.byteLength, 8)
+  } finally {
+    if (descriptor) Object.defineProperty(globalThis, 'Worker', descriptor)
     else Reflect.deleteProperty(globalThis, 'Worker')
   }
 })

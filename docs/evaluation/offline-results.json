@@ -1,0 +1,9082 @@
+{
+  "environment": {
+    "node": "v24.18.0",
+    "arch": "arm64",
+    "platform": "linux"
+  },
+  "method": "Real calibrated pipelines; live=PR17 baseline; offline=future candidate tracking and evidenced gap recovery. Gross >50c excludes misses. Short-note central 0.84–0.86s and consecutive correct centers in 0.8–0.9s. Tuning/regression set, not held-out real-world accuracy. Processing time excludes microphone/browser I/O.",
+  "rows": [
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 31,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 27,
+        "correctRunMs": 60,
+        "ms": 508.474125
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 24,
+        "correctRunMs": 60,
+        "ms": 472.7869169999999
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 93,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 14,
+        "correctRunMs": 60,
+        "ms": 392.3844589999999
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 13,
+        "correctRunMs": 60,
+        "ms": 391.065167
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 177,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 1,
+        "gross": 11,
+        "correctRunMs": 100,
+        "ms": 390.487292
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 10,
+        "correctRunMs": 100,
+        "ms": 391.347792
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 31,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 17,
+        "correctRunMs": 90,
+        "ms": 391.48775000000023
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 16,
+        "correctRunMs": 90,
+        "ms": 389.00333299999966
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 93,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 15,
+        "correctRunMs": 60,
+        "ms": 388.3919579999997
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 14,
+        "correctRunMs": 60,
+        "ms": 389.5792919999999
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 177,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 23,
+        "correctRunMs": 80,
+        "ms": 390.17912499999966
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 23,
+        "correctRunMs": 80,
+        "ms": 390.77337499999976
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 31,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 17,
+        "correctRunMs": 20,
+        "ms": 390.55575000000044
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 17,
+        "correctRunMs": 20,
+        "ms": 389.11562499999945
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 93,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 41,
+        "correctRunMs": 30,
+        "ms": 388.58399999999983
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 39,
+        "correctRunMs": 30,
+        "ms": 389.5017090000001
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 177,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 26,
+        "correctRunMs": 10,
+        "ms": 388.51637500000015
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 26,
+        "correctRunMs": 10,
+        "ms": 390.4330839999993
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 31,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 36,
+        "correctRunMs": 50,
+        "ms": 387.8752919999997
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 36,
+        "correctRunMs": 50,
+        "ms": 389.6790010000004
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 93,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 38,
+        "correctRunMs": 100,
+        "ms": 388.3557089999995
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 37,
+        "correctRunMs": 100,
+        "ms": 389.5026660000003
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 177,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 26,
+        "correctRunMs": 100,
+        "ms": 388.84862500000054
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 26,
+        "correctRunMs": 100,
+        "ms": 389.59570899999926
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 272.38358400000106
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 280.7359579999993
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 272.4725419999995
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 273.9805830000005
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.4897920000003
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 273.14654100000007
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 271.93404199999895
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 273.2651670000014
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.18854199999987
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 274.37724999999955
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 272.0599579999998
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 273.7357499999998
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.3140829999993
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.0900419999998
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 271.92312499999935
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 273.48162500000035
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 272.03362599999855
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 272.95487500000127
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.04441699999916
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 273.8174589999999
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 271.9717920000003
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 273.5018749999999
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 271.9460829999989
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 277.6000840000015
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 272.7998749999988
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 279.4913750000014
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 272.2027500000004
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 274.5940840000003
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 1,
+        "correctRunMs": 10,
+        "ms": 272.1205829999999
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 1,
+        "correctRunMs": 10,
+        "ms": 276.61187600000267
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 1,
+        "correctRunMs": 10,
+        "ms": 272.37720799999806
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 1,
+        "correctRunMs": 10,
+        "ms": 274.57158400000117
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 272.03208299999824
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 273.4295420000017
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 272.18416699999943
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 280.35620800000106
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.25462499999776
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 286.32629200000156
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 272.9082920000001
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 272.1277919999993
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 0,
+        "correctRunMs": 20,
+        "ms": 277.385542
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 0,
+        "correctRunMs": 20,
+        "ms": 272.34812500000044
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 271.9305839999979
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.5667910000011
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 272.18929200000275
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 273.0510409999988
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.33520900000076
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.1778750000012
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.1149170000026
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.1934579999979
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 271.91412499999933
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.42979099999866
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 271.9617920000019
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.94304199999897
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.0041259999998
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.2330830000028
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 271.666500000003
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 271.90520800000013
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 271.8454160000001
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 272.6263340000005
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 273.98404200000004
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.7445000000007
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 273.7161669999987
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.65541700000176
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.37354199999754
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.0417500000003
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 271.9142079999983
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 275.1845839999987
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 271.89720899999884
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 278.18495800000164
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 271.9866260000017
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 276.8730409999989
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 272.93237600000066
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 278.51041599999735
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 271.95858299999963
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 278.0311249999977
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 20,
+        "ms": 274.77549999999974
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 20,
+        "ms": 275.0437090000014
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.637999999999
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 273.429417000003
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.2493340000001
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 277.1052500000005
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 273.7137509999993
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 280.18083299999853
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 271.96833300000435
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.2541259999998
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 272.0562080000018
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 272.000125999999
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 271.8800420000043
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 271.9890830000004
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.81929200000013
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.2700840000034
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.0475829999996
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 271.97529199999553
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 271.7088749999966
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.66966700000194
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 271.99195899999904
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.17758299999696
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.0410420000044
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.18195799999376
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.15712599999824
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.2280410000021
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 271.8626250000016
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.3965829999943
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.7460840000058
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.45024900000135
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.9604580000014
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.2290839999987
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 271.8040000000037
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 273.58374999999796
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.2250419999982
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 274.7693750000035
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 275.79833399999916
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 279.03949999999895
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 272.3417499999996
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 273.3896669999958
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 273.21012500000506
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 277.41649999999936
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 271.90658399999666
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 279.7360830000034
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 274.36441699999705
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 271.9575000000041
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 20,
+        "ms": 271.63162499999453
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 20,
+        "ms": 277.1135420000064
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 271.78349999999773
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 277.00300000000425
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.68133300000045
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.794332999998
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 285.1882089999999
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 300.0746250000011
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 310.8552090000012
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 278.7284159999981
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.5339590000003
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.5887500000026
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.15154099999927
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.2075840000034
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 271.8422500000015
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.44041599999764
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 271.97883400000137
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.1507500000007
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 271.96162500000355
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 272.4158749999988
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 271.85179100000096
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 271.9388340000005
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 271.8539579999997
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.44508399999904
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.36841699999786
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 272.2421250000043
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 271.697874999998
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 273.41416700000264
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 271.73241699999926
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.841042
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 272.0176250000004
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 276.9479169999977
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 20,
+        "ms": 272.3758749999979
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 20,
+        "ms": 275.8561249999984
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 20,
+        "ms": 271.6678749999992
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 20,
+        "ms": 275.533875000001
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 271.8269999999975
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 273.73800000000483
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 271.71987599999557
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 273.45358300000225
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.0084999999963
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 273.2235419999997
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 274.0029579999973
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 276.01000000000204
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 272.03112500000134
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 277.0301249999975
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 31,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 4,
+        "gross": 27,
+        "correctRunMs": 50,
+        "ms": 264.4535009999963
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 2,
+        "gross": 27,
+        "correctRunMs": 50,
+        "ms": 264.33329100000265
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 93,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 13,
+        "correctRunMs": 40,
+        "ms": 262.2759159999987
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 11,
+        "correctRunMs": 80,
+        "ms": 260.26133400000253
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 177,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 1,
+        "gross": 9,
+        "correctRunMs": 100,
+        "ms": 261.4177500000005
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 1,
+        "gross": 5,
+        "correctRunMs": 100,
+        "ms": 261.9967919999981
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 31,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 13,
+        "correctRunMs": 80,
+        "ms": 259.58804199999577
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 12,
+        "correctRunMs": 100,
+        "ms": 260.3649580000056
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 93,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 12,
+        "correctRunMs": 70,
+        "ms": 259.51262499999575
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 10,
+        "correctRunMs": 70,
+        "ms": 260.19808300000295
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 177,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 21,
+        "correctRunMs": 90,
+        "ms": 259.67429200000333
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 21,
+        "correctRunMs": 90,
+        "ms": 259.8537079999951
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 31,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 23,
+        "correctRunMs": 20,
+        "ms": 259.41212500000256
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 21,
+        "correctRunMs": 20,
+        "ms": 259.82766699999775
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 93,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 44,
+        "correctRunMs": 40,
+        "ms": 260.27791600000637
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 43,
+        "correctRunMs": 40,
+        "ms": 260.81633399999555
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 177,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 29,
+        "correctRunMs": 20,
+        "ms": 259.95337599999766
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 28,
+        "correctRunMs": 20,
+        "ms": 260.1073330000072
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 31,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 36,
+        "correctRunMs": 40,
+        "ms": 262.40908299999865
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 35,
+        "correctRunMs": 40,
+        "ms": 259.99254199999996
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 93,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 39,
+        "correctRunMs": 30,
+        "ms": 259.7437499999942
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 39,
+        "correctRunMs": 30,
+        "ms": 260.71220800000447
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 177,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 36,
+        "correctRunMs": 60,
+        "ms": 259.86429099999805
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 33,
+        "correctRunMs": 100,
+        "ms": 259.8402920000008
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 180.72591699999612
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 181.60350000000471
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 181.24608299999818
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.97720800000388
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.8115420000031
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.89629199999763
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 180.47679199999402
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 183.20116700000654
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.58329200000298
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.9989579999965
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 180.6828749999986
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 183.29716599999665
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 181.0332500000004
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 181.7362920000014
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 180.75125000000116
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 183.72837499999878
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 50,
+        "ms": 180.78470799999923
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 50,
+        "ms": 181.08008300000074
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 180.609375
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 183.13524999999208
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 180.58070799999405
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 190.96383400000923
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 180.58870899998874
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 184.6524170000048
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 180.66812500001106
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 182.0410419999971
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 180.59208399998897
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 180.97287500000675
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 180.58691699999326
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 182.45770800000173
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 180.73374999999942
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 181.11637599999085
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 180.7236669999984
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 180.91049999999814
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 20,
+        "ms": 181.0403329999972
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 20,
+        "ms": 181.38404200000514
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.08937499999593
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 182.06737499999872
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 180.71641700000328
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 184.5431249999965
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 180.79200000000128
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 183.36770800000522
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 180.64895800000522
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.786334000004
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 181.35412499999802
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 181.02783399999316
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 183.71645900000294
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.9836670000077
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 181.08900000000722
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 181.3736260000005
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.60383300000103
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 181.01124999999593
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 180.8315419999999
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 180.83624999999302
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.6083340000041
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.83620799999335
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 181.3610839999892
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 181.924417000002
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.83383399999002
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.991291000013
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.61604200000875
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 181.0956670000014
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.5861670000013
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.66200000001118
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 182.27358300000196
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 181.6934590000019
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 180.5760830000072
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.59758400000283
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 180.7251249999972
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 180.95495800000208
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.2512080000015
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 180.98870899999747
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 180.562791999997
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 180.72558299999218
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 181.109375
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 184.40029200000572
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 180.8425419999985
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 180.84108300000662
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 180.75508299999638
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.05599999999686
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 180.549251000004
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 180.8161659999896
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 180.5950840000005
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 183.25716600001033
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 180.52641700000095
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.01108399999794
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 180.8217089999962
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 182.34920799999963
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 186.140916999997
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.6492500000022
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 258.11645800000406
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 205.94904200000747
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 190.4598330000008
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 181.70916700000816
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 182.44829200000095
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 181.01454200000444
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.8708750000078
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 181.11937499999476
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 181.3715830000001
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 181.0025839999871
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 184.1597080000065
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 180.85479199999827
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.47258400000283
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.77508300000045
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.59958299998834
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 181.11112500001036
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.83341700000165
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.9168340000033
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 180.68020899999829
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.18762499999139
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 181.69329200001084
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 181.70170799999323
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.01637500000652
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.0168330000015
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 182.11758299999929
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 183.51374999999825
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 183.68587500001013
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 195.26299999999173
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 194.98583299999882
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 181.39591700000165
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 181.39962499999092
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 187.0005000000092
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 180.40154199999233
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 193.49604199999885
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 255.25008299999172
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 253.60141699999804
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 253.67741699999897
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 261.283208000008
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 255.28479199999128
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 255.35158300001058
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 218.57470900000772
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 241.98608299999614
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 252.56812500000524
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 255.24962600000435
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 234.9052090000041
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 202.30987499999173
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 183.14679199999955
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 188.92316700000083
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 190.13829200000328
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 194.68891699999222
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 197.8257079999894
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 185.57795800000895
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 186.58495800000674
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 219.0827089999948
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 233.3406249999971
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 232.78750000000582
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 211.62625000000116
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.37900000000081
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 250.7925830000022
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 220.78787500000908
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 192.24258299999929
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 209.31687499998952
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 210.13837500000955
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 193.1237919999985
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 182.26862500001153
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 182.42870799999218
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 181.59733399999095
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 183.63141700001142
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 180.9389999999985
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 20,
+        "ms": 196.00766600000497
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 180.55429200000071
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 0,
+        "ms": 181.13429099999485
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 198.75200000000768
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 180.8461249999964
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 183.16187500000524
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 230.38145899999654
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 44100,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 220.41329199999745
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 211.04387500000303
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 31,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 27,
+        "correctRunMs": 60,
+        "ms": 527.2149169999902
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 24,
+        "correctRunMs": 60,
+        "ms": 539.4359170000098
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 93,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 14,
+        "correctRunMs": 60,
+        "ms": 519.7364579999994
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 13,
+        "correctRunMs": 60,
+        "ms": 466.11500100001285
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 177,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 1,
+        "gross": 11,
+        "correctRunMs": 100,
+        "ms": 457.91366699998616
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 10,
+        "correctRunMs": 100,
+        "ms": 459.5421670000069
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 31,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 17,
+        "correctRunMs": 90,
+        "ms": 457.66949999998906
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 16,
+        "correctRunMs": 90,
+        "ms": 458.4759170000034
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 93,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 15,
+        "correctRunMs": 60,
+        "ms": 458.22708299999067
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 14,
+        "correctRunMs": 60,
+        "ms": 458.61962500000664
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 177,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 23,
+        "correctRunMs": 80,
+        "ms": 457.87716699999874
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 23,
+        "correctRunMs": 80,
+        "ms": 458.3411669999914
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 31,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 17,
+        "correctRunMs": 20,
+        "ms": 458.2859999999928
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 17,
+        "correctRunMs": 20,
+        "ms": 467.8498749999999
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 93,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 41,
+        "correctRunMs": 30,
+        "ms": 459.50975100000505
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 39,
+        "correctRunMs": 30,
+        "ms": 459.40333299999475
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 177,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 25,
+        "correctRunMs": 10,
+        "ms": 460.8630839999969
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 25,
+        "correctRunMs": 10,
+        "ms": 461.74245799999335
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 31,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 35,
+        "correctRunMs": 50,
+        "ms": 459.2660419999884
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 35,
+        "correctRunMs": 50,
+        "ms": 459.4012500000099
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 93,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 38,
+        "correctRunMs": 100,
+        "ms": 457.0275419999962
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 38,
+        "correctRunMs": 100,
+        "ms": 458.49470799999835
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 177,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 26,
+        "correctRunMs": 100,
+        "ms": 458.62591599998996
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 26,
+        "correctRunMs": 100,
+        "ms": 457.82550099999935
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 324.52770799999416
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 340.74466699999175
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 337.05495799999335
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 352.645251000009
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 357.46837499999674
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 372.80929200000537
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 365.2110010000033
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 324.19625000000815
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.86395800000173
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.6548760000005
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 320.60541699999885
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 321.75650000000314
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.8564170000027
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.7436250000028
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 322.6380000000063
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 323.86954200000037
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 320.22937499999534
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 320.7751250000001
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.4358750000101
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 322.0614579999965
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.3541669999977
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 322.5149999999994
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.7138760000089
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 322.4300829999993
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 320.7950830000045
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 322.37920899999153
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 320.4779169999965
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 339.4703339999978
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 3,
+        "gross": 0,
+        "correctRunMs": 0,
+        "ms": 320.6952089999977
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 3,
+        "gross": 0,
+        "correctRunMs": 0,
+        "ms": 324.68358300000546
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 3,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 320.6302089999954
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 3,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 322.2535829999979
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 3,
+        "gross": 0,
+        "correctRunMs": 0,
+        "ms": 320.3195840000117
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 3,
+        "gross": 0,
+        "correctRunMs": 0,
+        "ms": 321.81533299999137
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 3,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 320.64054199999373
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 3,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 329.0655000000115
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.87370799999917
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 332.02058399999805
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.05025000000023
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 323.3350000000064
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 2,
+        "correctRunMs": 10,
+        "ms": 320.38191599999845
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 2,
+        "correctRunMs": 10,
+        "ms": 329.7089590000105
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.44662499999686
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.9670000000042
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.41416699999536
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 322.33820800000103
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.98262499998964
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 321.379626000009
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.6417499999952
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.9735409999994
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.50054200000886
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.49212499998976
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 321.4630840000027
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.9598330000008
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.71733400000085
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.62520799999766
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.50412500000675
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.8096669999941
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.5564169999998
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.4481250000099
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.76029199999175
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.90766599999915
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.2977499999979
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.13191700000607
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.35304200000246
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.58191700000316
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.3652080000029
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.9960010000068
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 320.1897089999984
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 331.5675409999967
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.58600000001024
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 323.4477079999924
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 320.17366599998786
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 320.7579590000096
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 320.5332500000077
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 322.25120899999456
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 20,
+        "ms": 320.7357500000071
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 20,
+        "ms": 321.0382089999912
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.55550000001676
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 326.62724999999045
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.6711249999935
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.50400000001537
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 320.57554199997685
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 321.84525000001304
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.6298330000136
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.65291699999943
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.51941700000316
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.9514999999956
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.5799169999955
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 331.0512920000183
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 355.61304199998267
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 324.75820899999235
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.824042000022
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.5629170000029
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.53100000001723
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.7496669999964
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.36758300001384
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.84104199998546
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.2792500000214
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.746124999976
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 322.85999999998603
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 337.9931670000078
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.71845799998846
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.7672920000041
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.5996670000022
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 321.419458999997
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.40279200000805
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 321.2644169999985
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.58754200002295
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 322.13383299999987
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 320.38958399998955
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 320.30199999999604
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 320.3262920000125
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 0,
+        "correctRunMs": 30,
+        "ms": 323.5510420000064
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 321.2516670000041
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 323.08124999998836
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 320.53175100000226
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 322.3070829999924
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 320.4760010000027
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 321.66112500001327
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.18766700002016
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 322.3106249999837
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.6664580000215
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 354.98412599999574
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 336.2350410000072
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.7098339999793
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 325.2867499999993
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 321.9573340000061
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 328.7042080000101
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 320.9729169999773
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.53879199997755
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.9124170000141
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.1717500000086
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 322.2587919999787
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.5717080000031
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.9784590000054
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.5683330000029
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.90200000000186
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 321.3984579999815
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 321.14379200001713
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.66070800001035
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 320.50558399999863
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.4922920000099
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 321.3088329999882
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.7311670000199
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 321.08741700000246
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.8542920000036
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 321.25541599999997
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.30837499999325
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 320.2434169999906
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.17183300000033
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 324.88145899999654
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 320.3994170000078
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 331.6080420000071
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.267709000007
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 323.69329200001084
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 320.3342910000065
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 321.3735419999866
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 320.2347090000112
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 322.25062499998603
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 321.44833399998606
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 321.22750000000815
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 321.11800000001676
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 322.0027499999851
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 2,
+        "correctRunMs": 0,
+        "ms": 320.72950000001583
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 1,
+        "gross": 2,
+        "correctRunMs": 0,
+        "ms": 330.86766699998407
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "song",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 321.03933299999335
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 10,
+        "ms": 321.9976670000178
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 31,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 3,
+        "gross": 28,
+        "correctRunMs": 50,
+        "ms": 305.9893340000126
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 2,
+        "gross": 27,
+        "correctRunMs": 50,
+        "ms": 308.0208749999874
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 93,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 13,
+        "correctRunMs": 40,
+        "ms": 305.82179200000246
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 11,
+        "correctRunMs": 80,
+        "ms": 306.6410409999953
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 110,
+      "seed": 177,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 1,
+        "gross": 9,
+        "correctRunMs": 100,
+        "ms": 307.59808300001896
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 1,
+        "gross": 5,
+        "correctRunMs": 100,
+        "ms": 307.9609589999891
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 31,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 13,
+        "correctRunMs": 80,
+        "ms": 305.8777509999927
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 12,
+        "correctRunMs": 100,
+        "ms": 306.0598330000066
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 93,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 12,
+        "correctRunMs": 70,
+        "ms": 306.1199580000248
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 10,
+        "correctRunMs": 70,
+        "ms": 306.5365419999871
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 150,
+      "seed": 177,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 21,
+        "correctRunMs": 90,
+        "ms": 305.45233400000143
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 21,
+        "correctRunMs": 90,
+        "ms": 306.06379200000083
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 31,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 23,
+        "correctRunMs": 20,
+        "ms": 305.63791699998546
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 21,
+        "correctRunMs": 20,
+        "ms": 306.3227500000212
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 93,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 44,
+        "correctRunMs": 40,
+        "ms": 306.17399999999907
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 43,
+        "correctRunMs": 40,
+        "ms": 306.24608399998397
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 220,
+      "seed": 177,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 29,
+        "correctRunMs": 20,
+        "ms": 305.5148749999935
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 28,
+        "correctRunMs": 20,
+        "ms": 306.27725000001374
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 31,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 36,
+        "correctRunMs": 40,
+        "ms": 307.4150419999787
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 35,
+        "correctRunMs": 40,
+        "ms": 306.6424169999955
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 93,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 40,
+        "correctRunMs": 30,
+        "ms": 305.77216699998826
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 40,
+        "correctRunMs": 30,
+        "ms": 305.57179200000246
+      }
+    },
+    {
+      "kind": "gain",
+      "hz": 440,
+      "seed": 177,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 36,
+        "correctRunMs": 60,
+        "ms": 306.31266700002016
+      },
+      "offline": {
+        "frames": 99,
+        "missing": 0,
+        "gross": 33,
+        "correctRunMs": 100,
+        "ms": 307.5958329999994
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 212.7791670000006
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 212.67258299997775
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 212.84862499998417
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 212.68808300001547
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.76041700001224
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.9965830000001
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 214.202042000019
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 217.55287499999395
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 216.6078329999873
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 215.5104590000119
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.50083299999824
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 216.61637499998324
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 213.93612500000745
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 213.02545799998916
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 215.34112499997718
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 40,
+        "ms": 214.57100000002538
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 212.78791700000875
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.1457919999957
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 213.63862499999232
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 215.97020800001337
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 212.77337599999737
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 216.10345799999777
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.03337499999907
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 215.7386670000269
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 212.8682919999992
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 215.60925000000861
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 213.1005839999998
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 212.77525000000605
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 212.81933299999218
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 214.5715420000197
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 213.26220900000772
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 216.87645799998427
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 213.29645799999707
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 30,
+        "ms": 218.08445900000515
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 50,
+        "ms": 213.12958300000173
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 50,
+        "ms": 214.23874999998952
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 212.80729199998314
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 214.4181249999965
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.05587499999092
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 215.92937500000698
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 82.41,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 30,
+        "ms": 212.57800000000861
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 30,
+        "ms": 214.86079199999222
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 212.7716669999936
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 214.06883400000515
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 212.68383300001733
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.04699999999139
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.8621250000142
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.11154199999874
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.1440419999999
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.6270829999994
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.13729199999943
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.0139579999959
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.1518330000108
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 217.24083399999654
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.00041700000293
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.72954100000788
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 212.7735420000099
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 212.9147079999966
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 212.5547909999732
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 213.63562600000296
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 216.46637499998906
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.97745800000848
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.1792500000156
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.01162499998463
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.76770900000702
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.8284580000036
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 212.63987500002258
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.2947920000006
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 212.64395800000057
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 213.5854999999865
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 212.711833999987
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.83950000000186
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.75687499999185
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 212.9175840000098
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 20,
+        "ms": 212.99374999999418
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 20,
+        "ms": 212.6765000000014
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 30,
+        "ms": 213.09708300000057
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 30,
+        "ms": 213.2664170000062
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.0060410000151
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.57216700000572
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.1340420000197
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.41016699999454
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 130,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 20,
+        "ms": 212.65633399999933
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 20,
+        "ms": 215.97925000000396
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 212.8820419999829
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.15374999999767
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 212.98883300001035
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 212.88366699998733
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.96275000000605
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.74924999999348
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.58720800001174
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 219.35437499999534
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 245.08474999997998
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 220.06058400002075
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 212.81883299999754
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.46983400001773
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.32837500001187
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.36783399997512
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 212.96562600001926
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 212.97899999999208
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 212.9344170000113
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 212.76666699998896
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.8411250000063
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.35566599998856
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.68570900001214
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.35337499997695
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.87362500000745
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 215.07358299999032
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 212.77912500000093
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.0829580000136
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 212.83783299999777
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 212.83862500000396
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 40,
+        "ms": 213.70854099999997
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 40,
+        "ms": 214.86100000000442
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 50,
+        "ms": 213.39408399999957
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 1,
+        "correctRunMs": 50,
+        "ms": 212.9721660000214
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 10,
+        "ms": 213.38308299999335
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 10,
+        "ms": 213.1558340000047
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 20,
+        "ms": 214.2495409999974
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 20,
+        "ms": 213.4002089999849
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 212.82470900000772
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.02270800000406
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 213.1492089999956
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 214.44704100000672
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 220,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 40,
+        "ms": 212.9677499999816
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 40,
+        "ms": 212.83970900002168
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.65412500000093
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.05862600001274
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 213.23670799998217
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 90,
+        "ms": 213.20266700000502
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.5926669999899
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 215.07270800002152
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 216.18291699999827
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 214.11329200002365
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 212.70149999999558
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.87583299999824
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 215.05058300000383
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 218.33166699999128
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 213.33874999999534
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 212.9876669999794
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 212.85362599999644
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 50,
+        "ms": 213.2790410000016
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 212.7103749999951
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 213.127542000002
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.00037500000326
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.59141699998872
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.935083999997
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.3880000000063
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.04,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.52245799999218
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 212.819542000012
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 213.24308300000848
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 60,
+        "ms": 212.79079199998523
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.00370800000383
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 216.39395900000818
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 212.61145900000702
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 70,
+        "ms": 213.67283299998962
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.8,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 212.75091699999757
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 80,
+        "ms": 213.29662500001723
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 40,
+        "ms": 212.85458300000755
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 40,
+        "ms": 213.90629199999967
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "down",
+      "correlation": 0.95,
+      "changeTimbre": true,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 40,
+        "ms": 213.663292000012
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 2,
+        "correctRunMs": 40,
+        "ms": 213.2276669999992
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.05241699999897
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 0,
+        "correctRunMs": 100,
+        "ms": 213.2827919999836
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.8,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 212.953125
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 214.39154100001906
+      }
+    },
+    {
+      "kind": "octave",
+      "hz": 440,
+      "noise": 0.1,
+      "direction": "up",
+      "correlation": 0.95,
+      "changeTimbre": false,
+      "sr": 48000,
+      "mode": "speech",
+      "live": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 212.7607920000155
+      },
+      "offline": {
+        "frames": 3,
+        "missing": 0,
+        "gross": 3,
+        "correctRunMs": 30,
+        "ms": 213.36049999998068
+      }
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 import {
-  analyze,
   PitchAnalyzer,
   type AnalysisMode,
   type PitchFrame,
 } from '../analysis/pipeline.ts'
+import { analyzeOffline } from '../analysis/offline.ts'
 
 type AnalysisWorkerInput =
   | { type: 'init'; sampleRate: number; mode: AnalysisMode }
@@ -14,11 +14,13 @@ type AnalysisWorkerInput =
       samples: Float32Array
       sampleRate: number
       mode: AnalysisMode
+      calibrate?: boolean
     }
 
 type AnalysisWorkerOutput =
   | { type: 'frames'; frames: PitchFrame[] }
   | { type: 'done'; frames: PitchFrame[] }
+  | { type: 'progress'; progress: number }
   | { type: 'error'; message: string }
 
 type WorkerScope = {
@@ -29,7 +31,7 @@ type WorkerScope = {
 const workerScope = globalThis as unknown as WorkerScope
 let analyzer: PitchAnalyzer | null = null
 
-/** PCM stream と offline 再解析要求を同じ解析 pipeline へ接続する。 */
+/** Live estimates stay causal; recorded PCM receives future-evidence review with real progress. */
 workerScope.onmessage = (event: MessageEvent<AnalysisWorkerInput>): void => {
   try {
     const message = event.data
@@ -53,7 +55,8 @@ workerScope.onmessage = (event: MessageEvent<AnalysisWorkerInput>): void => {
     }
     workerScope.postMessage({
       type: 'done',
-      frames: analyze(message.samples, message.sampleRate, message.mode),
+      frames: analyzeOffline(message.samples, message.sampleRate, message.mode,
+        progress => workerScope.postMessage({ type: 'progress', progress }), message.calibrate),
     })
   } catch (error) {
     workerScope.postMessage({

@@ -3,7 +3,8 @@ import { spellPitch } from '../notation/score.ts'
 import type { ScoreEvent } from '../notation/score.ts'
 
 /** 各小節を独立したSVGへ記譜する。フォントは同梱版を使い外部通信しない。 */
-export async function renderMeasures(host: HTMLElement, measures: ScoreEvent[][], firstMeasure: number): Promise<void> {
+export async function renderMeasures(host: HTMLElement, measures: ScoreEvent[][], firstMeasure: number,
+  options: { onSelect?: (tick: number) => void } = {}): Promise<void> {
   await document.fonts.ready
   // FontFace.load()が開始済みであることを待ち、豆腐文字での寸法計算を防ぐ。
   await document.fonts.load('16px Bravura')
@@ -79,8 +80,23 @@ export async function renderMeasures(host: HTMLElement, measures: ScoreEvent[][]
       svg.append(label)
       label.setAttribute('transform', `translate(0 ${labelTop - label.getBBox().y})`)
     }
-    svg.setAttribute('role', 'img')
+    svg.setAttribute('role', options.onSelect ? 'group' : 'img')
     svg.setAttribute('aria-label', `${caption.textContent}。${events.map((event) => event.midi === null ? '休符' : `${event.tieIn ? '継続' : ''}${spellPitch(event.midi).label}`).join('、')}`)
+    if (options.onSelect) {
+      const groups = svg.querySelectorAll<SVGGElement>('.vf-stavenote')
+      groups.forEach((group, i) => {
+        const event = events[i]
+        if (!event || event.midi === null) return
+        group.classList.add('selectable-note')
+        group.setAttribute('role', 'button')
+        group.setAttribute('tabindex', '0')
+        group.setAttribute('aria-label', `${caption.textContent} ${event.tick % 16 / 4 + 1}拍 ${spellPitch(event.midi).label}の音符を直す`)
+        group.addEventListener('click', () => options.onSelect?.(event.tick))
+        group.addEventListener('keydown', eventKey => {
+          if (eventKey.key === 'Enter' || eventKey.key === ' ') { eventKey.preventDefault(); options.onSelect?.(event.tick) }
+        })
+      })
+    }
     // 加線・低音の注釈も含めた描画結果から上下の余白を確保する。
     const bounds = svg.getBBox()
     const left = Math.min(0, bounds.x - 12)

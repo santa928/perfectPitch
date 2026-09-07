@@ -1,0 +1,1349 @@
+{
+  "conditions": "Cached model activity; original polyphase resampling. Regression only. Per-clip mean (A1/A2 averaged within each vocadito clip), ten clips equally weighted. Manual 120 BPM scores. No audio or note sequences.",
+  "summary": {
+    "baseline": {
+      "onset": 0.5885550252799331,
+      "offset": 0.40137677965840696,
+      "scoreOnset": 0.5751617364534751,
+      "scoreOffset": 0.37540370806792567,
+      "fp": 11.3,
+      "fn": 19.55,
+      "worstOnsetDelta": 0,
+      "worstScoreDelta": 0
+    },
+    "own": {
+      "onset": 0.5953785059395493,
+      "offset": 0.42115952145027985,
+      "scoreOnset": 0.5816977915830753,
+      "scoreOffset": 0.37902329993022743,
+      "fp": 11.55,
+      "fn": 19.6,
+      "worstOnsetDelta": -0.03502382720269037,
+      "worstScoreDelta": -0.10910148451869761
+    },
+    "neighbor": {
+      "onset": 0.595519741290611,
+      "offset": 0.4210999117570616,
+      "scoreOnset": 0.5816977915830753,
+      "scoreOffset": 0.37902329993022743,
+      "fp": 11.4,
+      "fn": 19.65,
+      "worstOnsetDelta": -0.03502382720269037,
+      "worstScoreDelta": -0.10910148451869761
+    },
+    "union": {
+      "onset": 0.6179386565016172,
+      "offset": 0.4119517477584204,
+      "scoreOnset": 0.6193794889457379,
+      "scoreOffset": 0.40247137890950613,
+      "fp": 12.6,
+      "fn": 17.55,
+      "worstOnsetDelta": -0.04745253164556962,
+      "worstScoreDelta": -0.06212847257623366
+    },
+    "sum": {
+      "onset": 0.6161246523108856,
+      "offset": 0.4150577372115323,
+      "scoreOnset": 0.6049588503789111,
+      "scoreOffset": 0.38695121763342766,
+      "fp": 14.3,
+      "fn": 17.15,
+      "worstOnsetDelta": -0.054873188405797135,
+      "worstScoreDelta": -0.1106467661691542
+    },
+    "gapUnion": {
+      "onset": 0.621711859972842,
+      "offset": 0.42879018502569133,
+      "scoreOnset": 0.6163041034569515,
+      "scoreOffset": 0.4168427677710317,
+      "fp": 12,
+      "fn": 17.65,
+      "worstOnsetDelta": -0.010389610389610393,
+      "worstScoreDelta": -0.004523783471151788
+    },
+    "gapSum": {
+      "onset": 0.6198176420838978,
+      "offset": 0.4289304519692858,
+      "scoreOnset": 0.5906677576042421,
+      "scoreOffset": 0.3901122629915729,
+      "fp": 13.4,
+      "fn": 17.35,
+      "worstOnsetDelta": -0.01208046306926902,
+      "worstScoreDelta": -0.12635452872623187
+    },
+    "supportedUnion": {
+      "onset": 0.6219551775978498,
+      "offset": 0.4279553833058868,
+      "scoreOnset": 0.6066381669685754,
+      "scoreOffset": 0.40244147898877286,
+      "fp": 11.75,
+      "fn": 17.8,
+      "worstOnsetDelta": -0.0038474025974026826,
+      "worstScoreDelta": -0.004523783471151788
+    },
+    "supportedSum": {
+      "onset": 0.6245580774683788,
+      "offset": 0.43064403368277365,
+      "scoreOnset": 0.6090237719280113,
+      "scoreOffset": 0.40598967265311714,
+      "fp": 12.65,
+      "fn": 17.5,
+      "worstOnsetDelta": -0.0038474025974026826,
+      "worstScoreDelta": -0.004523783471151788
+    },
+    "bounded": {
+      "onset": 0.6161103173786904,
+      "offset": 0.4252491896361156,
+      "scoreOnset": 0.602861758932153,
+      "scoreOffset": 0.401397260705322,
+      "fp": 11.95,
+      "fn": 18.1,
+      "worstOnsetDelta": 0,
+      "worstScoreDelta": 0
+    },
+    "single": {
+      "onset": 0.5938215599194587,
+      "offset": 0.4051673589877354,
+      "scoreOnset": 0.5806087386338354,
+      "scoreOffset": 0.37937316412793953,
+      "fp": 11.4,
+      "fn": 19.25,
+      "worstOnsetDelta": 0,
+      "worstScoreDelta": 0
+    }
+  },
+  "variants": {
+    "baseline": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 60,
+        "onset": 0.7161832474925454,
+        "offset": 0.5108430468961778,
+        "scoreOnset": 0.707441040932502,
+        "scoreOffset": 0.47722960151802657,
+        "fp": 16.5,
+        "fn": 18
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 46,
+        "onset": 0.6060309821025718,
+        "offset": 0.4487140923447135,
+        "scoreOnset": 0.5978342607910965,
+        "scoreOffset": 0.4057753045570762,
+        "fp": 11,
+        "fn": 34.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.634606938954765,
+        "offset": 0.41249451032059725,
+        "scoreOnset": 0.5934343434343434,
+        "scoreOffset": 0.3728590250329381,
+        "fp": 14.5,
+        "fn": 20
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 28,
+        "onset": 0.5818181818181818,
+        "offset": 0.36363636363636365,
+        "scoreOnset": 0.49056603773584906,
+        "scoreOffset": 0.22641509433962265,
+        "fp": 12,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 8,
+        "onset": 0.41379310344827586,
+        "offset": 0.20689655172413793,
+        "scoreOnset": 0.42857142857142855,
+        "scoreOffset": 0.21428571428571427,
+        "fp": 2,
+        "fn": 15
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 32,
+        "onset": 0.6025289275915544,
+        "offset": 0.45878563759990454,
+        "scoreOnset": 0.5970731707317074,
+        "scoreOffset": 0.4173170731707317,
+        "fp": 4.5,
+        "fn": 32.5
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 17,
+        "onset": 0.5087386018237082,
+        "offset": 0.2917933130699088,
+        "scoreOnset": 0.5087386018237082,
+        "scoreOffset": 0.30965045592705165,
+        "fp": 4,
+        "fn": 21.5
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 38,
+        "onset": 0.6012500000000001,
+        "offset": 0.5166666666666666,
+        "scoreOnset": 0.6235521235521235,
+        "scoreOffset": 0.5083655083655083,
+        "fp": 17,
+        "fn": 10.5
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 53,
+        "onset": 0.6323649754500819,
+        "offset": 0.5098199672667758,
+        "scoreOnset": 0.6670929241261723,
+        "scoreOffset": 0.5833333333333333,
+        "fp": 21.5,
+        "fn": 14.5
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 30,
+        "onset": 0.5882352941176471,
+        "offset": 0.29411764705882354,
+        "scoreOnset": 0.5373134328358209,
+        "scoreOffset": 0.23880597014925373,
+        "fp": 10,
+        "fn": 18
+      }
+    ],
+    "own": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 56,
+        "onset": 0.681159420289855,
+        "offset": 0.5369565217391304,
+        "scoreOnset": 0.6554347826086957,
+        "scoreOffset": 0.4597826086956522,
+        "fp": 16,
+        "fn": 21.5
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 45,
+        "onset": 0.5938169574533211,
+        "offset": 0.4526323844505663,
+        "scoreOnset": 0.5855524946434036,
+        "scoreOffset": 0.4093204775022957,
+        "fp": 11,
+        "fn": 35.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.6245059288537549,
+        "offset": 0.4023935002195872,
+        "scoreOnset": 0.5942028985507246,
+        "scoreOffset": 0.3736275801493193,
+        "fp": 15,
+        "fn": 20.5
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 29,
+        "onset": 0.5714285714285714,
+        "offset": 0.39285714285714285,
+        "scoreOnset": 0.5555555555555556,
+        "scoreOffset": 0.2962962962962963,
+        "fp": 13,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 9,
+        "onset": 0.4666666666666667,
+        "offset": 0.2,
+        "scoreOnset": 0.4827586206896552,
+        "scoreOffset": 0.20689655172413793,
+        "fp": 2,
+        "fn": 14
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 31,
+        "onset": 0.6314634146341463,
+        "offset": 0.5426829268292683,
+        "scoreOnset": 0.6214634146341464,
+        "scoreOffset": 0.5204878048780488,
+        "fp": 2.5,
+        "fn": 31.5
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 21,
+        "onset": 0.6166666666666667,
+        "offset": 0.41568627450980394,
+        "scoreOnset": 0.6166666666666667,
+        "scoreOffset": 0.41568627450980394,
+        "fp": 4,
+        "fn": 17.5
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 39,
+        "onset": 0.5927125506072874,
+        "offset": 0.5378542510121458,
+        "scoreOnset": 0.61003861003861,
+        "scoreOffset": 0.4948519948519948,
+        "fp": 18,
+        "fn": 10.5
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 54,
+        "onset": 0.6165413533834587,
+        "offset": 0.49523809523809526,
+        "scoreOnset": 0.5579914396074747,
+        "scoreOffset": 0.43417893308278527,
+        "fp": 23,
+        "fn": 15
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 30,
+        "onset": 0.5588235294117647,
+        "offset": 0.23529411764705882,
+        "scoreOnset": 0.5373134328358209,
+        "scoreOffset": 0.1791044776119403,
+        "fp": 11,
+        "fn": 19
+      }
+    ],
+    "neighbor": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 56,
+        "onset": 0.681159420289855,
+        "offset": 0.5369565217391304,
+        "scoreOnset": 0.6554347826086957,
+        "scoreOffset": 0.4597826086956522,
+        "fp": 16,
+        "fn": 21.5
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 45,
+        "onset": 0.5938169574533211,
+        "offset": 0.4526323844505663,
+        "scoreOnset": 0.5855524946434036,
+        "scoreOffset": 0.4093204775022957,
+        "fp": 11,
+        "fn": 35.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.6245059288537549,
+        "offset": 0.4023935002195872,
+        "scoreOnset": 0.5942028985507246,
+        "scoreOffset": 0.3736275801493193,
+        "fp": 15,
+        "fn": 20.5
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 29,
+        "onset": 0.5714285714285714,
+        "offset": 0.39285714285714285,
+        "scoreOnset": 0.5555555555555556,
+        "scoreOffset": 0.2962962962962963,
+        "fp": 13,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 9,
+        "onset": 0.4666666666666667,
+        "offset": 0.2,
+        "scoreOnset": 0.4827586206896552,
+        "scoreOffset": 0.20689655172413793,
+        "fp": 2,
+        "fn": 14
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 31,
+        "onset": 0.6314634146341463,
+        "offset": 0.5426829268292683,
+        "scoreOnset": 0.6214634146341464,
+        "scoreOffset": 0.5204878048780488,
+        "fp": 2.5,
+        "fn": 31.5
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 21,
+        "onset": 0.6166666666666667,
+        "offset": 0.41568627450980394,
+        "scoreOnset": 0.6166666666666667,
+        "scoreOffset": 0.41568627450980394,
+        "fp": 4,
+        "fn": 17.5
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 38,
+        "onset": 0.5879166666666666,
+        "offset": 0.5322916666666666,
+        "scoreOnset": 0.61003861003861,
+        "scoreOffset": 0.4948519948519948,
+        "fp": 17.5,
+        "fn": 11
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 53,
+        "onset": 0.6227495908346972,
+        "offset": 0.5002045826513911,
+        "scoreOnset": 0.5579914396074747,
+        "scoreOffset": 0.43417893308278527,
+        "fp": 22,
+        "fn": 15
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 30,
+        "onset": 0.5588235294117647,
+        "offset": 0.23529411764705882,
+        "scoreOnset": 0.5373134328358209,
+        "scoreOffset": 0.1791044776119403,
+        "fp": 11,
+        "fn": 19
+      }
+    ],
+    "union": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 61,
+        "onset": 0.7266666666666666,
+        "offset": 0.523,
+        "scoreOnset": 0.7346666666666666,
+        "scoreOffset": 0.4656666666666667,
+        "fp": 16.5,
+        "fn": 17
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 47,
+        "onset": 0.6008130081300813,
+        "offset": 0.41951219512195126,
+        "scoreOnset": 0.5673318551367332,
+        "scoreOffset": 0.3941611234294161,
+        "fp": 12,
+        "fn": 34.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.634606938954765,
+        "offset": 0.41172595520421607,
+        "scoreOnset": 0.6144049187527448,
+        "scoreOffset": 0.39306104523495833,
+        "fp": 14.5,
+        "fn": 20
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 29,
+        "onset": 0.5714285714285714,
+        "offset": 0.35714285714285715,
+        "scoreOnset": 0.5925925925925926,
+        "scoreOffset": 0.37037037037037035,
+        "fp": 13,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 10,
+        "onset": 0.45161290322580644,
+        "offset": 0.1935483870967742,
+        "scoreOnset": 0.4666666666666667,
+        "scoreOffset": 0.2,
+        "fp": 3,
+        "fn": 14
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 40,
+        "onset": 0.7039016029841718,
+        "offset": 0.5224316967436233,
+        "scoreOnset": 0.6907407407407407,
+        "scoreOffset": 0.5148148148148148,
+        "fp": 5,
+        "fn": 25
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 26,
+        "onset": 0.6802197802197802,
+        "offset": 0.4296703296703297,
+        "scoreOnset": 0.6579545454545455,
+        "scoreOffset": 0.403125,
+        "fp": 5.5,
+        "fn": 14
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 42,
+        "onset": 0.5537974683544304,
+        "offset": 0.43373045420699924,
+        "scoreOnset": 0.5614236509758899,
+        "scoreOffset": 0.4098737083811711,
+        "fp": 21.5,
+        "fn": 11
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 57,
+        "onset": 0.6366213151927438,
+        "offset": 0.5188964474678761,
+        "scoreOnset": 0.6794418238993711,
+        "scoreOffset": 0.5593553459119497,
+        "fp": 24,
+        "fn": 13
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 33,
+        "onset": 0.6197183098591549,
+        "offset": 0.30985915492957744,
+        "scoreOnset": 0.6285714285714286,
+        "scoreOffset": 0.3142857142857143,
+        "fp": 11,
+        "fn": 16
+      }
+    ],
+    "sum": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 61,
+        "onset": 0.743,
+        "offset": 0.523,
+        "scoreOnset": 0.7266666666666666,
+        "scoreOffset": 0.5236666666666667,
+        "fp": 15.5,
+        "fn": 16
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 47,
+        "onset": 0.6008130081300813,
+        "offset": 0.41951219512195126,
+        "scoreOnset": 0.5845528455284552,
+        "scoreOffset": 0.3941611234294161,
+        "fp": 12,
+        "fn": 34.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.634606938954765,
+        "offset": 0.41172595520421607,
+        "scoreOnset": 0.6136363636363636,
+        "scoreOffset": 0.36978480456741325,
+        "fp": 14.5,
+        "fn": 20
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 30,
+        "onset": 0.5614035087719298,
+        "offset": 0.3508771929824561,
+        "scoreOnset": 0.5818181818181818,
+        "scoreOffset": 0.36363636363636365,
+        "fp": 14,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 22,
+        "onset": 0.5116279069767442,
+        "offset": 0.27906976744186046,
+        "scoreOnset": 0.5365853658536586,
+        "scoreOffset": 0.24390243902439024,
+        "fp": 11,
+        "fn": 10
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 40,
+        "onset": 0.6837382800685553,
+        "offset": 0.48210505091239036,
+        "scoreOnset": 0.65,
+        "scoreOffset": 0.4666666666666667,
+        "fp": 6,
+        "fn": 26
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 28,
+        "onset": 0.6904271744724653,
+        "offset": 0.4480185280494081,
+        "scoreOnset": 0.6690590111642742,
+        "scoreOffset": 0.4226475279106858,
+        "fp": 6.5,
+        "fn": 13
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 43,
+        "onset": 0.5463768115942029,
+        "offset": 0.42789855072463767,
+        "scoreOnset": 0.5811615785554729,
+        "scoreOffset": 0.41902457185405806,
+        "fp": 22.5,
+        "fn": 11
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 57,
+        "onset": 0.6366213151927438,
+        "offset": 0.5188964474678761,
+        "scoreOnset": 0.6794418238993711,
+        "scoreOffset": 0.5593553459119497,
+        "fp": 24,
+        "fn": 13
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 38,
+        "onset": 0.5526315789473685,
+        "offset": 0.2894736842105263,
+        "scoreOnset": 0.4266666666666667,
+        "scoreOffset": 0.10666666666666667,
+        "fp": 17,
+        "fn": 17
+      }
+    ],
+    "gapUnion": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 60,
+        "onset": 0.7161832474925454,
+        "offset": 0.5108430468961778,
+        "scoreOnset": 0.707441040932502,
+        "scoreOffset": 0.47722960151802657,
+        "fp": 16.5,
+        "fn": 18
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 46,
+        "onset": 0.6060309821025718,
+        "offset": 0.4487140923447135,
+        "scoreOnset": 0.5978342607910965,
+        "scoreOffset": 0.4057753045570762,
+        "fp": 11,
+        "fn": 34.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.634606938954765,
+        "offset": 0.41249451032059725,
+        "scoreOnset": 0.5934343434343434,
+        "scoreOffset": 0.3728590250329381,
+        "fp": 14.5,
+        "fn": 20
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 29,
+        "onset": 0.5714285714285714,
+        "offset": 0.35714285714285715,
+        "scoreOnset": 0.5925925925925926,
+        "scoreOffset": 0.37037037037037035,
+        "fp": 13,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 10,
+        "onset": 0.45161290322580644,
+        "offset": 0.1935483870967742,
+        "scoreOnset": 0.4666666666666667,
+        "scoreOffset": 0.2,
+        "fp": 3,
+        "fn": 14
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 39,
+        "onset": 0.6907407407407407,
+        "offset": 0.548148148148148,
+        "scoreOnset": 0.6866533655360705,
+        "scoreOffset": 0.520109209282789,
+        "fp": 5,
+        "fn": 26
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 26,
+        "onset": 0.6802197802197802,
+        "offset": 0.46291208791208793,
+        "scoreOnset": 0.6579545454545455,
+        "scoreOffset": 0.47073863636363633,
+        "fp": 5.5,
+        "fn": 14
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 40,
+        "onset": 0.5974025974025974,
+        "offset": 0.5151515151515151,
+        "scoreOnset": 0.6190283400809717,
+        "scoreOffset": 0.507085020242915,
+        "fp": 18.5,
+        "fn": 10
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 55,
+        "onset": 0.6491745283018868,
+        "offset": 0.5290880503144654,
+        "scoreOnset": 0.6700073076521558,
+        "scoreOffset": 0.5871176531997078,
+        "fp": 22,
+        "fn": 13
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 33,
+        "onset": 0.6197183098591549,
+        "offset": 0.30985915492957744,
+        "scoreOnset": 0.5714285714285714,
+        "scoreOffset": 0.2571428571428571,
+        "fp": 11,
+        "fn": 16
+      }
+    ],
+    "gapSum": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 60,
+        "onset": 0.7161832474925454,
+        "offset": 0.5108430468961778,
+        "scoreOnset": 0.707441040932502,
+        "scoreOffset": 0.47722960151802657,
+        "fp": 16.5,
+        "fn": 18
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 46,
+        "onset": 0.6060309821025718,
+        "offset": 0.4487140923447135,
+        "scoreOnset": 0.5978342607910965,
+        "scoreOffset": 0.4057753045570762,
+        "fp": 11,
+        "fn": 34.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.634606938954765,
+        "offset": 0.41249451032059725,
+        "scoreOnset": 0.5934343434343434,
+        "scoreOffset": 0.3728590250329381,
+        "fp": 14.5,
+        "fn": 20
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 29,
+        "onset": 0.5714285714285714,
+        "offset": 0.35714285714285715,
+        "scoreOnset": 0.48148148148148145,
+        "scoreOffset": 0.2222222222222222,
+        "fp": 13,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 21,
+        "onset": 0.47619047619047616,
+        "offset": 0.23809523809523808,
+        "scoreOnset": 0.5,
+        "scoreOffset": 0.25,
+        "fp": 11,
+        "fn": 11
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 39,
+        "onset": 0.6703703703703704,
+        "offset": 0.5074074074074074,
+        "scoreOnset": 0.6660716160873674,
+        "scoreOffset": 0.48829150477790606,
+        "fp": 6,
+        "fn": 27
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 28,
+        "onset": 0.6904271744724653,
+        "offset": 0.4801852804940813,
+        "scoreOnset": 0.6690590111642742,
+        "scoreOffset": 0.4880382775119617,
+        "fp": 6.5,
+        "fn": 13
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 41,
+        "onset": 0.589169536930731,
+        "offset": 0.5080367393800229,
+        "scoreOnset": 0.6103896103896104,
+        "scoreOffset": 0.5,
+        "fp": 19.5,
+        "fn": 10
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 55,
+        "onset": 0.6491745283018868,
+        "offset": 0.5290880503144654,
+        "scoreOnset": 0.6700073076521558,
+        "scoreOffset": 0.5871176531997078,
+        "fp": 22,
+        "fn": 13
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 36,
+        "onset": 0.5945945945945946,
+        "offset": 0.2972972972972973,
+        "scoreOnset": 0.410958904109589,
+        "scoreOffset": 0.1095890410958904,
+        "fp": 14,
+        "fn": 16
+      }
+    ],
+    "supportedUnion": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 60,
+        "onset": 0.7161832474925454,
+        "offset": 0.5108430468961778,
+        "scoreOnset": 0.707441040932502,
+        "scoreOffset": 0.47722960151802657,
+        "fp": 16.5,
+        "fn": 18
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 46,
+        "onset": 0.6060309821025718,
+        "offset": 0.4487140923447135,
+        "scoreOnset": 0.5978342607910965,
+        "scoreOffset": 0.4057753045570762,
+        "fp": 11,
+        "fn": 34.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.634606938954765,
+        "offset": 0.41249451032059725,
+        "scoreOnset": 0.5934343434343434,
+        "scoreOffset": 0.3728590250329381,
+        "fp": 14.5,
+        "fn": 20
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 28,
+        "onset": 0.5818181818181818,
+        "offset": 0.36363636363636365,
+        "scoreOnset": 0.49056603773584906,
+        "scoreOffset": 0.22641509433962265,
+        "fp": 12,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 10,
+        "onset": 0.45161290322580644,
+        "offset": 0.1935483870967742,
+        "scoreOnset": 0.4666666666666667,
+        "scoreOffset": 0.2,
+        "fp": 3,
+        "fn": 14
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 39,
+        "onset": 0.6907407407407407,
+        "offset": 0.548148148148148,
+        "scoreOnset": 0.6866533655360705,
+        "scoreOffset": 0.520109209282789,
+        "fp": 5,
+        "fn": 26
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 26,
+        "onset": 0.6802197802197802,
+        "offset": 0.46291208791208793,
+        "scoreOnset": 0.6579545454545455,
+        "scoreOffset": 0.47073863636363633,
+        "fp": 5.5,
+        "fn": 14
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 40,
+        "onset": 0.5974025974025974,
+        "offset": 0.5151515151515151,
+        "scoreOnset": 0.6190283400809717,
+        "scoreOffset": 0.507085020242915,
+        "fp": 18.5,
+        "fn": 10
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 53,
+        "onset": 0.6323649754500819,
+        "offset": 0.5098199672667758,
+        "scoreOnset": 0.6670929241261723,
+        "scoreOffset": 0.5833333333333333,
+        "fp": 21.5,
+        "fn": 14.5
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 32,
+        "onset": 0.6285714285714286,
+        "offset": 0.3142857142857143,
+        "scoreOnset": 0.5797101449275363,
+        "scoreOffset": 0.2608695652173913,
+        "fp": 10,
+        "fn": 16
+      }
+    ],
+    "supportedSum": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 60,
+        "onset": 0.7161832474925454,
+        "offset": 0.5108430468961778,
+        "scoreOnset": 0.707441040932502,
+        "scoreOffset": 0.47722960151802657,
+        "fp": 16.5,
+        "fn": 18
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 46,
+        "onset": 0.6060309821025718,
+        "offset": 0.4487140923447135,
+        "scoreOnset": 0.5978342607910965,
+        "scoreOffset": 0.4057753045570762,
+        "fp": 11,
+        "fn": 34.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.634606938954765,
+        "offset": 0.41249451032059725,
+        "scoreOnset": 0.5934343434343434,
+        "scoreOffset": 0.3728590250329381,
+        "fp": 14.5,
+        "fn": 20
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 28,
+        "onset": 0.5818181818181818,
+        "offset": 0.36363636363636365,
+        "scoreOnset": 0.49056603773584906,
+        "scoreOffset": 0.22641509433962265,
+        "fp": 12,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 20,
+        "onset": 0.4878048780487805,
+        "offset": 0.24390243902439024,
+        "scoreOnset": 0.5,
+        "scoreOffset": 0.25,
+        "fp": 10,
+        "fn": 11
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 39,
+        "onset": 0.6703703703703704,
+        "offset": 0.5074074074074074,
+        "scoreOnset": 0.6660716160873674,
+        "scoreOffset": 0.48829150477790606,
+        "fp": 6,
+        "fn": 27
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 28,
+        "onset": 0.6904271744724653,
+        "offset": 0.4801852804940813,
+        "scoreOnset": 0.6690590111642742,
+        "scoreOffset": 0.4880382775119617,
+        "fp": 6.5,
+        "fn": 13
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 40,
+        "onset": 0.5974025974025974,
+        "offset": 0.5151515151515151,
+        "scoreOnset": 0.6190283400809717,
+        "scoreOffset": 0.507085020242915,
+        "fp": 18.5,
+        "fn": 10
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 53,
+        "onset": 0.6323649754500819,
+        "offset": 0.5098199672667758,
+        "scoreOnset": 0.6670929241261723,
+        "scoreOffset": 0.5833333333333333,
+        "fp": 21.5,
+        "fn": 14.5
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 32,
+        "onset": 0.6285714285714286,
+        "offset": 0.3142857142857143,
+        "scoreOnset": 0.5797101449275363,
+        "scoreOffset": 0.2608695652173913,
+        "fp": 10,
+        "fn": 16
+      }
+    ],
+    "bounded": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 60,
+        "onset": 0.7161832474925454,
+        "offset": 0.5108430468961778,
+        "scoreOnset": 0.707441040932502,
+        "scoreOffset": 0.47722960151802657,
+        "fp": 16.5,
+        "fn": 18
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 46,
+        "onset": 0.6060309821025718,
+        "offset": 0.4487140923447135,
+        "scoreOnset": 0.5978342607910965,
+        "scoreOffset": 0.4057753045570762,
+        "fp": 11,
+        "fn": 34.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.634606938954765,
+        "offset": 0.41249451032059725,
+        "scoreOnset": 0.5934343434343434,
+        "scoreOffset": 0.3728590250329381,
+        "fp": 14.5,
+        "fn": 20
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 28,
+        "onset": 0.5818181818181818,
+        "offset": 0.36363636363636365,
+        "scoreOnset": 0.49056603773584906,
+        "scoreOffset": 0.22641509433962265,
+        "fp": 12,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 14,
+        "onset": 0.45714285714285713,
+        "offset": 0.22857142857142856,
+        "scoreOnset": 0.47058823529411764,
+        "scoreOffset": 0.23529411764705882,
+        "fp": 6,
+        "fn": 13
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 37,
+        "onset": 0.6635934819897085,
+        "offset": 0.49721269296740994,
+        "scoreOnset": 0.6591133004926109,
+        "scoreOffset": 0.477504105090312,
+        "fp": 5,
+        "fn": 28
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 24,
+        "onset": 0.6349206349206349,
+        "offset": 0.4444444444444444,
+        "scoreOnset": 0.6349206349206349,
+        "scoreOffset": 0.4603174603174603,
+        "fp": 5.5,
+        "fn": 16
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 39,
+        "onset": 0.6058704453441296,
+        "offset": 0.5224696356275305,
+        "scoreOnset": 0.6279166666666667,
+        "scoreOffset": 0.514375,
+        "fp": 17.5,
+        "fn": 10
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 53,
+        "onset": 0.6323649754500819,
+        "offset": 0.5098199672667758,
+        "scoreOnset": 0.6670929241261723,
+        "scoreOffset": 0.5833333333333333,
+        "fp": 21.5,
+        "fn": 14.5
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 32,
+        "onset": 0.6285714285714286,
+        "offset": 0.3142857142857143,
+        "scoreOnset": 0.5797101449275363,
+        "scoreOffset": 0.2608695652173913,
+        "fp": 10,
+        "fn": 16
+      }
+    ],
+    "single": [
+      {
+        "id": "vocadito_1",
+        "activitySha256": "306175ce5ec4c6dcde40b571b26687d2a0c898baf365bec677d6cc386cdea995",
+        "n": 60,
+        "onset": 0.7161832474925454,
+        "offset": 0.5108430468961778,
+        "scoreOnset": 0.707441040932502,
+        "scoreOffset": 0.47722960151802657,
+        "fp": 16.5,
+        "fn": 18
+      },
+      {
+        "id": "vocadito_2",
+        "activitySha256": "84ac356735a137880789b207b7e55c41c7dea72b3158bf34f01e307b422338fd",
+        "n": 46,
+        "onset": 0.6060309821025718,
+        "offset": 0.4487140923447135,
+        "scoreOnset": 0.5978342607910965,
+        "scoreOffset": 0.4057753045570762,
+        "fp": 11,
+        "fn": 34.5
+      },
+      {
+        "id": "vocadito_17",
+        "activitySha256": "5905cbe3858ef02dee988998d3819abe66c508073999372d4b9db83b44fcab1c",
+        "n": 45,
+        "onset": 0.634606938954765,
+        "offset": 0.41249451032059725,
+        "scoreOnset": 0.5934343434343434,
+        "scoreOffset": 0.3728590250329381,
+        "fp": 14.5,
+        "fn": 20
+      },
+      {
+        "id": "pjs010",
+        "activitySha256": "c0b2e351d84817e350726f74e849d655ce0a55abe40347bae1d128c091f3bd5c",
+        "n": 28,
+        "onset": 0.5818181818181818,
+        "offset": 0.36363636363636365,
+        "scoreOnset": 0.49056603773584906,
+        "scoreOffset": 0.22641509433962265,
+        "fp": 12,
+        "fn": 11
+      },
+      {
+        "id": "pjs040",
+        "activitySha256": "a0ea327cfd300862faf155901105c05e067dd4c6ce51731497e0a5924283ce45",
+        "n": 8,
+        "onset": 0.41379310344827586,
+        "offset": 0.20689655172413793,
+        "scoreOnset": 0.42857142857142855,
+        "scoreOffset": 0.21428571428571427,
+        "fp": 2,
+        "fn": 15
+      },
+      {
+        "id": "vocadito_4",
+        "activitySha256": "1ef816b30fa22be43852dd1cb00f948ab3a4ea40a528d44bade4445f45a58f0e",
+        "n": 32,
+        "onset": 0.6025289275915544,
+        "offset": 0.45878563759990454,
+        "scoreOnset": 0.5970731707317074,
+        "scoreOffset": 0.4173170731707317,
+        "fp": 4.5,
+        "fn": 32.5
+      },
+      {
+        "id": "vocadito_24",
+        "activitySha256": "29011ea89edb03aba1faa61c2e20203b89ca0aba0d52ff1f503e64de18e75883",
+        "n": 18,
+        "onset": 0.5164473684210527,
+        "offset": 0.30372807017543857,
+        "scoreOnset": 0.5164473684210527,
+        "scoreOffset": 0.32127192982456143,
+        "fp": 4.5,
+        "fn": 21
+      },
+      {
+        "id": "vocadito_35",
+        "activitySha256": "ddf4a8d244c27708d96781ce9a9f907b5ae85e5e444b72a4fbd1cb46f58638b3",
+        "n": 39,
+        "onset": 0.6058704453441296,
+        "offset": 0.5224696356275305,
+        "scoreOnset": 0.6279166666666667,
+        "scoreOffset": 0.514375,
+        "fp": 17.5,
+        "fn": 10
+      },
+      {
+        "id": "vocadito_37",
+        "activitySha256": "0c196fc05ff1d08a28f14474e15dfb682a152bb6f2a71d72ed26f7693a29b695",
+        "n": 53,
+        "onset": 0.6323649754500819,
+        "offset": 0.5098199672667758,
+        "scoreOnset": 0.6670929241261723,
+        "scoreOffset": 0.5833333333333333,
+        "fp": 21.5,
+        "fn": 14.5
+      },
+      {
+        "id": "pjs017",
+        "activitySha256": "a2c99e9fd38dba03ba791d60c7e932f753c8387024014461e6453518d39701d2",
+        "n": 32,
+        "onset": 0.6285714285714286,
+        "offset": 0.3142857142857143,
+        "scoreOnset": 0.5797101449275363,
+        "scoreOffset": 0.2608695652173913,
+        "fp": 10,
+        "fn": 16
+      }
+    ]
+  }
+}

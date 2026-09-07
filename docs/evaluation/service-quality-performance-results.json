@@ -1,0 +1,702 @@
+{
+  "schema": 1,
+  "date": "2026-09-07T12:50:29.534Z",
+  "mode": "performance",
+  "sourceHashes": {
+    "src/analysis/detectors.ts": "a2efbef9252544fd7ac1122bffbc023e9de349e9eda6e17858327e53712e7a1b",
+    "src/analysis/melody.ts": "fd8ff08dda6dc4cfe915bd498694699304121689971e3d6ed9e5674cad68c87a",
+    "src/analysis/model-notes.ts": "3eea979efdf97d9a5deebb536a8d6fa9c3ee3ce80d39e40b41c63ca3b0fd7b39",
+    "src/analysis/notes.ts": "896e2aacb07c8cb93a62859c90b3dcb098461ded371f00d7fa44019a78be84d2",
+    "src/analysis/offline.ts": "9de88c7a58fb39601f09cd927101e32ca7f7b9b1b0bae26a6d5a8d20299227e6",
+    "src/analysis/pipeline.ts": "9d32d33a32e2dfe82973a695c414ee4e4d47a016a9ac82c6ba019439526685ce",
+    "src/audio/analysis-worker.ts": "0ddb0e39e1ae3f40f5ca5b7b7aefe94993ab4735617fe2933f59cbf8c0366204",
+    "src/audio/capture-worklet.js": "0d96446f90dbd3e7d0713daf267b8cd7a99c20f8be46e199e6e34ea817020f9b",
+    "src/audio/capture.ts": "1d95202a5f718e488f236772bee3b65b6c5bf89c6d3dbe121828998fb407fea7",
+    "src/audio/import.ts": "7123992b8aa338a19ebb9f66be185b68ad52d2e16bf209f88c31107235c7bd3f",
+    "src/audio/piano-voice.ts": "58ec7871cdcb7d93c2d456ccbc0a9373d6053c1c53663eb5235de162bab1c5fe",
+    "src/audio/playback-model.ts": "3d76bed14ff3a45f9c7de1ca679b31ad9820f5ec852da53cd55603d832ab341e",
+    "src/audio/player.ts": "60964b824ff83ac38f3f82112f40383b6455a210c3e839fd2cb023281c449dcd",
+    "src/audio/transcription-worker.ts": "81db461d8aedf166fd9c98b9d8886c489fb8f6dd2b4f867c8be135ef73a584ac",
+    "src/audio/transcription.ts": "d0a332e892cf8304ab031bc2d000dc262e4b524fcc4e45016e0bf224b0eb1198",
+    "src/counter.ts": "7580ce935ad5fd8f5598ee53533fbddbd5d34e5aaf6cfbb7f81f3ef1969bf4e3",
+    "src/main.ts": "2fffaadb91fcc59fb6370103856777bc073175b2d9ada1c6eb42fa3beb8cf189",
+    "src/notation/midi.ts": "dc93e66056e03636652980acc7d7255bfe677ef2ef31d0470a5a5c51584d2531",
+    "src/notation/score-editor.ts": "16f2a76ccb062c5fec3ba72227cba438c460856993133587c0892b338167f60e",
+    "src/notation/score-playback.ts": "35211fb451d3b3b7461af12c40a8615def08c8ace1dd39fa350d9e1bceb91255",
+    "src/notation/score.ts": "87b834a34419c08d24d0ac8de074d7a5e5b30fdd2e0a00ebd0216011dd9432a2",
+    "src/style.css": "d91629f6bd6d5b7416f61119e7a5c1500e00f8ea310153739231389f5dbd0235",
+    "src/typescript.svg": "f6ead1af17acc3f55ad857f3bc936df8754281e2932c1b472dbb9b36ab873f1c",
+    "src/ui/score-editor-panel.ts": "deffd6a22dccbe9f83e6918115d73d253c75a3c9cd215aff02cf792cf93731f3",
+    "src/ui/score-panel.ts": "114b069aa83552f60b64297453eb46ef620fcc53a5b5d2de409094a1b22943b6",
+    "src/ui/score-renderer.ts": "2fd4fa20cdb77ddd0f1fcb6349e6d8d805477f6da980305061600b2adb16c76e",
+    "src/ui/timeline.ts": "44f738c0da49465c9cb510bf8821d24ed6becd1ab323ea545b5e7ec684303104",
+    "src/ui/transcription-panel.ts": "65fcb5ad1d40e1e68c51d42f60f70e8bb51c62efcb2a6d4b0112e8fb466e1c17",
+    "src/ui/view.ts": "d4f921c264ce29ad70b95e2c2a4af4c0f9b338135beb8eabc148b70b5eaed589",
+    "dist/assets/analysis-worker-DdZypqZv.js": "71f40220616ec4603958cf6068ecb2a5938f23beb267f13d61d671aa8e14a97f",
+    "dist/assets/index-DJf-XKKq.css": "496d64c3ccd6c3b6ad44c0ad2386d4177de1404adb4e40d9b832842fc297b49d",
+    "dist/assets/index-el3j-ytB.js": "dc226e5ccabe3f576e090e08eceaf47f061eee199ad1ab707bbbe925572d7f41",
+    "dist/assets/score-renderer-CQvy-wve.js": "88306c19ca7e93dea9838a5985025fb88c69c547b3456fcf528b5053caaefddc",
+    "dist/assets/transcription-worker-C906VyWz.js": "ab2d294e1873896dd01392585ac84bb147f9485815198293a9d8dd4e4fff006d",
+    "dist/index.html": "6af6c80e86423fcfb9a3f4fe2d492bf4fe84741cadaaa838dc47068504a7a006",
+    "dist/licenses/Academico.txt": "da623fe9d67fd535caf746690c6678cda62ce23b44cf23453b2d71f3e6961720",
+    "dist/licenses/BasicPitch-NOTICE.txt": "b810e55c0e3b520fabb45fc2ccc74880187bf84e309971968541cc812dcde905",
+    "dist/licenses/BasicPitch-PROVENANCE.txt": "8ce9033f90cb663fd80b440bc8dba2f83586326ac9f89dfe5b096d1584ea19d2",
+    "dist/licenses/BasicPitch.txt": "929c910bae2152fa87199a5d0660e09263419b7eee6d4b301d05ee2aaf211c37",
+    "dist/licenses/Bravura.txt": "eaf7e8faffbe4e404fc19e625c89cef03992dc736051ae7e2fefe205cd6c93db",
+    "dist/licenses/ONNXRuntime-PROVENANCE.txt": "af065e44a5d0c9c2163167c7407ff27a30a8068ef66ef81b86f4126225d76e84",
+    "dist/licenses/ONNXRuntime-ThirdPartyNotices.txt": "143764b952fdb1a7c69ce653bfba74a7744d6a8a573bfb73e235fba356c83de3",
+    "dist/licenses/ONNXRuntime.txt": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+    "dist/licenses/VexFlow.txt": "5522a52057a68b081dd3e06a878584b565c6a3f7e7ddb154dd24f25b5630216f",
+    "dist/models/basic-pitch.onnx": "2c3c1d144bfa61ad236e92e169c13535c880469a12a047d4e73451f2c059a0ec",
+    "dist/runtime/ort-wasm-simd-threaded.mjs": "5a15f1fd086b3f6c2baf1f35105b8f502653b567e165cef80028870b39748747",
+    "dist/runtime/ort-wasm-simd-threaded.wasm": "ec8580a9d7b9476ceee52e10a7f94124e4dc71a019d666ed6d4726697c109a4d",
+    "dist/runtime/ort.wasm.min.mjs": "14a0a63ad1a0fe8127722929fd16fb26c2e5352ea221bc9034d12daf314d0b92",
+    "dist/vite.svg": "4a748afd443918bb16591c834c401dae33e87861ab5dbad0811c3a3b4a9214fb",
+    "package-lock.json": "d737284471feda615ec30c9eb29e326155d39011c6fa13404962d1bfb907c5c9"
+  },
+  "build": "Separate minified harness compiling unchanged production APIs and workers",
+  "conditions": {
+    "parallelWork": "Parent idle; service_benchmark confirmed Chromium/render complete before run",
+    "cold": "New browser context/page and first API call for each duration; HTTP assets served on localhost",
+    "warm": "Second call in same page/context; each production call still creates/releases a fresh Worker and ONNX session",
+    "transfer": "Localhost without bandwidth emulation; initial transfer time is not production-network performance",
+    "modelRuntime": "onnxruntime-web1.29.0 wasm CPU numThreads1",
+    "samples": "Deterministic harmonic scale; no real-voice quality claim",
+    "timing": "performance.now; one cold and one warm per length; no statistical confidence interval",
+    "render": "960x260 timeline; first up to4 measures (production page size); render completion and two-RAF paint opportunity separated",
+    "memory": "Not measured; Worker constructor/terminate counts do not prove complete WASM/native memory reclamation",
+    "webkit": "Playwright WebKit on Linux Docker, not Safari or an iPhone device"
+  },
+  "rows": [
+    {
+      "cache": "cold",
+      "duration": 10,
+      "sampleRate": 48000,
+      "pcmSamples": 480000,
+      "pcmSha256": "16f2b3c75bf2415d083eadcf0cb5a59d41b541eec671d0a488039c77a78bf539",
+      "pcmUnchanged": true,
+      "yinMilliseconds": 3968.800000011921,
+      "extractionMilliseconds": 3.7999999970197678,
+      "modelMilliseconds": 1028.4000000059605,
+      "modelProgressMilestones": [
+        {
+          "stage": "loading",
+          "elapsedMilliseconds": 29.400000005960464
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.1612017473477757,
+          "elapsedMilliseconds": 521.0999999940395
+        },
+        {
+          "stage": "notes",
+          "elapsedMilliseconds": 980.5999999940395
+        }
+      ],
+      "timelineMilliseconds": 15.400000005960464,
+      "timelinePaintOpportunityMilliseconds": 4.299999997019768,
+      "rendererModuleMilliseconds": 51.8999999910593,
+      "yinDelivery": {
+        "notes": 20,
+        "scoreNotes": 20,
+        "measures": 5,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0.29999999701976776,
+        "scoreToPianoMilliseconds": 0.09999999403953552,
+        "renderMeasuresMilliseconds": 45.1000000089407,
+        "renderPaintOpportunityMilliseconds": 2.199999988079071
+      },
+      "modelDelivery": {
+        "notes": 20,
+        "scoreNotes": 20,
+        "measures": 5,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0.10000000894069672,
+        "scoreToPianoMilliseconds": 0,
+        "renderMeasuresMilliseconds": 7.700000002980232,
+        "renderPaintOpportunityMilliseconds": 27
+      },
+      "workerObservation": {
+        "created": 2,
+        "terminated": 2,
+        "active": 0
+      },
+      "memory": {
+        "measured": false,
+        "reason": "No reliable full Worker/WASM/process memory measurement collected"
+      },
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10,
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "devicePixelRatio": 1
+      },
+      "modelNetwork": [
+        {
+          "path": "/perfectPitch/runtime/ort.wasm.min.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 475,
+            "responseBodySize": 16214,
+            "responseHeadersSize": 355
+          },
+          "timing": {
+            "startTime": 1788785433693.505,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.162,
+            "responseStart": 2.79,
+            "responseEnd": 3.662
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 470,
+            "responseBodySize": 9131,
+            "responseHeadersSize": 355
+          },
+          "timing": {
+            "startTime": 1788785433702.018,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.107,
+            "responseStart": 2.288,
+            "responseEnd": 3.381
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.wasm",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 453,
+            "responseBodySize": 13961845,
+            "responseHeadersSize": 280
+          },
+          "timing": {
+            "startTime": 1788785433709.123,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.138,
+            "responseStart": 1.679,
+            "responseEnd": 46.331
+          }
+        },
+        {
+          "path": "/perfectPitch/models/basic-pitch.onnx",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 441,
+            "responseBodySize": 112167,
+            "responseHeadersSize": 288
+          },
+          "timing": {
+            "startTime": 1788785433868.464,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.193,
+            "responseStart": 3.134,
+            "responseEnd": 8.818
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "cache": "warm",
+      "duration": 10,
+      "sampleRate": 48000,
+      "pcmSamples": 480000,
+      "pcmSha256": "16f2b3c75bf2415d083eadcf0cb5a59d41b541eec671d0a488039c77a78bf539",
+      "pcmUnchanged": true,
+      "yinMilliseconds": 3951.0999999940395,
+      "extractionMilliseconds": 2.7000000029802322,
+      "modelMilliseconds": 987.1000000089407,
+      "modelProgressMilestones": [
+        {
+          "stage": "loading",
+          "elapsedMilliseconds": 25.400000005960464
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.1612017473477757,
+          "elapsedMilliseconds": 501.70000000298023
+        },
+        {
+          "stage": "notes",
+          "elapsedMilliseconds": 947.4000000059605
+        }
+      ],
+      "timelineMilliseconds": 1.1000000089406967,
+      "timelinePaintOpportunityMilliseconds": 13.899999991059303,
+      "rendererModuleMilliseconds": 0.19999998807907104,
+      "yinDelivery": {
+        "notes": 20,
+        "scoreNotes": 20,
+        "measures": 5,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0,
+        "scoreToPianoMilliseconds": 0,
+        "renderMeasuresMilliseconds": 10.200000002980232,
+        "renderPaintOpportunityMilliseconds": 3.7000000029802322
+      },
+      "modelDelivery": {
+        "notes": 20,
+        "scoreNotes": 20,
+        "measures": 5,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0.09999999403953552,
+        "scoreToPianoMilliseconds": 0,
+        "renderMeasuresMilliseconds": 6.700000002980232,
+        "renderPaintOpportunityMilliseconds": 25.600000008940697
+      },
+      "workerObservation": {
+        "created": 4,
+        "terminated": 4,
+        "active": 0
+      },
+      "memory": {
+        "measured": false,
+        "reason": "No reliable full Worker/WASM/process memory measurement collected"
+      },
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10,
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "devicePixelRatio": 1
+      },
+      "modelNetwork": [
+        {
+          "path": "/perfectPitch/runtime/ort.wasm.min.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 565,
+            "responseBodySize": 0,
+            "responseHeadersSize": 180
+          },
+          "timing": {
+            "startTime": 1788785438881.8362,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.127,
+            "responseStart": 0.58,
+            "responseEnd": 1.292
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 560,
+            "responseBodySize": 0,
+            "responseHeadersSize": 180
+          },
+          "timing": {
+            "startTime": 1788785438887.725,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.109,
+            "responseStart": 0.584,
+            "responseEnd": 1.413
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.wasm",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 453,
+            "responseBodySize": 13961845,
+            "responseHeadersSize": 280
+          },
+          "timing": {
+            "startTime": 1788785438892.2761,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.084,
+            "responseStart": 1.824,
+            "responseEnd": 46.544
+          }
+        },
+        {
+          "path": "/perfectPitch/models/basic-pitch.onnx",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 532,
+            "responseBodySize": 0,
+            "responseHeadersSize": 127
+          },
+          "timing": {
+            "startTime": 1788785439050.8252,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.324,
+            "responseStart": 1.123,
+            "responseEnd": 2.918
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "cache": "cold",
+      "duration": 60,
+      "sampleRate": 48000,
+      "pcmSamples": 2880000,
+      "pcmSha256": "beba0da3ce9f74f0921de7216b4858270052a8b44595428d59d6f04c2cb01881",
+      "pcmUnchanged": true,
+      "yinMilliseconds": 23702,
+      "extractionMilliseconds": 7.800000011920929,
+      "modelMilliseconds": 3457.0999999940395,
+      "modelProgressMilestones": [
+        {
+          "stage": "loading",
+          "elapsedMilliseconds": 117.59999999403954
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.027255735431551655,
+          "elapsedMilliseconds": 630.7000000029802
+        },
+        {
+          "stage": "notes",
+          "elapsedMilliseconds": 3261.3999999910593
+        }
+      ],
+      "timelineMilliseconds": 3.5,
+      "timelinePaintOpportunityMilliseconds": 3.2999999970197678,
+      "rendererModuleMilliseconds": 50.6000000089407,
+      "yinDelivery": {
+        "notes": 120,
+        "scoreNotes": 120,
+        "measures": 30,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0.5,
+        "scoreToPianoMilliseconds": 0.20000000298023224,
+        "renderMeasuresMilliseconds": 42,
+        "renderPaintOpportunityMilliseconds": 2.7999999970197678
+      },
+      "modelDelivery": {
+        "notes": 120,
+        "scoreNotes": 120,
+        "measures": 30,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0.20000000298023224,
+        "scoreToPianoMilliseconds": 0.09999999403953552,
+        "renderMeasuresMilliseconds": 9.700000002980232,
+        "renderPaintOpportunityMilliseconds": 19.200000002980232
+      },
+      "workerObservation": {
+        "created": 2,
+        "terminated": 2,
+        "active": 0
+      },
+      "memory": {
+        "measured": false,
+        "reason": "No reliable full Worker/WASM/process memory measurement collected"
+      },
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10,
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "devicePixelRatio": 1
+      },
+      "modelNetwork": [
+        {
+          "path": "/perfectPitch/runtime/ort.wasm.min.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 475,
+            "responseBodySize": 16214,
+            "responseHeadersSize": 355
+          },
+          "timing": {
+            "startTime": 1788785464188.984,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.162,
+            "responseStart": 2.308,
+            "responseEnd": 3.381
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 470,
+            "responseBodySize": 9131,
+            "responseHeadersSize": 355
+          },
+          "timing": {
+            "startTime": 1788785464197.2258,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.117,
+            "responseStart": 1.727,
+            "responseEnd": 2.591
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.wasm",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 453,
+            "responseBodySize": 13961845,
+            "responseHeadersSize": 280
+          },
+          "timing": {
+            "startTime": 1788785464203.0032,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.122,
+            "responseStart": 1.844,
+            "responseEnd": 48.597
+          }
+        },
+        {
+          "path": "/perfectPitch/models/basic-pitch.onnx",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 441,
+            "responseBodySize": 112167,
+            "responseHeadersSize": 288
+          },
+          "timing": {
+            "startTime": 1788785464385.007,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.208,
+            "responseStart": 2.579,
+            "responseEnd": 7.924
+          }
+        }
+      ],
+      "errors": []
+    },
+    {
+      "cache": "warm",
+      "duration": 60,
+      "sampleRate": 48000,
+      "pcmSamples": 2880000,
+      "pcmSha256": "beba0da3ce9f74f0921de7216b4858270052a8b44595428d59d6f04c2cb01881",
+      "pcmUnchanged": true,
+      "yinMilliseconds": 23619.20000000298,
+      "extractionMilliseconds": 6.799999997019768,
+      "modelMilliseconds": 3433.2999999970198,
+      "modelProgressMilestones": [
+        {
+          "stage": "loading",
+          "elapsedMilliseconds": 112
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.027255735431551655,
+          "elapsedMilliseconds": 610.8999999910593
+        },
+        {
+          "stage": "notes",
+          "elapsedMilliseconds": 3240.3999999910593
+        }
+      ],
+      "timelineMilliseconds": 1,
+      "timelinePaintOpportunityMilliseconds": 5.200000002980232,
+      "rendererModuleMilliseconds": 0.09999999403953552,
+      "yinDelivery": {
+        "notes": 120,
+        "scoreNotes": 120,
+        "measures": 30,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0.10000000894069672,
+        "scoreToPianoMilliseconds": 0.09999999403953552,
+        "renderMeasuresMilliseconds": 11.200000002980232,
+        "renderPaintOpportunityMilliseconds": 5.4000000059604645
+      },
+      "modelDelivery": {
+        "notes": 120,
+        "scoreNotes": 120,
+        "measures": 30,
+        "representativeMeasures": 4,
+        "svgCount": 4,
+        "buildScoreMilliseconds": 0.19999998807907104,
+        "scoreToPianoMilliseconds": 0,
+        "renderMeasuresMilliseconds": 7.300000011920929,
+        "renderPaintOpportunityMilliseconds": 31.69999998807907
+      },
+      "workerObservation": {
+        "created": 4,
+        "terminated": 4,
+        "active": 0
+      },
+      "memory": {
+        "measured": false,
+        "reason": "No reliable full Worker/WASM/process memory measurement collected"
+      },
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10,
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "devicePixelRatio": 1
+      },
+      "modelNetwork": [
+        {
+          "path": "/perfectPitch/runtime/ort.wasm.min.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 565,
+            "responseBodySize": 0,
+            "responseHeadersSize": 180
+          },
+          "timing": {
+            "startTime": 1788785491699.647,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.172,
+            "responseStart": 0.792,
+            "responseEnd": 1.703
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.mjs",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 560,
+            "responseBodySize": 0,
+            "responseHeadersSize": 180
+          },
+          "timing": {
+            "startTime": 1788785491706.229,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.129,
+            "responseStart": 0.525,
+            "responseEnd": 1.353
+          }
+        },
+        {
+          "path": "/perfectPitch/runtime/ort-wasm-simd-threaded.wasm",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 453,
+            "responseBodySize": 13961845,
+            "responseHeadersSize": 280
+          },
+          "timing": {
+            "startTime": 1788785491710.665,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.122,
+            "responseStart": 2.105,
+            "responseEnd": 62.462
+          }
+        },
+        {
+          "path": "/perfectPitch/models/basic-pitch.onnx",
+          "status": 200,
+          "sizes": {
+            "requestBodySize": 0,
+            "requestHeadersSize": 532,
+            "responseBodySize": 0,
+            "responseHeadersSize": 127
+          },
+          "timing": {
+            "startTime": 1788785491891.2349,
+            "domainLookupStart": -1,
+            "domainLookupEnd": -1,
+            "connectStart": -1,
+            "secureConnectionStart": -1,
+            "connectEnd": -1,
+            "requestStart": 0.207,
+            "responseStart": 1.355,
+            "responseEnd": 2.993
+          }
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "sourceUnchanged": true,
+  "completedAt": "2026-09-07T12:51:35.217Z"
+}

@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prepare:transcription": "node scripts/copy-transcription-assets.mjs",
+    "predev": "npm run prepare:transcription",
     "dev": "vite",
+    "prebuild": "npm run prepare:transcription",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
@@ -17,6 +20,7 @@
     "vite": "^7.2.4"
   },
   "dependencies": {
+    "onnxruntime-web": "1.29.0",
     "vexflow": "5.0.0"
   }
 }
