@@ -1,5 +1,7 @@
 # 端末内採譜モデルの比較と再現方法
 
+追補：この初回比較の後、既使用素材で[曲中の休符再判定](service-quality-rest-recovery.md)を比較・追加した。以下の「固定」「最終確認」は初回の選定段階を指し、追補の回帰素材を新規holdoutとは呼ばない。
+
 標準のYIN推定を維持し、Basic Pitchの単音デコードを**元推定へ戻せる任意の再採譜**に採用する。新規4曲の発音F1はほぼ同等で、終了時刻の精度と短音には悪化があるため、全面置換や自動選択を正当化する結果ではない。
 
 集計の全数値・設定・ハッシュは [service-quality-models.json](service-quality-models.json)、素材の取得条件は [vocadito-sources.md](vocadito-sources.md)、PJSの由来は [vocal-score-sources.md](vocal-score-sources.md) に記録した。私的音声の結果や音符列はこの公開資料に含めない。

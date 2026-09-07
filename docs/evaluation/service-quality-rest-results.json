@@ -1,0 +1,4541 @@
+{
+  "schema": 1,
+  "createdAt": "2026-09-07T13:47:01.863Z",
+  "sourceHashes": {
+    "src/analysis/pipeline.ts": "9d32d33a32e2dfe82973a695c414ee4e4d47a016a9ac82c6ba019439526685ce",
+    "src/analysis/offline.ts": "9de88c7a58fb39601f09cd927101e32ca7f7b9b1b0bae26a6d5a8d20299227e6",
+    "src/analysis/detectors.ts": "a2efbef9252544fd7ac1122bffbc023e9de349e9eda6e17858327e53712e7a1b",
+    "src/analysis/melody.ts": "fd8ff08dda6dc4cfe915bd498694699304121689971e3d6ed9e5674cad68c87a",
+    "src/analysis/model-notes.ts": "fed039e5e389893c22e4cf4ff57ad978659a6550ee91b06abfebf89c7c1c45bc",
+    "src/audio/capture.ts": "1d95202a5f718e488f236772bee3b65b6c5bf89c6d3dbe121828998fb407fea7",
+    "src/audio/analysis-worker.ts": "0ddb0e39e1ae3f40f5ca5b7b7aefe94993ab4735617fe2933f59cbf8c0366204",
+    "src/audio/transcription.ts": "d0a332e892cf8304ab031bc2d000dc262e4b524fcc4e45016e0bf224b0eb1198",
+    "src/audio/transcription-worker.ts": "81db461d8aedf166fd9c98b9d8886c489fb8f6dd2b4f867c8be135ef73a584ac",
+    "src/notation/score.ts": "87b834a34419c08d24d0ac8de074d7a5e5b30fdd2e0a00ebd0216011dd9432a2",
+    "src/notation/score-playback.ts": "35211fb451d3b3b7461af12c40a8615def08c8ace1dd39fa350d9e1bceb91255",
+    "scripts/score-evaluation.ts": "166267714cd5b9fe6c3ee5cbb1fc07d9f79b455f71e09d1c5b9b21ee7d98013c",
+    "scripts/benchmark-service-quality.ts": "005f80ba657a91a771411587c1aa61dd26f24caec0b53438f15f5e6b7ce8221c",
+    "scripts/copy-transcription-assets.mjs": "eb191b0cd9faf743ce2409695ae1b535611bfd0379a1ed9fe25fb4026b5477eb",
+    "package-lock.json": "d737284471feda615ec30c9eb29e326155d39011c6fa13404962d1bfb907c5c9"
+  },
+  "assets": [
+    {
+      "path": "public/models/basic-pitch.onnx",
+      "bytes": 230444,
+      "sha256": "2c3c1d144bfa61ad236e92e169c13535c880469a12a047d4e73451f2c059a0ec"
+    },
+    {
+      "path": "public/runtime/ort-wasm-simd-threaded.wasm",
+      "bytes": 13961845,
+      "sha256": "ec8580a9d7b9476ceee52e10a7f94124e4dc71a019d666ed6d4726697c109a4d"
+    },
+    {
+      "path": "public/runtime/ort-wasm-simd-threaded.mjs",
+      "bytes": 24218,
+      "sha256": "5a15f1fd086b3f6c2baf1f35105b8f502653b567e165cef80028870b39748747"
+    },
+    {
+      "path": "public/runtime/ort.wasm.min.mjs",
+      "bytes": 50126,
+      "sha256": "14a0a63ad1a0fe8127722929fd16fb26c2e5352ea221bc9034d12daf314d0b92"
+    }
+  ],
+  "conditions": {
+    "backend": "production-browser-worker",
+    "modelWasmThreads": 1,
+    "yinCalibrate": false,
+    "inputSampleRate": 48000,
+    "modelRpaApplicable": false,
+    "rawModelActivityAvailable": false,
+    "includeFinal": true,
+    "timing": "One cold worker call per clip; total includes model load, browser resampling and DP. Decode time separate. No mobile performance claim.",
+    "repeatFinal": "These IDs were already unsealed for the frozen pilot; repeat runs are regression, not new holdout.",
+    "noteMatching": "Exact integer MIDI; onset <=100ms; offset <=max(100ms,20% reference duration); maximum one-to-one matching; no alignment/transpose.",
+    "tempo": "Unreliable suggestion falls back to120; usedBpmError does not imply automatic success; vocadito official BPM unknown."
+  },
+  "rows": [
+    {
+      "id": "vocadito_1",
+      "split": "development",
+      "audioSha256": "b509768315efad8120183b48e01d6090f1649d5bcc691241940dc7a100274ab8",
+      "duration": 33.21222916666667,
+      "sampleRate": 48000,
+      "officialBpm": null,
+      "decodeSeconds": 0.15279999999701976,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "A1",
+          "sha256": "1ef1a2e0e61e42a76e71f9ebe44f6d3703c88d62d9c023bcca16d9aa7fa40410"
+        },
+        {
+          "annotation": "A2",
+          "sha256": "f75d575e7dd78f50d3185ddf5aff12438bffd81af0f4080f0f23058cf4af4e2a"
+        }
+      ],
+      "f0Sha256": "dd10beba57b94d37b1d3263f5deca3b780adc7ec90f1d43bb00099b02c2878e5",
+      "methods": {
+        "yin": {
+          "totalSeconds": 13.16570000000298,
+          "estimatedNotes": 75,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 49,
+                "precision": 0.6533333333333333,
+                "recall": 0.8305084745762712,
+                "f1": 0.7313432835820896,
+                "falsePositives": 26,
+                "falseNegatives": 10
+              },
+              "onsetOffset": {
+                "matched": 45,
+                "precision": 0.6,
+                "recall": 0.7627118644067796,
+                "f1": 0.6716417910447762,
+                "falsePositives": 30,
+                "falseNegatives": 14
+              },
+              "pitchSequence": {
+                "editDistance": 21,
+                "normalizedEditDistance": 0.3559322033898305,
+                "referenceLength": 59,
+                "estimatedLength": 75
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 49,
+                "precision": 0.6533333333333333,
+                "recall": 0.765625,
+                "f1": 0.7050359712230215,
+                "falsePositives": 26,
+                "falseNegatives": 15
+              },
+              "onsetOffset": {
+                "matched": 41,
+                "precision": 0.5466666666666666,
+                "recall": 0.640625,
+                "f1": 0.5899280575539568,
+                "falsePositives": 34,
+                "falseNegatives": 23
+              },
+              "pitchSequence": {
+                "editDistance": 23,
+                "normalizedEditDistance": 0.359375,
+                "referenceLength": 64,
+                "estimatedLength": 75
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 95,
+            "alternatives": [
+              201,
+              145
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 14,
+              "estimatedNotes": 60,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 43,
+                    "precision": 0.7166666666666667,
+                    "recall": 0.7288135593220338,
+                    "f1": 0.7226890756302521,
+                    "falsePositives": 17,
+                    "falseNegatives": 16
+                  },
+                  "onsetOffset": {
+                    "matched": 42,
+                    "precision": 0.7,
+                    "recall": 0.711864406779661,
+                    "f1": 0.7058823529411765,
+                    "falsePositives": 18,
+                    "falseNegatives": 17
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.23728813559322035,
+                    "referenceLength": 59,
+                    "estimatedLength": 60
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 43,
+                    "precision": 0.7166666666666667,
+                    "recall": 0.671875,
+                    "f1": 0.6935483870967742,
+                    "falsePositives": 17,
+                    "falseNegatives": 21
+                  },
+                  "onsetOffset": {
+                    "matched": 38,
+                    "precision": 0.6333333333333333,
+                    "recall": 0.59375,
+                    "f1": 0.6129032258064516,
+                    "falsePositives": 22,
+                    "falseNegatives": 26
+                  },
+                  "pitchSequence": {
+                    "editDistance": 18,
+                    "normalizedEditDistance": 0.28125,
+                    "referenceLength": 64,
+                    "estimatedLength": 60
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 14,
+              "estimatedNotes": 60,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 43,
+                    "precision": 0.7166666666666667,
+                    "recall": 0.7288135593220338,
+                    "f1": 0.7226890756302521,
+                    "falsePositives": 17,
+                    "falseNegatives": 16
+                  },
+                  "onsetOffset": {
+                    "matched": 42,
+                    "precision": 0.7,
+                    "recall": 0.711864406779661,
+                    "f1": 0.7058823529411765,
+                    "falsePositives": 18,
+                    "falseNegatives": 17
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.23728813559322035,
+                    "referenceLength": 59,
+                    "estimatedLength": 60
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 43,
+                    "precision": 0.7166666666666667,
+                    "recall": 0.671875,
+                    "f1": 0.6935483870967742,
+                    "falsePositives": 17,
+                    "falseNegatives": 21
+                  },
+                  "onsetOffset": {
+                    "matched": 38,
+                    "precision": 0.6333333333333333,
+                    "recall": 0.59375,
+                    "f1": 0.6129032258064516,
+                    "falsePositives": 22,
+                    "falseNegatives": 26
+                  },
+                  "pitchSequence": {
+                    "editDistance": 18,
+                    "normalizedEditDistance": 0.28125,
+                    "referenceLength": 64,
+                    "estimatedLength": 60
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": {
+            "samples": 5722,
+            "gtVoiced": 3642,
+            "tp": 3304,
+            "fp": 49,
+            "fn": 338,
+            "tn": 2031,
+            "voicedPrecision": 0.9853862212943633,
+            "voicedRecall": 0.9071938495332235,
+            "rawPitchAccuracy50": 0.886051619989017,
+            "rawChromaAccuracy50": 0.8918176825919825,
+            "acceptedPitchAccuracy50": 0.886051619989017,
+            "acceptedChromaAccuracy50": 0.8918176825919825,
+            "raw50": 3227,
+            "chroma50": 3248,
+            "strict50": 3227,
+            "strictChroma50": 3248,
+            "bothVoicedCount": 3304,
+            "bothVoicedCents": {
+              "medianAbsolute": 4.662211448769234,
+              "meanAbsolute": 16.796635646856377,
+              "p90Absolute": 19.30170694460575,
+              "medianSigned": 0.1902876336453374
+            }
+          },
+          "f0NotApplicable": null,
+          "noteCoverage": {
+            "voicedFrames": 3642,
+            "unvoicedFrames": 2080,
+            "voicedCoverage": 0.9066447007138935,
+            "unvoicedCoverage": 0.021634615384615384
+          }
+        },
+        "model": {
+          "totalSeconds": 2.327,
+          "estimatedNotes": 60,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 43,
+                "precision": 0.7166666666666667,
+                "recall": 0.7288135593220338,
+                "f1": 0.7226890756302521,
+                "falsePositives": 17,
+                "falseNegatives": 16
+              },
+              "onsetOffset": {
+                "matched": 32,
+                "precision": 0.5333333333333333,
+                "recall": 0.5423728813559322,
+                "f1": 0.5378151260504201,
+                "falsePositives": 28,
+                "falseNegatives": 27
+              },
+              "pitchSequence": {
+                "editDistance": 18,
+                "normalizedEditDistance": 0.3050847457627119,
+                "referenceLength": 59,
+                "estimatedLength": 60
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 44,
+                "precision": 0.7333333333333333,
+                "recall": 0.6875,
+                "f1": 0.7096774193548387,
+                "falsePositives": 16,
+                "falseNegatives": 20
+              },
+              "onsetOffset": {
+                "matched": 30,
+                "precision": 0.5,
+                "recall": 0.46875,
+                "f1": 0.4838709677419355,
+                "falsePositives": 30,
+                "falseNegatives": 34
+              },
+              "pitchSequence": {
+                "editDistance": 19,
+                "normalizedEditDistance": 0.296875,
+                "referenceLength": 64,
+                "estimatedLength": 60
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 121,
+            "alternatives": [
+              217,
+              230
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 0,
+              "estimatedNotes": 60,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 41,
+                    "precision": 0.6833333333333333,
+                    "recall": 0.6949152542372882,
+                    "f1": 0.6890756302521008,
+                    "falsePositives": 19,
+                    "falseNegatives": 18
+                  },
+                  "onsetOffset": {
+                    "matched": 28,
+                    "precision": 0.4666666666666667,
+                    "recall": 0.4745762711864407,
+                    "f1": 0.47058823529411764,
+                    "falsePositives": 32,
+                    "falseNegatives": 31
+                  },
+                  "pitchSequence": {
+                    "editDistance": 18,
+                    "normalizedEditDistance": 0.3050847457627119,
+                    "referenceLength": 59,
+                    "estimatedLength": 60
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 45,
+                    "precision": 0.75,
+                    "recall": 0.703125,
+                    "f1": 0.7258064516129032,
+                    "falsePositives": 15,
+                    "falseNegatives": 19
+                  },
+                  "onsetOffset": {
+                    "matched": 30,
+                    "precision": 0.5,
+                    "recall": 0.46875,
+                    "f1": 0.4838709677419355,
+                    "falsePositives": 30,
+                    "falseNegatives": 34
+                  },
+                  "pitchSequence": {
+                    "editDistance": 19,
+                    "normalizedEditDistance": 0.296875,
+                    "referenceLength": 64,
+                    "estimatedLength": 60
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 0,
+              "estimatedNotes": 60,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 41,
+                    "precision": 0.6833333333333333,
+                    "recall": 0.6949152542372882,
+                    "f1": 0.6890756302521008,
+                    "falsePositives": 19,
+                    "falseNegatives": 18
+                  },
+                  "onsetOffset": {
+                    "matched": 28,
+                    "precision": 0.4666666666666667,
+                    "recall": 0.4745762711864407,
+                    "f1": 0.47058823529411764,
+                    "falsePositives": 32,
+                    "falseNegatives": 31
+                  },
+                  "pitchSequence": {
+                    "editDistance": 18,
+                    "normalizedEditDistance": 0.3050847457627119,
+                    "referenceLength": 59,
+                    "estimatedLength": 60
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 45,
+                    "precision": 0.75,
+                    "recall": 0.703125,
+                    "f1": 0.7258064516129032,
+                    "falsePositives": 15,
+                    "falseNegatives": 19
+                  },
+                  "onsetOffset": {
+                    "matched": 30,
+                    "precision": 0.5,
+                    "recall": 0.46875,
+                    "f1": 0.4838709677419355,
+                    "falsePositives": 30,
+                    "falseNegatives": 34
+                  },
+                  "pitchSequence": {
+                    "editDistance": 19,
+                    "normalizedEditDistance": 0.296875,
+                    "referenceLength": 64,
+                    "estimatedLength": 60
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": {
+            "voicedFrames": 3642,
+            "unvoicedFrames": 2080,
+            "voicedCoverage": 0.9695222405271828,
+            "unvoicedCoverage": 0.27692307692307694
+          }
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.08760000000894069
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.04912452286835921,
+          "elapsedSeconds": 0.6131000000089407
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 2.0869000000059605
+        }
+      ],
+      "referenceCoverage": [
+        {
+          "annotation": "A1",
+          "voicedFrames": 3642,
+          "unvoicedFrames": 2080,
+          "voicedCoverage": 0.971718835804503,
+          "unvoicedCoverage": 0.05961538461538462
+        },
+        {
+          "annotation": "A2",
+          "voicedFrames": 3642,
+          "unvoicedFrames": 2080,
+          "voicedCoverage": 0.9549697968149369,
+          "unvoicedCoverage": 0.04471153846153846
+        }
+      ]
+    },
+    {
+      "id": "vocadito_2",
+      "split": "development",
+      "audioSha256": "8dcc99c3b08a9a5800b793e3d65cccfb4464961f15cf8ccde25bd4c8b853d519",
+      "duration": 35.208,
+      "sampleRate": 48000,
+      "officialBpm": null,
+      "decodeSeconds": 0.1436000000089407,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "A1",
+          "sha256": "553f7e8803bec17d4870e24a72316187cfac53e552ce7ae405636270a75b2cd8"
+        },
+        {
+          "annotation": "A2",
+          "sha256": "6dce2b408a7ad261f7a47d50a049d858fc4f903aeb1b36671309e0d2af64454d"
+        }
+      ],
+      "f0Sha256": "4d515029c036312e8d04545470c3d5dc5db3132dec54813624faee7d84cd6363",
+      "methods": {
+        "yin": {
+          "totalSeconds": 13.87619999998808,
+          "estimatedNotes": 60,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 43,
+                "precision": 0.7166666666666667,
+                "recall": 0.5657894736842105,
+                "f1": 0.6323529411764706,
+                "falsePositives": 17,
+                "falseNegatives": 33
+              },
+              "onsetOffset": {
+                "matched": 33,
+                "precision": 0.55,
+                "recall": 0.4342105263157895,
+                "f1": 0.4852941176470588,
+                "falsePositives": 27,
+                "falseNegatives": 43
+              },
+              "pitchSequence": {
+                "editDistance": 34,
+                "normalizedEditDistance": 0.4473684210526316,
+                "referenceLength": 76,
+                "estimatedLength": 60
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 39,
+                "precision": 0.65,
+                "recall": 0.6190476190476191,
+                "f1": 0.6341463414634146,
+                "falsePositives": 21,
+                "falseNegatives": 24
+              },
+              "onsetOffset": {
+                "matched": 31,
+                "precision": 0.5166666666666667,
+                "recall": 0.49206349206349204,
+                "f1": 0.5040650406504065,
+                "falsePositives": 29,
+                "falseNegatives": 32
+              },
+              "pitchSequence": {
+                "editDistance": 25,
+                "normalizedEditDistance": 0.3968253968253968,
+                "referenceLength": 63,
+                "estimatedLength": 60
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 91,
+            "alternatives": [
+              119,
+              77
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 7,
+              "estimatedNotes": 52,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 39,
+                    "precision": 0.75,
+                    "recall": 0.5131578947368421,
+                    "f1": 0.609375,
+                    "falsePositives": 13,
+                    "falseNegatives": 37
+                  },
+                  "onsetOffset": {
+                    "matched": 29,
+                    "precision": 0.5576923076923077,
+                    "recall": 0.3815789473684211,
+                    "f1": 0.453125,
+                    "falsePositives": 23,
+                    "falseNegatives": 47
+                  },
+                  "pitchSequence": {
+                    "editDistance": 33,
+                    "normalizedEditDistance": 0.4342105263157895,
+                    "referenceLength": 76,
+                    "estimatedLength": 52
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 35,
+                    "precision": 0.6730769230769231,
+                    "recall": 0.5555555555555556,
+                    "f1": 0.6086956521739131,
+                    "falsePositives": 17,
+                    "falseNegatives": 28
+                  },
+                  "onsetOffset": {
+                    "matched": 27,
+                    "precision": 0.5192307692307693,
+                    "recall": 0.42857142857142855,
+                    "f1": 0.46956521739130436,
+                    "falsePositives": 25,
+                    "falseNegatives": 36
+                  },
+                  "pitchSequence": {
+                    "editDistance": 21,
+                    "normalizedEditDistance": 0.3333333333333333,
+                    "referenceLength": 63,
+                    "estimatedLength": 52
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 7,
+              "estimatedNotes": 52,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 39,
+                    "precision": 0.75,
+                    "recall": 0.5131578947368421,
+                    "f1": 0.609375,
+                    "falsePositives": 13,
+                    "falseNegatives": 37
+                  },
+                  "onsetOffset": {
+                    "matched": 29,
+                    "precision": 0.5576923076923077,
+                    "recall": 0.3815789473684211,
+                    "f1": 0.453125,
+                    "falsePositives": 23,
+                    "falseNegatives": 47
+                  },
+                  "pitchSequence": {
+                    "editDistance": 33,
+                    "normalizedEditDistance": 0.4342105263157895,
+                    "referenceLength": 76,
+                    "estimatedLength": 52
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 35,
+                    "precision": 0.6730769230769231,
+                    "recall": 0.5555555555555556,
+                    "f1": 0.6086956521739131,
+                    "falsePositives": 17,
+                    "falseNegatives": 28
+                  },
+                  "onsetOffset": {
+                    "matched": 27,
+                    "precision": 0.5192307692307693,
+                    "recall": 0.42857142857142855,
+                    "f1": 0.46956521739130436,
+                    "falsePositives": 25,
+                    "falseNegatives": 36
+                  },
+                  "pitchSequence": {
+                    "editDistance": 21,
+                    "normalizedEditDistance": 0.3333333333333333,
+                    "referenceLength": 63,
+                    "estimatedLength": 52
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": {
+            "samples": 6066,
+            "gtVoiced": 4570,
+            "tp": 4277,
+            "fp": 13,
+            "fn": 293,
+            "tn": 1483,
+            "voicedPrecision": 0.996969696969697,
+            "voicedRecall": 0.9358862144420131,
+            "rawPitchAccuracy50": 0.9286652078774617,
+            "rawChromaAccuracy50": 0.9304157549234136,
+            "acceptedPitchAccuracy50": 0.9286652078774617,
+            "acceptedChromaAccuracy50": 0.9304157549234136,
+            "raw50": 4244,
+            "chroma50": 4252,
+            "strict50": 4244,
+            "strictChroma50": 4252,
+            "bothVoicedCount": 4277,
+            "bothVoicedCents": {
+              "medianAbsolute": 2.661887267797687,
+              "meanAbsolute": 7.865738209726632,
+              "p90Absolute": 14.556741591586801,
+              "medianSigned": 0.2478131919960548
+            }
+          },
+          "f0NotApplicable": null,
+          "noteCoverage": {
+            "voicedFrames": 4570,
+            "unvoicedFrames": 1496,
+            "voicedCoverage": 0.9339168490153172,
+            "unvoicedCoverage": 0.008689839572192513
+          }
+        },
+        "model": {
+          "totalSeconds": 2.3849000000059606,
+          "estimatedNotes": 46,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 37,
+                "precision": 0.8043478260869565,
+                "recall": 0.4868421052631579,
+                "f1": 0.6065573770491803,
+                "falsePositives": 9,
+                "falseNegatives": 39
+              },
+              "onsetOffset": {
+                "matched": 29,
+                "precision": 0.6304347826086957,
+                "recall": 0.3815789473684211,
+                "f1": 0.47540983606557374,
+                "falsePositives": 17,
+                "falseNegatives": 47
+              },
+              "pitchSequence": {
+                "editDistance": 35,
+                "normalizedEditDistance": 0.4605263157894737,
+                "referenceLength": 76,
+                "estimatedLength": 46
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 33,
+                "precision": 0.717391304347826,
+                "recall": 0.5238095238095238,
+                "f1": 0.6055045871559633,
+                "falsePositives": 13,
+                "falseNegatives": 30
+              },
+              "onsetOffset": {
+                "matched": 23,
+                "precision": 0.5,
+                "recall": 0.36507936507936506,
+                "f1": 0.42201834862385323,
+                "falsePositives": 23,
+                "falseNegatives": 40
+              },
+              "pitchSequence": {
+                "editDistance": 23,
+                "normalizedEditDistance": 0.36507936507936506,
+                "referenceLength": 63,
+                "estimatedLength": 46
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 183,
+            "alternatives": [
+              90,
+              228
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 0,
+              "estimatedNotes": 46,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 36,
+                    "precision": 0.782608695652174,
+                    "recall": 0.47368421052631576,
+                    "f1": 0.5901639344262295,
+                    "falsePositives": 10,
+                    "falseNegatives": 40
+                  },
+                  "onsetOffset": {
+                    "matched": 26,
+                    "precision": 0.5652173913043478,
+                    "recall": 0.34210526315789475,
+                    "f1": 0.4262295081967213,
+                    "falsePositives": 20,
+                    "falseNegatives": 50
+                  },
+                  "pitchSequence": {
+                    "editDistance": 35,
+                    "normalizedEditDistance": 0.4605263157894737,
+                    "referenceLength": 76,
+                    "estimatedLength": 46
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 33,
+                    "precision": 0.717391304347826,
+                    "recall": 0.5238095238095238,
+                    "f1": 0.6055045871559633,
+                    "falsePositives": 13,
+                    "falseNegatives": 30
+                  },
+                  "onsetOffset": {
+                    "matched": 21,
+                    "precision": 0.45652173913043476,
+                    "recall": 0.3333333333333333,
+                    "f1": 0.3853211009174312,
+                    "falsePositives": 25,
+                    "falseNegatives": 42
+                  },
+                  "pitchSequence": {
+                    "editDistance": 23,
+                    "normalizedEditDistance": 0.36507936507936506,
+                    "referenceLength": 63,
+                    "estimatedLength": 46
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 0,
+              "estimatedNotes": 46,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 36,
+                    "precision": 0.782608695652174,
+                    "recall": 0.47368421052631576,
+                    "f1": 0.5901639344262295,
+                    "falsePositives": 10,
+                    "falseNegatives": 40
+                  },
+                  "onsetOffset": {
+                    "matched": 26,
+                    "precision": 0.5652173913043478,
+                    "recall": 0.34210526315789475,
+                    "f1": 0.4262295081967213,
+                    "falsePositives": 20,
+                    "falseNegatives": 50
+                  },
+                  "pitchSequence": {
+                    "editDistance": 35,
+                    "normalizedEditDistance": 0.4605263157894737,
+                    "referenceLength": 76,
+                    "estimatedLength": 46
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 33,
+                    "precision": 0.717391304347826,
+                    "recall": 0.5238095238095238,
+                    "f1": 0.6055045871559633,
+                    "falsePositives": 13,
+                    "falseNegatives": 30
+                  },
+                  "onsetOffset": {
+                    "matched": 21,
+                    "precision": 0.45652173913043476,
+                    "recall": 0.3333333333333333,
+                    "f1": 0.3853211009174312,
+                    "falsePositives": 25,
+                    "falseNegatives": 42
+                  },
+                  "pitchSequence": {
+                    "editDistance": 23,
+                    "normalizedEditDistance": 0.36507936507936506,
+                    "referenceLength": 63,
+                    "estimatedLength": 46
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": {
+            "voicedFrames": 4570,
+            "unvoicedFrames": 1496,
+            "voicedCoverage": 0.9645514223194749,
+            "unvoicedCoverage": 0.034759358288770054
+          }
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.084
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.046353643280490554,
+          "elapsedSeconds": 0.5871000000089407
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 2.131
+        }
+      ],
+      "referenceCoverage": [
+        {
+          "annotation": "A1",
+          "voicedFrames": 4570,
+          "unvoicedFrames": 1496,
+          "voicedCoverage": 0.9743982494529541,
+          "unvoicedCoverage": 0.05748663101604278
+        },
+        {
+          "annotation": "A2",
+          "voicedFrames": 4570,
+          "unvoicedFrames": 1496,
+          "voicedCoverage": 0.9641137855579869,
+          "unvoicedCoverage": 0.03208556149732621
+        }
+      ]
+    },
+    {
+      "id": "vocadito_17",
+      "split": "development",
+      "audioSha256": "4b144cdbbcdb318f19c0aa5ac1e2675dbe8d6cb8941286d251959f25e4c96998",
+      "duration": 23.568,
+      "sampleRate": 48000,
+      "officialBpm": null,
+      "decodeSeconds": 0.10170000000298023,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "A1",
+          "sha256": "90e94c3a6f523ca2c866999ed8a755bc463c899b61a888dfbaf5627c05dd57e6"
+        },
+        {
+          "annotation": "A2",
+          "sha256": "162082bcc314a3ea5800eb84b22dd349c68b48b0cde4a46199f2fe1f1c0fdbd4"
+        }
+      ],
+      "f0Sha256": "d865f0cd526a030f19ba674ebf6c8956fdd8d8b4a0732a539fdb5a35ee86dc29",
+      "methods": {
+        "yin": {
+          "totalSeconds": 9.391900000005961,
+          "estimatedNotes": 56,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 38,
+                "precision": 0.6785714285714286,
+                "recall": 0.7037037037037037,
+                "f1": 0.6909090909090909,
+                "falsePositives": 18,
+                "falseNegatives": 16
+              },
+              "onsetOffset": {
+                "matched": 28,
+                "precision": 0.5,
+                "recall": 0.5185185185185185,
+                "f1": 0.509090909090909,
+                "falsePositives": 28,
+                "falseNegatives": 26
+              },
+              "pitchSequence": {
+                "editDistance": 21,
+                "normalizedEditDistance": 0.3888888888888889,
+                "referenceLength": 54,
+                "estimatedLength": 56
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 28,
+                "precision": 0.5,
+                "recall": 0.5957446808510638,
+                "f1": 0.5436893203883495,
+                "falsePositives": 28,
+                "falseNegatives": 19
+              },
+              "onsetOffset": {
+                "matched": 11,
+                "precision": 0.19642857142857142,
+                "recall": 0.23404255319148937,
+                "f1": 0.21359223300970873,
+                "falsePositives": 45,
+                "falseNegatives": 36
+              },
+              "pitchSequence": {
+                "editDistance": 19,
+                "normalizedEditDistance": 0.40425531914893614,
+                "referenceLength": 47,
+                "estimatedLength": 56
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 130,
+            "alternatives": [
+              92,
+              227
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 2,
+              "estimatedNotes": 54,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 35,
+                    "precision": 0.6481481481481481,
+                    "recall": 0.6481481481481481,
+                    "f1": 0.6481481481481481,
+                    "falsePositives": 19,
+                    "falseNegatives": 19
+                  },
+                  "onsetOffset": {
+                    "matched": 26,
+                    "precision": 0.48148148148148145,
+                    "recall": 0.48148148148148145,
+                    "f1": 0.48148148148148145,
+                    "falsePositives": 28,
+                    "falseNegatives": 28
+                  },
+                  "pitchSequence": {
+                    "editDistance": 19,
+                    "normalizedEditDistance": 0.35185185185185186,
+                    "referenceLength": 54,
+                    "estimatedLength": 54
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 29,
+                    "precision": 0.5370370370370371,
+                    "recall": 0.6170212765957447,
+                    "f1": 0.5742574257425742,
+                    "falsePositives": 25,
+                    "falseNegatives": 18
+                  },
+                  "onsetOffset": {
+                    "matched": 15,
+                    "precision": 0.2777777777777778,
+                    "recall": 0.3191489361702128,
+                    "f1": 0.297029702970297,
+                    "falsePositives": 39,
+                    "falseNegatives": 32
+                  },
+                  "pitchSequence": {
+                    "editDistance": 17,
+                    "normalizedEditDistance": 0.3617021276595745,
+                    "referenceLength": 47,
+                    "estimatedLength": 54
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 2,
+              "estimatedNotes": 54,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 35,
+                    "precision": 0.6481481481481481,
+                    "recall": 0.6481481481481481,
+                    "f1": 0.6481481481481481,
+                    "falsePositives": 19,
+                    "falseNegatives": 19
+                  },
+                  "onsetOffset": {
+                    "matched": 26,
+                    "precision": 0.48148148148148145,
+                    "recall": 0.48148148148148145,
+                    "f1": 0.48148148148148145,
+                    "falsePositives": 28,
+                    "falseNegatives": 28
+                  },
+                  "pitchSequence": {
+                    "editDistance": 19,
+                    "normalizedEditDistance": 0.35185185185185186,
+                    "referenceLength": 54,
+                    "estimatedLength": 54
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 29,
+                    "precision": 0.5370370370370371,
+                    "recall": 0.6170212765957447,
+                    "f1": 0.5742574257425742,
+                    "falsePositives": 25,
+                    "falseNegatives": 18
+                  },
+                  "onsetOffset": {
+                    "matched": 15,
+                    "precision": 0.2777777777777778,
+                    "recall": 0.3191489361702128,
+                    "f1": 0.297029702970297,
+                    "falsePositives": 39,
+                    "falseNegatives": 32
+                  },
+                  "pitchSequence": {
+                    "editDistance": 17,
+                    "normalizedEditDistance": 0.3617021276595745,
+                    "referenceLength": 47,
+                    "estimatedLength": 54
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": {
+            "samples": 4060,
+            "gtVoiced": 3303,
+            "tp": 3014,
+            "fp": 30,
+            "fn": 289,
+            "tn": 727,
+            "voicedPrecision": 0.9901445466491459,
+            "voicedRecall": 0.9125037844383893,
+            "rawPitchAccuracy50": 0.8979715410233121,
+            "rawChromaAccuracy50": 0.8979715410233121,
+            "acceptedPitchAccuracy50": 0.8979715410233121,
+            "acceptedChromaAccuracy50": 0.8979715410233121,
+            "raw50": 2966,
+            "chroma50": 2966,
+            "strict50": 2966,
+            "strictChroma50": 2966,
+            "bothVoicedCount": 3014,
+            "bothVoicedCents": {
+              "medianAbsolute": 4.97535635932443,
+              "meanAbsolute": 8.806685109957668,
+              "p90Absolute": 21.81178519594068,
+              "medianSigned": -0.0391925056205233
+            }
+          },
+          "f0NotApplicable": null,
+          "noteCoverage": {
+            "voicedFrames": 3303,
+            "unvoicedFrames": 757,
+            "voicedCoverage": 0.9112927641537996,
+            "unvoicedCoverage": 0.03963011889035667
+          }
+        },
+        "model": {
+          "totalSeconds": 1.7572999999970198,
+          "estimatedNotes": 45,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 37,
+                "precision": 0.8222222222222222,
+                "recall": 0.6851851851851852,
+                "f1": 0.7474747474747475,
+                "falsePositives": 8,
+                "falseNegatives": 17
+              },
+              "onsetOffset": {
+                "matched": 29,
+                "precision": 0.6444444444444445,
+                "recall": 0.5370370370370371,
+                "f1": 0.5858585858585859,
+                "falsePositives": 16,
+                "falseNegatives": 25
+              },
+              "pitchSequence": {
+                "editDistance": 15,
+                "normalizedEditDistance": 0.2777777777777778,
+                "referenceLength": 54,
+                "estimatedLength": 45
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 24,
+                "precision": 0.5333333333333333,
+                "recall": 0.5106382978723404,
+                "f1": 0.5217391304347826,
+                "falsePositives": 21,
+                "falseNegatives": 23
+              },
+              "onsetOffset": {
+                "matched": 11,
+                "precision": 0.24444444444444444,
+                "recall": 0.23404255319148937,
+                "f1": 0.2391304347826087,
+                "falsePositives": 34,
+                "falseNegatives": 36
+              },
+              "pitchSequence": {
+                "editDistance": 13,
+                "normalizedEditDistance": 0.2765957446808511,
+                "referenceLength": 47,
+                "estimatedLength": 45
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 211,
+            "alternatives": [
+              87,
+              185
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 0,
+              "estimatedNotes": 45,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 34,
+                    "precision": 0.7555555555555555,
+                    "recall": 0.6296296296296297,
+                    "f1": 0.6868686868686869,
+                    "falsePositives": 11,
+                    "falseNegatives": 20
+                  },
+                  "onsetOffset": {
+                    "matched": 24,
+                    "precision": 0.5333333333333333,
+                    "recall": 0.4444444444444444,
+                    "f1": 0.48484848484848486,
+                    "falsePositives": 21,
+                    "falseNegatives": 30
+                  },
+                  "pitchSequence": {
+                    "editDistance": 15,
+                    "normalizedEditDistance": 0.2777777777777778,
+                    "referenceLength": 54,
+                    "estimatedLength": 45
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 23,
+                    "precision": 0.5111111111111111,
+                    "recall": 0.48936170212765956,
+                    "f1": 0.5,
+                    "falsePositives": 22,
+                    "falseNegatives": 24
+                  },
+                  "onsetOffset": {
+                    "matched": 12,
+                    "precision": 0.26666666666666666,
+                    "recall": 0.2553191489361702,
+                    "f1": 0.2608695652173913,
+                    "falsePositives": 33,
+                    "falseNegatives": 35
+                  },
+                  "pitchSequence": {
+                    "editDistance": 13,
+                    "normalizedEditDistance": 0.2765957446808511,
+                    "referenceLength": 47,
+                    "estimatedLength": 45
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 0,
+              "estimatedNotes": 45,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 34,
+                    "precision": 0.7555555555555555,
+                    "recall": 0.6296296296296297,
+                    "f1": 0.6868686868686869,
+                    "falsePositives": 11,
+                    "falseNegatives": 20
+                  },
+                  "onsetOffset": {
+                    "matched": 24,
+                    "precision": 0.5333333333333333,
+                    "recall": 0.4444444444444444,
+                    "f1": 0.48484848484848486,
+                    "falsePositives": 21,
+                    "falseNegatives": 30
+                  },
+                  "pitchSequence": {
+                    "editDistance": 15,
+                    "normalizedEditDistance": 0.2777777777777778,
+                    "referenceLength": 54,
+                    "estimatedLength": 45
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 23,
+                    "precision": 0.5111111111111111,
+                    "recall": 0.48936170212765956,
+                    "f1": 0.5,
+                    "falsePositives": 22,
+                    "falseNegatives": 24
+                  },
+                  "onsetOffset": {
+                    "matched": 12,
+                    "precision": 0.26666666666666666,
+                    "recall": 0.2553191489361702,
+                    "f1": 0.2608695652173913,
+                    "falsePositives": 33,
+                    "falseNegatives": 35
+                  },
+                  "pitchSequence": {
+                    "editDistance": 13,
+                    "normalizedEditDistance": 0.2765957446808511,
+                    "referenceLength": 47,
+                    "estimatedLength": 45
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": {
+            "voicedFrames": 3303,
+            "unvoicedFrames": 757,
+            "voicedCoverage": 0.9370269452013321,
+            "unvoicedCoverage": 0.007926023778071334
+          }
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.06839999999105931
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.06907933694227852,
+          "elapsedSeconds": 0.5525
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 1.584
+        }
+      ],
+      "referenceCoverage": [
+        {
+          "annotation": "A1",
+          "voicedFrames": 3303,
+          "unvoicedFrames": 757,
+          "voicedCoverage": 0.9391462306993642,
+          "unvoicedCoverage": 0.0066050198150594455
+        },
+        {
+          "annotation": "A2",
+          "voicedFrames": 3303,
+          "unvoicedFrames": 757,
+          "voicedCoverage": 0.8734483802603693,
+          "unvoicedCoverage": 0.0066050198150594455
+        }
+      ]
+    },
+    {
+      "id": "vocadito_4",
+      "split": "final-regression",
+      "audioSha256": "fc07b202eb609c975d1549be5320db116a49be1bd1fc6904e70e31cd7e44ec23",
+      "duration": 18.456,
+      "sampleRate": 48000,
+      "officialBpm": null,
+      "decodeSeconds": 0.08279999999701977,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "A1",
+          "sha256": "0cd4791f851d73a1ec3474c8d3b5e1c201e45048f5033b7b47e5db0eda95fcc8"
+        },
+        {
+          "annotation": "A2",
+          "sha256": "f95c69d1dfd6f339af15910128bb00174b110d2a1050ec98c23d1f7fd20cf207"
+        }
+      ],
+      "f0Sha256": "fb0a5b73a66edc0bac5aaec64f82eccd95d5a54781b354ab9020056803cf3d08",
+      "methods": {
+        "yin": {
+          "totalSeconds": 7.32290000000596,
+          "estimatedNotes": 51,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 37,
+                "precision": 0.7254901960784313,
+                "recall": 0.5362318840579711,
+                "f1": 0.6166666666666667,
+                "falsePositives": 14,
+                "falseNegatives": 32
+              },
+              "onsetOffset": {
+                "matched": 33,
+                "precision": 0.6470588235294118,
+                "recall": 0.4782608695652174,
+                "f1": 0.55,
+                "falsePositives": 18,
+                "falseNegatives": 36
+              },
+              "pitchSequence": {
+                "editDistance": 33,
+                "normalizedEditDistance": 0.4782608695652174,
+                "referenceLength": 69,
+                "estimatedLength": 51
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 35,
+                "precision": 0.6862745098039216,
+                "recall": 0.6862745098039216,
+                "f1": 0.6862745098039216,
+                "falsePositives": 16,
+                "falseNegatives": 16
+              },
+              "onsetOffset": {
+                "matched": 33,
+                "precision": 0.6470588235294118,
+                "recall": 0.6470588235294118,
+                "f1": 0.6470588235294118,
+                "falsePositives": 18,
+                "falseNegatives": 18
+              },
+              "pitchSequence": {
+                "editDistance": 20,
+                "normalizedEditDistance": 0.39215686274509803,
+                "referenceLength": 51,
+                "estimatedLength": 51
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 128,
+            "alternatives": [
+              103,
+              179
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 15,
+              "estimatedNotes": 36,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 29,
+                    "precision": 0.8055555555555556,
+                    "recall": 0.42028985507246375,
+                    "f1": 0.5523809523809524,
+                    "falsePositives": 7,
+                    "falseNegatives": 40
+                  },
+                  "onsetOffset": {
+                    "matched": 23,
+                    "precision": 0.6388888888888888,
+                    "recall": 0.3333333333333333,
+                    "f1": 0.4380952380952381,
+                    "falsePositives": 13,
+                    "falseNegatives": 46
+                  },
+                  "pitchSequence": {
+                    "editDistance": 37,
+                    "normalizedEditDistance": 0.5362318840579711,
+                    "referenceLength": 69,
+                    "estimatedLength": 36
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 29,
+                    "precision": 0.8055555555555556,
+                    "recall": 0.5686274509803921,
+                    "f1": 0.6666666666666666,
+                    "falsePositives": 7,
+                    "falseNegatives": 22
+                  },
+                  "onsetOffset": {
+                    "matched": 25,
+                    "precision": 0.6944444444444444,
+                    "recall": 0.49019607843137253,
+                    "f1": 0.5747126436781609,
+                    "falsePositives": 11,
+                    "falseNegatives": 26
+                  },
+                  "pitchSequence": {
+                    "editDistance": 19,
+                    "normalizedEditDistance": 0.37254901960784315,
+                    "referenceLength": 51,
+                    "estimatedLength": 36
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 15,
+              "estimatedNotes": 36,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 29,
+                    "precision": 0.8055555555555556,
+                    "recall": 0.42028985507246375,
+                    "f1": 0.5523809523809524,
+                    "falsePositives": 7,
+                    "falseNegatives": 40
+                  },
+                  "onsetOffset": {
+                    "matched": 23,
+                    "precision": 0.6388888888888888,
+                    "recall": 0.3333333333333333,
+                    "f1": 0.4380952380952381,
+                    "falsePositives": 13,
+                    "falseNegatives": 46
+                  },
+                  "pitchSequence": {
+                    "editDistance": 37,
+                    "normalizedEditDistance": 0.5362318840579711,
+                    "referenceLength": 69,
+                    "estimatedLength": 36
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 29,
+                    "precision": 0.8055555555555556,
+                    "recall": 0.5686274509803921,
+                    "f1": 0.6666666666666666,
+                    "falsePositives": 7,
+                    "falseNegatives": 22
+                  },
+                  "onsetOffset": {
+                    "matched": 25,
+                    "precision": 0.6944444444444444,
+                    "recall": 0.49019607843137253,
+                    "f1": 0.5747126436781609,
+                    "falsePositives": 11,
+                    "falseNegatives": 26
+                  },
+                  "pitchSequence": {
+                    "editDistance": 19,
+                    "normalizedEditDistance": 0.37254901960784315,
+                    "referenceLength": 51,
+                    "estimatedLength": 36
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": {
+            "samples": 3180,
+            "gtVoiced": 2463,
+            "tp": 1836,
+            "fp": 6,
+            "fn": 627,
+            "tn": 711,
+            "voicedPrecision": 0.996742671009772,
+            "voicedRecall": 0.7454323995127893,
+            "rawPitchAccuracy50": 0.729192042224929,
+            "rawChromaAccuracy50": 0.729192042224929,
+            "acceptedPitchAccuracy50": 0.729192042224929,
+            "acceptedChromaAccuracy50": 0.729192042224929,
+            "raw50": 1796,
+            "chroma50": 1796,
+            "strict50": 1796,
+            "strictChroma50": 1796,
+            "bothVoicedCount": 1836,
+            "bothVoicedCents": {
+              "medianAbsolute": 5.903808076627074,
+              "meanAbsolute": 9.615437798406667,
+              "p90Absolute": 20.661739872456394,
+              "medianSigned": 0.9848660906188402
+            }
+          },
+          "f0NotApplicable": null,
+          "noteCoverage": {
+            "voicedFrames": 2463,
+            "unvoicedFrames": 717,
+            "voicedCoverage": 0.7413723101908242,
+            "unvoicedCoverage": 0.00697350069735007
+          }
+        },
+        "model": {
+          "totalSeconds": 1.4962999999970197,
+          "estimatedNotes": 37,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 33,
+                "precision": 0.8918918918918919,
+                "recall": 0.4782608695652174,
+                "f1": 0.6226415094339622,
+                "falsePositives": 4,
+                "falseNegatives": 36
+              },
+              "onsetOffset": {
+                "matched": 25,
+                "precision": 0.6756756756756757,
+                "recall": 0.36231884057971014,
+                "f1": 0.4716981132075472,
+                "falsePositives": 12,
+                "falseNegatives": 44
+              },
+              "pitchSequence": {
+                "editDistance": 35,
+                "normalizedEditDistance": 0.5072463768115942,
+                "referenceLength": 69,
+                "estimatedLength": 37
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 31,
+                "precision": 0.8378378378378378,
+                "recall": 0.6078431372549019,
+                "f1": 0.7045454545454546,
+                "falsePositives": 6,
+                "falseNegatives": 20
+              },
+              "onsetOffset": {
+                "matched": 23,
+                "precision": 0.6216216216216216,
+                "recall": 0.45098039215686275,
+                "f1": 0.5227272727272727,
+                "falsePositives": 14,
+                "falseNegatives": 28
+              },
+              "pitchSequence": {
+                "editDistance": 20,
+                "normalizedEditDistance": 0.39215686274509803,
+                "referenceLength": 51,
+                "estimatedLength": 37
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 62,
+            "alternatives": [
+              103,
+              133
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 1,
+              "estimatedNotes": 36,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 33,
+                    "precision": 0.9166666666666666,
+                    "recall": 0.4782608695652174,
+                    "f1": 0.6285714285714286,
+                    "falsePositives": 3,
+                    "falseNegatives": 36
+                  },
+                  "onsetOffset": {
+                    "matched": 26,
+                    "precision": 0.7222222222222222,
+                    "recall": 0.37681159420289856,
+                    "f1": 0.49523809523809526,
+                    "falsePositives": 10,
+                    "falseNegatives": 43
+                  },
+                  "pitchSequence": {
+                    "editDistance": 35,
+                    "normalizedEditDistance": 0.5072463768115942,
+                    "referenceLength": 69,
+                    "estimatedLength": 36
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 30,
+                    "precision": 0.8333333333333334,
+                    "recall": 0.5882352941176471,
+                    "f1": 0.6896551724137931,
+                    "falsePositives": 6,
+                    "falseNegatives": 21
+                  },
+                  "onsetOffset": {
+                    "matched": 20,
+                    "precision": 0.5555555555555556,
+                    "recall": 0.39215686274509803,
+                    "f1": 0.45977011494252873,
+                    "falsePositives": 16,
+                    "falseNegatives": 31
+                  },
+                  "pitchSequence": {
+                    "editDistance": 20,
+                    "normalizedEditDistance": 0.39215686274509803,
+                    "referenceLength": 51,
+                    "estimatedLength": 36
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 1,
+              "estimatedNotes": 36,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 33,
+                    "precision": 0.9166666666666666,
+                    "recall": 0.4782608695652174,
+                    "f1": 0.6285714285714286,
+                    "falsePositives": 3,
+                    "falseNegatives": 36
+                  },
+                  "onsetOffset": {
+                    "matched": 26,
+                    "precision": 0.7222222222222222,
+                    "recall": 0.37681159420289856,
+                    "f1": 0.49523809523809526,
+                    "falsePositives": 10,
+                    "falseNegatives": 43
+                  },
+                  "pitchSequence": {
+                    "editDistance": 35,
+                    "normalizedEditDistance": 0.5072463768115942,
+                    "referenceLength": 69,
+                    "estimatedLength": 36
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 30,
+                    "precision": 0.8333333333333334,
+                    "recall": 0.5882352941176471,
+                    "f1": 0.6896551724137931,
+                    "falsePositives": 6,
+                    "falseNegatives": 21
+                  },
+                  "onsetOffset": {
+                    "matched": 20,
+                    "precision": 0.5555555555555556,
+                    "recall": 0.39215686274509803,
+                    "f1": 0.45977011494252873,
+                    "falsePositives": 16,
+                    "falseNegatives": 31
+                  },
+                  "pitchSequence": {
+                    "editDistance": 20,
+                    "normalizedEditDistance": 0.39215686274509803,
+                    "referenceLength": 51,
+                    "estimatedLength": 36
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": {
+            "voicedFrames": 2463,
+            "unvoicedFrames": 717,
+            "voicedCoverage": 0.8408444985789687,
+            "unvoicedCoverage": 0.3389121338912134
+          }
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.056700000002980235
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.08803417763117857,
+          "elapsedSeconds": 0.5397999999970198
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 1.3542999999970198
+        }
+      ],
+      "referenceCoverage": [
+        {
+          "annotation": "A1",
+          "voicedFrames": 2463,
+          "unvoicedFrames": 717,
+          "voicedCoverage": 0.9719853836784409,
+          "unvoicedCoverage": 0.22873082287308227
+        },
+        {
+          "annotation": "A2",
+          "voicedFrames": 2463,
+          "unvoicedFrames": 717,
+          "voicedCoverage": 0.9610231425091352,
+          "unvoicedCoverage": 0.08926080892608089
+        }
+      ]
+    },
+    {
+      "id": "vocadito_24",
+      "split": "final-regression",
+      "audioSha256": "22fb2df57dc7b68987cda67b30171c626a7818b9ab7db02185e8ea0a0a6db7ee",
+      "duration": 14.7578125,
+      "sampleRate": 48000,
+      "officialBpm": null,
+      "decodeSeconds": 0.066,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "A1",
+          "sha256": "e791c7a92d37c1d16076e27f3e154c9708e7859d5df7ce2378b5bd038162f061"
+        },
+        {
+          "annotation": "A2",
+          "sha256": "8635cb7015c7227c170d656ba61bc02fbcae520909476bf757adece4da7349b6"
+        }
+      ],
+      "f0Sha256": "e0b877b9679fcf7ee5eae7e41c8b1fd44328f681d2c9f2e2008f76559e0f54d4",
+      "methods": {
+        "yin": {
+          "totalSeconds": 5.863599999994039,
+          "estimatedNotes": 54,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 33,
+                "precision": 0.6111111111111112,
+                "recall": 0.8461538461538461,
+                "f1": 0.7096774193548387,
+                "falsePositives": 21,
+                "falseNegatives": 6
+              },
+              "onsetOffset": {
+                "matched": 30,
+                "precision": 0.5555555555555556,
+                "recall": 0.7692307692307693,
+                "f1": 0.6451612903225806,
+                "falsePositives": 24,
+                "falseNegatives": 9
+              },
+              "pitchSequence": {
+                "editDistance": 21,
+                "normalizedEditDistance": 0.5384615384615384,
+                "referenceLength": 39,
+                "estimatedLength": 54
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 28,
+                "precision": 0.5185185185185185,
+                "recall": 0.9333333333333333,
+                "f1": 0.6666666666666666,
+                "falsePositives": 26,
+                "falseNegatives": 2
+              },
+              "onsetOffset": {
+                "matched": 23,
+                "precision": 0.42592592592592593,
+                "recall": 0.7666666666666667,
+                "f1": 0.5476190476190477,
+                "falsePositives": 31,
+                "falseNegatives": 7
+              },
+              "pitchSequence": {
+                "editDistance": 25,
+                "normalizedEditDistance": 0.8333333333333334,
+                "referenceLength": 30,
+                "estimatedLength": 54
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 229,
+            "alternatives": [
+              87,
+              105
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 10,
+              "estimatedNotes": 43,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 26,
+                    "precision": 0.6046511627906976,
+                    "recall": 0.6666666666666666,
+                    "f1": 0.6341463414634146,
+                    "falsePositives": 17,
+                    "falseNegatives": 13
+                  },
+                  "onsetOffset": {
+                    "matched": 25,
+                    "precision": 0.5813953488372093,
+                    "recall": 0.6410256410256411,
+                    "f1": 0.6097560975609756,
+                    "falsePositives": 18,
+                    "falseNegatives": 14
+                  },
+                  "pitchSequence": {
+                    "editDistance": 16,
+                    "normalizedEditDistance": 0.41025641025641024,
+                    "referenceLength": 39,
+                    "estimatedLength": 43
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 22,
+                    "precision": 0.5116279069767442,
+                    "recall": 0.7333333333333333,
+                    "f1": 0.6027397260273972,
+                    "falsePositives": 21,
+                    "falseNegatives": 8
+                  },
+                  "onsetOffset": {
+                    "matched": 19,
+                    "precision": 0.4418604651162791,
+                    "recall": 0.6333333333333333,
+                    "f1": 0.5205479452054794,
+                    "falsePositives": 24,
+                    "falseNegatives": 11
+                  },
+                  "pitchSequence": {
+                    "editDistance": 17,
+                    "normalizedEditDistance": 0.5666666666666667,
+                    "referenceLength": 30,
+                    "estimatedLength": 43
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 10,
+              "estimatedNotes": 43,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 26,
+                    "precision": 0.6046511627906976,
+                    "recall": 0.6666666666666666,
+                    "f1": 0.6341463414634146,
+                    "falsePositives": 17,
+                    "falseNegatives": 13
+                  },
+                  "onsetOffset": {
+                    "matched": 25,
+                    "precision": 0.5813953488372093,
+                    "recall": 0.6410256410256411,
+                    "f1": 0.6097560975609756,
+                    "falsePositives": 18,
+                    "falseNegatives": 14
+                  },
+                  "pitchSequence": {
+                    "editDistance": 16,
+                    "normalizedEditDistance": 0.41025641025641024,
+                    "referenceLength": 39,
+                    "estimatedLength": 43
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 22,
+                    "precision": 0.5116279069767442,
+                    "recall": 0.7333333333333333,
+                    "f1": 0.6027397260273972,
+                    "falsePositives": 21,
+                    "falseNegatives": 8
+                  },
+                  "onsetOffset": {
+                    "matched": 19,
+                    "precision": 0.4418604651162791,
+                    "recall": 0.6333333333333333,
+                    "f1": 0.5205479452054794,
+                    "falsePositives": 24,
+                    "falseNegatives": 11
+                  },
+                  "pitchSequence": {
+                    "editDistance": 17,
+                    "normalizedEditDistance": 0.5666666666666667,
+                    "referenceLength": 30,
+                    "estimatedLength": 43
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": {
+            "samples": 2543,
+            "gtVoiced": 1642,
+            "tp": 1562,
+            "fp": 237,
+            "fn": 80,
+            "tn": 664,
+            "voicedPrecision": 0.868260144524736,
+            "voicedRecall": 0.951278928136419,
+            "rawPitchAccuracy50": 0.9372716199756395,
+            "rawChromaAccuracy50": 0.9397076735688186,
+            "acceptedPitchAccuracy50": 0.9372716199756395,
+            "acceptedChromaAccuracy50": 0.9397076735688186,
+            "raw50": 1539,
+            "chroma50": 1543,
+            "strict50": 1539,
+            "strictChroma50": 1543,
+            "bothVoicedCount": 1562,
+            "bothVoicedCents": {
+              "medianAbsolute": 4.280761093753988,
+              "meanAbsolute": 12.257871424710498,
+              "p90Absolute": 19.522822455327915,
+              "medianSigned": 0.6256492540796474
+            }
+          },
+          "f0NotApplicable": null,
+          "noteCoverage": {
+            "voicedFrames": 1642,
+            "unvoicedFrames": 901,
+            "voicedCoverage": 0.9506699147381242,
+            "unvoicedCoverage": 0.2597114317425083
+          }
+        },
+        "model": {
+          "totalSeconds": 1.9412000000029803,
+          "estimatedNotes": 24,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 19,
+                "precision": 0.7916666666666666,
+                "recall": 0.48717948717948717,
+                "f1": 0.6031746031746031,
+                "falsePositives": 5,
+                "falseNegatives": 20
+              },
+              "onsetOffset": {
+                "matched": 14,
+                "precision": 0.5833333333333334,
+                "recall": 0.358974358974359,
+                "f1": 0.4444444444444444,
+                "falsePositives": 10,
+                "falseNegatives": 25
+              },
+              "pitchSequence": {
+                "editDistance": 20,
+                "normalizedEditDistance": 0.5128205128205128,
+                "referenceLength": 39,
+                "estimatedLength": 24
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 18,
+                "precision": 0.75,
+                "recall": 0.6,
+                "f1": 0.6666666666666666,
+                "falsePositives": 6,
+                "falseNegatives": 12
+              },
+              "onsetOffset": {
+                "matched": 12,
+                "precision": 0.5,
+                "recall": 0.4,
+                "f1": 0.4444444444444444,
+                "falsePositives": 12,
+                "falseNegatives": 18
+              },
+              "pitchSequence": {
+                "editDistance": 15,
+                "normalizedEditDistance": 0.5,
+                "referenceLength": 30,
+                "estimatedLength": 24
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 187,
+            "alternatives": [
+              61,
+              105
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 0,
+              "estimatedNotes": 24,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 19,
+                    "precision": 0.7916666666666666,
+                    "recall": 0.48717948717948717,
+                    "f1": 0.6031746031746031,
+                    "falsePositives": 5,
+                    "falseNegatives": 20
+                  },
+                  "onsetOffset": {
+                    "matched": 14,
+                    "precision": 0.5833333333333334,
+                    "recall": 0.358974358974359,
+                    "f1": 0.4444444444444444,
+                    "falsePositives": 10,
+                    "falseNegatives": 25
+                  },
+                  "pitchSequence": {
+                    "editDistance": 20,
+                    "normalizedEditDistance": 0.5128205128205128,
+                    "referenceLength": 39,
+                    "estimatedLength": 24
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 18,
+                    "precision": 0.75,
+                    "recall": 0.6,
+                    "f1": 0.6666666666666666,
+                    "falsePositives": 6,
+                    "falseNegatives": 12
+                  },
+                  "onsetOffset": {
+                    "matched": 12,
+                    "precision": 0.5,
+                    "recall": 0.4,
+                    "f1": 0.4444444444444444,
+                    "falsePositives": 12,
+                    "falseNegatives": 18
+                  },
+                  "pitchSequence": {
+                    "editDistance": 15,
+                    "normalizedEditDistance": 0.5,
+                    "referenceLength": 30,
+                    "estimatedLength": 24
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 0,
+              "estimatedNotes": 24,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 19,
+                    "precision": 0.7916666666666666,
+                    "recall": 0.48717948717948717,
+                    "f1": 0.6031746031746031,
+                    "falsePositives": 5,
+                    "falseNegatives": 20
+                  },
+                  "onsetOffset": {
+                    "matched": 14,
+                    "precision": 0.5833333333333334,
+                    "recall": 0.358974358974359,
+                    "f1": 0.4444444444444444,
+                    "falsePositives": 10,
+                    "falseNegatives": 25
+                  },
+                  "pitchSequence": {
+                    "editDistance": 20,
+                    "normalizedEditDistance": 0.5128205128205128,
+                    "referenceLength": 39,
+                    "estimatedLength": 24
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 18,
+                    "precision": 0.75,
+                    "recall": 0.6,
+                    "f1": 0.6666666666666666,
+                    "falsePositives": 6,
+                    "falseNegatives": 12
+                  },
+                  "onsetOffset": {
+                    "matched": 12,
+                    "precision": 0.5,
+                    "recall": 0.4,
+                    "f1": 0.4444444444444444,
+                    "falsePositives": 12,
+                    "falseNegatives": 18
+                  },
+                  "pitchSequence": {
+                    "editDistance": 15,
+                    "normalizedEditDistance": 0.5,
+                    "referenceLength": 30,
+                    "estimatedLength": 24
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": {
+            "voicedFrames": 1642,
+            "unvoicedFrames": 901,
+            "voicedCoverage": 0.7801461632155907,
+            "unvoicedCoverage": 0.24195338512763595
+          }
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.10709999999403953
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.10983750949126804,
+          "elapsedSeconds": 0.8465
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 1.7777000000029803
+        }
+      ],
+      "referenceCoverage": [
+        {
+          "annotation": "A1",
+          "voicedFrames": 1642,
+          "unvoicedFrames": 901,
+          "voicedCoverage": 0.96163215590743,
+          "unvoicedCoverage": 0.28967813540510545
+        },
+        {
+          "annotation": "A2",
+          "voicedFrames": 1642,
+          "unvoicedFrames": 901,
+          "voicedCoverage": 0.953714981729598,
+          "unvoicedCoverage": 0.27968923418423974
+        }
+      ]
+    },
+    {
+      "id": "vocadito_35",
+      "split": "final-regression",
+      "audioSha256": "85c1c4268527cc53240e9f4f0d557d92f3bf9856d6d42ca50e80c7cbb02bea72",
+      "duration": 13.8,
+      "sampleRate": 48000,
+      "officialBpm": null,
+      "decodeSeconds": 0.07740000000596046,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "A1",
+          "sha256": "6f9703dfaff38be10c4413ee717e7f528a786b9458010c3043354e92980a553a"
+        },
+        {
+          "annotation": "A2",
+          "sha256": "b52641bc0f20b449f52cb506042aa934f54c7f270ce39ceb3a94575a46f39db9"
+        }
+      ],
+      "f0Sha256": "a2327fff128c5355ea4e6e9ca6f6fca04a8d04f5b4085cf082bd86952cebc1dc",
+      "methods": {
+        "yin": {
+          "totalSeconds": 5.5300999999940395,
+          "estimatedNotes": 46,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 22,
+                "precision": 0.4782608695652174,
+                "recall": 0.5945945945945946,
+                "f1": 0.5301204819277109,
+                "falsePositives": 24,
+                "falseNegatives": 15
+              },
+              "onsetOffset": {
+                "matched": 18,
+                "precision": 0.391304347826087,
+                "recall": 0.4864864864864865,
+                "f1": 0.43373493975903615,
+                "falsePositives": 28,
+                "falseNegatives": 19
+              },
+              "pitchSequence": {
+                "editDistance": 21,
+                "normalizedEditDistance": 0.5675675675675675,
+                "referenceLength": 37,
+                "estimatedLength": 46
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 13,
+                "precision": 0.2826086956521739,
+                "recall": 0.5,
+                "f1": 0.3611111111111111,
+                "falsePositives": 33,
+                "falseNegatives": 13
+              },
+              "onsetOffset": {
+                "matched": 10,
+                "precision": 0.21739130434782608,
+                "recall": 0.38461538461538464,
+                "f1": 0.2777777777777778,
+                "falsePositives": 36,
+                "falseNegatives": 16
+              },
+              "pitchSequence": {
+                "editDistance": 21,
+                "normalizedEditDistance": 0.8076923076923077,
+                "referenceLength": 26,
+                "estimatedLength": 46
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 216,
+            "alternatives": [
+              181,
+              135
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 10,
+              "estimatedNotes": 35,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 18,
+                    "precision": 0.5142857142857142,
+                    "recall": 0.4864864864864865,
+                    "f1": 0.5,
+                    "falsePositives": 17,
+                    "falseNegatives": 19
+                  },
+                  "onsetOffset": {
+                    "matched": 17,
+                    "precision": 0.4857142857142857,
+                    "recall": 0.4594594594594595,
+                    "f1": 0.4722222222222222,
+                    "falsePositives": 18,
+                    "falseNegatives": 20
+                  },
+                  "pitchSequence": {
+                    "editDistance": 20,
+                    "normalizedEditDistance": 0.5405405405405406,
+                    "referenceLength": 37,
+                    "estimatedLength": 35
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 13,
+                    "precision": 0.37142857142857144,
+                    "recall": 0.5,
+                    "f1": 0.4262295081967213,
+                    "falsePositives": 22,
+                    "falseNegatives": 13
+                  },
+                  "onsetOffset": {
+                    "matched": 12,
+                    "precision": 0.34285714285714286,
+                    "recall": 0.46153846153846156,
+                    "f1": 0.39344262295081966,
+                    "falsePositives": 23,
+                    "falseNegatives": 14
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.5384615384615384,
+                    "referenceLength": 26,
+                    "estimatedLength": 35
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 10,
+              "estimatedNotes": 35,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 18,
+                    "precision": 0.5142857142857142,
+                    "recall": 0.4864864864864865,
+                    "f1": 0.5,
+                    "falsePositives": 17,
+                    "falseNegatives": 19
+                  },
+                  "onsetOffset": {
+                    "matched": 17,
+                    "precision": 0.4857142857142857,
+                    "recall": 0.4594594594594595,
+                    "f1": 0.4722222222222222,
+                    "falsePositives": 18,
+                    "falseNegatives": 20
+                  },
+                  "pitchSequence": {
+                    "editDistance": 20,
+                    "normalizedEditDistance": 0.5405405405405406,
+                    "referenceLength": 37,
+                    "estimatedLength": 35
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 13,
+                    "precision": 0.37142857142857144,
+                    "recall": 0.5,
+                    "f1": 0.4262295081967213,
+                    "falsePositives": 22,
+                    "falseNegatives": 13
+                  },
+                  "onsetOffset": {
+                    "matched": 12,
+                    "precision": 0.34285714285714286,
+                    "recall": 0.46153846153846156,
+                    "f1": 0.39344262295081966,
+                    "falsePositives": 23,
+                    "falseNegatives": 14
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.5384615384615384,
+                    "referenceLength": 26,
+                    "estimatedLength": 35
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": {
+            "samples": 2378,
+            "gtVoiced": 1654,
+            "tp": 1287,
+            "fp": 10,
+            "fn": 367,
+            "tn": 714,
+            "voicedPrecision": 0.992289899768697,
+            "voicedRecall": 0.7781136638452237,
+            "rawPitchAccuracy50": 0.7690447400241838,
+            "rawChromaAccuracy50": 0.7714631197097944,
+            "acceptedPitchAccuracy50": 0.7690447400241838,
+            "acceptedChromaAccuracy50": 0.7714631197097944,
+            "raw50": 1272,
+            "chroma50": 1276,
+            "strict50": 1272,
+            "strictChroma50": 1276,
+            "bothVoicedCount": 1287,
+            "bothVoicedCents": {
+              "medianAbsolute": 7.537097169764712,
+              "meanAbsolute": 13.963173629612463,
+              "p90Absolute": 22.561613089603107,
+              "medianSigned": -1.2260122372099527
+            }
+          },
+          "f0NotApplicable": null,
+          "noteCoverage": {
+            "voicedFrames": 1654,
+            "unvoicedFrames": 724,
+            "voicedCoverage": 0.7756952841596131,
+            "unvoicedCoverage": 0.013812154696132596
+          }
+        },
+        "model": {
+          "totalSeconds": 1.2494000000059604,
+          "estimatedNotes": 39,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 25,
+                "precision": 0.6410256410256411,
+                "recall": 0.6756756756756757,
+                "f1": 0.6578947368421053,
+                "falsePositives": 14,
+                "falseNegatives": 12
+              },
+              "onsetOffset": {
+                "matched": 21,
+                "precision": 0.5384615384615384,
+                "recall": 0.5675675675675675,
+                "f1": 0.5526315789473685,
+                "falsePositives": 18,
+                "falseNegatives": 16
+              },
+              "pitchSequence": {
+                "editDistance": 14,
+                "normalizedEditDistance": 0.3783783783783784,
+                "referenceLength": 37,
+                "estimatedLength": 39
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 18,
+                "precision": 0.46153846153846156,
+                "recall": 0.6923076923076923,
+                "f1": 0.5538461538461539,
+                "falsePositives": 21,
+                "falseNegatives": 8
+              },
+              "onsetOffset": {
+                "matched": 16,
+                "precision": 0.41025641025641024,
+                "recall": 0.6153846153846154,
+                "f1": 0.49230769230769234,
+                "falsePositives": 23,
+                "falseNegatives": 10
+              },
+              "pitchSequence": {
+                "editDistance": 13,
+                "normalizedEditDistance": 0.5,
+                "referenceLength": 26,
+                "estimatedLength": 39
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 161,
+            "alternatives": [
+              108,
+              197
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 1,
+              "estimatedNotes": 38,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 26,
+                    "precision": 0.6842105263157895,
+                    "recall": 0.7027027027027027,
+                    "f1": 0.6933333333333334,
+                    "falsePositives": 12,
+                    "falseNegatives": 11
+                  },
+                  "onsetOffset": {
+                    "matched": 21,
+                    "precision": 0.5526315789473685,
+                    "recall": 0.5675675675675675,
+                    "f1": 0.56,
+                    "falsePositives": 17,
+                    "falseNegatives": 16
+                  },
+                  "pitchSequence": {
+                    "editDistance": 13,
+                    "normalizedEditDistance": 0.35135135135135137,
+                    "referenceLength": 37,
+                    "estimatedLength": 38
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 18,
+                    "precision": 0.47368421052631576,
+                    "recall": 0.6923076923076923,
+                    "f1": 0.5625,
+                    "falsePositives": 20,
+                    "falseNegatives": 8
+                  },
+                  "onsetOffset": {
+                    "matched": 15,
+                    "precision": 0.39473684210526316,
+                    "recall": 0.5769230769230769,
+                    "f1": 0.46875,
+                    "falsePositives": 23,
+                    "falseNegatives": 11
+                  },
+                  "pitchSequence": {
+                    "editDistance": 12,
+                    "normalizedEditDistance": 0.46153846153846156,
+                    "referenceLength": 26,
+                    "estimatedLength": 38
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 1,
+              "estimatedNotes": 38,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 26,
+                    "precision": 0.6842105263157895,
+                    "recall": 0.7027027027027027,
+                    "f1": 0.6933333333333334,
+                    "falsePositives": 12,
+                    "falseNegatives": 11
+                  },
+                  "onsetOffset": {
+                    "matched": 21,
+                    "precision": 0.5526315789473685,
+                    "recall": 0.5675675675675675,
+                    "f1": 0.56,
+                    "falsePositives": 17,
+                    "falseNegatives": 16
+                  },
+                  "pitchSequence": {
+                    "editDistance": 13,
+                    "normalizedEditDistance": 0.35135135135135137,
+                    "referenceLength": 37,
+                    "estimatedLength": 38
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 18,
+                    "precision": 0.47368421052631576,
+                    "recall": 0.6923076923076923,
+                    "f1": 0.5625,
+                    "falsePositives": 20,
+                    "falseNegatives": 8
+                  },
+                  "onsetOffset": {
+                    "matched": 15,
+                    "precision": 0.39473684210526316,
+                    "recall": 0.5769230769230769,
+                    "f1": 0.46875,
+                    "falsePositives": 23,
+                    "falseNegatives": 11
+                  },
+                  "pitchSequence": {
+                    "editDistance": 12,
+                    "normalizedEditDistance": 0.46153846153846156,
+                    "referenceLength": 26,
+                    "estimatedLength": 38
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": {
+            "voicedFrames": 1654,
+            "unvoicedFrames": 724,
+            "voicedCoverage": 0.9721886336154776,
+            "unvoicedCoverage": 0.3011049723756906
+          }
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.0445
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.11736604679842924,
+          "elapsedSeconds": 0.5454000000059605
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 1.1407000000029803
+        }
+      ],
+      "referenceCoverage": [
+        {
+          "annotation": "A1",
+          "voicedFrames": 1654,
+          "unvoicedFrames": 724,
+          "voicedCoverage": 0.9891172914147521,
+          "unvoicedCoverage": 0.05110497237569061
+        },
+        {
+          "annotation": "A2",
+          "voicedFrames": 1654,
+          "unvoicedFrames": 724,
+          "voicedCoverage": 0.9830713422007256,
+          "unvoicedCoverage": 0.0649171270718232
+        }
+      ]
+    },
+    {
+      "id": "vocadito_37",
+      "split": "final-regression",
+      "audioSha256": "53cb202ddabf1cb7591be49da9160f508cb81c6078c50c7e41a13efe109a0622",
+      "duration": 38.736,
+      "sampleRate": 48000,
+      "officialBpm": null,
+      "decodeSeconds": 0.167,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "A1",
+          "sha256": "634631e2d2583402a6df699d14166b25e14753c988b67d2dacfc8593d9ff79c0"
+        },
+        {
+          "annotation": "A2",
+          "sha256": "1a1a6f14490f27154fbe9183e6e228d3504223d0b7e430340b654400cf8d3b41"
+        }
+      ],
+      "f0Sha256": "9d28fa1df8baf180fd35f5049c4cdd7a675b0a2c81857fa7893a04a39cbdfeb7",
+      "methods": {
+        "yin": {
+          "totalSeconds": 15.24929999999702,
+          "estimatedNotes": 69,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 38,
+                "precision": 0.5507246376811594,
+                "recall": 0.7450980392156863,
+                "f1": 0.6333333333333333,
+                "falsePositives": 31,
+                "falseNegatives": 13
+              },
+              "onsetOffset": {
+                "matched": 35,
+                "precision": 0.5072463768115942,
+                "recall": 0.6862745098039216,
+                "f1": 0.5833333333333334,
+                "falsePositives": 34,
+                "falseNegatives": 16
+              },
+              "pitchSequence": {
+                "editDistance": 24,
+                "normalizedEditDistance": 0.47058823529411764,
+                "referenceLength": 51,
+                "estimatedLength": 69
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 26,
+                "precision": 0.37681159420289856,
+                "recall": 0.6341463414634146,
+                "f1": 0.4727272727272727,
+                "falsePositives": 43,
+                "falseNegatives": 15
+              },
+              "onsetOffset": {
+                "matched": 22,
+                "precision": 0.3188405797101449,
+                "recall": 0.5365853658536586,
+                "f1": 0.4,
+                "falsePositives": 47,
+                "falseNegatives": 19
+              },
+              "pitchSequence": {
+                "editDistance": 29,
+                "normalizedEditDistance": 0.7073170731707317,
+                "referenceLength": 41,
+                "estimatedLength": 69
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 160,
+            "alternatives": [
+              224,
+              69
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 5,
+              "estimatedNotes": 63,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 35,
+                    "precision": 0.5555555555555556,
+                    "recall": 0.6862745098039216,
+                    "f1": 0.6140350877192983,
+                    "falsePositives": 28,
+                    "falseNegatives": 16
+                  },
+                  "onsetOffset": {
+                    "matched": 32,
+                    "precision": 0.5079365079365079,
+                    "recall": 0.6274509803921569,
+                    "f1": 0.5614035087719298,
+                    "falsePositives": 31,
+                    "falseNegatives": 19
+                  },
+                  "pitchSequence": {
+                    "editDistance": 18,
+                    "normalizedEditDistance": 0.35294117647058826,
+                    "referenceLength": 51,
+                    "estimatedLength": 63
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 26,
+                    "precision": 0.4126984126984127,
+                    "recall": 0.6341463414634146,
+                    "f1": 0.5,
+                    "falsePositives": 37,
+                    "falseNegatives": 15
+                  },
+                  "onsetOffset": {
+                    "matched": 22,
+                    "precision": 0.3492063492063492,
+                    "recall": 0.5365853658536586,
+                    "f1": 0.4230769230769231,
+                    "falsePositives": 41,
+                    "falseNegatives": 19
+                  },
+                  "pitchSequence": {
+                    "editDistance": 25,
+                    "normalizedEditDistance": 0.6097560975609756,
+                    "referenceLength": 41,
+                    "estimatedLength": 63
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 5,
+              "estimatedNotes": 63,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 35,
+                    "precision": 0.5555555555555556,
+                    "recall": 0.6862745098039216,
+                    "f1": 0.6140350877192983,
+                    "falsePositives": 28,
+                    "falseNegatives": 16
+                  },
+                  "onsetOffset": {
+                    "matched": 32,
+                    "precision": 0.5079365079365079,
+                    "recall": 0.6274509803921569,
+                    "f1": 0.5614035087719298,
+                    "falsePositives": 31,
+                    "falseNegatives": 19
+                  },
+                  "pitchSequence": {
+                    "editDistance": 18,
+                    "normalizedEditDistance": 0.35294117647058826,
+                    "referenceLength": 51,
+                    "estimatedLength": 63
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 26,
+                    "precision": 0.4126984126984127,
+                    "recall": 0.6341463414634146,
+                    "f1": 0.5,
+                    "falsePositives": 37,
+                    "falseNegatives": 15
+                  },
+                  "onsetOffset": {
+                    "matched": 22,
+                    "precision": 0.3492063492063492,
+                    "recall": 0.5365853658536586,
+                    "f1": 0.4230769230769231,
+                    "falsePositives": 41,
+                    "falseNegatives": 19
+                  },
+                  "pitchSequence": {
+                    "editDistance": 25,
+                    "normalizedEditDistance": 0.6097560975609756,
+                    "referenceLength": 41,
+                    "estimatedLength": 63
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": {
+            "samples": 6673,
+            "gtVoiced": 5106,
+            "tp": 5019,
+            "fp": 87,
+            "fn": 87,
+            "tn": 1480,
+            "voicedPrecision": 0.9829612220916569,
+            "voicedRecall": 0.9829612220916569,
+            "rawPitchAccuracy50": 0.9753231492361927,
+            "rawChromaAccuracy50": 0.9784567175871524,
+            "acceptedPitchAccuracy50": 0.9753231492361927,
+            "acceptedChromaAccuracy50": 0.9784567175871524,
+            "raw50": 4980,
+            "chroma50": 4996,
+            "strict50": 4980,
+            "strictChroma50": 4996,
+            "bothVoicedCount": 5019,
+            "bothVoicedCents": {
+              "medianAbsolute": 3.35348188057074,
+              "meanAbsolute": 9.31349584405749,
+              "p90Absolute": 12.142159786417375,
+              "medianSigned": -0.07272724216301987
+            }
+          },
+          "f0NotApplicable": null,
+          "noteCoverage": {
+            "voicedFrames": 5106,
+            "unvoicedFrames": 1567,
+            "voicedCoverage": 0.9829612220916569,
+            "unvoicedCoverage": 0.05552010210593491
+          }
+        },
+        "model": {
+          "totalSeconds": 2.5449000000059603,
+          "estimatedNotes": 53,
+          "metrics": [
+            {
+              "annotation": "A1",
+              "onset": {
+                "matched": 37,
+                "precision": 0.6981132075471698,
+                "recall": 0.7254901960784313,
+                "f1": 0.7115384615384616,
+                "falsePositives": 16,
+                "falseNegatives": 14
+              },
+              "onsetOffset": {
+                "matched": 32,
+                "precision": 0.6037735849056604,
+                "recall": 0.6274509803921569,
+                "f1": 0.6153846153846154,
+                "falsePositives": 21,
+                "falseNegatives": 19
+              },
+              "pitchSequence": {
+                "editDistance": 15,
+                "normalizedEditDistance": 0.29411764705882354,
+                "referenceLength": 51,
+                "estimatedLength": 53
+              }
+            },
+            {
+              "annotation": "A2",
+              "onset": {
+                "matched": 26,
+                "precision": 0.49056603773584906,
+                "recall": 0.6341463414634146,
+                "f1": 0.5531914893617021,
+                "falsePositives": 27,
+                "falseNegatives": 15
+              },
+              "onsetOffset": {
+                "matched": 19,
+                "precision": 0.3584905660377358,
+                "recall": 0.4634146341463415,
+                "f1": 0.40425531914893614,
+                "falsePositives": 34,
+                "falseNegatives": 22
+              },
+              "pitchSequence": {
+                "editDistance": 19,
+                "normalizedEditDistance": 0.4634146341463415,
+                "referenceLength": 41,
+                "estimatedLength": 53
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 143,
+            "alternatives": [
+              183,
+              96
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 2,
+              "estimatedNotes": 51,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 37,
+                    "precision": 0.7254901960784313,
+                    "recall": 0.7254901960784313,
+                    "f1": 0.7254901960784313,
+                    "falsePositives": 14,
+                    "falseNegatives": 14
+                  },
+                  "onsetOffset": {
+                    "matched": 34,
+                    "precision": 0.6666666666666666,
+                    "recall": 0.6666666666666666,
+                    "f1": 0.6666666666666666,
+                    "falsePositives": 17,
+                    "falseNegatives": 17
+                  },
+                  "pitchSequence": {
+                    "editDistance": 15,
+                    "normalizedEditDistance": 0.29411764705882354,
+                    "referenceLength": 51,
+                    "estimatedLength": 51
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 28,
+                    "precision": 0.5490196078431373,
+                    "recall": 0.6829268292682927,
+                    "f1": 0.6086956521739131,
+                    "falsePositives": 23,
+                    "falseNegatives": 13
+                  },
+                  "onsetOffset": {
+                    "matched": 23,
+                    "precision": 0.45098039215686275,
+                    "recall": 0.5609756097560976,
+                    "f1": 0.5,
+                    "falsePositives": 28,
+                    "falseNegatives": 18
+                  },
+                  "pitchSequence": {
+                    "editDistance": 17,
+                    "normalizedEditDistance": 0.4146341463414634,
+                    "referenceLength": 41,
+                    "estimatedLength": 51
+                  }
+                }
+              ],
+              "usedBpmError": null
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 2,
+              "estimatedNotes": 51,
+              "metrics": [
+                {
+                  "annotation": "A1",
+                  "onset": {
+                    "matched": 37,
+                    "precision": 0.7254901960784313,
+                    "recall": 0.7254901960784313,
+                    "f1": 0.7254901960784313,
+                    "falsePositives": 14,
+                    "falseNegatives": 14
+                  },
+                  "onsetOffset": {
+                    "matched": 34,
+                    "precision": 0.6666666666666666,
+                    "recall": 0.6666666666666666,
+                    "f1": 0.6666666666666666,
+                    "falsePositives": 17,
+                    "falseNegatives": 17
+                  },
+                  "pitchSequence": {
+                    "editDistance": 15,
+                    "normalizedEditDistance": 0.29411764705882354,
+                    "referenceLength": 51,
+                    "estimatedLength": 51
+                  }
+                },
+                {
+                  "annotation": "A2",
+                  "onset": {
+                    "matched": 28,
+                    "precision": 0.5490196078431373,
+                    "recall": 0.6829268292682927,
+                    "f1": 0.6086956521739131,
+                    "falsePositives": 23,
+                    "falseNegatives": 13
+                  },
+                  "onsetOffset": {
+                    "matched": 23,
+                    "precision": 0.45098039215686275,
+                    "recall": 0.5609756097560976,
+                    "f1": 0.5,
+                    "falsePositives": 28,
+                    "falseNegatives": 18
+                  },
+                  "pitchSequence": {
+                    "editDistance": 17,
+                    "normalizedEditDistance": 0.4146341463414634,
+                    "referenceLength": 41,
+                    "estimatedLength": 51
+                  }
+                }
+              ],
+              "usedBpmError": null
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": {
+            "voicedFrames": 5106,
+            "unvoicedFrames": 1567,
+            "voicedCoverage": 0.9757148452800627,
+            "unvoicedCoverage": 0.20804084237396298
+          }
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.0825
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.042150707076829115,
+          "elapsedSeconds": 0.585300000011921
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 2.271300000011921
+        }
+      ],
+      "referenceCoverage": [
+        {
+          "annotation": "A1",
+          "voicedFrames": 5106,
+          "unvoicedFrames": 1567,
+          "voicedCoverage": 0.990403446925186,
+          "unvoicedCoverage": 0.042756860242501596
+        },
+        {
+          "annotation": "A2",
+          "voicedFrames": 5106,
+          "unvoicedFrames": 1567,
+          "voicedCoverage": 0.9860947904426165,
+          "unvoicedCoverage": 0.037013401403956606
+        }
+      ]
+    },
+    {
+      "id": "pjs010",
+      "split": "development",
+      "audioSha256": "02d65da7f6f41cde7b964d03ac47603d5bfc8dea24ac8359cebf60faa0701ad7",
+      "duration": 18,
+      "sampleRate": 48000,
+      "officialBpm": 80,
+      "decodeSeconds": 0.07229999999701976,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "official",
+          "sha256": "2f2f8cba8fd25fb21dc2488e611a8fb55492651f4dfa7a8d6c20d5a2b40b7119"
+        }
+      ],
+      "f0Sha256": null,
+      "methods": {
+        "yin": {
+          "totalSeconds": 7.24070000000298,
+          "estimatedNotes": 36,
+          "metrics": [
+            {
+              "annotation": "official",
+              "onset": {
+                "matched": 16,
+                "precision": 0.4444444444444444,
+                "recall": 0.5925925925925926,
+                "f1": 0.5079365079365079,
+                "falsePositives": 20,
+                "falseNegatives": 11
+              },
+              "onsetOffset": {
+                "matched": 6,
+                "precision": 0.16666666666666666,
+                "recall": 0.2222222222222222,
+                "f1": 0.19047619047619047,
+                "falsePositives": 30,
+                "falseNegatives": 21
+              },
+              "pitchSequence": {
+                "editDistance": 20,
+                "normalizedEditDistance": 0.7407407407407407,
+                "referenceLength": 27,
+                "estimatedLength": 36
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 190,
+            "alternatives": [
+              177,
+              47
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 8,
+              "estimatedNotes": 25,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 15,
+                    "precision": 0.6,
+                    "recall": 0.5555555555555556,
+                    "f1": 0.5769230769230769,
+                    "falsePositives": 10,
+                    "falseNegatives": 12
+                  },
+                  "onsetOffset": {
+                    "matched": 7,
+                    "precision": 0.28,
+                    "recall": 0.25925925925925924,
+                    "f1": 0.2692307692307692,
+                    "falsePositives": 18,
+                    "falseNegatives": 20
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.5185185185185185,
+                    "referenceLength": 27,
+                    "estimatedLength": 25
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 40,
+                "relativeError": 0.5,
+                "octaveReference": {
+                  "referenceMultiplier": 2,
+                  "comparisonBpm": 160,
+                  "absoluteError": 40,
+                  "relativeError": 0.25
+                }
+              }
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 8,
+              "estimatedNotes": 25,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 15,
+                    "precision": 0.6,
+                    "recall": 0.5555555555555556,
+                    "f1": 0.5769230769230769,
+                    "falsePositives": 10,
+                    "falseNegatives": 12
+                  },
+                  "onsetOffset": {
+                    "matched": 7,
+                    "precision": 0.28,
+                    "recall": 0.25925925925925924,
+                    "f1": 0.2692307692307692,
+                    "falsePositives": 18,
+                    "falseNegatives": 20
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.5185185185185185,
+                    "referenceLength": 27,
+                    "estimatedLength": 25
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 40,
+                "relativeError": 0.5,
+                "octaveReference": {
+                  "referenceMultiplier": 2,
+                  "comparisonBpm": 160,
+                  "absoluteError": 40,
+                  "relativeError": 0.25
+                }
+              }
+            },
+            {
+              "condition": "manualOfficial",
+              "usedBpm": 80,
+              "usedFallback": false,
+              "omittedNotes": 12,
+              "estimatedNotes": 21,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 12,
+                    "precision": 0.5714285714285714,
+                    "recall": 0.4444444444444444,
+                    "f1": 0.5,
+                    "falsePositives": 9,
+                    "falseNegatives": 15
+                  },
+                  "onsetOffset": {
+                    "matched": 4,
+                    "precision": 0.19047619047619047,
+                    "recall": 0.14814814814814814,
+                    "f1": 0.16666666666666666,
+                    "falsePositives": 17,
+                    "falseNegatives": 23
+                  },
+                  "pitchSequence": {
+                    "editDistance": 13,
+                    "normalizedEditDistance": 0.48148148148148145,
+                    "referenceLength": 27,
+                    "estimatedLength": 21
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 80,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": null,
+          "noteCoverage": null
+        },
+        "model": {
+          "totalSeconds": 1.4995,
+          "estimatedNotes": 28,
+          "metrics": [
+            {
+              "annotation": "official",
+              "onset": {
+                "matched": 16,
+                "precision": 0.5714285714285714,
+                "recall": 0.5925925925925926,
+                "f1": 0.5818181818181818,
+                "falsePositives": 12,
+                "falseNegatives": 11
+              },
+              "onsetOffset": {
+                "matched": 10,
+                "precision": 0.35714285714285715,
+                "recall": 0.37037037037037035,
+                "f1": 0.36363636363636365,
+                "falsePositives": 18,
+                "falseNegatives": 17
+              },
+              "pitchSequence": {
+                "editDistance": 13,
+                "normalizedEditDistance": 0.48148148148148145,
+                "referenceLength": 27,
+                "estimatedLength": 28
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 235,
+            "alternatives": [
+              105,
+              45
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 1,
+              "estimatedNotes": 26,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 10,
+                    "precision": 0.38461538461538464,
+                    "recall": 0.37037037037037035,
+                    "f1": 0.37735849056603776,
+                    "falsePositives": 16,
+                    "falseNegatives": 17
+                  },
+                  "onsetOffset": {
+                    "matched": 5,
+                    "precision": 0.19230769230769232,
+                    "recall": 0.18518518518518517,
+                    "f1": 0.18867924528301888,
+                    "falsePositives": 21,
+                    "falseNegatives": 22
+                  },
+                  "pitchSequence": {
+                    "editDistance": 11,
+                    "normalizedEditDistance": 0.4074074074074074,
+                    "referenceLength": 27,
+                    "estimatedLength": 26
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 40,
+                "relativeError": 0.5,
+                "octaveReference": {
+                  "referenceMultiplier": 2,
+                  "comparisonBpm": 160,
+                  "absoluteError": 40,
+                  "relativeError": 0.25
+                }
+              }
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 1,
+              "estimatedNotes": 26,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 10,
+                    "precision": 0.38461538461538464,
+                    "recall": 0.37037037037037035,
+                    "f1": 0.37735849056603776,
+                    "falsePositives": 16,
+                    "falseNegatives": 17
+                  },
+                  "onsetOffset": {
+                    "matched": 5,
+                    "precision": 0.19230769230769232,
+                    "recall": 0.18518518518518517,
+                    "f1": 0.18867924528301888,
+                    "falsePositives": 21,
+                    "falseNegatives": 22
+                  },
+                  "pitchSequence": {
+                    "editDistance": 11,
+                    "normalizedEditDistance": 0.4074074074074074,
+                    "referenceLength": 27,
+                    "estimatedLength": 26
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 40,
+                "relativeError": 0.5,
+                "octaveReference": {
+                  "referenceMultiplier": 2,
+                  "comparisonBpm": 160,
+                  "absoluteError": 40,
+                  "relativeError": 0.25
+                }
+              }
+            },
+            {
+              "condition": "manualOfficial",
+              "usedBpm": 80,
+              "usedFallback": false,
+              "omittedNotes": 4,
+              "estimatedNotes": 24,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 4,
+                    "precision": 0.16666666666666666,
+                    "recall": 0.14814814814814814,
+                    "f1": 0.1568627450980392,
+                    "falsePositives": 20,
+                    "falseNegatives": 23
+                  },
+                  "onsetOffset": {
+                    "matched": 1,
+                    "precision": 0.041666666666666664,
+                    "recall": 0.037037037037037035,
+                    "f1": 0.0392156862745098,
+                    "falsePositives": 23,
+                    "falseNegatives": 26
+                  },
+                  "pitchSequence": {
+                    "editDistance": 10,
+                    "normalizedEditDistance": 0.37037037037037035,
+                    "referenceLength": 27,
+                    "estimatedLength": 24
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 80,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": null
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.05259999999403953
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.09024305035683984,
+          "elapsedSeconds": 0.546
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 1.3625
+        }
+      ],
+      "referenceCoverage": null
+    },
+    {
+      "id": "pjs017",
+      "split": "previously-used-regression",
+      "audioSha256": "18546ed596335969a0e10d2b70a8998c251bd41003ce0fd72be63071a92eca2b",
+      "duration": 16,
+      "sampleRate": 48000,
+      "officialBpm": 120,
+      "decodeSeconds": 0.066,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "official",
+          "sha256": "bd9db7f6ff79312381008ad3963a4c37a38b84d1b040199710ccb628b6cac308"
+        }
+      ],
+      "f0Sha256": null,
+      "methods": {
+        "yin": {
+          "totalSeconds": 6.347399999991059,
+          "estimatedNotes": 30,
+          "metrics": [
+            {
+              "annotation": "official",
+              "onset": {
+                "matched": 19,
+                "precision": 0.6333333333333333,
+                "recall": 0.5,
+                "f1": 0.5588235294117647,
+                "falsePositives": 11,
+                "falseNegatives": 19
+              },
+              "onsetOffset": {
+                "matched": 7,
+                "precision": 0.23333333333333334,
+                "recall": 0.18421052631578946,
+                "f1": 0.20588235294117646,
+                "falsePositives": 23,
+                "falseNegatives": 31
+              },
+              "pitchSequence": {
+                "editDistance": 16,
+                "normalizedEditDistance": 0.42105263157894735,
+                "referenceLength": 38,
+                "estimatedLength": 30
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 153,
+            "alternatives": [
+              75,
+              222
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 7,
+              "estimatedNotes": 23,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 8,
+                    "precision": 0.34782608695652173,
+                    "recall": 0.21052631578947367,
+                    "f1": 0.26229508196721313,
+                    "falsePositives": 15,
+                    "falseNegatives": 30
+                  },
+                  "onsetOffset": {
+                    "matched": 1,
+                    "precision": 0.043478260869565216,
+                    "recall": 0.02631578947368421,
+                    "f1": 0.03278688524590164,
+                    "falsePositives": 22,
+                    "falseNegatives": 37
+                  },
+                  "pitchSequence": {
+                    "editDistance": 21,
+                    "normalizedEditDistance": 0.5526315789473685,
+                    "referenceLength": 38,
+                    "estimatedLength": 23
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 120,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 7,
+              "estimatedNotes": 23,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 8,
+                    "precision": 0.34782608695652173,
+                    "recall": 0.21052631578947367,
+                    "f1": 0.26229508196721313,
+                    "falsePositives": 15,
+                    "falseNegatives": 30
+                  },
+                  "onsetOffset": {
+                    "matched": 1,
+                    "precision": 0.043478260869565216,
+                    "recall": 0.02631578947368421,
+                    "f1": 0.03278688524590164,
+                    "falsePositives": 22,
+                    "falseNegatives": 37
+                  },
+                  "pitchSequence": {
+                    "editDistance": 21,
+                    "normalizedEditDistance": 0.5526315789473685,
+                    "referenceLength": 38,
+                    "estimatedLength": 23
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 120,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            },
+            {
+              "condition": "manualOfficial",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 7,
+              "estimatedNotes": 23,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 8,
+                    "precision": 0.34782608695652173,
+                    "recall": 0.21052631578947367,
+                    "f1": 0.26229508196721313,
+                    "falsePositives": 15,
+                    "falseNegatives": 30
+                  },
+                  "onsetOffset": {
+                    "matched": 1,
+                    "precision": 0.043478260869565216,
+                    "recall": 0.02631578947368421,
+                    "f1": 0.03278688524590164,
+                    "falsePositives": 22,
+                    "falseNegatives": 37
+                  },
+                  "pitchSequence": {
+                    "editDistance": 21,
+                    "normalizedEditDistance": 0.5526315789473685,
+                    "referenceLength": 38,
+                    "estimatedLength": 23
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 120,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": null,
+          "noteCoverage": null
+        },
+        "model": {
+          "totalSeconds": 1.3537000000029802,
+          "estimatedNotes": 32,
+          "metrics": [
+            {
+              "annotation": "official",
+              "onset": {
+                "matched": 22,
+                "precision": 0.6875,
+                "recall": 0.5789473684210527,
+                "f1": 0.6285714285714286,
+                "falsePositives": 10,
+                "falseNegatives": 16
+              },
+              "onsetOffset": {
+                "matched": 11,
+                "precision": 0.34375,
+                "recall": 0.2894736842105263,
+                "f1": 0.3142857142857143,
+                "falsePositives": 21,
+                "falseNegatives": 27
+              },
+              "pitchSequence": {
+                "editDistance": 15,
+                "normalizedEditDistance": 0.39473684210526316,
+                "referenceLength": 38,
+                "estimatedLength": 32
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 60,
+            "alternatives": [
+              182,
+              47
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 1,
+              "estimatedNotes": 31,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 20,
+                    "precision": 0.6451612903225806,
+                    "recall": 0.5263157894736842,
+                    "f1": 0.5797101449275363,
+                    "falsePositives": 11,
+                    "falseNegatives": 18
+                  },
+                  "onsetOffset": {
+                    "matched": 9,
+                    "precision": 0.2903225806451613,
+                    "recall": 0.23684210526315788,
+                    "f1": 0.2608695652173913,
+                    "falsePositives": 22,
+                    "falseNegatives": 29
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.3684210526315789,
+                    "referenceLength": 38,
+                    "estimatedLength": 31
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 120,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 1,
+              "estimatedNotes": 31,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 20,
+                    "precision": 0.6451612903225806,
+                    "recall": 0.5263157894736842,
+                    "f1": 0.5797101449275363,
+                    "falsePositives": 11,
+                    "falseNegatives": 18
+                  },
+                  "onsetOffset": {
+                    "matched": 9,
+                    "precision": 0.2903225806451613,
+                    "recall": 0.23684210526315788,
+                    "f1": 0.2608695652173913,
+                    "falsePositives": 22,
+                    "falseNegatives": 29
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.3684210526315789,
+                    "referenceLength": 38,
+                    "estimatedLength": 31
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 120,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            },
+            {
+              "condition": "manualOfficial",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 1,
+              "estimatedNotes": 31,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 20,
+                    "precision": 0.6451612903225806,
+                    "recall": 0.5263157894736842,
+                    "f1": 0.5797101449275363,
+                    "falsePositives": 11,
+                    "falseNegatives": 18
+                  },
+                  "onsetOffset": {
+                    "matched": 9,
+                    "precision": 0.2903225806451613,
+                    "recall": 0.23684210526315788,
+                    "f1": 0.2608695652173913,
+                    "falsePositives": 22,
+                    "falseNegatives": 29
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.3684210526315789,
+                    "referenceLength": 38,
+                    "estimatedLength": 31
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 120,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": null
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.051600000008940695
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.10140197397936294,
+          "elapsedSeconds": 0.5585
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 1.2255
+        }
+      ],
+      "referenceCoverage": null
+    },
+    {
+      "id": "pjs040",
+      "split": "development",
+      "audioSha256": "2ceff3fc16f5da0bd3d8ecf90e2120c40cdefa2aca90ea9249a48a3127ac5bbd",
+      "duration": 8,
+      "sampleRate": 48000,
+      "officialBpm": 180,
+      "decodeSeconds": 0.0315,
+      "browser": {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+        "crossOriginIsolated": false,
+        "hardwareConcurrency": 10
+      },
+      "referenceHashes": [
+        {
+          "annotation": "official",
+          "sha256": "d1ae2cd0812d0fca4e6cae8ef2347887db6f868fc0c200e5127831edda5e91ac"
+        }
+      ],
+      "f0Sha256": null,
+      "methods": {
+        "yin": {
+          "totalSeconds": 3.1739000000059603,
+          "estimatedNotes": 11,
+          "metrics": [
+            {
+              "annotation": "official",
+              "onset": {
+                "matched": 7,
+                "precision": 0.6363636363636364,
+                "recall": 0.3333333333333333,
+                "f1": 0.4375,
+                "falsePositives": 4,
+                "falseNegatives": 14
+              },
+              "onsetOffset": {
+                "matched": 5,
+                "precision": 0.45454545454545453,
+                "recall": 0.23809523809523808,
+                "f1": 0.3125,
+                "falsePositives": 6,
+                "falseNegatives": 16
+              },
+              "pitchSequence": {
+                "editDistance": 14,
+                "normalizedEditDistance": 0.6666666666666666,
+                "referenceLength": 21,
+                "estimatedLength": 11
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 164,
+            "alternatives": [
+              136,
+              57
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 4,
+              "estimatedNotes": 7,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 5,
+                    "precision": 0.7142857142857143,
+                    "recall": 0.23809523809523808,
+                    "f1": 0.35714285714285715,
+                    "falsePositives": 2,
+                    "falseNegatives": 16
+                  },
+                  "onsetOffset": {
+                    "matched": 3,
+                    "precision": 0.42857142857142855,
+                    "recall": 0.14285714285714285,
+                    "f1": 0.21428571428571427,
+                    "falsePositives": 4,
+                    "falseNegatives": 18
+                  },
+                  "pitchSequence": {
+                    "editDistance": 16,
+                    "normalizedEditDistance": 0.7619047619047619,
+                    "referenceLength": 21,
+                    "estimatedLength": 7
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 60,
+                "relativeError": 0.3333333333333333,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 180,
+                  "absoluteError": 60,
+                  "relativeError": 0.3333333333333333
+                }
+              }
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 4,
+              "estimatedNotes": 7,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 5,
+                    "precision": 0.7142857142857143,
+                    "recall": 0.23809523809523808,
+                    "f1": 0.35714285714285715,
+                    "falsePositives": 2,
+                    "falseNegatives": 16
+                  },
+                  "onsetOffset": {
+                    "matched": 3,
+                    "precision": 0.42857142857142855,
+                    "recall": 0.14285714285714285,
+                    "f1": 0.21428571428571427,
+                    "falsePositives": 4,
+                    "falseNegatives": 18
+                  },
+                  "pitchSequence": {
+                    "editDistance": 16,
+                    "normalizedEditDistance": 0.7619047619047619,
+                    "referenceLength": 21,
+                    "estimatedLength": 7
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 60,
+                "relativeError": 0.3333333333333333,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 180,
+                  "absoluteError": 60,
+                  "relativeError": 0.3333333333333333
+                }
+              }
+            },
+            {
+              "condition": "manualOfficial",
+              "usedBpm": 180,
+              "usedFallback": false,
+              "omittedNotes": 2,
+              "estimatedNotes": 9,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 6,
+                    "precision": 0.6666666666666666,
+                    "recall": 0.2857142857142857,
+                    "f1": 0.4,
+                    "falsePositives": 3,
+                    "falseNegatives": 15
+                  },
+                  "onsetOffset": {
+                    "matched": 5,
+                    "precision": 0.5555555555555556,
+                    "recall": 0.23809523809523808,
+                    "f1": 0.3333333333333333,
+                    "falsePositives": 4,
+                    "falseNegatives": 16
+                  },
+                  "pitchSequence": {
+                    "editDistance": 15,
+                    "normalizedEditDistance": 0.7142857142857143,
+                    "referenceLength": 21,
+                    "estimatedLength": 9
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 180,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": null,
+          "noteCoverage": null
+        },
+        "model": {
+          "totalSeconds": 0.9023999999910594,
+          "estimatedNotes": 14,
+          "metrics": [
+            {
+              "annotation": "official",
+              "onset": {
+                "matched": 8,
+                "precision": 0.5714285714285714,
+                "recall": 0.38095238095238093,
+                "f1": 0.45714285714285713,
+                "falsePositives": 6,
+                "falseNegatives": 13
+              },
+              "onsetOffset": {
+                "matched": 4,
+                "precision": 0.2857142857142857,
+                "recall": 0.19047619047619047,
+                "f1": 0.22857142857142856,
+                "falsePositives": 10,
+                "falseNegatives": 17
+              },
+              "pitchSequence": {
+                "editDistance": 14,
+                "normalizedEditDistance": 0.6666666666666666,
+                "referenceLength": 21,
+                "estimatedLength": 14
+              }
+            }
+          ],
+          "suggestion": {
+            "bpm": 133,
+            "alternatives": [
+              49,
+              192
+            ],
+            "reliable": false
+          },
+          "automaticTempoError": null,
+          "scores": [
+            {
+              "condition": "manual120",
+              "usedBpm": 120,
+              "usedFallback": false,
+              "omittedNotes": 1,
+              "estimatedNotes": 13,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 8,
+                    "precision": 0.6153846153846154,
+                    "recall": 0.38095238095238093,
+                    "f1": 0.47058823529411764,
+                    "falsePositives": 5,
+                    "falseNegatives": 13
+                  },
+                  "onsetOffset": {
+                    "matched": 4,
+                    "precision": 0.3076923076923077,
+                    "recall": 0.19047619047619047,
+                    "f1": 0.23529411764705882,
+                    "falsePositives": 9,
+                    "falseNegatives": 17
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.6666666666666666,
+                    "referenceLength": 21,
+                    "estimatedLength": 13
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 60,
+                "relativeError": 0.3333333333333333,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 180,
+                  "absoluteError": 60,
+                  "relativeError": 0.3333333333333333
+                }
+              }
+            },
+            {
+              "condition": "automatic",
+              "usedBpm": 120,
+              "usedFallback": true,
+              "omittedNotes": 1,
+              "estimatedNotes": 13,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 8,
+                    "precision": 0.6153846153846154,
+                    "recall": 0.38095238095238093,
+                    "f1": 0.47058823529411764,
+                    "falsePositives": 5,
+                    "falseNegatives": 13
+                  },
+                  "onsetOffset": {
+                    "matched": 4,
+                    "precision": 0.3076923076923077,
+                    "recall": 0.19047619047619047,
+                    "f1": 0.23529411764705882,
+                    "falsePositives": 9,
+                    "falseNegatives": 17
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.6666666666666666,
+                    "referenceLength": 21,
+                    "estimatedLength": 13
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 60,
+                "relativeError": 0.3333333333333333,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 180,
+                  "absoluteError": 60,
+                  "relativeError": 0.3333333333333333
+                }
+              }
+            },
+            {
+              "condition": "manualOfficial",
+              "usedBpm": 180,
+              "usedFallback": false,
+              "omittedNotes": 0,
+              "estimatedNotes": 14,
+              "metrics": [
+                {
+                  "annotation": "official",
+                  "onset": {
+                    "matched": 8,
+                    "precision": 0.5714285714285714,
+                    "recall": 0.38095238095238093,
+                    "f1": 0.45714285714285713,
+                    "falsePositives": 6,
+                    "falseNegatives": 13
+                  },
+                  "onsetOffset": {
+                    "matched": 5,
+                    "precision": 0.35714285714285715,
+                    "recall": 0.23809523809523808,
+                    "f1": 0.2857142857142857,
+                    "falsePositives": 9,
+                    "falseNegatives": 16
+                  },
+                  "pitchSequence": {
+                    "editDistance": 14,
+                    "normalizedEditDistance": 0.6666666666666666,
+                    "referenceLength": 21,
+                    "estimatedLength": 14
+                  }
+                }
+              ],
+              "usedBpmError": {
+                "absoluteError": 0,
+                "relativeError": 0,
+                "octaveReference": {
+                  "referenceMultiplier": 1,
+                  "comparisonBpm": 180,
+                  "absoluteError": 0,
+                  "relativeError": 0
+                }
+              }
+            }
+          ],
+          "f0": null,
+          "f0NotApplicable": "Note activity decoder; not an F0 estimator",
+          "noteCoverage": null
+        }
+      },
+      "modelProgress": [
+        {
+          "stage": "loading",
+          "elapsedSeconds": 0.035799999997019764
+        },
+        {
+          "stage": "analyzing",
+          "progress": 0.20064358632933865,
+          "elapsedSeconds": 0.5305999999940395
+        },
+        {
+          "stage": "notes",
+          "elapsedSeconds": 0.8303999999910593
+        }
+      ],
+      "referenceCoverage": null
+    }
+  ]
+}

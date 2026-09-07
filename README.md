@@ -64,7 +64,7 @@ Piano: FluidR3_GM acoustic grand piano、[Benjamin Gleitzman / MIDI.js Soundfont
 
 実音声評価にはCC BY-SA 4.0のPJS corpusをローカル取得して使用します。評価音声はGitやアプリの配布物へ含めません。出典・取得コマンド・ハッシュは上記資料を参照してください。
 
-さらにCC BY 4.0のVocaditoから、人手F0と2人の音符注釈を持つ7人の歌声を評価します。3人を開発用、4人を候補固定後の最終確認用として選定しました。各注釈を別に採点し、不明なBPMを推定成功として扱いません。[出典と再現方法](docs/evaluation/vocadito-sources.md)。これはプロジェクト内で未使用だった録音の評価で、モデルの学習・開発データとの非重複を保証するものではありません。
+さらにCC BY 4.0のVocaditoから、人手F0と2人の音符注釈を持つ7人の歌声を評価します。初回は3人を開発用、4人を候補固定後の最終確認用として選定しました。各注釈を別に採点し、不明なBPMを推定成功として扱いません。[出典と再現方法](docs/evaluation/vocadito-sources.md)。初回の未使用素材は、その後の[曲中の休符再判定](docs/evaluation/service-quality-rest-recovery.md)では既使用の回帰素材です。モデルの学習・開発データとの非重複は保証しません。
 
 追加で原テンポ80/120/180 BPMの単独歌唱3曲を公式MusicXMLと比較しました。[取得方法](docs/evaluation/vocal-score-sources.md)・[曲別結果と残る誤り](docs/evaluation/vocal-score-verification.md)。記譜時の不要な再打鍵を修正しましたが、自動テンポの確定や正確な全音符復元は未達です。公式譜面との一致を実歌唱のF0精度とは呼びません。
 
