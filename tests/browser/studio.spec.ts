@@ -35,11 +35,10 @@ test('録音から再解析・原音再生・停止・歌/話の切替まで実�
   await expect(page.locator('#status')).toContainText('再解析しました')
   await page.locator('input[value="speech"]').check()
   await expect(page.locator('#status')).toContainText('再解析しました')
-  await expect(page.locator('#pitchMode')).toHaveValue('continuous')
-  await expect(page.locator('#pitchHelp')).toContainText('細かな揺れを残す')
-  await page.locator('#pitchMode').selectOption('rounded')
+  await expect(page.locator('#pitchMode')).toHaveValue('rounded')
   await expect(page.locator('#pitchHelp')).toContainText('近くの半音へ丸めます')
   await page.locator('#pitchMode').selectOption('continuous')
+  await expect(page.locator('#pitchHelp')).toContainText('細かな揺れを残す')
   await page.locator('#scoreDetails > summary').click()
   await expect(page.locator('#scoreMeasures svg').first()).toBeVisible()
   for (const href of await page.locator('.score-credits a').evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href))) {

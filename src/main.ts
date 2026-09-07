@@ -26,7 +26,7 @@ const scorePanel = mountScorePanel(ui.score, { onPlaybackStart: () => { stopPlay
 const player = new VoicePlayer()
 let phase: Phase = 'idle'
 let mode: AnalysisMode = 'song'
-let pitchMode: PitchMode = 'continuous'
+let pitchMode: PitchMode = 'rounded'
 let source: 'original' | 'piano' = 'original'
 let capture: CaptureSession | null = null
 let recording: CaptureResult | null = null
@@ -131,7 +131,7 @@ function sync(): void {
   ui.pitchHelp.textContent =
     pitchMode === 'continuous'
       ? '通常の鍵盤では出せない中間音も使い、しゃくりや細かな揺れを残すピアノ風再生です。'
-      : '近くの半音へ丸めます。発声のタイミングと休符はそのままです。'
+      : '近くの半音へ丸めます。一音ずつピアノを打鍵し、自然に減衰します。音程は滑らず、離鍵後に短い余韻が残ります。'
   draw()
 }
 /** 軌跡の表示は解析データを読むだけで、記録を進めない。 */
@@ -457,6 +457,8 @@ ui.play.addEventListener('click', async () => {
       recording.sampleRate,
       notes,
       cursor >= duration - 0.02 ? 0 : cursor,
+      undefined,
+      pitchMode === 'continuous' ? 'continuous' : 'piano',
     )
     if (token !== revision || !started) return
     phase = 'playing'
@@ -518,7 +520,7 @@ ui.sources.forEach((input) =>
 ui.modes.forEach((input) =>
   input.addEventListener('change', () => {
     mode = input.value as AnalysisMode
-    pitchMode = 'continuous'
+    pitchMode = 'rounded'
     ui.pitchMode.value = pitchMode
     if (recording) void analyzeAgain()
     else {
