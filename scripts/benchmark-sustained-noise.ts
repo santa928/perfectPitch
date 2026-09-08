@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { writeFileSync } from 'node:fs'
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { sustainedInput } from '../tests/fixtures/sustained-voice.ts'
 import type { PitchFrame } from '../src/analysis/pipeline.ts'
 
@@ -7,6 +7,7 @@ const root = process.argv.includes('--baseline') ? 'file:///baseline/' : new URL
 const { PitchAnalyzer } = await import(`${root}src/analysis/pipeline.ts`)
 const { buildNotes } = await import(`${root}src/analysis/notes.ts`)
 const rows: object[] = []
+mkdirSync('output', { recursive: true })
 for (const mode of ['song', 'speech']) for (const kind of ['silence', 'white', 'breath', 'consonant', 'hum']) {
   const sr = 16000, pcm = sustainedInput(sr, true, 3)
   let seed = 987, colored = 0

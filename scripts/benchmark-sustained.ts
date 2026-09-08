@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { writeFileSync } from 'node:fs'
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { sustainedInput } from '../tests/fixtures/sustained-voice.ts'
 import type { PitchFrame } from '../src/analysis/pipeline.ts'
 
@@ -11,6 +11,7 @@ const { detectYin } = await import(`${root}src/analysis/detectors.ts`)
 const { buildNotes } = await import(`${root}src/analysis/notes.ts`)
 const { extractMelody } = await import(`${root}src/analysis/melody.ts`)
 const results: object[] = []
+mkdirSync('output', { recursive: true })
 for (const sr of [16000, 44100, 48000]) for (const noise of [false, true]) for (const calibrate of [false, true]) {
   const pcm = sustainedInput(sr, noise)
   const analyzer = new PitchAnalyzer(sr, 'song', undefined, calibrate)
