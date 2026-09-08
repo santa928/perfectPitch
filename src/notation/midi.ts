@@ -1,5 +1,5 @@
-import { scoreToPiano } from './score-playback.ts'
-import type { Score } from './score.ts'
+import { scoreToLogicalNotes } from './score-playback.ts'
+import { scorePpq, type Score } from './score.ts'
 
 type NoteEvent = { tick: number; status: 0x80 | 0x90; midi: number }
 
@@ -14,17 +14,17 @@ function vlq(value: number): number[] {
 
 /**
  * 譜面をSMF format 0、480PPQ、4/4、ピアノprogram 0で書き出す。
- * scoreToPianoのタイ・休符・再発音規則を共有し、原音originを先頭に加えない。
+ * scoreToLogicalNotesのタイ・休符・再発音規則を共有し、原音originを先頭に加えない。
  * 音量情報のないScoreはvelocity 96で統一する。入力のScoreは変更しない。
  */
 export function scoreToMidi(score: Score): Uint8Array {
-  const { notes } = scoreToPiano(score)
-  const tickSeconds = 60 / score.bpm / 4
+  const notes = scoreToLogicalNotes(score)
+  const scale = 480 / scorePpq(score)
   const events: NoteEvent[] = []
   for (const note of notes) {
     events.push(
-      { tick: Math.round(note.start / tickSeconds) * 120, status: 0x90, midi: note.midi },
-      { tick: Math.round(note.end / tickSeconds) * 120, status: 0x80, midi: note.midi },
+      { tick: note.tick * scale, status: 0x90, midi: note.midi },
+      { tick: (note.tick + note.ticks) * scale, status: 0x80, midi: note.midi },
     )
   }
   // 同時刻はnote offを先に書き、同じ鍵盤の再発音を消さない。
@@ -40,7 +40,7 @@ export function scoreToMidi(score: Score): Uint8Array {
     track.push(...vlq(event.tick - cursor), event.status, event.midi, event.status === 0x90 ? 96 : 0)
     cursor = event.tick
   }
-  track.push(...vlq(score.measures.length * 16 * 120 - cursor), 0xff, 0x2f, 0)
+  track.push(...vlq(score.measures.length * 4 * 480 - cursor), 0xff, 0x2f, 0)
   const result = new Uint8Array(22 + track.length)
   result.set([
     0x4d, 0x54, 0x68, 0x64, 0, 0, 0, 6, 0, 0, 0, 1, 1, 0xe0,

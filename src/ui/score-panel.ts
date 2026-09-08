@@ -1,6 +1,6 @@
 import type { AnalysisMode, PitchFrame } from '../analysis/pipeline.ts'
 import { buildNotes } from '../analysis/notes.ts'
-import { buildScore } from '../notation/score.ts'
+import { buildScore, scorePpq } from '../notation/score.ts'
 import type { Score } from '../notation/score.ts'
 import { scoreToPiano } from '../notation/score-playback.ts'
 import { extractMelody, suggestTempo } from '../analysis/melody.ts'
@@ -17,7 +17,7 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
       <summary>楽譜とドレミを見る <span>推定</span></summary>
       <div class="score-body">
         <div class="score-heading"><h2>あなたの声の楽譜</h2><label>テンポ <input id="scoreTempo" type="number" min="40" max="240" step="1" value="120" inputmode="numeric" aria-describedby="scoreHelp"> BPM</label></div>
-        <p id="scoreHelp">4/4拍子・16分音符単位の推定です。テンポを指定して音符の長さを推定します。手直しした後は音符の長さを保って演奏速度を変えます。元の声と上のピアノ再生は変わりません。</p>
+        <p id="scoreHelp">4/4拍子・最短128分音符までの推定です。検出済みの別発音と休符を保って拍へ整えます。テンポを指定して音符の長さを推定します。手直しした後は音符の長さを保って演奏速度を変えます。元の声と上のピアノ再生は変わりません。</p>
         <p id="scoreTempoHint"></p>
         <div id="transcriptionPanel" hidden></div>
         <div class="score-playback"><button id="scorePlay" type="button" class="play-button" disabled>▶ 譜面どおりに聴く</button><p id="scorePlaybackStatus" role="status" aria-live="polite">鼻歌の揺れを音符にまとめ、五線譜と同じ音程・長さで聴けます。</p></div>
@@ -78,7 +78,7 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
       updateTempoHelp()
       void render()
     },
-    onSelect: tick => { page = Math.floor(tick / 16 / perPage); void render() },
+    onSelect: tick => { page = Math.floor(tick / ((editor?.ppq ?? 480) * 4) / perPage); void render() },
   })
   /** 手直しした音符の音価はテンポ入力で再推定しないことを明示する。 */
   function updateTempoHelp(): void {
@@ -95,7 +95,14 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
   }
   /** 再生ボタンを実際の譜面・読み込み状態と同期する。 */
   function syncPlayback(): void {
-    play.disabled = playbackPhase === 'idle' && (!score?.measures.length || host.hidden || !tempo.validity.valid)
+    const hasNotes = Boolean(score && scoreToPiano(score).notes.length)
+    play.disabled = playbackPhase === 'idle' && (!hasNotes || host.hidden || !tempo.validity.valid)
+    if (playbackPhase === 'idle' && score && !hasNotes)
+      playbackStatus.textContent = score.measures.length
+        ? '再生できる音符がありません。「音符を直す」で原音符の案内を確認し、音符を追加できます。'
+        : '再生できる音符がありません。元の声を聴き直せます。'
+    else if (playbackPhase === 'idle' && hasNotes && playbackStatus.textContent?.startsWith('再生できる音符がありません'))
+      playbackStatus.textContent = '五線譜にある音符をピアノで聴けます。原音符の要確認事項は「音符を直す」で確認してください。'
     play.textContent = playbackPhase === 'loading' ? '■ 譜面音源の読み込みを中止' : playbackPhase === 'playing' ? '■ 譜面再生を止める' : '▶ 譜面どおりに聴く'
   }
   /** 原音再生、録音、設定変更、閉じる操作で予約と遅い応答を無効化する。 */
@@ -110,9 +117,10 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
   play.addEventListener('click', async () => {
     if (playbackPhase !== 'idle') { stop(); return }
     if (!score || !tempo.validity.valid) return
+    const result = scoreToPiano(score)
+    if (!result.notes.length) { syncPlayback(); return }
     callbacks.onPlaybackStart?.()
     const token = ++playbackGeneration
-    const result = scoreToPiano(score)
     playbackPhase = 'loading'
     playbackStatus.textContent = '譜面のピアノ音源を準備しています。'
     syncPlayback()
@@ -154,7 +162,7 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
     syncPlayback()
     if (!score.measures.length) {
       status.textContent = score.omittedNotes
-        ? `短い音${score.omittedNotes}個が16分音符単位では残らず、楽譜にできませんでした。テンポを上げるか、音を長めに録音してみてください。`
+        ? `配置できない原音符が${score.omittedNotes}個あります。「音符を直す」で対象と理由を確認してください。`
         : '楽譜にできる音程を検出していません。元の声は聴き直せます。'
       return
     }
@@ -171,11 +179,11 @@ export function mountScorePanel(host: HTMLElement, callbacks: { onPlaybackStart?
       staging.style.width = `${measures.clientWidth}px`
       host.append(staging)
       try {
-        await renderMeasures(staging, score.measures.slice(start, end), start, { onSelect: tick => editorPanel.select(tick) })
+        await renderMeasures(staging, score.measures.slice(start, end), start, { onSelect: tick => editorPanel.select(tick), ppq: scorePpq(score) })
         if (token !== generation) return
         measures.replaceChildren(...staging.childNodes)
       } finally { staging.remove() }
-      status.textContent = `${editor?.modified ? '手直しした楽譜です。' : ''}最初の検出音（録音${score.origin.toFixed(2)}秒）を1拍目にしています。${score.omittedNotes ? `自動推定時の短い音${score.omittedNotes}個は丸めにより省略されました。` : ''}`
+      status.textContent = `${editor?.modified ? '手直しした楽譜です。' : ''}最初の検出音（録音${score.origin.toFixed(2)}秒）を1拍目にしています。${score.issues?.length ? '要確認の原音符があります。' : ''}${score.omittedNotes ? `原音符${score.omittedNotes}個は未配置です。「音符を直す」で対象と理由を確認してください。` : ''}`
       pageLabel.textContent = `${start + 1}〜${end} / ${score.measures.length}小節`
       previous.disabled = page === 0
       next.disabled = end === score.measures.length

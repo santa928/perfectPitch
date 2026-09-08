@@ -1,9 +1,9 @@
-import { scoreToPiano } from './score-playback.ts'
-import type { Score, ScoreEvent } from './score.ts'
+import { scoreToLogicalNotes } from './score-playback.ts'
+import { appendScoreInterval, scorePpq, SCORE_PPQ, MIN_NOTE_TICKS, type Score, type ScoreEvent } from './score.ts'
 
-/** タイを結合した1回の発音。tick/ticksは16分音符単位、idは編集履歴を通して安定する。 */
-export type EditableNote = { id: number; tick: number; ticks: number; midi: number }
-type NoteInput = Omit<EditableNote, 'id'>
+/** タイを結合した1回の発音。tick/ticksはScoreのppq単位、idは編集履歴を通して安定する。 */
+export type EditableNote = { id: number; tick: number; ticks: number; midi: number; sourceId?: number }
+type NoteInput = Omit<EditableNote, 'id' | 'sourceId'>
 type Snapshot = { bpm: number; notes: EditableNote[] }
 
 /** 元の配列・音符から独立した履歴スナップショットを作る。 */
@@ -11,11 +11,11 @@ function copySnapshot(snapshot: Snapshot): Snapshot {
   return { bpm: snapshot.bpm, notes: snapshot.notes.map(note => ({ ...note })) }
 }
 
-/** IDや記譜上の分割に依存せず、テンポと論理音符の実差分を比較する。 */
+/** 編集用IDや記譜分割は無視し、音符・テンポと原入力への対応の実差分を比較する。 */
 function sameContent(a: Snapshot, b: Snapshot): boolean {
   return a.bpm === b.bpm && a.notes.length === b.notes.length && a.notes.every((note, index) => {
     const other = b.notes[index]
-    return note.tick === other.tick && note.ticks === other.ticks && note.midi === other.midi
+    return note.tick === other.tick && note.ticks === other.ticks && note.midi === other.midi && note.sourceId === other.sourceId
   })
 }
 
@@ -30,6 +30,8 @@ function validateTempo(bpm: number): void {
  * 入出力をコピーし、失敗した編集は現在の譜面・undo/redo履歴を変更しない。
  */
 export class ScoreEditor {
+  readonly #metadata: Pick<Score, 'ppq' | 'sourceNotes' | 'issues'>
+  readonly #ppq: number
   readonly #origin: number
   readonly #totalTicks: number
   readonly #omittedNotes: number
@@ -42,16 +44,14 @@ export class ScoreEditor {
   /** 再生と同じタイ規則で論理音符へ変換し、入力Scoreから独立した初期状態を保存する。 */
   constructor(score: Score) {
     validateTempo(score.bpm)
-    const { notes } = scoreToPiano(score)
-    const tickSeconds = 60 / score.bpm / 4
+    const notes = scoreToLogicalNotes(score)
+    this.#ppq = scorePpq(score)
+    this.#metadata = structuredClone({ ...(score.ppq === undefined ? {} : { ppq: score.ppq }),
+      ...(score.sourceNotes ? { sourceNotes: score.sourceNotes } : {}), ...(score.issues ? { issues: score.issues } : {}) })
     this.#origin = score.origin
-    this.#totalTicks = score.measures.length * 16
+    this.#totalTicks = score.measures.length * this.#ppq * 4
     this.#omittedNotes = score.omittedNotes
-    this.#current = { bpm: score.bpm, notes: notes.map((note, id) => {
-      // 再生側のタイ判定を共有し、秒表現を元の整数tickへ戻す。
-      const tick = Math.round(note.start / tickSeconds)
-      return { id, tick, ticks: Math.round(note.end / tickSeconds) - tick, midi: note.midi }
-    }) }
+    this.#current = { bpm: score.bpm, notes: notes.map((note, id) => ({ ...note, id })) }
     this.#original = copySnapshot(this.#current)
     this.#nextId = notes.length
   }
@@ -62,7 +62,11 @@ export class ScoreEditor {
   get bpm(): number { return this.#current.bpm }
   /** 原音における譜面開始位置を保持する。 */
   get origin(): number { return this.#origin }
-  /** 初期譜面の全小節長。編集による小節の追加・削除は行わない。 */
+  /** 四分音符あたりの内部tick数。 */
+  get ppq(): number { return this.#ppq }
+  /** UIで調整できる最小拍幅。 */
+  get beatStep(): number { return this.#ppq === SCORE_PPQ ? MIN_NOTE_TICKS / this.#ppq : 1 / this.#ppq }
+  /** 小節総長。 */
   get totalTicks(): number { return this.#totalTicks }
   /** 自動採譜で省略した音符数を保持する。手動編集では増減させない。 */
   get omittedNotes(): number { return this.#omittedNotes }
@@ -75,26 +79,17 @@ export class ScoreEditor {
 
   /** 休符を補い、buildScoreと同じ音価・小節分割・タイで新しいScoreを返す。 */
   get score(): Score {
-    const measures: ScoreEvent[][] = Array.from({ length: this.#totalTicks / 16 }, () => [])
-    /** 拍境界に合わせて2の累乗へ分け、同じ論理音符の断片だけに双方向タイを付ける。 */
-    const append = (start: number, end: number, midi: number | null): void => {
-      let tick = start
-      while (tick < end) {
-        const ticks = [16, 8, 4, 2, 1].find(value => value <= end - tick && tick % value === 0)!
-        measures[Math.floor(tick / 16)].push({
-          tick, ticks, midi, tieIn: midi !== null && tick > start, tieOut: midi !== null && tick + ticks < end,
-        })
-        tick += ticks
-      }
-    }
+    const measures: ScoreEvent[][] = Array.from({ length: this.#totalTicks / (this.#ppq * 4) }, () => [])
+    const append = (start: number, end: number, midi: number | null, sourceId?: number): void =>
+      appendScoreInterval(measures, start, end, midi, this.#ppq, sourceId)
     let cursor = 0
     for (const note of this.#current.notes) {
       append(cursor, note.tick, null)
-      append(note.tick, note.tick + note.ticks, note.midi)
+      append(note.tick, note.tick + note.ticks, note.midi, note.sourceId)
       cursor = note.tick + note.ticks
     }
     append(cursor, this.#totalTicks, null)
-    return { bpm: this.bpm, origin: this.#origin, omittedNotes: this.#omittedNotes, measures }
+    return { bpm: this.bpm, origin: this.#origin, omittedNotes: this.#omittedNotes, measures, ...structuredClone(this.#metadata) }
   }
 
   /** 指定IDの音高・開始・長さだけを変更する。不正値や重なりはRangeErrorで拒否する。 */
@@ -103,7 +98,7 @@ export class ScoreEditor {
     const index = this.#indexOf(id)
     const original = next.notes[index]
     next.notes[index] = {
-      id, tick: changes.tick ?? original.tick, ticks: changes.ticks ?? original.ticks,
+      ...original, id, tick: changes.tick ?? original.tick, ticks: changes.ticks ?? original.ticks,
       midi: changes.midi ?? original.midi,
     }
     this.#validateNotes(next.notes)
@@ -173,6 +168,7 @@ export class ScoreEditor {
       if (
         !Number.isSafeInteger(note.tick) || !Number.isSafeInteger(note.ticks) || note.ticks <= 0 ||
         note.tick < end || note.tick + note.ticks > this.#totalTicks ||
+        note.tick % (this.#ppq * this.beatStep) !== 0 || note.ticks % (this.#ppq * this.beatStep) !== 0 ||
         !Number.isInteger(note.midi) || note.midi < 21 || note.midi > 108
       ) throw new RangeError('音符は重ならない整数tick、既存小節内の長さ、音高21〜108で指定してください。')
       end = note.tick + note.ticks

@@ -36,7 +36,7 @@ for (const width of [375, 1280]) {
       const input = pitches.map((midi, i) => ({ start: i / 8, end: (i + 1) / 8, midi, contour: [] }))
       input.push({ start: 2, end: 4.5, midi: 33, contour: [] })
       const score = buildScore(input, 5, 120)
-      await renderMeasures(document.querySelector('#fixtureScore')!, score.measures, 0)
+      await renderMeasures(document.querySelector('#fixtureScore')!, score.measures, 0, { ppq: score.ppq })
     })
     await expect(page.locator('.score-measures svg')).toHaveCount(3)
     await expect(page.locator('.score-measures')).toContainText('ド♯4')

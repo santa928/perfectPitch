@@ -1,0 +1,633 @@
+{
+  "baselineSha": "ea97ade49ee8ec87029a8cc895f4a0eb1d8fb5b6",
+  "generatedAt": "2026-09-08T15:40:35.825Z",
+  "soundfontSha256": "00eebe0214c12ff8f32c47c2f7ac92ef352800e868ab0f883b80854486ac4ca6",
+  "sourceHashes": {
+    "src/notation/score.ts": "d2bd16286d005236837d1bf9aef4ff4a9635a631595143e97bd781848c7840c7",
+    "src/notation/score-playback.ts": "c1f2254b5e57764299af5567b973b255c338862ad3c27cce76e593acedcedfa1",
+    "src/notation/midi.ts": "4028440d6c944c4652c423358930495113bbab1849c90aa265714f4fd460603b",
+    "src/ui/score-renderer.ts": "48ec4fd0239d2596ec4a5b2b449fb23256a622c90c31b63cbae0f160d52fe70a",
+    "src/audio/piano-voice.ts": "ed7bf4ce4ecc15294bde8f7454fae4159c0a3e64c06625617dfd1a8527be0acc",
+    "src/audio/playback-model.ts": "3d76bed14ff3a45f9c7de1ca679b31ad9820f5ec852da53cd55603d832ab341e",
+    "scripts/evaluation/score-artifacts.ts": "703746e71d1cd46bf2210ee21c13b87a2eacaa0aad89b370a450cfcbf8f34dfa"
+  },
+  "soundfontSource": "https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3.js",
+  "audio": "Same production piano samples and schedulePianoVoice rendered in OfflineAudioContext; synthetic note input, no microphone recording.",
+  "records": [
+    {
+      "id": "cdc",
+      "variant": "before",
+      "score": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 8,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false
+            },
+            {
+              "tick": 8,
+              "ticks": 8,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 1
+      },
+      "piano": {
+        "notes": [
+          {
+            "start": 0,
+            "end": 1,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0,
+                "midi": 60
+              }
+            ]
+          }
+        ],
+        "duration": 2
+      },
+      "starts": [
+        {
+          "midi": 60,
+          "when": 0,
+          "end": 1
+        }
+      ],
+      "renderMs": 7.4000000059604645,
+      "rate": 48000,
+      "labels": [
+        "1小節。ド4、休符"
+      ],
+      "wavSha256": "0b3e63b0061a5a3451ee5597c009c523a85e8ab0f6b5fd6eddb62710fd5f44ed",
+      "midiSha256": "f4b04299c7509f8a4aa5a746a20840ec5b00ea8c86907058d2a14bfee2f0f40b"
+    },
+    {
+      "id": "cdc",
+      "variant": "after",
+      "score": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 120,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 0
+            },
+            {
+              "tick": 120,
+              "ticks": 60,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 0
+            },
+            {
+              "tick": 180,
+              "ticks": 60,
+              "midi": 62,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 1
+            },
+            {
+              "tick": 240,
+              "ticks": 60,
+              "midi": 62,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 1
+            },
+            {
+              "tick": 300,
+              "ticks": 60,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 2
+            },
+            {
+              "tick": 360,
+              "ticks": 120,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": true,
+              "sourceId": 2
+            },
+            {
+              "tick": 480,
+              "ticks": 480,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 2
+            },
+            {
+              "tick": 960,
+              "ticks": 960,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 0,
+        "ppq": 480,
+        "sourceNotes": [
+          {
+            "start": 0,
+            "end": 0.2,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 0
+          },
+          {
+            "start": 0.2,
+            "end": 0.3,
+            "midi": 62,
+            "contour": [],
+            "sourceId": 1
+          },
+          {
+            "start": 0.3,
+            "end": 1,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 2
+          }
+        ],
+        "issues": []
+      },
+      "piano": {
+        "notes": [
+          {
+            "start": 0,
+            "end": 0.1875,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0,
+                "midi": 60
+              }
+            ]
+          },
+          {
+            "start": 0.1875,
+            "end": 0.3125,
+            "midi": 62,
+            "contour": [
+              {
+                "t": 0.1875,
+                "midi": 62
+              }
+            ]
+          },
+          {
+            "start": 0.3125,
+            "end": 1,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0.3125,
+                "midi": 60
+              }
+            ]
+          }
+        ],
+        "duration": 2
+      },
+      "starts": [
+        {
+          "midi": 60,
+          "when": 0,
+          "end": 0.1875
+        },
+        {
+          "midi": 62,
+          "when": 0.1875,
+          "end": 0.3125
+        },
+        {
+          "midi": 60,
+          "when": 0.3125,
+          "end": 1
+        }
+      ],
+      "renderMs": 10.099999994039536,
+      "rate": 48000,
+      "labels": [
+        "1小節。ド4、継続ド4、レ4、継続レ4、ド4、継続ド4、継続ド4、休符"
+      ],
+      "wavSha256": "abf4302093df274cbf7d3a2bdffd4b8c9717ebcc90d8fd07d5d1d5d0a819ba81",
+      "midiSha256": "d9a7e78e4929bb0eacde7544a07f18a481723dbc05ce95c8acaf2b1e4f1a65bd"
+    },
+    {
+      "id": "reattack",
+      "variant": "before",
+      "score": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 4,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false
+            },
+            {
+              "tick": 4,
+              "ticks": 4,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false
+            },
+            {
+              "tick": 8,
+              "ticks": 8,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 1
+      },
+      "piano": {
+        "notes": [
+          {
+            "start": 0,
+            "end": 0.5,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0,
+                "midi": 60
+              }
+            ]
+          },
+          {
+            "start": 0.5,
+            "end": 1,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0.5,
+                "midi": 60
+              }
+            ]
+          }
+        ],
+        "duration": 2
+      },
+      "starts": [
+        {
+          "midi": 60,
+          "when": 0,
+          "end": 0.5
+        },
+        {
+          "midi": 60,
+          "when": 0.5,
+          "end": 1
+        }
+      ],
+      "renderMs": 8.300000011920929,
+      "rate": 48000,
+      "labels": [
+        "1小節。ド4、ド4、休符"
+      ],
+      "wavSha256": "0ef0ddc07031057df6783d5457ca8eafe51a4d01bb8c314c3f310083d342aaa0",
+      "midiSha256": "1e29f3d6f9bd826014a5863c4c19964d183fe2946c8a12dfe4d323802124810f"
+    },
+    {
+      "id": "reattack",
+      "variant": "after",
+      "score": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 240,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 0
+            },
+            {
+              "tick": 240,
+              "ticks": 120,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": true,
+              "sourceId": 0
+            },
+            {
+              "tick": 360,
+              "ticks": 60,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 0
+            },
+            {
+              "tick": 420,
+              "ticks": 60,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false,
+              "sourceId": 1
+            },
+            {
+              "tick": 480,
+              "ticks": 480,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false,
+              "sourceId": 2
+            },
+            {
+              "tick": 960,
+              "ticks": 960,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 0,
+        "ppq": 480,
+        "sourceNotes": [
+          {
+            "start": 0,
+            "end": 0.46,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 0
+          },
+          {
+            "start": 0.46,
+            "end": 0.48,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 1
+          },
+          {
+            "start": 0.48,
+            "end": 1,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 2
+          }
+        ],
+        "issues": []
+      },
+      "piano": {
+        "notes": [
+          {
+            "start": 0,
+            "end": 0.4375,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0,
+                "midi": 60
+              }
+            ]
+          },
+          {
+            "start": 0.4375,
+            "end": 0.5,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0.4375,
+                "midi": 60
+              }
+            ]
+          },
+          {
+            "start": 0.5,
+            "end": 1,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0.5,
+                "midi": 60
+              }
+            ]
+          }
+        ],
+        "duration": 2
+      },
+      "starts": [
+        {
+          "midi": 60,
+          "when": 0,
+          "end": 0.4375
+        },
+        {
+          "midi": 60,
+          "when": 0.4375,
+          "end": 0.5
+        },
+        {
+          "midi": 60,
+          "when": 0.5,
+          "end": 1
+        }
+      ],
+      "renderMs": 10.099999994039536,
+      "rate": 48000,
+      "labels": [
+        "1小節。ド4、継続ド4、継続ド4、ド4、ド4、休符"
+      ],
+      "wavSha256": "e9c162ecdc151cd918ffa67faa475b42ed0e8fd0e7fed79936de5cdb5c3aa3dd",
+      "midiSha256": "28e6696f348107799080651bf1d6b9583a43f99e83853cee4f7ea62e0fee63e7"
+    },
+    {
+      "id": "long",
+      "variant": "before",
+      "score": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 16,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true
+            }
+          ],
+          [
+            {
+              "tick": 16,
+              "ticks": 16,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": true
+            }
+          ],
+          [
+            {
+              "tick": 32,
+              "ticks": 8,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false
+            },
+            {
+              "tick": 40,
+              "ticks": 8,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 0
+      },
+      "piano": {
+        "notes": [
+          {
+            "start": 0,
+            "end": 5,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0,
+                "midi": 60
+              }
+            ]
+          }
+        ],
+        "duration": 6
+      },
+      "starts": [
+        {
+          "midi": 60,
+          "when": 0,
+          "end": 5
+        }
+      ],
+      "renderMs": 9.299999982118607,
+      "rate": 48000,
+      "labels": [
+        "1小節。ド4",
+        "2小節。継続ド4",
+        "3小節。継続ド4、休符"
+      ],
+      "wavSha256": "f00242bb76f0448695189af20b2269195c5f1ba06f87f65e92b2508d542252c0",
+      "midiSha256": "3a5b23c89782ff3e4ab7e82806fad90031214aef64945e8d83806922fd8bdd2b"
+    },
+    {
+      "id": "long",
+      "variant": "after",
+      "score": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 1920,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 0
+            }
+          ],
+          [
+            {
+              "tick": 1920,
+              "ticks": 1920,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": true,
+              "sourceId": 0
+            }
+          ],
+          [
+            {
+              "tick": 3840,
+              "ticks": 960,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 0
+            },
+            {
+              "tick": 4800,
+              "ticks": 960,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 0,
+        "ppq": 480,
+        "sourceNotes": [
+          {
+            "start": 0,
+            "end": 5,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 0
+          }
+        ],
+        "issues": []
+      },
+      "piano": {
+        "notes": [
+          {
+            "start": 0,
+            "end": 5,
+            "midi": 60,
+            "contour": [
+              {
+                "t": 0,
+                "midi": 60
+              }
+            ]
+          }
+        ],
+        "duration": 6
+      },
+      "starts": [
+        {
+          "midi": 60,
+          "when": 0,
+          "end": 5
+        }
+      ],
+      "renderMs": 9.200000017881393,
+      "rate": 48000,
+      "labels": [
+        "1小節。ド4",
+        "2小節。継続ド4",
+        "3小節。継続ド4、休符"
+      ],
+      "wavSha256": "f00242bb76f0448695189af20b2269195c5f1ba06f87f65e92b2508d542252c0",
+      "midiSha256": "3a5b23c89782ff3e4ab7e82806fad90031214aef64945e8d83806922fd8bdd2b"
+    }
+  ]
+}
