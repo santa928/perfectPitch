@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
-/** 冒頭から発声する短いWAV。マイク権限やネット素材に依存せずfile入力を通す。 */
-function voice(seconds = 1): Buffer {
+/** 既定は冒頭から発声するWAV。先頭無音/微小音も同じ実ファイル入力で検証する。 */
+function voice(seconds = 1, amplitude = 8000, silentLead = 0): Buffer {
   const rate = 16000, frames = Math.round(rate * seconds)
   const wav = Buffer.alloc(44 + frames * 2)
   wav.write('RIFF'); wav.writeUInt32LE(wav.length - 8, 4); wav.write('WAVEfmt ', 8)
@@ -9,7 +9,8 @@ function voice(seconds = 1): Buffer {
   wav.writeUInt32LE(rate, 24); wav.writeUInt32LE(rate * 2, 28)
   wav.writeUInt16LE(2, 32); wav.writeUInt16LE(16, 34); wav.write('data', 36)
   wav.writeUInt32LE(frames * 2, 40)
-  for (let i = 0; i < frames; i++) wav.writeInt16LE(Math.round(8000 * Math.sin(2 * Math.PI * 220 * i / rate)), 44 + i * 2)
+  for (let i = 0; i < frames; i++) wav.writeInt16LE(i < silentLead * rate ? 0 :
+    Math.round(amplitude * Math.sin(2 * Math.PI * 220 * i / rate)), 44 + i * 2)
   return wav
 }
 
@@ -36,6 +37,16 @@ test('ファイルの冒頭を解析し、原音・五線譜へ進める。対�
   expect(uploaded).toEqual([])
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
   await page.screenshot({ path: 'output/service-quality/import-mobile.png', fullPage: true })
+})
+
+test('先頭無音付きの微小周期音ファイルを音符化せず、原音は保持する', async ({ page }) => {
+  await page.goto('./')
+  await page.locator('#audioFile').setInputFiles({ name: 'quiet-hum.wav', mimeType: 'audio/wav',
+    buffer: voice(1.4, 49, .4) })
+  await expect(page.locator('#status')).toContainText('読み込みました')
+  await expect(page.locator('#play')).toBeEnabled()
+  await page.locator('#scoreDetails > summary').click()
+  await expect(page.locator('#scoreStatus')).toContainText('楽譜にできる音程を検出していません')
 })
 
 test('長すぎるファイルを拒否し、解析を中止して遅い結果を破棄する', async ({ page }) => {

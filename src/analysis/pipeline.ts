@@ -164,7 +164,8 @@ export class PitchAnalyzer {
     if (this.backgroundEvidence.length > required) this.backgroundEvidence.shift()
     if (this.backgroundEvidence.length === required) {
       // 発声開始の混在窓で既に確認済みの静かな基準を引き上げない。
-      this.backgroundFloor = Math.min(this.backgroundFloor, Math.max(.0003, ...this.backgroundEvidence))
+      const minimumFloor = this.calibrate ? .0003 : .001
+      this.backgroundFloor = Math.min(this.backgroundFloor, Math.max(minimumFloor, ...this.backgroundEvidence))
       this.noiseFloor = this.backgroundFloor
     }
   }
@@ -226,8 +227,10 @@ export class PitchAnalyzer {
       reason = 'ambiguous'
     }
     if (state === 'silence' && detection.periodicity < .6) {
-      this.noiseFloor = Math.max(0.0003, this.noiseFloor * 0.995 + rms * 0.005)
-      this.backgroundFloor = Math.max(0.0003, this.backgroundFloor * 0.995 + rms * 0.005)
+      // 校正無効のファイル経路は、無音の長さによらず既定の感度下限を維持する。
+      const minimumFloor = this.calibrate ? .0003 : .001
+      this.noiseFloor = Math.max(minimumFloor, this.noiseFloor * 0.995 + rms * 0.005)
+      this.backgroundFloor = Math.max(minimumFloor, this.backgroundFloor * 0.995 + rms * 0.005)
     }
     if (this.count / this.sampleRate > .3) this.observeBackground(rms, detection.periodicity, t)
     const frequency = state === 'voiced' ? detection.frequency : null

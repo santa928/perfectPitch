@@ -147,6 +147,20 @@ test('過大floorからの回復で未校正時より小さい周期背景音を
   }
 })
 
+test('校正無効のファイル解析は先頭無音の長さで微小周期音への感度を上げない', () => {
+  const sr = 16000
+  for (const lead of [.4, 3]) for (const mode of ['song', 'speech'] as const) {
+    const pcm = Float32Array.from({ length: (lead + 1) * sr }, (_, i) =>
+      i < lead * sr ? 0 : .0015 * Math.sin(2 * Math.PI * 220 * i / sr))
+    for (const frames of [new PitchAnalyzer(sr, mode, undefined, false).push(pcm),
+      analyzeOffline(pcm, sr, mode, undefined, false)]) {
+      assert.ok(frames.every(f => f.frequency === null), `${lead}/${mode}: tiny hum must stay unvoiced`)
+      assert.ok(frames.every(f => f.initialGate!.backgroundFloor >= .001))
+      assert.equal(buildNotes(frames, mode, 'continuous', lead + 1).length, 0)
+    }
+  }
+})
+
 test('雑音校正後の弱い持続音に含まれる本物の100ms低音跳躍を保持する', () => {
   const sr = 16000, pcm = sustainedInput(sr, true, 2)
   let phase = 0
