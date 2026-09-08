@@ -1,5 +1,7 @@
 # 初期雑音後の長音欠落（Issue #20）
 
+この文書の数値と修正説明はPR #23初版（`6b55ff9`）時点の記録。定常雑音を重ねた追加再現と現行の校正回復・offline再判定は [追加レビュー対応](reviewed-sustained-noise.md) を参照。現行の製品差分はpipelineとofflineで、初版の「pipelineだけ」「追加ヒステリシス不要」は置き換わる。
+
 2026-09-08。比較元mainは `2befdef5a4ad168868d7d54dcd04cfb270787d3f`。着手時のGitHub mainも一致し、ローカル変更なし。専用worktree/ブランチ `codex/fix-sustained-voicing` で実施した。ユーザーの今回の音声は未取得で、以下は独立した合成PCM不具合の検証である。実機録音の直接原因を確定したものではない。
 
 GitHub tree APIのblob SHAと `git rev-parse HEAD:...` が一致した元ファイルを直接importした。テスト用に製品の解析コードを複製・削除・書き換えていない。

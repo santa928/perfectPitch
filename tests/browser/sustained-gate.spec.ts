@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
-test('合成長音を実Worklet/Workerで録音し、同じPCMのファイル入力と末尾を比較する', async ({ page }) => {
+for (const ongoingNoise of [false, true]) {
+test(`合成長音（定常雑音${ongoingNoise ? 'あり' : 'なし'}）を実Worklet/Workerで録音し、同じPCMのファイル入力と末尾を比較する`, async ({ page }) => {
   test.setTimeout(90000)
   await page.addInitScript(() => {
     const received: { type: string; frames?: { t: number; frequency: number | null }[] }[] = []
@@ -17,15 +18,17 @@ test('合成長音を実Worklet/Workerで録音し、同じPCMのファイル入
     }
   })
   await page.goto('./')
-  const result = await page.evaluate(async () => {
+  const result = await page.evaluate(async (ongoingNoise) => {
     // @ts-expect-error Viteの実モジュールを使い、Worker出力を差し替えない。
     const { CaptureSession } = await import('/perfectPitch/src/audio/capture.ts')
     // @ts-expect-error 固定PCMのみがテスト用。
     const { sustainedInput } = await import('/perfectPitch/tests/fixtures/sustained-voice.ts')
+    // @ts-expect-error レビューの定常雑音付きPCM。
+    const { sustainedNoise } = await import('/perfectPitch/tests/fixtures/sustained-noise.ts')
     // @ts-expect-error 本番の音符化。
     const { buildNotes } = await import('/perfectPitch/src/analysis/notes.ts')
     const context = new AudioContext({ sampleRate: 48000 })
-    const pcm = sustainedInput(context.sampleRate)
+    const pcm = ongoingNoise ? sustainedNoise(context.sampleRate) : sustainedInput(context.sampleRate)
     const buffer = context.createBuffer(1, pcm.length, context.sampleRate)
     buffer.copyToChannel(pcm, 0)
     const destination = context.createMediaStreamDestination(), source = context.createBufferSource()
@@ -82,7 +85,7 @@ test('合成長音を実Worklet/Workerで録音し、同じPCMのファイル入
       lastVoiced: frames.findLast(f => f.frequency)?.t,
       noteEnd: buildNotes(frames, 'song', 'continuous', recording.samples.length / recording.sampleRate).at(-1)?.end,
       error: recording.analysisError }
-  })
+  }, ongoingNoise)
   expect(result.error).toBeUndefined()
   expect(result.pcmMatches).toBe(true)
   expect(result.receivedSamples).toBe(result.samples)
@@ -119,6 +122,7 @@ test('合成長音を実Worklet/Workerで録音し、同じPCMのファイル入
   await expect(page.locator('#scoreMeasures')).toContainText('ラ3')
   console.log(JSON.stringify({ recording: { ...result, coreFrequencies: undefined }, imported: { ...imported, coreFrequencies: undefined } }))
 })
+}
 
 test('30・60秒PCMは本番Workerの再解析timeout以内に末尾まで進む', async ({ page }) => {
   test.setTimeout(180000)
@@ -127,10 +131,10 @@ test('30・60秒PCMは本番Workerの再解析timeout以内に末尾まで進む
     // @ts-expect-error 本番のtimeout付きWorker経路。
     const { reanalyze } = await import('/perfectPitch/src/audio/capture.ts')
     // @ts-expect-error 合成PCM。
-    const { sustainedInput } = await import('/perfectPitch/tests/fixtures/sustained-voice.ts')
+    const { sustainedNoise } = await import('/perfectPitch/tests/fixtures/sustained-noise.ts')
     const rows = []
     for (const seconds of [30, 60]) {
-      const pcm = sustainedInput(48000, true, seconds), progress: number[] = [], start = performance.now()
+      const pcm = sustainedNoise(48000, .8, false, true, seconds), progress: number[] = [], start = performance.now()
       const frames = await reanalyze(pcm, 48000, 'song', (p: number) => progress.push(p))
       rows.push({ seconds, elapsedMs: performance.now() - start, samples: pcm.length,
         lastVoiced: frames.findLast((f: { frequency: number | null }) => f.frequency)?.t,

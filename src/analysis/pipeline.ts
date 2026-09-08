@@ -12,10 +12,16 @@ export type PitchFrame = {
     candidateHz: number | null
     candidatePeriodicity: number
     noiseFloor: number
+    noiseFloorAfter: number
+    backgroundFloor: number
     effectiveNoiseFloor: number
     requiredRms: number
-    reason: 'periodic-recovery' | 'periodic' | 'calibration' | 'below-energy' | 'aperiodic' | 'ambiguous'
+    /** floor更新を支持した連続候補列の開始時刻。offlineの同区間再判定に使う。 */
+    recoveryStart?: number
+    reason: 'noise-floor-recovery' | 'periodic-recovery' | 'periodic' | 'calibration' | 'below-energy' | 'aperiodic' | 'ambiguous'
   }
+  /** 同じPCMの連続候補でfloor回復を確認後、一次棄却を見直した根拠。 */
+  voicingReview?: { source: 'confirmed-noise-floor'; noiseFloor: number; supportStart: number; supportEnd: number }
 }
 export const ANALYSIS_SETTINGS = {
   song: { windowMs: 80, hopMs: 10, periodicity: 0.9 },
@@ -31,7 +37,10 @@ export class PitchAnalyzer {
   private filled = 0
   private count = 0
   private noiseFloor = 0.001
+  /** 周期信号による回復を含まない、低周期性PCMだけから得た基準。 */
+  private backgroundFloor = 0.001
   private quietRms: number[] = []
+  private recoveryEvidence: { t: number; frequency: number; residual: number; clear: boolean }[] = []
   private ended = false
   private previousDetection: Detection | null = null
   private readonly onEvidence?: (frame: PitchFrame, candidates: YinCandidate[]) => void
@@ -77,6 +86,34 @@ export class PitchAnalyzer {
     return []
   }
 
+  /**
+   * 連続100ms・音高幅100c以内、うち30ms以上の強い周期候補で校正値を更新する。
+   * 採用済みstateを根拠にせず、最大残差を使って小さく見積もりすぎない。
+   * 非周期音・微小音・急な音高変化で支持を破棄し、休符をまたいで蓄積しない。
+   */
+  private recoverNoiseFloor(detection: Detection, rms: number, t: number): number | undefined {
+    if (detection.frequency === null || detection.periodicity < .9 || rms < .0028) {
+      this.recoveryEvidence = []
+      return undefined
+    }
+    const evidence = { t, frequency: detection.frequency,
+      clear: detection.periodicity >= .97,
+      residual: Math.max(.001, rms * Math.sqrt(1 - detection.periodicity)) }
+    const frequencies = [...this.recoveryEvidence.map(item => item.frequency), evidence.frequency]
+    if (1200 * Math.log2(Math.max(...frequencies) / Math.min(...frequencies)) > 100)
+      this.recoveryEvidence = []
+    this.recoveryEvidence.push(evidence)
+    const required = Math.ceil(.1 * this.sampleRate / this.hop) + 1
+    if (this.recoveryEvidence.length > required) this.recoveryEvidence.shift()
+    if (this.recoveryEvidence.length < required) return undefined
+    if (this.recoveryEvidence.filter(item => item.clear).length < Math.ceil(.03 * this.sampleRate / this.hop) + 1)
+      return undefined
+    const estimate = Math.max(...this.recoveryEvidence.map(item => item.residual))
+    if (estimate >= this.noiseFloor) return undefined
+    this.noiseFloor = estimate
+    return this.recoveryEvidence[0].t
+  }
+
   /** 現在の波形で判定する。強い周期信号を雑音学習せず、古い雑音量だけで棄却しない。 */
   private frame(): PitchFrame {
     let energy = 0
@@ -90,13 +127,15 @@ export class PitchAnalyzer {
         : { frequency: null, periodicity: 0 }
     const t = (this.count - this.buffer.length / 2) / this.sampleRate
     const noiseFloor = this.noiseFloor
+    const recoveryStart = this.recoverNoiseFloor(detection, rms, t)
     // CMNDFの不一致分を保守的な残差振幅として使う（雑音の実測値や確率ではない）。
     // 通常の有声閾値より強い根拠を要求し、前のHzや時間による補間は使わない。
     const clearPeriodic = detection.frequency !== null && detection.periodicity >= .97
     const effectiveNoiseFloor = clearPeriodic
       // 回復だけで未校正時のfloor .001より感度を上げない。静かな校正値はminで維持。
-      ? Math.min(noiseFloor, Math.max(.001, rms * Math.sqrt(1 - detection.periodicity)))
-      : noiseFloor
+      ? Math.min(this.noiseFloor, Math.max(.001, rms * Math.sqrt(1 - detection.periodicity)))
+      // 回復を支持できない低周期性の環境音には、回復前の雑音基準を維持する。
+      : detection.periodicity >= .9 ? this.noiseFloor : this.backgroundFloor
     const requiredRms = Math.max(.001, effectiveNoiseFloor * 2.8)
     const voiced = detection.frequency !== null &&
       detection.periodicity >= ANALYSIS_SETTINGS[this.mode].periodicity && rms >= requiredRms
@@ -112,11 +151,13 @@ export class PitchAnalyzer {
           0.0003,
           ordered[Math.floor(ordered.length * 0.25)],
         )
+        this.backgroundFloor = this.noiseFloor
       }
     } else if (voiced) {
       state = 'voiced'
-      reason = rms < noiseFloor * 2.8 ? 'periodic-recovery' : 'periodic'
-    } else if (rms < .001 || (detection.periodicity < .6 && rms < noiseFloor * 1.6)) {
+      reason = recoveryStart !== undefined ? 'noise-floor-recovery'
+        : rms < this.noiseFloor * 2.8 ? 'periodic-recovery' : 'periodic'
+    } else if (rms < .001 || (detection.periodicity < .6 && rms < effectiveNoiseFloor * 1.6)) {
       state = 'silence'
       reason = 'below-energy'
     } else if (detection.periodicity < .6) {
@@ -126,8 +167,10 @@ export class PitchAnalyzer {
       state = 'uncertain'
       reason = 'ambiguous'
     }
-    if (state === 'silence' && detection.periodicity < .6)
+    if (state === 'silence' && detection.periodicity < .6) {
       this.noiseFloor = Math.max(0.0003, this.noiseFloor * 0.995 + rms * 0.005)
+      this.backgroundFloor = Math.max(0.0003, this.backgroundFloor * 0.995 + rms * 0.005)
+    }
     const frequency = state === 'voiced' ? detection.frequency : null
     // Only consecutive accepted frames provide context; never bridge gaps or recordings.
     this.previousDetection = frequency === null ? null : detection
@@ -139,7 +182,9 @@ export class PitchAnalyzer {
       periodicity: detection.periodicity,
       state,
       initialGate: { candidateHz: detection.frequency, candidatePeriodicity: detection.periodicity,
-        noiseFloor, effectiveNoiseFloor, requiredRms, reason },
+        noiseFloor, noiseFloorAfter: this.noiseFloor, backgroundFloor: this.backgroundFloor,
+        effectiveNoiseFloor, requiredRms, reason,
+        ...(recoveryStart === undefined ? {} : { recoveryStart }) },
     }
     this.onEvidence?.(frame, candidates)
     return frame
