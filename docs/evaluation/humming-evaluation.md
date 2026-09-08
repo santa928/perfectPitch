@@ -2,7 +2,7 @@
 
 現行YIN・Basic Pitchと評価用pYIN/CREPEを比較し、段階別に失敗を保存する基盤を追加した。**製品アルゴリズムの変更は採用していない。未知データでの改善は未実証で、鼻歌採譜の完成を意味しない。** 境界補正はvalidationで平均F1を改善したが、禁止条件である真休符の補完を起こしたため退けた。
 
-対象の製品SHAは `e1f2bbda77097f2b1e807566d64717211bbcd426`（PR #23 merge済み）。`src/`・モデル・package lockはこのbaselineのまま。評価コード、設定、環境、入力hashとholdout前のsealは[結果JSON](humming-results.json)、分割は[manifest](humming-manifest-v1.json)、採点と採否条件は[評価契約](humming-protocol.md)を参照。
+対象の製品SHAは `e1f2bbda77097f2b1e807566d64717211bbcd426`（PR #23 merge済み）。`src/`・モデル・package lockはこのbaselineのまま。評価コード、設定、環境、入力hashとholdout前のsealは[結果JSON](humming-results.json)、分割は[manifest](humming-manifest-v1.json)、採点と採否条件は[評価契約](humming-protocol.md)を参照。レビュー後の公開集計・性能測定修正は同JSONの`publication`へ別記し、元のholdout seal・採点結果を保持している。
 
 ## データと独立性
 
@@ -107,14 +107,20 @@ Scoreの音響時計onset F1はYIN41.88%、Basic Pitch46.42%。量子化消失�
 
 | 音源 | cache | live処理合計 | chunk RTT p95 | offline | Basic Pitch | Chromium RSS合計peak |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| 10秒 | cold context | 3.62s | 11.8ms | 3.54s | 1.20s | 587,800 KiB |
-| 10秒 | warm HTTP | 3.68s | 11.9ms | 3.53s | 1.12s | 591,924 KiB |
-| 30秒 | cold context | 11.82s | 11.9ms | 11.45s | 2.02s | 641,124 KiB |
-| 30秒 | warm HTTP | 11.50s | 11.8ms | 11.37s | 1.98s | 637,388 KiB |
-| 60秒 | cold context | 23.34s | 11.8ms | 23.06s | 4.03s | 670,736 KiB |
-| 60秒 | warm HTTP | 23.43s | 11.9ms | 23.17s | 3.45s | 678,476 KiB |
+| 10秒 | cold context | 1.82s | 5.9ms | 1.79s | 0.56s | 586,448 KiB |
+| 10秒 | warm HTTP・再検証あり | 1.83s | 6.0ms | 1.80s | 0.60s | 575,532 KiB |
+| 30秒 | cold context | 5.90s | 6.1ms | 5.93s | 1.07s | 620,392 KiB |
+| 30秒 | warm HTTP・再検証あり | 5.95s | 6.1ms | 5.86s | 1.06s | 634,500 KiB |
+| 60秒 | cold context | 12.06s | 6.1ms | 11.91s | 1.85s | 687,000 KiB |
+| 60秒 | warm HTTP・再検証あり | 12.06s | 6.1ms | 11.92s | 1.82s | 682,856 KiB |
 
-この性能runの後に評価の完走/公開hash検証を追加した。元artifactと当時のsourceHashesは保存し、公開時に本番src・資産・package/lock・Vite/tsconfig・性能runnerがsealと一致することを確認する。性能に関係しない評価コードの差分はJSONの`performanceApplicability`に明示し、当時のhashを現行値へ書き換えない。
+上表はレビュー後の再計測（2026-09-08 14:18:59 UTC開始）。旧runは`page.route()`が残り、[Playwright仕様](https://playwright.dev/docs/api/class-page#page-route)により両回ともHTTP cacheが無効だった。旧二回目の正しい条件は「同一ページでの再実行、HTTP cache無効」であり、warm HTTPの証拠としては撤回する。旧artifactのhashと訂正理由は`performanceApplicability`へ保存した。旧runと今回の実行時負荷差は統制しておらず、処理時間差を製品改善率やHTTP cacheの効果量とは扱わない。各条件1回の探索測定である。
+
+計測HTMLはVite middlewareから配信し、Playwright routingは使わない。10/30/60秒ごとに新規contextを作り、cold/warmは同一context内の別ページ・新規Worker/sessionで実行する。資産のCache-ControlはViteの既存方針を維持した。各回4件のブラウザ資産応答とサーバー要求を突き合わせ、資産本体サイズ・応答Content-Length・サーバー送信body bytesを分離している。
+
+全durationのcoldはモデル/WASM/mjsの4件が200でbodyを送信。warmはモデル230,444 bytesとmjs2件が304再検証でbody送信0、WASMは200で13,961,845 bytesを再送した。したがって「warmで全資産の転送がなくなる」とは主張しない。304のHTTPヘッダー転送は残り、body bytesはヘッダー/TLSを含む総通信量ではない。別の`Cache-Control: public, max-age=3600`資産の回帰では、二回目のサーバー要求なし・Resource TimingのtransferSize 0を実測した。
+
+元holdout seal・raw・全14公開レポート（指標、hash、provenance）は修正前と完全一致を確認した。新しい性能runは独自のsourceHashes/開始時刻を持ち、公開時に現行の本番src・資産・package/lock・Vite/tsconfig・性能runnerと補助コードが測定時と一致することを確認する。公開集計の変更は`publication`へ分離し、当時のhashを現行値へ書き換えない。
 
 ブラウザはDocker Linux arm64、Chromium 151 / Playwright 1.62.1、Node 24.18.1。1024-sample chunkを順次Workerへ渡す測定で、RTTは処理サービス時間であり、AudioWorklet/物理マイク/出力デバイスまでの遅延ではない。冷contextでもOS/Vite cacheは温まっている。RSSは50ms間隔でChromium全プロセスを合計し共有ページを重複計上する。main-page JS heapはWorker/WASMメモリを含まない。
 
@@ -128,6 +134,7 @@ Pythonは3.12、librosa 1.0.0、torch 2.14.0+cpu、torchcrepe 0.0.24、numpy 2.5
 
 - strict TypeScript（製品と評価用tsconfig）、関連52 tests成功。追加のseal/完走CLI/公開hashテスト3件も個別確認。PR #19/#23のノイズ・実100ms跳躍・長音末尾の回帰を含む。
 - Python ruff 0.12.11 / mypy 1.17.1成功。基盤の最大1対1照合、50ms/20%offset境界、全正解有声分母、group漏洩、未完走/重複拒否を検証。
+- レビュー修正後、集計関連10テスト・strict TypeScript・HTTP cacheの実ブラウザ回帰1件成功。集計は同じrawから再生成し、精度の推論/採点条件を変更していない。再発条件の確認手順は`scripts/evaluation/AGENTS.md`へ限定して記載。
 - 実ブラウザでYIN/offline/Basic Pitch Workerと採点前の注釈アクセス拒否を確認。通常ページUIや物理機器の全体QAを代用するものではない。
 - 独立レビューでV2の休符補完・contour破棄を再現し不採用にした。製品runtimeを変えないため全Browser matrix・Lighthouse・公開URL smokeは実施しない。runtime/レイアウト変更または公開時に再実行する。
 - 初期開発runnerのrounded ablationに引数順序誤りがあった。保存済みreviewed framesから正しい引数で再構成して別`*-audited`結果に記録。YIN/Basic Pitchの推論・headline数値は影響なし。元artifactと再採点hashを保持し、失敗した途中runを完走結果へ混ぜていない。
@@ -167,4 +174,6 @@ node_modules/.bin/tsc -p scripts/evaluation/tsconfig.json
 
 `--freeze`は音声・正解を読む前にソース/設定/manifest/Node/Chromium/依存versionを固定する。holdoutは`--only`禁止、seal一致必須、14件完走しなければ集計拒否。Python候補・PCM export・境界候補・再採点CLIはholdout入力を拒否する。これは不用意な再調整を防ぐ実行契約であり、ローカルファイルを読む権限を持つ人への秘密保持機構ではない。
 
-旧開発runの3件はcomplete flag導入前のため、`audit-legacy.ts`がID全集合、pageErrors/blockedRequestsが空、各clipのmetricsと最終checkpoint一致、stages存在、原音hashを明示監査した別artifactへ変換する。新たな推論成功やholdoutと呼ばず、元結果hashと監査範囲を保存する。すべての通常集計はcomplete/expectedIds必須で、summaryは元JSONのSHA256を持ち、公開時に再照合する。
+旧開発runの3件はcomplete flag導入前のため、`audit-legacy.ts`がID全集合、pageErrors/blockedRequestsが空、各clipのmetricsと最終checkpoint一致、stages存在、原音hashを明示監査した別artifactへ変換する。新たな推論成功やholdoutと呼ばず、元結果hashと監査範囲を保存する。すべての通常集計はcomplete/expectedIds必須。公開時は保存済みsummaryから入力digestだけを照合してraw差し替えを拒否し、全集計値は完走済みrawから再生成する。rawのhashが同じでもsummaryだけが手編集される不具合と、rawの1 byte変更の拒否を回帰テストで検出する。
+
+元holdoutの実行コードは`0024eb7`時点に対応する。レビュー修正後は公開集計と性能測定の出典hashを分離し、旧sealを新コードに合わせて変更しない。元holdoutの推論・採点は再実行しておらず、既知となったholdoutを使った閾値調整も行っていない。

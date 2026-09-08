@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { counts, distribution, ratio, type Counts, type noteDiagnostics, type scoreDiagnostics, type evaluateF0 } from './metrics.ts'
 import { readManifest, validateCompletion, hash } from './contract.ts'
 import { syntheticCorpus } from './synthetic.ts'
+import { pathToFileURL } from 'node:url'
 
 type Diagnostic = ReturnType<typeof noteDiagnostics>
 type F0 = ReturnType<typeof evaluateF0>
@@ -44,9 +45,9 @@ function f0Aggregate(rows: F0[]) {
     detectedOnlyErrorBins: Object.fromEntries(['within50', 'from50To100', 'from100To600', 'over600'].map(key => [key,
       rows.reduce((s, x) => s + x.detectedOnlyCents.bins[key as keyof F0['detectedOnlyCents']['bins']], 0)])) }
 }
-const input = process.argv[2]
-const inputBytes = readFileSync(input)
-const report = JSON.parse(inputBytes.toString()) as { rows: Row[]; complete?: boolean; expectedIds?: string[] }
+/** 保存済み集計値を使わず、完走済みrawから決定的に集計を再構成する。 */
+export function summarizeReport(inputBytes: Uint8Array, input: string) {
+const report = JSON.parse(Buffer.from(inputBytes).toString()) as { rows: Row[]; complete?: boolean; expectedIds?: string[] }
 const manifest = readManifest(), fixtures = syntheticCorpus(), split = report.rows[0]?.split
 const expected = split === 'synthetic' || split === 'development-regression' ? fixtures.map(c => c.id) : manifest.tracks.filter(c => c.split === split).map(c => c.id)
 if (!expected.length || report.rows.some(r => r.split !== split)) throw new Error('Invalid/mixed split')
@@ -104,5 +105,11 @@ summary.f0 = Object.fromEntries(stages.map(stage => {
       unvoicedFalsePositive: v.metrics.unvoicedFalsePositive, octaveRate: v.metrics.octaveRate, detectedOnlyCents: v.metrics.detectedOnlyCents })),
     bySpeaker: Object.fromEntries([...new Set(values.map(v => v.speaker))].map(s => [s, f0Aggregate(values.filter(v => v.speaker === s).map(v => v.metrics))])) }]
 }))
-writeFileSync(input.replace(/\.json$/, '.summary.json'), JSON.stringify(summary, null, 2))
-console.log(JSON.stringify({ clips: summary.clips, split, methods: Object.fromEntries(Object.entries(summary.methods).map(([m, data]) => [m, (data as { macro: unknown }).macro])) }))
+return summary
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const input = process.argv[2], summary = summarizeReport(readFileSync(input), input)
+  writeFileSync(input.replace(/\.json$/, '.summary.json'), JSON.stringify(summary, null, 2))
+  console.log(JSON.stringify({ clips: summary.clips, split: summary.split, methods: Object.fromEntries(Object.entries(summary.methods).map(([m, data]) => [m, (data as { macro: unknown }).macro])) }))
+}
