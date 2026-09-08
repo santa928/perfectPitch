@@ -1,0 +1,5911 @@
+{
+  "scope": "historical-holdout-regression",
+  "baselineSha": "ea97ade49ee8ec87029a8cc895f4a0eb1d8fb5b6",
+  "inferenceBaselineSha": "e1f2bbda77097f2b1e807566d64717211bbcd426",
+  "inputRun": "output/issue21/final-holdout",
+  "inputRunSha256": "f4d59d1bd5113666e07ce0223009961fa127e33110a82b0b51d3df0809d7886d",
+  "originalHoldoutSealSha256": "3f382f5b665b4cd818e0665c528fecd8eb543d40b2bb6ccf474604a57a2bcd90",
+  "localSealSha256": "9006530d981e5c78802149d8af161c68c0978442849b990225d960bd9bc745eb",
+  "baselineHashes": {
+    "src/notation/score.ts": "87b834a34419c08d24d0ac8de074d7a5e5b30fdd2e0a00ebd0216011dd9432a2",
+    "src/notation/score-playback.ts": "35211fb451d3b3b7461af12c40a8615def08c8ace1dd39fa350d9e1bceb91255",
+    "src/notation/midi.ts": "dc93e66056e03636652980acc7d7255bfe677ef2ef31d0470a5a5c51584d2531"
+  },
+  "sourceHashes": {
+    "src/notation/score.ts": "d2bd16286d005236837d1bf9aef4ff4a9635a631595143e97bd781848c7840c7",
+    "src/notation/score-playback.ts": "c1f2254b5e57764299af5567b973b255c338862ad3c27cce76e593acedcedfa1",
+    "src/notation/score-editor.ts": "b5c6e3dd3f4d8c7b08ae5ccb7c3ecbfa694f8f5de16a925aa0fa56810c34b0d2",
+    "src/notation/midi.ts": "4028440d6c944c4652c423358930495113bbab1849c90aa265714f4fd460603b",
+    "scripts/evaluation/compare-score.ts": "f1b1010f8c3107e0ed6c3835f31918ea4fa777a996b3675f9c3e767a13a7db5b",
+    "scripts/evaluation/metrics.ts": "c6bb5a7c11afedb0a0631b7a6a02022b85baa9585b0aeb6571fa5d7ee46c7e3b",
+    "tests/helpers/parse-midi.ts": "ac849ef83a370481db50af662fc584d2240382c02be6f067f8098e20a9048447"
+  },
+  "stageProvenance": "Stage hashes recorded now; stage notes/Score and A1/A2 metrics checked against published raw. Original run did not seal stage files individually.",
+  "environment": {
+    "node": "v24.18.1",
+    "platform": "linux",
+    "arch": "arm64"
+  },
+  "bpm": 120,
+  "identitySummary": {
+    "lost": 0,
+    "added": 0,
+    "duplicateAttacks": 0,
+    "changedPitches": 0,
+    "lostReattacks": 0,
+    "outputAttacksVerified": 1328,
+    "maxOnsetError": 0.047499999999999876,
+    "maxOffsetError": 0.04999999999999982,
+    "reviewIssues": 13,
+    "preserved": true,
+    "pass": false
+  },
+  "fullComparisonSha256": "ab7873f1cb20865eb4c9aab68560cdbc3fe76ceb58a112b2749bb98ceda586ae",
+  "rows": [
+    {
+      "id": "vocadito_6",
+      "method": "yin",
+      "duration": 23.831979166666667,
+      "stageSha256": "e50e5459d8b7421860593f8a1be2083f2b2fa02557b86aa5c1d5b90466bd2f9c",
+      "inputHash": "d3ddb91677cc0ecd91b822db471df28efe02c408e481b23364092cb9d89336f9",
+      "inputNotes": 89,
+      "before": {
+        "attacks": 65,
+        "omittedNotes": 21,
+        "eventCount": 138,
+        "buildMs": 0.09329199999999105,
+        "diagnostics": {
+          "lost": 24,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 65,
+            "mean": 0.027461538461539266,
+            "min": -0.07499999999999929,
+            "p05": -0.054999999999999716,
+            "p50": 0.02500000000000213,
+            "p95": 0.09499999999999886,
+            "max": 0.2100000000000044
+          },
+          "falseRests": 60,
+          "falseRestSeconds": 2.5549999999999495,
+          "filledReferenceRestSeconds": 1.085000000000008,
+          "performanceReattacks": 1,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.0600000000000005,
+          "maxOffsetError": 0.26500000000000057
+        }
+      },
+      "after": {
+        "attacks": 89,
+        "omittedNotes": 0,
+        "eventCount": 285,
+        "buildMs": 0.7295420000000092,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 89,
+            "mean": -0.00046348314606654763,
+            "min": -0.026249999999997442,
+            "p05": -0.022499999999999964,
+            "p50": 0.0012500000000001954,
+            "p95": 0.01625000000000032,
+            "max": 0.02750000000000019
+          },
+          "falseRests": 62,
+          "falseRestSeconds": 0.6937499999999716,
+          "filledReferenceRestSeconds": 0.280000000000021,
+          "performanceReattacks": 1,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.015000000000000568,
+          "maxOffsetError": 0.018749999999999822
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.015000000000000568,
+          "maxOffsetError": 0.018749999999999822,
+          "outputAttacksVerified": 89,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 45,
+              "fp": 44,
+              "fn": 28,
+              "precision": 0.5056179775280899,
+              "recall": 0.6164383561643836,
+              "f1": 0.5555555555555556
+            },
+            "offset": {
+              "tp": 30,
+              "fp": 59,
+              "fn": 43,
+              "precision": 0.33707865168539325,
+              "recall": 0.410958904109589,
+              "f1": 0.37037037037037035
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 30,
+              "fp": 35,
+              "fn": 43,
+              "precision": 0.46153846153846156,
+              "recall": 0.410958904109589,
+              "f1": 0.43478260869565216
+            },
+            "offset": {
+              "tp": 16,
+              "fp": 49,
+              "fn": 57,
+              "precision": 0.24615384615384617,
+              "recall": 0.2191780821917808,
+              "f1": 0.2318840579710145
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 44,
+              "fp": 45,
+              "fn": 29,
+              "precision": 0.4943820224719101,
+              "recall": 0.6027397260273972,
+              "f1": 0.5432098765432098
+            },
+            "offset": {
+              "tp": 28,
+              "fp": 61,
+              "fn": 45,
+              "precision": 0.3146067415730337,
+              "recall": 0.3835616438356164,
+              "f1": 0.345679012345679
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 30,
+              "fp": 59,
+              "fn": 20,
+              "precision": 0.33707865168539325,
+              "recall": 0.6,
+              "f1": 0.4316546762589928
+            },
+            "offset": {
+              "tp": 18,
+              "fp": 71,
+              "fn": 32,
+              "precision": 0.20224719101123595,
+              "recall": 0.36,
+              "f1": 0.2589928057553957
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 19,
+              "fp": 46,
+              "fn": 31,
+              "precision": 0.2923076923076923,
+              "recall": 0.38,
+              "f1": 0.33043478260869563
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 57,
+              "fn": 42,
+              "precision": 0.12307692307692308,
+              "recall": 0.16,
+              "f1": 0.1391304347826087
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 26,
+              "fp": 63,
+              "fn": 24,
+              "precision": 0.29213483146067415,
+              "recall": 0.52,
+              "f1": 0.37410071942446044
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 74,
+              "fn": 35,
+              "precision": 0.16853932584269662,
+              "recall": 0.3,
+              "f1": 0.2158273381294964
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_6",
+      "method": "basicPitch",
+      "duration": 23.831979166666667,
+      "stageSha256": "e50e5459d8b7421860593f8a1be2083f2b2fa02557b86aa5c1d5b90466bd2f9c",
+      "inputHash": "e40f1f1586fae3929db99dd9c2485d523076a4d22c44ba1f019ce39ba0f7a8f3",
+      "inputNotes": 53,
+      "before": {
+        "attacks": 51,
+        "omittedNotes": 2,
+        "eventCount": 120,
+        "buildMs": 0.07058299999999917,
+        "diagnostics": {
+          "lost": 2,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 51,
+            "mean": -0.0053250011115558915,
+            "min": -0.10719954648526109,
+            "p05": -0.07778911564625801,
+            "p50": 0.0021968253968256413,
+            "p95": 0.05263038548752874,
+            "max": 0.11068027210884335
+          },
+          "falseRests": 41,
+          "falseRestSeconds": 1.772624943310663,
+          "filledReferenceRestSeconds": 0.40434875283447,
+          "performanceReattacks": 2,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.06228208616780062,
+          "maxOffsetError": 0.06216281179138372
+        }
+      },
+      "after": {
+        "attacks": 53,
+        "omittedNotes": 0,
+        "eventCount": 169,
+        "buildMs": 0.23791700000001015,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 53,
+            "mean": 0.003382552517862339,
+            "min": -0.05359977324263099,
+            "p05": -0.03134920634920668,
+            "p50": 0.003480725623585812,
+            "p95": 0.03212018140589645,
+            "max": 0.04818027210884246
+          },
+          "falseRests": 36,
+          "falseRestSeconds": 0.6602854875283395,
+          "filledReferenceRestSeconds": 0.3569653061224436,
+          "performanceReattacks": 2,
+          "scoreReattacks": 2
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.030458956916099567,
+          "maxOffsetError": 0.030458956916099567
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.030458956916099567,
+          "maxOffsetError": 0.030458956916099567,
+          "outputAttacksVerified": 53,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 36,
+              "fp": 17,
+              "fn": 37,
+              "precision": 0.6792452830188679,
+              "recall": 0.4931506849315068,
+              "f1": 0.5714285714285714
+            },
+            "offset": {
+              "tp": 19,
+              "fp": 34,
+              "fn": 54,
+              "precision": 0.3584905660377358,
+              "recall": 0.2602739726027397,
+              "f1": 0.30158730158730157
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 26,
+              "fp": 25,
+              "fn": 47,
+              "precision": 0.5098039215686274,
+              "recall": 0.3561643835616438,
+              "f1": 0.41935483870967744
+            },
+            "offset": {
+              "tp": 13,
+              "fp": 38,
+              "fn": 60,
+              "precision": 0.2549019607843137,
+              "recall": 0.1780821917808219,
+              "f1": 0.20967741935483872
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 35,
+              "fp": 18,
+              "fn": 38,
+              "precision": 0.660377358490566,
+              "recall": 0.4794520547945205,
+              "f1": 0.5555555555555556
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 36,
+              "fn": 56,
+              "precision": 0.32075471698113206,
+              "recall": 0.2328767123287671,
+              "f1": 0.2698412698412698
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 26,
+              "fp": 27,
+              "fn": 24,
+              "precision": 0.49056603773584906,
+              "recall": 0.52,
+              "f1": 0.5048543689320388
+            },
+            "offset": {
+              "tp": 16,
+              "fp": 37,
+              "fn": 34,
+              "precision": 0.3018867924528302,
+              "recall": 0.32,
+              "f1": 0.3106796116504854
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 17,
+              "fp": 34,
+              "fn": 33,
+              "precision": 0.3333333333333333,
+              "recall": 0.34,
+              "f1": 0.33663366336633666
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 40,
+              "fn": 39,
+              "precision": 0.21568627450980393,
+              "recall": 0.22,
+              "f1": 0.21782178217821782
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 25,
+              "fp": 28,
+              "fn": 25,
+              "precision": 0.4716981132075472,
+              "recall": 0.5,
+              "f1": 0.4854368932038835
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 38,
+              "fn": 35,
+              "precision": 0.2830188679245283,
+              "recall": 0.3,
+              "f1": 0.2912621359223301
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_10",
+      "method": "yin",
+      "duration": 9.0978125,
+      "stageSha256": "3270277739da18b772e1dc8db7ca63524318a96aa0638dbb40cd643102386c26",
+      "inputHash": "39269514d9ca3cc446f50dc7060fc76809105eb9b60cdc3cfa315c458af3aeb6",
+      "inputNotes": 35,
+      "before": {
+        "attacks": 25,
+        "omittedNotes": 10,
+        "eventCount": 54,
+        "buildMs": 0.042375000000021146,
+        "diagnostics": {
+          "lost": 10,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 25,
+            "mean": 0.0018000000000003302,
+            "min": -0.08499999999999985,
+            "p05": -0.07999999999999963,
+            "p50": 0.004999999999999005,
+            "p95": 0.06499999999999995,
+            "max": 0.08500000000000019
+          },
+          "falseRests": 26,
+          "falseRestSeconds": 1.2899999999999918,
+          "filledReferenceRestSeconds": 0.43000000000000504,
+          "performanceReattacks": 6,
+          "scoreReattacks": 5
+        },
+        "lostReattacksByOverlap": 2,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.05999999999999983,
+          "maxOffsetError": 0.0600000000000005
+        }
+      },
+      "after": {
+        "attacks": 35,
+        "omittedNotes": 0,
+        "eventCount": 130,
+        "buildMs": 0.15004200000001333,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 35,
+            "mean": 0.0017142857142860362,
+            "min": -0.034999999999999254,
+            "p05": -0.023749999999999716,
+            "p50": 0.003750000000000142,
+            "p95": 0.019999999999999574,
+            "max": 0.023750000000000604
+          },
+          "falseRests": 21,
+          "falseRestSeconds": 0.2387499999999957,
+          "filledReferenceRestSeconds": 0.22125000000000727,
+          "performanceReattacks": 6,
+          "scoreReattacks": 6
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.015000000000000568,
+          "maxOffsetError": 0.021249999999999325
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.015000000000000568,
+          "maxOffsetError": 0.021249999999999325,
+          "outputAttacksVerified": 35,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 14,
+              "fp": 21,
+              "fn": 21,
+              "precision": 0.4,
+              "recall": 0.4,
+              "f1": 0.4
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 23,
+              "fn": 23,
+              "precision": 0.34285714285714286,
+              "recall": 0.34285714285714286,
+              "f1": 0.34285714285714286
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 10,
+              "fp": 15,
+              "fn": 25,
+              "precision": 0.4,
+              "recall": 0.2857142857142857,
+              "f1": 0.3333333333333333
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 17,
+              "fn": 27,
+              "precision": 0.32,
+              "recall": 0.22857142857142856,
+              "f1": 0.26666666666666666
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 14,
+              "fp": 21,
+              "fn": 21,
+              "precision": 0.4,
+              "recall": 0.4,
+              "f1": 0.4
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 24,
+              "fn": 24,
+              "precision": 0.3142857142857143,
+              "recall": 0.3142857142857143,
+              "f1": 0.3142857142857143
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 10,
+              "fp": 25,
+              "fn": 17,
+              "precision": 0.2857142857142857,
+              "recall": 0.37037037037037035,
+              "f1": 0.3225806451612903
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 27,
+              "fn": 19,
+              "precision": 0.22857142857142856,
+              "recall": 0.2962962962962963,
+              "f1": 0.25806451612903225
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 7,
+              "fp": 18,
+              "fn": 20,
+              "precision": 0.28,
+              "recall": 0.25925925925925924,
+              "f1": 0.2692307692307692
+            },
+            "offset": {
+              "tp": 5,
+              "fp": 20,
+              "fn": 22,
+              "precision": 0.2,
+              "recall": 0.18518518518518517,
+              "f1": 0.19230769230769232
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 10,
+              "fp": 25,
+              "fn": 17,
+              "precision": 0.2857142857142857,
+              "recall": 0.37037037037037035,
+              "f1": 0.3225806451612903
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 27,
+              "fn": 19,
+              "precision": 0.22857142857142856,
+              "recall": 0.2962962962962963,
+              "f1": 0.25806451612903225
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_10",
+      "method": "basicPitch",
+      "duration": 9.0978125,
+      "stageSha256": "3270277739da18b772e1dc8db7ca63524318a96aa0638dbb40cd643102386c26",
+      "inputHash": "106cfc52386879d614ee2e0aebf5b0bc8af44e8c967dfdeffe2967bf004d0dde",
+      "inputNotes": 21,
+      "before": {
+        "attacks": 21,
+        "omittedNotes": 0,
+        "eventCount": 45,
+        "buildMs": 0.04904199999998582,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 21,
+            "mean": 0.002707742144476872,
+            "min": -0.08449251700680271,
+            "p05": -0.08397959183673454,
+            "p50": -0.01702947845805003,
+            "p95": 0.0847505668934243,
+            "max": 0.11958049886621303
+          },
+          "falseRests": 13,
+          "falseRestSeconds": 0.6152095238095222,
+          "filledReferenceRestSeconds": 0.2389029478458049,
+          "performanceReattacks": 0,
+          "scoreReattacks": 0
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.05998866213151932,
+          "maxOffsetError": 0.059591836734693704
+        }
+      },
+      "after": {
+        "attacks": 21,
+        "omittedNotes": 0,
+        "eventCount": 67,
+        "buildMs": 0.059916999999984455,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 21,
+            "mean": -0.003244638807904038,
+            "min": -0.04295918367346996,
+            "p05": -0.04076235827664387,
+            "p50": -0.005419501133786975,
+            "p95": 0.041020408163265465,
+            "max": 0.04547052154194997
+          },
+          "falseRests": 15,
+          "falseRestSeconds": 0.35197959183673244,
+          "filledReferenceRestSeconds": 0.07438752834467066,
+          "performanceReattacks": 0,
+          "scoreReattacks": 0
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.030320181405895763,
+          "maxOffsetError": 0.030320181405895763
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.030320181405895763,
+          "maxOffsetError": 0.030320181405895763,
+          "outputAttacksVerified": 21,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 15,
+              "fp": 6,
+              "fn": 20,
+              "precision": 0.7142857142857143,
+              "recall": 0.42857142857142855,
+              "f1": 0.5357142857142857
+            },
+            "offset": {
+              "tp": 5,
+              "fp": 16,
+              "fn": 30,
+              "precision": 0.23809523809523808,
+              "recall": 0.14285714285714285,
+              "f1": 0.17857142857142858
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 12,
+              "fp": 9,
+              "fn": 23,
+              "precision": 0.5714285714285714,
+              "recall": 0.34285714285714286,
+              "f1": 0.42857142857142855
+            },
+            "offset": {
+              "tp": 3,
+              "fp": 18,
+              "fn": 32,
+              "precision": 0.14285714285714285,
+              "recall": 0.08571428571428572,
+              "f1": 0.10714285714285714
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 14,
+              "fp": 7,
+              "fn": 21,
+              "precision": 0.6666666666666666,
+              "recall": 0.4,
+              "f1": 0.5
+            },
+            "offset": {
+              "tp": 6,
+              "fp": 15,
+              "fn": 29,
+              "precision": 0.2857142857142857,
+              "recall": 0.17142857142857143,
+              "f1": 0.21428571428571427
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 10,
+              "fp": 11,
+              "fn": 17,
+              "precision": 0.47619047619047616,
+              "recall": 0.37037037037037035,
+              "f1": 0.4166666666666667
+            },
+            "offset": {
+              "tp": 3,
+              "fp": 18,
+              "fn": 24,
+              "precision": 0.14285714285714285,
+              "recall": 0.1111111111111111,
+              "f1": 0.125
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 7,
+              "fp": 14,
+              "fn": 20,
+              "precision": 0.3333333333333333,
+              "recall": 0.25925925925925924,
+              "f1": 0.2916666666666667
+            },
+            "offset": {
+              "tp": 1,
+              "fp": 20,
+              "fn": 26,
+              "precision": 0.047619047619047616,
+              "recall": 0.037037037037037035,
+              "f1": 0.041666666666666664
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 9,
+              "fp": 12,
+              "fn": 18,
+              "precision": 0.42857142857142855,
+              "recall": 0.3333333333333333,
+              "f1": 0.375
+            },
+            "offset": {
+              "tp": 4,
+              "fp": 17,
+              "fn": 23,
+              "precision": 0.19047619047619047,
+              "recall": 0.14814814814814814,
+              "f1": 0.16666666666666666
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_12",
+      "method": "yin",
+      "duration": 15.153479166666667,
+      "stageSha256": "dac63b1d1717fe90a822b799e5d6b0bbfb042f18ee7de4c801414b3cc2f1b28d",
+      "inputHash": "e928473194297e6f8175aab71c4a4bc6418e7daade0bf38a1d083f04e52e4336",
+      "inputNotes": 38,
+      "before": {
+        "attacks": 30,
+        "omittedNotes": 8,
+        "eventCount": 66,
+        "buildMs": 0.6021660000000111,
+        "diagnostics": {
+          "lost": 8,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 30,
+            "mean": 0.005500000000000134,
+            "min": -0.120000000000001,
+            "p05": -0.07000000000000028,
+            "p50": 0.004999999999999005,
+            "p95": 0.07000000000000028,
+            "max": 0.11000000000000032
+          },
+          "falseRests": 24,
+          "falseRestSeconds": 1.2850000000000004,
+          "filledReferenceRestSeconds": 0.2950000000000048,
+          "performanceReattacks": 1,
+          "scoreReattacks": 0
+        },
+        "lostReattacksByOverlap": 1,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.0600000000000005,
+          "maxOffsetError": 0.0600000000000005
+        }
+      },
+      "after": {
+        "attacks": 38,
+        "omittedNotes": 0,
+        "eventCount": 143,
+        "buildMs": 0.15091699999999264,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 38,
+            "mean": -0.0005921052631576133,
+            "min": -0.028750000000000053,
+            "p05": -0.027499999999999858,
+            "p50": 0.0012500000000006395,
+            "p95": 0.012500000000002842,
+            "max": 0.02375000000000327
+          },
+          "falseRests": 26,
+          "falseRestSeconds": 0.27750000000000313,
+          "filledReferenceRestSeconds": 0.11375000000000757,
+          "performanceReattacks": 1,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.01499999999999968,
+          "maxOffsetError": 0.01624999999999943
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.01499999999999968,
+          "maxOffsetError": 0.01624999999999943,
+          "outputAttacksVerified": 38,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 17,
+              "fp": 21,
+              "fn": 10,
+              "precision": 0.4473684210526316,
+              "recall": 0.6296296296296297,
+              "f1": 0.5230769230769231
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 23,
+              "fn": 12,
+              "precision": 0.39473684210526316,
+              "recall": 0.5555555555555556,
+              "f1": 0.46153846153846156
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 16,
+              "fp": 14,
+              "fn": 11,
+              "precision": 0.5333333333333333,
+              "recall": 0.5925925925925926,
+              "f1": 0.5614035087719298
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 18,
+              "fn": 15,
+              "precision": 0.4,
+              "recall": 0.4444444444444444,
+              "f1": 0.42105263157894735
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 17,
+              "fp": 21,
+              "fn": 10,
+              "precision": 0.4473684210526316,
+              "recall": 0.6296296296296297,
+              "f1": 0.5230769230769231
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 23,
+              "fn": 12,
+              "precision": 0.39473684210526316,
+              "recall": 0.5555555555555556,
+              "f1": 0.46153846153846156
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 13,
+              "fp": 25,
+              "fn": 11,
+              "precision": 0.34210526315789475,
+              "recall": 0.5416666666666666,
+              "f1": 0.41935483870967744
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 27,
+              "fn": 13,
+              "precision": 0.2894736842105263,
+              "recall": 0.4583333333333333,
+              "f1": 0.3548387096774194
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 12,
+              "fp": 18,
+              "fn": 12,
+              "precision": 0.4,
+              "recall": 0.5,
+              "f1": 0.4444444444444444
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 22,
+              "fn": 16,
+              "precision": 0.26666666666666666,
+              "recall": 0.3333333333333333,
+              "f1": 0.2962962962962963
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 13,
+              "fp": 25,
+              "fn": 11,
+              "precision": 0.34210526315789475,
+              "recall": 0.5416666666666666,
+              "f1": 0.41935483870967744
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 27,
+              "fn": 13,
+              "precision": 0.2894736842105263,
+              "recall": 0.4583333333333333,
+              "f1": 0.3548387096774194
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_12",
+      "method": "basicPitch",
+      "duration": 15.153479166666667,
+      "stageSha256": "dac63b1d1717fe90a822b799e5d6b0bbfb042f18ee7de4c801414b3cc2f1b28d",
+      "inputHash": "a0cff95d86a162c2f6b3aa8c79aae3cb536073d309f2957612c64e54c12f3b79",
+      "inputNotes": 30,
+      "before": {
+        "attacks": 28,
+        "omittedNotes": 2,
+        "eventCount": 56,
+        "buildMs": 0.021249999999980673,
+        "diagnostics": {
+          "lost": 2,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 28,
+            "mean": 0.004923388402980233,
+            "min": -0.10990929705215358,
+            "p05": -0.08939909297052173,
+            "p50": 0.006961451247165407,
+            "p95": 0.06424036281179113,
+            "max": 0.08152789115646275
+          },
+          "falseRests": 21,
+          "falseRestSeconds": 0.8874340136054439,
+          "filledReferenceRestSeconds": 0.08067346938775266,
+          "performanceReattacks": 1,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.05510158730158565,
+          "maxOffsetError": 0.05988888888888866
+        }
+      },
+      "after": {
+        "attacks": 30,
+        "omittedNotes": 0,
+        "eventCount": 88,
+        "buildMs": 0.05716699999999264,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 30,
+            "mean": -0.00043582766439911327,
+            "min": -0.05553854875283459,
+            "p05": -0.0535997732426301,
+            "p50": 0.0007709750566888829,
+            "p95": 0.05437074829931987,
+            "max": 0.057536961451247315
+          },
+          "falseRests": 20,
+          "falseRestSeconds": 0.5438124716553309,
+          "filledReferenceRestSeconds": 0.02818299319727835,
+          "performanceReattacks": 1,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.030458956916099567,
+          "maxOffsetError": 0.030458956916099567
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.030458956916099567,
+          "maxOffsetError": 0.030458956916099567,
+          "outputAttacksVerified": 30,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 17,
+              "fp": 13,
+              "fn": 10,
+              "precision": 0.5666666666666667,
+              "recall": 0.6296296296296297,
+              "f1": 0.5964912280701754
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 21,
+              "fn": 18,
+              "precision": 0.3,
+              "recall": 0.3333333333333333,
+              "f1": 0.3157894736842105
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 14,
+              "fp": 14,
+              "fn": 13,
+              "precision": 0.5,
+              "recall": 0.5185185185185185,
+              "f1": 0.509090909090909
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 20,
+              "fn": 19,
+              "precision": 0.2857142857142857,
+              "recall": 0.2962962962962963,
+              "f1": 0.2909090909090909
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 17,
+              "fp": 13,
+              "fn": 10,
+              "precision": 0.5666666666666667,
+              "recall": 0.6296296296296297,
+              "f1": 0.5964912280701754
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 21,
+              "fn": 18,
+              "precision": 0.3,
+              "recall": 0.3333333333333333,
+              "f1": 0.3157894736842105
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 13,
+              "fp": 17,
+              "fn": 11,
+              "precision": 0.43333333333333335,
+              "recall": 0.5416666666666666,
+              "f1": 0.48148148148148145
+            },
+            "offset": {
+              "tp": 6,
+              "fp": 24,
+              "fn": 18,
+              "precision": 0.2,
+              "recall": 0.25,
+              "f1": 0.2222222222222222
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 10,
+              "fp": 18,
+              "fn": 14,
+              "precision": 0.35714285714285715,
+              "recall": 0.4166666666666667,
+              "f1": 0.38461538461538464
+            },
+            "offset": {
+              "tp": 6,
+              "fp": 22,
+              "fn": 18,
+              "precision": 0.21428571428571427,
+              "recall": 0.25,
+              "f1": 0.23076923076923078
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 14,
+              "fp": 16,
+              "fn": 10,
+              "precision": 0.4666666666666667,
+              "recall": 0.5833333333333334,
+              "f1": 0.5185185185185185
+            },
+            "offset": {
+              "tp": 7,
+              "fp": 23,
+              "fn": 17,
+              "precision": 0.23333333333333334,
+              "recall": 0.2916666666666667,
+              "f1": 0.25925925925925924
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_14",
+      "method": "yin",
+      "duration": 12.1978125,
+      "stageSha256": "7b4df8e8390a33fd087c72f19a237eac674b4cadf078c7958e10f025fee2b076",
+      "inputHash": "2c73ca7c702f21d924856bd7ba817ab1208b785d2ca8b93df3484d48313dbc5e",
+      "inputNotes": 54,
+      "before": {
+        "attacks": 39,
+        "omittedNotes": 12,
+        "eventCount": 73,
+        "buildMs": 0.04049999999998022,
+        "diagnostics": {
+          "lost": 15,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 39,
+            "mean": 0.03243589743589787,
+            "min": -0.09499999999999975,
+            "p05": -0.05499999999999983,
+            "p50": 0.03500000000000014,
+            "p95": 0.16000000000000014,
+            "max": 0.27500000000000036
+          },
+          "falseRests": 34,
+          "falseRestSeconds": 1.6149999999999975,
+          "filledReferenceRestSeconds": 0.7400000000000058,
+          "performanceReattacks": 3,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 2,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.05999999999999961,
+          "maxOffsetError": 0.2900000000000005
+        }
+      },
+      "after": {
+        "attacks": 54,
+        "omittedNotes": 0,
+        "eventCount": 118,
+        "buildMs": 0.10766599999999471,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 54,
+            "mean": 0.004120370370370694,
+            "min": -0.07749999999999702,
+            "p05": -0.054999999999999716,
+            "p50": 0.007500000000000284,
+            "p95": 0.05250000000000199,
+            "max": 0.05750000000000011
+          },
+          "falseRests": 31,
+          "falseRestSeconds": 0.744999999999993,
+          "filledReferenceRestSeconds": 0.47500000000000364,
+          "performanceReattacks": 3,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.04249999999999865,
+          "maxOffsetError": 0.040000000000000924
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.04249999999999865,
+          "maxOffsetError": 0.040000000000000924,
+          "outputAttacksVerified": 54,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 24,
+              "fp": 30,
+              "fn": 10,
+              "precision": 0.4444444444444444,
+              "recall": 0.7058823529411765,
+              "f1": 0.5454545454545454
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 39,
+              "fn": 19,
+              "precision": 0.2777777777777778,
+              "recall": 0.4411764705882353,
+              "f1": 0.3409090909090909
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 18,
+              "fp": 21,
+              "fn": 16,
+              "precision": 0.46153846153846156,
+              "recall": 0.5294117647058824,
+              "f1": 0.4931506849315068
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 29,
+              "fn": 24,
+              "precision": 0.2564102564102564,
+              "recall": 0.29411764705882354,
+              "f1": 0.273972602739726
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 23,
+              "fp": 31,
+              "fn": 11,
+              "precision": 0.42592592592592593,
+              "recall": 0.6764705882352942,
+              "f1": 0.5227272727272727
+            },
+            "offset": {
+              "tp": 13,
+              "fp": 41,
+              "fn": 21,
+              "precision": 0.24074074074074073,
+              "recall": 0.38235294117647056,
+              "f1": 0.29545454545454547
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 16,
+              "fp": 38,
+              "fn": 10,
+              "precision": 0.2962962962962963,
+              "recall": 0.6153846153846154,
+              "f1": 0.4
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 45,
+              "fn": 17,
+              "precision": 0.16666666666666666,
+              "recall": 0.34615384615384615,
+              "f1": 0.225
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 13,
+              "fp": 26,
+              "fn": 13,
+              "precision": 0.3333333333333333,
+              "recall": 0.5,
+              "f1": 0.4
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 30,
+              "fn": 17,
+              "precision": 0.23076923076923078,
+              "recall": 0.34615384615384615,
+              "f1": 0.27692307692307694
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 16,
+              "fp": 38,
+              "fn": 10,
+              "precision": 0.2962962962962963,
+              "recall": 0.6153846153846154,
+              "f1": 0.4
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 46,
+              "fn": 18,
+              "precision": 0.14814814814814814,
+              "recall": 0.3076923076923077,
+              "f1": 0.2
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_14",
+      "method": "basicPitch",
+      "duration": 12.1978125,
+      "stageSha256": "7b4df8e8390a33fd087c72f19a237eac674b4cadf078c7958e10f025fee2b076",
+      "inputHash": "080b6eab03cf66a1a4ae77c0360bcf31332296dbef7761cd68b48c6e93169444",
+      "inputNotes": 24,
+      "before": {
+        "attacks": 24,
+        "omittedNotes": 0,
+        "eventCount": 63,
+        "buildMs": 0.021916000000004487,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 24,
+            "mean": 0.00764777021919875,
+            "min": -0.09829931972789119,
+            "p05": -0.0866893424036288,
+            "p50": 0.011097052154194209,
+            "p95": 0.0807569160997732,
+            "max": 0.11958049886621325
+          },
+          "falseRests": 17,
+          "falseRestSeconds": 0.8165174603174605,
+          "filledReferenceRestSeconds": 0.3910612244897953,
+          "performanceReattacks": 0,
+          "scoreReattacks": 0
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.06151111111111085,
+          "maxOffsetError": 0.0623015873015873
+        }
+      },
+      "after": {
+        "attacks": 24,
+        "omittedNotes": 0,
+        "eventCount": 93,
+        "buildMs": 0.056874999999990905,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 24,
+            "mean": -0.0027688964474679167,
+            "min": -0.0442430839002268,
+            "p05": -0.039792970521541626,
+            "p50": 0.003937188208616327,
+            "p95": 0.026700680272108812,
+            "max": 0.0383106575963712
+          },
+          "falseRests": 18,
+          "falseRestSeconds": 0.3550786848072558,
+          "filledReferenceRestSeconds": 0.07420975056689239,
+          "performanceReattacks": 0,
+          "scoreReattacks": 0
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.031229931972789338,
+          "maxOffsetError": 0.031229931972789338
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.031229931972789338,
+          "maxOffsetError": 0.031229931972789338,
+          "outputAttacksVerified": 24,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 19,
+              "fp": 5,
+              "fn": 15,
+              "precision": 0.7916666666666666,
+              "recall": 0.5588235294117647,
+              "f1": 0.6551724137931034
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 13,
+              "fn": 23,
+              "precision": 0.4583333333333333,
+              "recall": 0.3235294117647059,
+              "f1": 0.3793103448275862
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 17,
+              "fp": 7,
+              "fn": 17,
+              "precision": 0.7083333333333334,
+              "recall": 0.5,
+              "f1": 0.5862068965517241
+            },
+            "offset": {
+              "tp": 7,
+              "fp": 17,
+              "fn": 27,
+              "precision": 0.2916666666666667,
+              "recall": 0.20588235294117646,
+              "f1": 0.2413793103448276
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 19,
+              "fp": 5,
+              "fn": 15,
+              "precision": 0.7916666666666666,
+              "recall": 0.5588235294117647,
+              "f1": 0.6551724137931034
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 14,
+              "fn": 24,
+              "precision": 0.4166666666666667,
+              "recall": 0.29411764705882354,
+              "f1": 0.3448275862068966
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 15,
+              "fp": 9,
+              "fn": 11,
+              "precision": 0.625,
+              "recall": 0.5769230769230769,
+              "f1": 0.6
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 16,
+              "fn": 18,
+              "precision": 0.3333333333333333,
+              "recall": 0.3076923076923077,
+              "f1": 0.32
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 14,
+              "fp": 10,
+              "fn": 12,
+              "precision": 0.5833333333333334,
+              "recall": 0.5384615384615384,
+              "f1": 0.56
+            },
+            "offset": {
+              "tp": 5,
+              "fp": 19,
+              "fn": 21,
+              "precision": 0.20833333333333334,
+              "recall": 0.19230769230769232,
+              "f1": 0.2
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 14,
+              "fp": 10,
+              "fn": 12,
+              "precision": 0.5833333333333334,
+              "recall": 0.5384615384615384,
+              "f1": 0.56
+            },
+            "offset": {
+              "tp": 7,
+              "fp": 17,
+              "fn": 19,
+              "precision": 0.2916666666666667,
+              "recall": 0.2692307692307692,
+              "f1": 0.28
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_18",
+      "method": "yin",
+      "duration": 29.1388125,
+      "stageSha256": "980dcecc8fc05f750cabff72a848c41bac08e99a7671f61bc69acb008a3dbb54",
+      "inputHash": "799bb7cb03cadd33f6d343692ccb765045319a3e6c9fe53d1239a23654d6df56",
+      "inputNotes": 68,
+      "before": {
+        "attacks": 55,
+        "omittedNotes": 11,
+        "eventCount": 115,
+        "buildMs": 0.07266599999999812,
+        "diagnostics": {
+          "lost": 13,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 55,
+            "mean": 0.027363636363637516,
+            "min": -0.0699999999999994,
+            "p05": -0.05999999999999872,
+            "p50": 0.02500000000000213,
+            "p95": 0.09500000000000242,
+            "max": 0.19000000000000128
+          },
+          "falseRests": 44,
+          "falseRestSeconds": 2.0199999999999796,
+          "filledReferenceRestSeconds": 1.2000000000000304,
+          "performanceReattacks": 3,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.0600000000000005,
+          "maxOffsetError": 0.17000000000000015
+        }
+      },
+      "after": {
+        "attacks": 68,
+        "omittedNotes": 0,
+        "eventCount": 188,
+        "buildMs": 0.22616700000000378,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 68,
+            "mean": -0.0018014705882342728,
+            "min": -0.0625,
+            "p05": -0.04249999999999976,
+            "p50": 3.552713678800501e-15,
+            "p95": 0.03500000000000025,
+            "max": 0.04749999999999943
+          },
+          "falseRests": 55,
+          "falseRestSeconds": 1.2099999999999698,
+          "filledReferenceRestSeconds": 0.38000000000001966,
+          "performanceReattacks": 3,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.03750000000000142,
+          "maxOffsetError": 0.04499999999999993
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.03750000000000142,
+          "maxOffsetError": 0.04499999999999993,
+          "outputAttacksVerified": 68,
+          "issues": [
+            {
+              "sourceIds": [
+                0,
+                1
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            },
+            {
+              "sourceIds": [
+                45,
+                46
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            }
+          ]
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 32,
+              "fp": 36,
+              "fn": 13,
+              "precision": 0.47058823529411764,
+              "recall": 0.7111111111111111,
+              "f1": 0.5663716814159292
+            },
+            "offset": {
+              "tp": 27,
+              "fp": 41,
+              "fn": 18,
+              "precision": 0.39705882352941174,
+              "recall": 0.6,
+              "f1": 0.4778761061946903
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 19,
+              "fp": 36,
+              "fn": 26,
+              "precision": 0.34545454545454546,
+              "recall": 0.4222222222222222,
+              "f1": 0.38
+            },
+            "offset": {
+              "tp": 14,
+              "fp": 41,
+              "fn": 31,
+              "precision": 0.2545454545454545,
+              "recall": 0.3111111111111111,
+              "f1": 0.28
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 27,
+              "fp": 41,
+              "fn": 18,
+              "precision": 0.39705882352941174,
+              "recall": 0.6,
+              "f1": 0.4778761061946903
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 47,
+              "fn": 24,
+              "precision": 0.3088235294117647,
+              "recall": 0.4666666666666667,
+              "f1": 0.37168141592920356
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 23,
+              "fp": 45,
+              "fn": 11,
+              "precision": 0.3382352941176471,
+              "recall": 0.6764705882352942,
+              "f1": 0.45098039215686275
+            },
+            "offset": {
+              "tp": 19,
+              "fp": 49,
+              "fn": 15,
+              "precision": 0.27941176470588236,
+              "recall": 0.5588235294117647,
+              "f1": 0.37254901960784315
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 16,
+              "fp": 39,
+              "fn": 18,
+              "precision": 0.2909090909090909,
+              "recall": 0.47058823529411764,
+              "f1": 0.3595505617977528
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 43,
+              "fn": 22,
+              "precision": 0.21818181818181817,
+              "recall": 0.35294117647058826,
+              "f1": 0.2696629213483146
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 20,
+              "fp": 48,
+              "fn": 14,
+              "precision": 0.29411764705882354,
+              "recall": 0.5882352941176471,
+              "f1": 0.39215686274509803
+            },
+            "offset": {
+              "tp": 16,
+              "fp": 52,
+              "fn": 18,
+              "precision": 0.23529411764705882,
+              "recall": 0.47058823529411764,
+              "f1": 0.3137254901960784
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_18",
+      "method": "basicPitch",
+      "duration": 29.1388125,
+      "stageSha256": "980dcecc8fc05f750cabff72a848c41bac08e99a7671f61bc69acb008a3dbb54",
+      "inputHash": "355a54136db753723e37567d065a47d1471ff4439d981666e16be7e3c08b07bd",
+      "inputNotes": 51,
+      "before": {
+        "attacks": 49,
+        "omittedNotes": 1,
+        "eventCount": 106,
+        "buildMs": 0.0367909999999938,
+        "diagnostics": {
+          "lost": 2,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 49,
+            "mean": 0.01896480170299394,
+            "min": -0.09558956916099781,
+            "p05": -0.08939909297052395,
+            "p50": 0.008900226757369678,
+            "p95": 0.0847505668934243,
+            "max": 0.7472902494331066
+          },
+          "falseRests": 36,
+          "falseRestSeconds": 1.6356811791383241,
+          "filledReferenceRestSeconds": 0.39844126984126227,
+          "performanceReattacks": 4,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.06070113378684994,
+          "maxOffsetError": 0.8037396825396819
+        }
+      },
+      "after": {
+        "attacks": 51,
+        "omittedNotes": 0,
+        "eventCount": 158,
+        "buildMs": 0.0639579999999853,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 51,
+            "mean": 0.0012007202881151205,
+            "min": -0.04469954648526109,
+            "p05": -0.041533333333333644,
+            "p50": -0.0027097505668933763,
+            "p95": 0.045470521541947306,
+            "max": 0.059790249433106624
+          },
+          "falseRests": 33,
+          "falseRestSeconds": 0.7652902494331002,
+          "filledReferenceRestSeconds": 0.20190113378684238,
+          "performanceReattacks": 4,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.03115079365079365,
+          "maxOffsetError": 0.03115079365079365
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.03115079365079365,
+          "maxOffsetError": 0.03115079365079365,
+          "outputAttacksVerified": 51,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 28,
+              "fp": 23,
+              "fn": 17,
+              "precision": 0.5490196078431373,
+              "recall": 0.6222222222222222,
+              "f1": 0.5833333333333334
+            },
+            "offset": {
+              "tp": 18,
+              "fp": 33,
+              "fn": 27,
+              "precision": 0.35294117647058826,
+              "recall": 0.4,
+              "f1": 0.375
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 21,
+              "fp": 28,
+              "fn": 24,
+              "precision": 0.42857142857142855,
+              "recall": 0.4666666666666667,
+              "f1": 0.44680851063829785
+            },
+            "offset": {
+              "tp": 14,
+              "fp": 35,
+              "fn": 31,
+              "precision": 0.2857142857142857,
+              "recall": 0.3111111111111111,
+              "f1": 0.2978723404255319
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 28,
+              "fp": 23,
+              "fn": 17,
+              "precision": 0.5490196078431373,
+              "recall": 0.6222222222222222,
+              "f1": 0.5833333333333334
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 34,
+              "fn": 28,
+              "precision": 0.3333333333333333,
+              "recall": 0.37777777777777777,
+              "f1": 0.3541666666666667
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 19,
+              "fp": 32,
+              "fn": 15,
+              "precision": 0.37254901960784315,
+              "recall": 0.5588235294117647,
+              "f1": 0.4470588235294118
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 39,
+              "fn": 22,
+              "precision": 0.23529411764705882,
+              "recall": 0.35294117647058826,
+              "f1": 0.2823529411764706
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 16,
+              "fp": 33,
+              "fn": 18,
+              "precision": 0.32653061224489793,
+              "recall": 0.47058823529411764,
+              "f1": 0.3855421686746988
+            },
+            "offset": {
+              "tp": 13,
+              "fp": 36,
+              "fn": 21,
+              "precision": 0.2653061224489796,
+              "recall": 0.38235294117647056,
+              "f1": 0.3132530120481928
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 19,
+              "fp": 32,
+              "fn": 15,
+              "precision": 0.37254901960784315,
+              "recall": 0.5588235294117647,
+              "f1": 0.4470588235294118
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 39,
+              "fn": 22,
+              "precision": 0.23529411764705882,
+              "recall": 0.35294117647058826,
+              "f1": 0.2823529411764706
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_20",
+      "method": "yin",
+      "duration": 8.713479166666668,
+      "stageSha256": "73a4af459357fc4010b3ad68a95fcc9bce18fd50007fb6585bbd2e445c53d289",
+      "inputHash": "fc5032eae42aaf1c40fc49f5161670cb9db7e1b5128d636f77744b64785dcb78",
+      "inputNotes": 39,
+      "before": {
+        "attacks": 29,
+        "omittedNotes": 10,
+        "eventCount": 54,
+        "buildMs": 0.01870800000000372,
+        "diagnostics": {
+          "lost": 10,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 29,
+            "mean": 0.020862068965517507,
+            "min": -0.08499999999999996,
+            "p05": -0.06499999999999995,
+            "p50": 0.015000000000000568,
+            "p95": 0.08000000000000007,
+            "max": 0.09000000000000075
+          },
+          "falseRests": 27,
+          "falseRestSeconds": 1.2299999999999953,
+          "filledReferenceRestSeconds": 0.5250000000000037,
+          "performanceReattacks": 4,
+          "scoreReattacks": 2
+        },
+        "lostReattacksByOverlap": 1,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.05999999999999961,
+          "maxOffsetError": 0.0600000000000005
+        }
+      },
+      "after": {
+        "attacks": 39,
+        "omittedNotes": 0,
+        "eventCount": 124,
+        "buildMs": 0.1173339999999996,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 39,
+            "mean": 0.0013141025641028037,
+            "min": -0.026249999999999662,
+            "p05": -0.022499999999999964,
+            "p50": 0.002500000000000391,
+            "p95": 0.022500000000000187,
+            "max": 0.027500000000000746
+          },
+          "falseRests": 25,
+          "falseRestSeconds": 0.2937499999999935,
+          "filledReferenceRestSeconds": 0.16500000000000314,
+          "performanceReattacks": 4,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.01625000000000032,
+          "maxOffsetError": 0.01625000000000032
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.01625000000000032,
+          "maxOffsetError": 0.01625000000000032,
+          "outputAttacksVerified": 39,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 21,
+              "fp": 18,
+              "fn": 10,
+              "precision": 0.5384615384615384,
+              "recall": 0.6774193548387096,
+              "f1": 0.6
+            },
+            "offset": {
+              "tp": 18,
+              "fp": 21,
+              "fn": 13,
+              "precision": 0.46153846153846156,
+              "recall": 0.5806451612903226,
+              "f1": 0.5142857142857142
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 12,
+              "fp": 17,
+              "fn": 19,
+              "precision": 0.41379310344827586,
+              "recall": 0.3870967741935484,
+              "f1": 0.4
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 20,
+              "fn": 22,
+              "precision": 0.3103448275862069,
+              "recall": 0.2903225806451613,
+              "f1": 0.3
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 23,
+              "fp": 16,
+              "fn": 8,
+              "precision": 0.5897435897435898,
+              "recall": 0.7419354838709677,
+              "f1": 0.6571428571428571
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 18,
+              "fn": 10,
+              "precision": 0.5384615384615384,
+              "recall": 0.6774193548387096,
+              "f1": 0.6
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 23,
+              "fp": 16,
+              "fn": 7,
+              "precision": 0.5897435897435898,
+              "recall": 0.7666666666666667,
+              "f1": 0.6666666666666666
+            },
+            "offset": {
+              "tp": 20,
+              "fp": 19,
+              "fn": 10,
+              "precision": 0.5128205128205128,
+              "recall": 0.6666666666666666,
+              "f1": 0.5797101449275363
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 17,
+              "fp": 12,
+              "fn": 13,
+              "precision": 0.5862068965517241,
+              "recall": 0.5666666666666667,
+              "f1": 0.576271186440678
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 14,
+              "fn": 15,
+              "precision": 0.5172413793103449,
+              "recall": 0.5,
+              "f1": 0.5084745762711864
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 24,
+              "fp": 15,
+              "fn": 6,
+              "precision": 0.6153846153846154,
+              "recall": 0.8,
+              "f1": 0.6956521739130435
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 18,
+              "fn": 9,
+              "precision": 0.5384615384615384,
+              "recall": 0.7,
+              "f1": 0.6086956521739131
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_20",
+      "method": "basicPitch",
+      "duration": 8.713479166666668,
+      "stageSha256": "73a4af459357fc4010b3ad68a95fcc9bce18fd50007fb6585bbd2e445c53d289",
+      "inputHash": "1615b4de6576aacbf7c00a50aabc483dd1f4fd925715188c3011874bcf3ba52e",
+      "inputNotes": 30,
+      "before": {
+        "attacks": 29,
+        "omittedNotes": 1,
+        "eventCount": 40,
+        "buildMs": 0.015958000000011907,
+        "diagnostics": {
+          "lost": 1,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 29,
+            "mean": 0.010528297755884004,
+            "min": -0.06346938775510225,
+            "p05": -0.0634693877551018,
+            "p50": 0.008900226757369456,
+            "p95": 0.0847505668934243,
+            "max": 0.09907029478458096
+          },
+          "falseRests": 23,
+          "falseRestSeconds": 0.7984240362811801,
+          "filledReferenceRestSeconds": 0.24301904761904858,
+          "performanceReattacks": 2,
+          "scoreReattacks": 2
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.060382312925169934,
+          "maxOffsetError": 0.05933696145124756
+        }
+      },
+      "after": {
+        "attacks": 30,
+        "omittedNotes": 0,
+        "eventCount": 73,
+        "buildMs": 0.10658399999999801,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 30,
+            "mean": -0.0037223053665910535,
+            "min": -0.06520975056689338,
+            "p05": -0.06520975056689338,
+            "p50": 0.002196825396825197,
+            "p95": 0.03657029478458007,
+            "max": 0.06153061224489775
+          },
+          "falseRests": 22,
+          "falseRestSeconds": 0.5231873015873023,
+          "filledReferenceRestSeconds": 0.048915419501134316,
+          "performanceReattacks": 2,
+          "scoreReattacks": 2
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.040428344671202154,
+          "maxOffsetError": 0.04825941043083848
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.040428344671202154,
+          "maxOffsetError": 0.04825941043083848,
+          "outputAttacksVerified": 30,
+          "issues": [
+            {
+              "sourceIds": [
+                20,
+                21
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            }
+          ]
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 22,
+              "fp": 8,
+              "fn": 9,
+              "precision": 0.7333333333333333,
+              "recall": 0.7096774193548387,
+              "f1": 0.7213114754098361
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 20,
+              "fn": 21,
+              "precision": 0.3333333333333333,
+              "recall": 0.3225806451612903,
+              "f1": 0.32786885245901637
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 15,
+              "fp": 14,
+              "fn": 16,
+              "precision": 0.5172413793103449,
+              "recall": 0.4838709677419355,
+              "f1": 0.5
+            },
+            "offset": {
+              "tp": 5,
+              "fp": 24,
+              "fn": 26,
+              "precision": 0.1724137931034483,
+              "recall": 0.16129032258064516,
+              "f1": 0.16666666666666666
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 20,
+              "fp": 10,
+              "fn": 11,
+              "precision": 0.6666666666666666,
+              "recall": 0.6451612903225806,
+              "f1": 0.6557377049180327
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 22,
+              "fn": 23,
+              "precision": 0.26666666666666666,
+              "recall": 0.25806451612903225,
+              "f1": 0.26229508196721313
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 25,
+              "fp": 5,
+              "fn": 5,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 18,
+              "fn": 18,
+              "precision": 0.4,
+              "recall": 0.4,
+              "f1": 0.4
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 18,
+              "fp": 11,
+              "fn": 12,
+              "precision": 0.6206896551724138,
+              "recall": 0.6,
+              "f1": 0.6101694915254238
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 19,
+              "fn": 20,
+              "precision": 0.3448275862068966,
+              "recall": 0.3333333333333333,
+              "f1": 0.3389830508474576
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 23,
+              "fp": 7,
+              "fn": 7,
+              "precision": 0.7666666666666667,
+              "recall": 0.7666666666666667,
+              "f1": 0.7666666666666667
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 18,
+              "fn": 18,
+              "precision": 0.4,
+              "recall": 0.4,
+              "f1": 0.4
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_22",
+      "method": "yin",
+      "duration": 18.333479166666667,
+      "stageSha256": "4cf362194b7592a2f8f722e228f2387b90e9112e07e7adde3db7a7a1280bb3eb",
+      "inputHash": "c1fa670b22f5eba412ed904d3fae9e5f9426e69d7767d5dcd9e5e5689426a883",
+      "inputNotes": 50,
+      "before": {
+        "attacks": 39,
+        "omittedNotes": 11,
+        "eventCount": 85,
+        "buildMs": 0.024249999999994998,
+        "diagnostics": {
+          "lost": 11,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 39,
+            "mean": 0.015897435897436744,
+            "min": -0.06999999999999673,
+            "p05": -0.0600000000000005,
+            "p50": 0.020000000000003126,
+            "p95": 0.08000000000000185,
+            "max": 0.10500000000000398
+          },
+          "falseRests": 34,
+          "falseRestSeconds": 1.5299999999999716,
+          "filledReferenceRestSeconds": 0.6750000000000163,
+          "performanceReattacks": 6,
+          "scoreReattacks": 5
+        },
+        "lostReattacksByOverlap": 1,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.0600000000000005,
+          "maxOffsetError": 0.060000000000002274
+        }
+      },
+      "after": {
+        "attacks": 50,
+        "omittedNotes": 0,
+        "eventCount": 130,
+        "buildMs": 0.7783749999999827,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 50,
+            "mean": -0.0023999999999990873,
+            "min": -0.06249999999999645,
+            "p05": -0.037499999999999645,
+            "p50": -0.0074999999999967315,
+            "p95": 0.03500000000000014,
+            "max": 0.047500000000002984
+          },
+          "falseRests": 39,
+          "falseRestSeconds": 0.7724999999999658,
+          "filledReferenceRestSeconds": 0.2750000000000097,
+          "performanceReattacks": 6,
+          "scoreReattacks": 6
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.045000000000001705,
+          "maxOffsetError": 0.04999999999999716
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.045000000000001705,
+          "maxOffsetError": 0.04999999999999716,
+          "outputAttacksVerified": 50,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 26,
+              "fp": 24,
+              "fn": 19,
+              "precision": 0.52,
+              "recall": 0.5777777777777777,
+              "f1": 0.5473684210526316
+            },
+            "offset": {
+              "tp": 22,
+              "fp": 28,
+              "fn": 23,
+              "precision": 0.44,
+              "recall": 0.4888888888888889,
+              "f1": 0.4631578947368421
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 18,
+              "fp": 21,
+              "fn": 27,
+              "precision": 0.46153846153846156,
+              "recall": 0.4,
+              "f1": 0.42857142857142855
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 27,
+              "fn": 33,
+              "precision": 0.3076923076923077,
+              "recall": 0.26666666666666666,
+              "f1": 0.2857142857142857
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 23,
+              "fp": 27,
+              "fn": 22,
+              "precision": 0.46,
+              "recall": 0.5111111111111111,
+              "f1": 0.4842105263157895
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 33,
+              "fn": 28,
+              "precision": 0.34,
+              "recall": 0.37777777777777777,
+              "f1": 0.35789473684210527
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 25,
+              "fp": 25,
+              "fn": 22,
+              "precision": 0.5,
+              "recall": 0.5319148936170213,
+              "f1": 0.5154639175257731
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 29,
+              "fn": 26,
+              "precision": 0.42,
+              "recall": 0.44680851063829785,
+              "f1": 0.4329896907216495
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 17,
+              "fp": 22,
+              "fn": 30,
+              "precision": 0.4358974358974359,
+              "recall": 0.3617021276595745,
+              "f1": 0.3953488372093023
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 27,
+              "fn": 35,
+              "precision": 0.3076923076923077,
+              "recall": 0.2553191489361702,
+              "f1": 0.27906976744186046
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 22,
+              "fp": 28,
+              "fn": 25,
+              "precision": 0.44,
+              "recall": 0.46808510638297873,
+              "f1": 0.4536082474226804
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 33,
+              "fn": 30,
+              "precision": 0.34,
+              "recall": 0.3617021276595745,
+              "f1": 0.35051546391752575
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_22",
+      "method": "basicPitch",
+      "duration": 18.333479166666667,
+      "stageSha256": "4cf362194b7592a2f8f722e228f2387b90e9112e07e7adde3db7a7a1280bb3eb",
+      "inputHash": "fe04077a21b703d9aeecd2ac0a67ecd488921fc2f63bc1d0c7a789af457423e7",
+      "inputNotes": 33,
+      "before": {
+        "attacks": 32,
+        "omittedNotes": 1,
+        "eventCount": 71,
+        "buildMs": 0.010790999999983342,
+        "diagnostics": {
+          "lost": 1,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 32,
+            "mean": 0.001817176870748366,
+            "min": -0.07701814058956913,
+            "p05": -0.07507936507936463,
+            "p50": 0.006190476190475636,
+            "p95": 0.052630385487526965,
+            "max": 0.09507664399092874
+          },
+          "falseRests": 27,
+          "falseRestSeconds": 0.8843578231292571,
+          "filledReferenceRestSeconds": 0.2642807256235882,
+          "performanceReattacks": 5,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.060978684807256656,
+          "maxOffsetError": 0.060978684807256656
+        }
+      },
+      "after": {
+        "attacks": 33,
+        "omittedNotes": 0,
+        "eventCount": 100,
+        "buildMs": 0.04812499999999886,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 33,
+            "mean": -0.0036500034357176752,
+            "min": -0.04469954648526109,
+            "p05": -0.0446995464852602,
+            "p50": -0.007358276643990802,
+            "p95": 0.04798185941043087,
+            "max": 0.052630385487526965
+          },
+          "falseRests": 25,
+          "falseRestSeconds": 0.5525480725623616,
+          "filledReferenceRestSeconds": 0.1051219954648559,
+          "performanceReattacks": 5,
+          "scoreReattacks": 5
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.03032018140589532,
+          "maxOffsetError": 0.03032018140589532
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.03032018140589532,
+          "maxOffsetError": 0.03032018140589532,
+          "outputAttacksVerified": 33,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 24,
+              "fp": 9,
+              "fn": 21,
+              "precision": 0.7272727272727273,
+              "recall": 0.5333333333333333,
+              "f1": 0.6153846153846154
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 16,
+              "fn": 28,
+              "precision": 0.5151515151515151,
+              "recall": 0.37777777777777777,
+              "f1": 0.4358974358974359
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 19,
+              "fp": 13,
+              "fn": 26,
+              "precision": 0.59375,
+              "recall": 0.4222222222222222,
+              "f1": 0.4935064935064935
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 23,
+              "fn": 36,
+              "precision": 0.28125,
+              "recall": 0.2,
+              "f1": 0.23376623376623376
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 24,
+              "fp": 9,
+              "fn": 21,
+              "precision": 0.7272727272727273,
+              "recall": 0.5333333333333333,
+              "f1": 0.6153846153846154
+            },
+            "offset": {
+              "tp": 14,
+              "fp": 19,
+              "fn": 31,
+              "precision": 0.42424242424242425,
+              "recall": 0.3111111111111111,
+              "f1": 0.358974358974359
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 23,
+              "fp": 10,
+              "fn": 24,
+              "precision": 0.696969696969697,
+              "recall": 0.48936170212765956,
+              "f1": 0.575
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 16,
+              "fn": 30,
+              "precision": 0.5151515151515151,
+              "recall": 0.3617021276595745,
+              "f1": 0.425
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 20,
+              "fp": 12,
+              "fn": 27,
+              "precision": 0.625,
+              "recall": 0.425531914893617,
+              "f1": 0.5063291139240507
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 22,
+              "fn": 37,
+              "precision": 0.3125,
+              "recall": 0.2127659574468085,
+              "f1": 0.25316455696202533
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 22,
+              "fp": 11,
+              "fn": 25,
+              "precision": 0.6666666666666666,
+              "recall": 0.46808510638297873,
+              "f1": 0.55
+            },
+            "offset": {
+              "tp": 13,
+              "fp": 20,
+              "fn": 34,
+              "precision": 0.3939393939393939,
+              "recall": 0.2765957446808511,
+              "f1": 0.325
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_25",
+      "method": "yin",
+      "duration": 14.6578125,
+      "stageSha256": "2b3d80d02f471e1cce6289ec1fc39764f12773be683c27ecaa1cbd7732002f50",
+      "inputHash": "dc6071dac5106d0ccf8dcce8c7aa954c7912cc363a9b9518345ed0a3d5b0275c",
+      "inputNotes": 60,
+      "before": {
+        "attacks": 48,
+        "omittedNotes": 12,
+        "eventCount": 83,
+        "buildMs": 0.011540999999994028,
+        "diagnostics": {
+          "lost": 12,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 48,
+            "mean": 0.01729166666666706,
+            "min": -0.08499999999999908,
+            "p05": -0.07500000000000018,
+            "p50": 0.025000000000000355,
+            "p95": 0.08500000000000085,
+            "max": 0.11500000000000199
+          },
+          "falseRests": 40,
+          "falseRestSeconds": 1.7049999999999965,
+          "filledReferenceRestSeconds": 0.5850000000000044,
+          "performanceReattacks": 1,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.060000000000002274,
+          "maxOffsetError": 0.0600000000000005
+        }
+      },
+      "after": {
+        "attacks": 60,
+        "omittedNotes": 0,
+        "eventCount": 123,
+        "buildMs": 0.06900000000001683,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 60,
+            "mean": 0.0016250000000003688,
+            "min": -0.05249999999999977,
+            "p05": -0.05249999999999844,
+            "p50": 0,
+            "p95": 0.04500000000000082,
+            "max": 0.057500000000000995
+          },
+          "falseRests": 45,
+          "falseRestSeconds": 1.0274999999999919,
+          "filledReferenceRestSeconds": 0.3875000000000044,
+          "performanceReattacks": 1,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.047499999999999876,
+          "maxOffsetError": 0.04999999999999982
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.047499999999999876,
+          "maxOffsetError": 0.04999999999999982,
+          "outputAttacksVerified": 60,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 19,
+              "fp": 41,
+              "fn": 19,
+              "precision": 0.31666666666666665,
+              "recall": 0.5,
+              "f1": 0.3877551020408163
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 45,
+              "fn": 23,
+              "precision": 0.25,
+              "recall": 0.39473684210526316,
+              "f1": 0.30612244897959184
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 14,
+              "fp": 34,
+              "fn": 24,
+              "precision": 0.2916666666666667,
+              "recall": 0.3684210526315789,
+              "f1": 0.32558139534883723
+            },
+            "offset": {
+              "tp": 7,
+              "fp": 41,
+              "fn": 31,
+              "precision": 0.14583333333333334,
+              "recall": 0.18421052631578946,
+              "f1": 0.16279069767441862
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 16,
+              "fp": 44,
+              "fn": 22,
+              "precision": 0.26666666666666666,
+              "recall": 0.42105263157894735,
+              "f1": 0.32653061224489793
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 51,
+              "fn": 29,
+              "precision": 0.15,
+              "recall": 0.23684210526315788,
+              "f1": 0.1836734693877551
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 18,
+              "fp": 42,
+              "fn": 15,
+              "precision": 0.3,
+              "recall": 0.5454545454545454,
+              "f1": 0.3870967741935484
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 45,
+              "fn": 18,
+              "precision": 0.25,
+              "recall": 0.45454545454545453,
+              "f1": 0.3225806451612903
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 13,
+              "fp": 35,
+              "fn": 20,
+              "precision": 0.2708333333333333,
+              "recall": 0.3939393939393939,
+              "f1": 0.32098765432098764
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 40,
+              "fn": 25,
+              "precision": 0.16666666666666666,
+              "recall": 0.24242424242424243,
+              "f1": 0.19753086419753085
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 15,
+              "fp": 45,
+              "fn": 18,
+              "precision": 0.25,
+              "recall": 0.45454545454545453,
+              "f1": 0.3225806451612903
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 50,
+              "fn": 23,
+              "precision": 0.16666666666666666,
+              "recall": 0.30303030303030304,
+              "f1": 0.21505376344086022
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_25",
+      "method": "basicPitch",
+      "duration": 14.6578125,
+      "stageSha256": "2b3d80d02f471e1cce6289ec1fc39764f12773be683c27ecaa1cbd7732002f50",
+      "inputHash": "cd90c98fec7b7a7764ca0473e87aef759b16b27ce6207f494f73560521ed1032",
+      "inputNotes": 42,
+      "before": {
+        "attacks": 40,
+        "omittedNotes": 2,
+        "eventCount": 74,
+        "buildMs": 0.010750000000030013,
+        "diagnostics": {
+          "lost": 2,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 40,
+            "mean": 0.008271417233560114,
+            "min": -0.10990929705215402,
+            "p05": -0.10229297052154074,
+            "p50": 0.0089002267573699,
+            "p95": 0.08204081632653093,
+            "max": 0.08746031746031768
+          },
+          "falseRests": 31,
+          "falseRestSeconds": 1.3535582766439882,
+          "filledReferenceRestSeconds": 0.41963990929705464,
+          "performanceReattacks": 1,
+          "scoreReattacks": 2
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.05975011337868352,
+          "maxOffsetError": 0.06242086167800487
+        }
+      },
+      "after": {
+        "attacks": 42,
+        "omittedNotes": 0,
+        "eventCount": 116,
+        "buildMs": 0.04220799999995961,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 42,
+            "mean": 0.0022430245113918847,
+            "min": -0.0535997732426301,
+            "p05": -0.03308956916099781,
+            "p50": 0.00045646258503451165,
+            "p95": 0.04818027210884335,
+            "max": 0.05534013605442123
+          },
+          "falseRests": 30,
+          "falseRestSeconds": 0.5145963718820853,
+          "filledReferenceRestSeconds": 0.14246643990929675,
+          "performanceReattacks": 1,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.030991383219955537,
+          "maxOffsetError": 0.03034081632653063
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.030991383219955537,
+          "maxOffsetError": 0.03034081632653063,
+          "outputAttacksVerified": 42,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 19,
+              "fp": 23,
+              "fn": 19,
+              "precision": 0.4523809523809524,
+              "recall": 0.5,
+              "f1": 0.475
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 31,
+              "fn": 27,
+              "precision": 0.2619047619047619,
+              "recall": 0.2894736842105263,
+              "f1": 0.275
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 15,
+              "fp": 25,
+              "fn": 23,
+              "precision": 0.375,
+              "recall": 0.39473684210526316,
+              "f1": 0.38461538461538464
+            },
+            "offset": {
+              "tp": 6,
+              "fp": 34,
+              "fn": 32,
+              "precision": 0.15,
+              "recall": 0.15789473684210525,
+              "f1": 0.15384615384615385
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 19,
+              "fp": 23,
+              "fn": 19,
+              "precision": 0.4523809523809524,
+              "recall": 0.5,
+              "f1": 0.475
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 30,
+              "fn": 26,
+              "precision": 0.2857142857142857,
+              "recall": 0.3157894736842105,
+              "f1": 0.3
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 18,
+              "fp": 24,
+              "fn": 15,
+              "precision": 0.42857142857142855,
+              "recall": 0.5454545454545454,
+              "f1": 0.48
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 31,
+              "fn": 22,
+              "precision": 0.2619047619047619,
+              "recall": 0.3333333333333333,
+              "f1": 0.29333333333333333
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 14,
+              "fp": 26,
+              "fn": 19,
+              "precision": 0.35,
+              "recall": 0.42424242424242425,
+              "f1": 0.3835616438356164
+            },
+            "offset": {
+              "tp": 7,
+              "fp": 33,
+              "fn": 26,
+              "precision": 0.175,
+              "recall": 0.21212121212121213,
+              "f1": 0.1917808219178082
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 17,
+              "fp": 25,
+              "fn": 16,
+              "precision": 0.40476190476190477,
+              "recall": 0.5151515151515151,
+              "f1": 0.4533333333333333
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 31,
+              "fn": 22,
+              "precision": 0.2619047619047619,
+              "recall": 0.3333333333333333,
+              "f1": 0.29333333333333333
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_27",
+      "method": "yin",
+      "duration": 14.0178125,
+      "stageSha256": "0a308484c7c395b1fe198265c8a7d74226a317e209d0ee8b0ed8e63385bc7884",
+      "inputHash": "3c5cae5c57fdefd937b53be6d5b40a20491978a8e3856586d10a7cf50b7dbc42",
+      "inputNotes": 39,
+      "before": {
+        "attacks": 33,
+        "omittedNotes": 5,
+        "eventCount": 70,
+        "buildMs": 0.02333400000003394,
+        "diagnostics": {
+          "lost": 6,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 33,
+            "mean": 0.017121212121212374,
+            "min": -0.11499999999999977,
+            "p05": -0.08499999999999996,
+            "p50": 0.010000000000000675,
+            "p95": 0.09499999999999975,
+            "max": 0.34499999999999886
+          },
+          "falseRests": 27,
+          "falseRestSeconds": 1.3749999999999993,
+          "filledReferenceRestSeconds": 0.8600000000000068,
+          "performanceReattacks": 3,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.060000000000002274,
+          "maxOffsetError": 0.3099999999999987
+        }
+      },
+      "after": {
+        "attacks": 39,
+        "omittedNotes": 0,
+        "eventCount": 165,
+        "buildMs": 0.07366700000000037,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 39,
+            "mean": 0.0030128205128207787,
+            "min": -0.014999999999997016,
+            "p05": -0.01249999999999929,
+            "p50": 0.0012499999999988631,
+            "p95": 0.021250000000000213,
+            "max": 0.022499999999999964
+          },
+          "falseRests": 28,
+          "falseRestSeconds": 0.21124999999999616,
+          "filledReferenceRestSeconds": 0.2387500000000089,
+          "performanceReattacks": 3,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.015000000000000568,
+          "maxOffsetError": 0.015000000000000568
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.015000000000000568,
+          "maxOffsetError": 0.015000000000000568,
+          "outputAttacksVerified": 39,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 24,
+              "fp": 15,
+              "fn": 10,
+              "precision": 0.6153846153846154,
+              "recall": 0.7058823529411765,
+              "f1": 0.6575342465753424
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 18,
+              "fn": 13,
+              "precision": 0.5384615384615384,
+              "recall": 0.6176470588235294,
+              "f1": 0.5753424657534246
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 14,
+              "fp": 19,
+              "fn": 20,
+              "precision": 0.42424242424242425,
+              "recall": 0.4117647058823529,
+              "f1": 0.417910447761194
+            },
+            "offset": {
+              "tp": 6,
+              "fp": 27,
+              "fn": 28,
+              "precision": 0.18181818181818182,
+              "recall": 0.17647058823529413,
+              "f1": 0.1791044776119403
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 24,
+              "fp": 15,
+              "fn": 10,
+              "precision": 0.6153846153846154,
+              "recall": 0.7058823529411765,
+              "f1": 0.6575342465753424
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 18,
+              "fn": 13,
+              "precision": 0.5384615384615384,
+              "recall": 0.6176470588235294,
+              "f1": 0.5753424657534246
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 23,
+              "fp": 16,
+              "fn": 5,
+              "precision": 0.5897435897435898,
+              "recall": 0.8214285714285714,
+              "f1": 0.6865671641791045
+            },
+            "offset": {
+              "tp": 19,
+              "fp": 20,
+              "fn": 9,
+              "precision": 0.48717948717948717,
+              "recall": 0.6785714285714286,
+              "f1": 0.5671641791044776
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 18,
+              "fp": 15,
+              "fn": 10,
+              "precision": 0.5454545454545454,
+              "recall": 0.6428571428571429,
+              "f1": 0.5901639344262295
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 23,
+              "fn": 18,
+              "precision": 0.30303030303030304,
+              "recall": 0.35714285714285715,
+              "f1": 0.32786885245901637
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 23,
+              "fp": 16,
+              "fn": 5,
+              "precision": 0.5897435897435898,
+              "recall": 0.8214285714285714,
+              "f1": 0.6865671641791045
+            },
+            "offset": {
+              "tp": 19,
+              "fp": 20,
+              "fn": 9,
+              "precision": 0.48717948717948717,
+              "recall": 0.6785714285714286,
+              "f1": 0.5671641791044776
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_27",
+      "method": "basicPitch",
+      "duration": 14.0178125,
+      "stageSha256": "0a308484c7c395b1fe198265c8a7d74226a317e209d0ee8b0ed8e63385bc7884",
+      "inputHash": "2dc1fe6458ca8fbd626b63d6fd6ce91f9102da112b67ec99e062de749ae75849",
+      "inputNotes": 30,
+      "before": {
+        "attacks": 30,
+        "omittedNotes": 0,
+        "eventCount": 65,
+        "buildMs": 0.0072079999999914435,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 30,
+            "mean": 0.003486318972033309,
+            "min": -0.11880952380952436,
+            "p05": -0.07236961451247304,
+            "p50": 0.015090702947846424,
+            "p95": 0.07043083900226854,
+            "max": 0.09236689342403537
+          },
+          "falseRests": 21,
+          "falseRestSeconds": 0.8802612244897956,
+          "filledReferenceRestSeconds": 0.35866666666667,
+          "performanceReattacks": 3,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.06234058956916044,
+          "maxOffsetError": 0.0624598639455769
+        }
+      },
+      "after": {
+        "attacks": 30,
+        "omittedNotes": 0,
+        "eventCount": 136,
+        "buildMs": 0.04858299999995097,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 30,
+            "mean": 0.0014029856386999753,
+            "min": -0.028639455782313306,
+            "p05": -0.0241893424036288,
+            "p50": 0.0026105442176875826,
+            "p95": 0.015090702947846424,
+            "max": 0.028126530612246015
+          },
+          "falseRests": 20,
+          "falseRestSeconds": 0.17850600907029435,
+          "filledReferenceRestSeconds": 0.0981014739229027,
+          "performanceReattacks": 3,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.01528854875283514,
+          "maxOffsetError": 0.019480612244898055
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.01528854875283514,
+          "maxOffsetError": 0.019480612244898055,
+          "outputAttacksVerified": 30,
+          "issues": [
+            {
+              "sourceIds": [
+                26,
+                27
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            }
+          ]
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 20,
+              "fp": 10,
+              "fn": 14,
+              "precision": 0.6666666666666666,
+              "recall": 0.5882352941176471,
+              "f1": 0.625
+            },
+            "offset": {
+              "tp": 7,
+              "fp": 23,
+              "fn": 27,
+              "precision": 0.23333333333333334,
+              "recall": 0.20588235294117646,
+              "f1": 0.21875
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 18,
+              "fp": 12,
+              "fn": 16,
+              "precision": 0.6,
+              "recall": 0.5294117647058824,
+              "f1": 0.5625
+            },
+            "offset": {
+              "tp": 7,
+              "fp": 23,
+              "fn": 27,
+              "precision": 0.23333333333333334,
+              "recall": 0.20588235294117646,
+              "f1": 0.21875
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 19,
+              "fp": 11,
+              "fn": 15,
+              "precision": 0.6333333333333333,
+              "recall": 0.5588235294117647,
+              "f1": 0.59375
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 22,
+              "fn": 26,
+              "precision": 0.26666666666666666,
+              "recall": 0.23529411764705882,
+              "f1": 0.25
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 19,
+              "fp": 11,
+              "fn": 9,
+              "precision": 0.6333333333333333,
+              "recall": 0.6785714285714286,
+              "f1": 0.6551724137931034
+            },
+            "offset": {
+              "tp": 6,
+              "fp": 24,
+              "fn": 22,
+              "precision": 0.2,
+              "recall": 0.21428571428571427,
+              "f1": 0.20689655172413793
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 19,
+              "fp": 11,
+              "fn": 9,
+              "precision": 0.6333333333333333,
+              "recall": 0.6785714285714286,
+              "f1": 0.6551724137931034
+            },
+            "offset": {
+              "tp": 7,
+              "fp": 23,
+              "fn": 21,
+              "precision": 0.23333333333333334,
+              "recall": 0.25,
+              "f1": 0.2413793103448276
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 19,
+              "fp": 11,
+              "fn": 9,
+              "precision": 0.6333333333333333,
+              "recall": 0.6785714285714286,
+              "f1": 0.6551724137931034
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 22,
+              "fn": 20,
+              "precision": 0.26666666666666666,
+              "recall": 0.2857142857142857,
+              "f1": 0.27586206896551724
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_29",
+      "method": "yin",
+      "duration": 14.893479166666667,
+      "stageSha256": "6301d5b76c6744ee7348b5f5acd5921e074bd7d248545a51329cc12360565438",
+      "inputHash": "afc6bf7b5d1751501cd6850398849150c6af28b19243833034ec3f18a1146e3a",
+      "inputNotes": 53,
+      "before": {
+        "attacks": 43,
+        "omittedNotes": 9,
+        "eventCount": 91,
+        "buildMs": 0.011958999999990283,
+        "diagnostics": {
+          "lost": 10,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 43,
+            "mean": 0.01767441860465129,
+            "min": -0.10999999999999943,
+            "p05": -0.054999999999999716,
+            "p50": 0.025000000000000244,
+            "p95": 0.08500000000000019,
+            "max": 0.14000000000000057
+          },
+          "falseRests": 33,
+          "falseRestSeconds": 1.2899999999999947,
+          "filledReferenceRestSeconds": 0.8234791666666728,
+          "performanceReattacks": 4,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.0600000000000005,
+          "maxOffsetError": 0.09500000000000064
+        }
+      },
+      "after": {
+        "attacks": 53,
+        "omittedNotes": 0,
+        "eventCount": 189,
+        "buildMs": 0.07383300000003601,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 53,
+            "mean": -0.0011556603773583696,
+            "min": -0.027499999999999858,
+            "p05": -0.019999999999999574,
+            "p50": -0.002500000000001279,
+            "p95": 0.015000000000000568,
+            "max": 0.025000000000000355
+          },
+          "falseRests": 42,
+          "falseRestSeconds": 0.42000000000000204,
+          "filledReferenceRestSeconds": 0.20750000000000557,
+          "performanceReattacks": 4,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.016249999999997655,
+          "maxOffsetError": 0.018749999999998934
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.016249999999997655,
+          "maxOffsetError": 0.018749999999998934,
+          "outputAttacksVerified": 53,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 23,
+              "fp": 30,
+              "fn": 13,
+              "precision": 0.4339622641509434,
+              "recall": 0.6388888888888888,
+              "f1": 0.5168539325842697
+            },
+            "offset": {
+              "tp": 18,
+              "fp": 35,
+              "fn": 18,
+              "precision": 0.33962264150943394,
+              "recall": 0.5,
+              "f1": 0.4044943820224719
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 19,
+              "fp": 24,
+              "fn": 17,
+              "precision": 0.4418604651162791,
+              "recall": 0.5277777777777778,
+              "f1": 0.4810126582278481
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 28,
+              "fn": 21,
+              "precision": 0.3488372093023256,
+              "recall": 0.4166666666666667,
+              "f1": 0.379746835443038
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 22,
+              "fp": 31,
+              "fn": 14,
+              "precision": 0.41509433962264153,
+              "recall": 0.6111111111111112,
+              "f1": 0.4943820224719101
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 36,
+              "fn": 19,
+              "precision": 0.32075471698113206,
+              "recall": 0.4722222222222222,
+              "f1": 0.38202247191011235
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 20,
+              "fp": 33,
+              "fn": 12,
+              "precision": 0.37735849056603776,
+              "recall": 0.625,
+              "f1": 0.47058823529411764
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 38,
+              "fn": 17,
+              "precision": 0.2830188679245283,
+              "recall": 0.46875,
+              "f1": 0.35294117647058826
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 17,
+              "fp": 26,
+              "fn": 15,
+              "precision": 0.3953488372093023,
+              "recall": 0.53125,
+              "f1": 0.4533333333333333
+            },
+            "offset": {
+              "tp": 13,
+              "fp": 30,
+              "fn": 19,
+              "precision": 0.3023255813953488,
+              "recall": 0.40625,
+              "f1": 0.3466666666666667
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 20,
+              "fp": 33,
+              "fn": 12,
+              "precision": 0.37735849056603776,
+              "recall": 0.625,
+              "f1": 0.47058823529411764
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 38,
+              "fn": 17,
+              "precision": 0.2830188679245283,
+              "recall": 0.46875,
+              "f1": 0.35294117647058826
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_29",
+      "method": "basicPitch",
+      "duration": 14.893479166666667,
+      "stageSha256": "6301d5b76c6744ee7348b5f5acd5921e074bd7d248545a51329cc12360565438",
+      "inputHash": "f97db8be07a167db48aaf08df216fe593f81177a61c9395bc59ad8109228d042",
+      "inputNotes": 28,
+      "before": {
+        "attacks": 27,
+        "omittedNotes": 1,
+        "eventCount": 61,
+        "buildMs": 0.0065830000000346445,
+        "diagnostics": {
+          "lost": 1,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 27,
+            "mean": 0.004771798101956859,
+            "min": -0.06075963718820887,
+            "p05": -0.049149659863945594,
+            "p50": 0.0034807256235827033,
+            "p95": 0.05263038548752874,
+            "max": 0.0917120181405906
+          },
+          "falseRests": 22,
+          "falseRestSeconds": 0.8306040816326501,
+          "filledReferenceRestSeconds": 0.2572000000000001,
+          "performanceReattacks": 1,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.05828843537415018,
+          "maxOffsetError": 0.056230385487528345
+        }
+      },
+      "after": {
+        "attacks": 28,
+        "omittedNotes": 0,
+        "eventCount": 92,
+        "buildMs": 0.032209000000023025,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 28,
+            "mean": 0.0016988824101069294,
+            "min": -0.04740929705215402,
+            "p05": -0.03947845804988592,
+            "p50": 0.0034807256235822592,
+            "p95": 0.03657029478458185,
+            "max": 0.04818027210884379
+          },
+          "falseRests": 21,
+          "falseRestSeconds": 0.3547240362811782,
+          "filledReferenceRestSeconds": 0.13560589569160797,
+          "performanceReattacks": 1,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.03409909297052138,
+          "maxOffsetError": 0.02947006802721086
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.03409909297052138,
+          "maxOffsetError": 0.02947006802721086,
+          "outputAttacksVerified": 28,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 20,
+              "fp": 8,
+              "fn": 16,
+              "precision": 0.7142857142857143,
+              "recall": 0.5555555555555556,
+              "f1": 0.625
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 19,
+              "fn": 27,
+              "precision": 0.32142857142857145,
+              "recall": 0.25,
+              "f1": 0.28125
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 15,
+              "fp": 12,
+              "fn": 21,
+              "precision": 0.5555555555555556,
+              "recall": 0.4166666666666667,
+              "f1": 0.47619047619047616
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 19,
+              "fn": 28,
+              "precision": 0.2962962962962963,
+              "recall": 0.2222222222222222,
+              "f1": 0.25396825396825395
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 20,
+              "fp": 8,
+              "fn": 16,
+              "precision": 0.7142857142857143,
+              "recall": 0.5555555555555556,
+              "f1": 0.625
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 18,
+              "fn": 26,
+              "precision": 0.35714285714285715,
+              "recall": 0.2777777777777778,
+              "f1": 0.3125
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 19,
+              "fp": 9,
+              "fn": 13,
+              "precision": 0.6785714285714286,
+              "recall": 0.59375,
+              "f1": 0.6333333333333333
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 19,
+              "fn": 23,
+              "precision": 0.32142857142857145,
+              "recall": 0.28125,
+              "f1": 0.3
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 15,
+              "fp": 12,
+              "fn": 17,
+              "precision": 0.5555555555555556,
+              "recall": 0.46875,
+              "f1": 0.5084745762711864
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 19,
+              "fn": 24,
+              "precision": 0.2962962962962963,
+              "recall": 0.25,
+              "f1": 0.2711864406779661
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 19,
+              "fp": 9,
+              "fn": 13,
+              "precision": 0.6785714285714286,
+              "recall": 0.59375,
+              "f1": 0.6333333333333333
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 19,
+              "fn": 23,
+              "precision": 0.32142857142857145,
+              "recall": 0.28125,
+              "f1": 0.3
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_31",
+      "method": "yin",
+      "duration": 14.033479166666666,
+      "stageSha256": "b69dd13909ed5426a5cb7dd8e6f7692d70f6c38504854ae894d1a771692f17d8",
+      "inputHash": "8c86de7d898ecc646cfc300c6e695a99f0e77b5c755a0927050ee584ceb3b9d8",
+      "inputNotes": 46,
+      "before": {
+        "attacks": 38,
+        "omittedNotes": 8,
+        "eventCount": 81,
+        "buildMs": 0.009749999999996817,
+        "diagnostics": {
+          "lost": 8,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 38,
+            "mean": 0.012763157894737176,
+            "min": -0.08499999999999996,
+            "p05": -0.08499999999999996,
+            "p50": 0.015000000000000568,
+            "p95": 0.08500000000000041,
+            "max": 0.11000000000000032
+          },
+          "falseRests": 31,
+          "falseRestSeconds": 1.3349999999999953,
+          "filledReferenceRestSeconds": 0.7534791666666729,
+          "performanceReattacks": 5,
+          "scoreReattacks": 6
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.0600000000000005,
+          "maxOffsetError": 0.0600000000000005
+        }
+      },
+      "after": {
+        "attacks": 46,
+        "omittedNotes": 0,
+        "eventCount": 128,
+        "buildMs": 0.052957999999989624,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 46,
+            "mean": -0.001739130434782299,
+            "min": -0.06749999999999967,
+            "p05": -0.03750000000000053,
+            "p50": -0.0024999999999999467,
+            "p95": 0.032500000000000195,
+            "max": 0.057500000000000995
+          },
+          "falseRests": 36,
+          "falseRestSeconds": 0.779999999999998,
+          "filledReferenceRestSeconds": 0.44750000000000534,
+          "performanceReattacks": 5,
+          "scoreReattacks": 5
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.040000000000000036,
+          "maxOffsetError": 0.042500000000000204
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.040000000000000036,
+          "maxOffsetError": 0.042500000000000204,
+          "outputAttacksVerified": 46,
+          "issues": [
+            {
+              "sourceIds": [
+                3,
+                4
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            },
+            {
+              "sourceIds": [
+                22,
+                23
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            }
+          ]
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 28,
+              "fp": 18,
+              "fn": 19,
+              "precision": 0.6086956521739131,
+              "recall": 0.5957446808510638,
+              "f1": 0.6021505376344086
+            },
+            "offset": {
+              "tp": 24,
+              "fp": 22,
+              "fn": 23,
+              "precision": 0.5217391304347826,
+              "recall": 0.5106382978723404,
+              "f1": 0.5161290322580645
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 25,
+              "fp": 13,
+              "fn": 22,
+              "precision": 0.6578947368421053,
+              "recall": 0.5319148936170213,
+              "f1": 0.5882352941176471
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 26,
+              "fn": 35,
+              "precision": 0.3157894736842105,
+              "recall": 0.2553191489361702,
+              "f1": 0.2823529411764706
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 28,
+              "fp": 18,
+              "fn": 19,
+              "precision": 0.6086956521739131,
+              "recall": 0.5957446808510638,
+              "f1": 0.6021505376344086
+            },
+            "offset": {
+              "tp": 22,
+              "fp": 24,
+              "fn": 25,
+              "precision": 0.4782608695652174,
+              "recall": 0.46808510638297873,
+              "f1": 0.4731182795698925
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 21,
+              "fp": 25,
+              "fn": 17,
+              "precision": 0.45652173913043476,
+              "recall": 0.5526315789473685,
+              "f1": 0.5
+            },
+            "offset": {
+              "tp": 18,
+              "fp": 28,
+              "fn": 20,
+              "precision": 0.391304347826087,
+              "recall": 0.47368421052631576,
+              "f1": 0.42857142857142855
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 22,
+              "fp": 16,
+              "fn": 16,
+              "precision": 0.5789473684210527,
+              "recall": 0.5789473684210527,
+              "f1": 0.5789473684210527
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 27,
+              "fn": 27,
+              "precision": 0.2894736842105263,
+              "recall": 0.2894736842105263,
+              "f1": 0.2894736842105263
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 22,
+              "fp": 24,
+              "fn": 16,
+              "precision": 0.4782608695652174,
+              "recall": 0.5789473684210527,
+              "f1": 0.5238095238095238
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 29,
+              "fn": 21,
+              "precision": 0.3695652173913043,
+              "recall": 0.4473684210526316,
+              "f1": 0.40476190476190477
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_31",
+      "method": "basicPitch",
+      "duration": 14.033479166666666,
+      "stageSha256": "b69dd13909ed5426a5cb7dd8e6f7692d70f6c38504854ae894d1a771692f17d8",
+      "inputHash": "025fca31eb5d021ccfeaf5d5f88c77ce2ee7d7b6ce839270c2aae70bad722533",
+      "inputNotes": 32,
+      "before": {
+        "attacks": 32,
+        "omittedNotes": 0,
+        "eventCount": 77,
+        "buildMs": 0.008791999999971267,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 32,
+            "mean": 0.010097633219954615,
+            "min": -0.08049886621315316,
+            "p05": -0.07507936507936463,
+            "p50": 0.01651655328798185,
+            "p95": 0.06424036281179113,
+            "max": 0.09507664399093052
+          },
+          "falseRests": 19,
+          "falseRestSeconds": 0.6174616780045364,
+          "filledReferenceRestSeconds": 0.5129165532879805,
+          "performanceReattacks": 4,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.06103718820861648,
+          "maxOffsetError": 0.060462585034011695
+        }
+      },
+      "after": {
+        "attacks": 32,
+        "omittedNotes": 0,
+        "eventCount": 102,
+        "buildMs": 0.03699999999997772,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 32,
+            "mean": 0.00033200821995461524,
+            "min": -0.0446995464852602,
+            "p05": -0.040249433106575694,
+            "p50": -0.0009693877551022467,
+            "p95": 0.03657029478458007,
+            "max": 0.05263038548752874
+          },
+          "falseRests": 24,
+          "falseRestSeconds": 0.4749809523809543,
+          "filledReferenceRestSeconds": 0.17252857142857025,
+          "performanceReattacks": 4,
+          "scoreReattacks": 4
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.031071655328799075,
+          "maxOffsetError": 0.031071655328799075
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.031071655328799075,
+          "maxOffsetError": 0.031071655328799075,
+          "outputAttacksVerified": 32,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 25,
+              "fp": 7,
+              "fn": 22,
+              "precision": 0.78125,
+              "recall": 0.5319148936170213,
+              "f1": 0.6329113924050633
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 22,
+              "fn": 37,
+              "precision": 0.3125,
+              "recall": 0.2127659574468085,
+              "f1": 0.25316455696202533
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 18,
+              "fp": 14,
+              "fn": 29,
+              "precision": 0.5625,
+              "recall": 0.3829787234042553,
+              "f1": 0.45569620253164556
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 24,
+              "fn": 39,
+              "precision": 0.25,
+              "recall": 0.1702127659574468,
+              "f1": 0.20253164556962025
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 22,
+              "fp": 10,
+              "fn": 25,
+              "precision": 0.6875,
+              "recall": 0.46808510638297873,
+              "f1": 0.5569620253164557
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 24,
+              "fn": 39,
+              "precision": 0.25,
+              "recall": 0.1702127659574468,
+              "f1": 0.20253164556962025
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 23,
+              "fp": 9,
+              "fn": 15,
+              "precision": 0.71875,
+              "recall": 0.6052631578947368,
+              "f1": 0.6571428571428571
+            },
+            "offset": {
+              "tp": 13,
+              "fp": 19,
+              "fn": 25,
+              "precision": 0.40625,
+              "recall": 0.34210526315789475,
+              "f1": 0.37142857142857144
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 16,
+              "fp": 16,
+              "fn": 22,
+              "precision": 0.5,
+              "recall": 0.42105263157894735,
+              "f1": 0.45714285714285713
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 23,
+              "fn": 29,
+              "precision": 0.28125,
+              "recall": 0.23684210526315788,
+              "f1": 0.2571428571428571
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 21,
+              "fp": 11,
+              "fn": 17,
+              "precision": 0.65625,
+              "recall": 0.5526315789473685,
+              "f1": 0.6
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 21,
+              "fn": 27,
+              "precision": 0.34375,
+              "recall": 0.2894736842105263,
+              "f1": 0.3142857142857143
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_32",
+      "method": "yin",
+      "duration": 25.033479166666666,
+      "stageSha256": "a068eb69002f219a33a76984cb0b210c7d1de561edf499fd223f462d795f4434",
+      "inputHash": "3db673d8fbd057c92993b5c8c05df076c5c8b97d51ba710f0674bcfd08910299",
+      "inputNotes": 73,
+      "before": {
+        "attacks": 63,
+        "omittedNotes": 9,
+        "eventCount": 136,
+        "buildMs": 0.015291999999988093,
+        "diagnostics": {
+          "lost": 10,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 63,
+            "mean": 0.009523809523810512,
+            "min": -0.10500000000000043,
+            "p05": -0.07999999999999985,
+            "p50": 0.004999999999999893,
+            "p95": 0.06500000000000128,
+            "max": 0.360000000000003
+          },
+          "falseRests": 51,
+          "falseRestSeconds": 2.059999999999982,
+          "filledReferenceRestSeconds": 0.8650000000000236,
+          "performanceReattacks": 12,
+          "scoreReattacks": 11
+        },
+        "lostReattacksByOverlap": 2,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.060000000000002274,
+          "maxOffsetError": 0.3000000000000007
+        }
+      },
+      "after": {
+        "attacks": 73,
+        "omittedNotes": 0,
+        "eventCount": 261,
+        "buildMs": 0.11220900000000711,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 73,
+            "mean": 0.0007363013698640558,
+            "min": -0.03500000000000014,
+            "p05": -0.018749999999999822,
+            "p50": 0.002500000000000391,
+            "p95": 0.022500000000004405,
+            "max": 0.028750000000000497
+          },
+          "falseRests": 51,
+          "falseRestSeconds": 0.543749999999967,
+          "filledReferenceRestSeconds": 0.33625000000001914,
+          "performanceReattacks": 12,
+          "scoreReattacks": 12
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.025000000000000355,
+          "maxOffsetError": 0.018749999999999822
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.025000000000000355,
+          "maxOffsetError": 0.018749999999999822,
+          "outputAttacksVerified": 73,
+          "issues": [
+            {
+              "sourceIds": [
+                14,
+                15
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            },
+            {
+              "sourceIds": [
+                25,
+                26
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            },
+            {
+              "sourceIds": [
+                37,
+                38
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            }
+          ]
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 30,
+              "fp": 43,
+              "fn": 27,
+              "precision": 0.410958904109589,
+              "recall": 0.5263157894736842,
+              "f1": 0.46153846153846156
+            },
+            "offset": {
+              "tp": 20,
+              "fp": 53,
+              "fn": 37,
+              "precision": 0.273972602739726,
+              "recall": 0.3508771929824561,
+              "f1": 0.3076923076923077
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 23,
+              "fp": 40,
+              "fn": 34,
+              "precision": 0.36507936507936506,
+              "recall": 0.40350877192982454,
+              "f1": 0.38333333333333336
+            },
+            "offset": {
+              "tp": 12,
+              "fp": 51,
+              "fn": 45,
+              "precision": 0.19047619047619047,
+              "recall": 0.21052631578947367,
+              "f1": 0.2
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 31,
+              "fp": 42,
+              "fn": 26,
+              "precision": 0.4246575342465753,
+              "recall": 0.543859649122807,
+              "f1": 0.47692307692307695
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 52,
+              "fn": 36,
+              "precision": 0.2876712328767123,
+              "recall": 0.3684210526315789,
+              "f1": 0.3230769230769231
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 30,
+              "fp": 43,
+              "fn": 25,
+              "precision": 0.410958904109589,
+              "recall": 0.5454545454545454,
+              "f1": 0.46875
+            },
+            "offset": {
+              "tp": 16,
+              "fp": 57,
+              "fn": 39,
+              "precision": 0.2191780821917808,
+              "recall": 0.2909090909090909,
+              "f1": 0.25
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 21,
+              "fp": 42,
+              "fn": 34,
+              "precision": 0.3333333333333333,
+              "recall": 0.38181818181818183,
+              "f1": 0.3559322033898305
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 53,
+              "fn": 45,
+              "precision": 0.15873015873015872,
+              "recall": 0.18181818181818182,
+              "f1": 0.1694915254237288
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 31,
+              "fp": 42,
+              "fn": 24,
+              "precision": 0.4246575342465753,
+              "recall": 0.5636363636363636,
+              "f1": 0.484375
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 56,
+              "fn": 38,
+              "precision": 0.2328767123287671,
+              "recall": 0.3090909090909091,
+              "f1": 0.265625
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_32",
+      "method": "basicPitch",
+      "duration": 25.033479166666666,
+      "stageSha256": "a068eb69002f219a33a76984cb0b210c7d1de561edf499fd223f462d795f4434",
+      "inputHash": "a56ec074936d61aea8cbd337029a777ca8506d89b93c54e6cbfc0e6bb9b33df5",
+      "inputNotes": 47,
+      "before": {
+        "attacks": 47,
+        "omittedNotes": 0,
+        "eventCount": 125,
+        "buildMs": 0.011334000000033484,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 47,
+            "mean": 0.0030837361895112757,
+            "min": -0.11261904761904695,
+            "p05": -0.08397959183673454,
+            "p50": 0.0034807256235822592,
+            "p95": 0.08746031746031768,
+            "max": 0.09907029478458096
+          },
+          "falseRests": 34,
+          "falseRestSeconds": 1.2127174603174538,
+          "filledReferenceRestSeconds": 0.6876367346938754,
+          "performanceReattacks": 9,
+          "scoreReattacks": 9
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.061669387755102,
+          "maxOffsetError": 0.061669387755102
+        }
+      },
+      "after": {
+        "attacks": 47,
+        "omittedNotes": 0,
+        "eventCount": 169,
+        "buildMs": 0.04887500000000955,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 47,
+            "mean": -0.0022354127466589326,
+            "min": -0.05456916099773235,
+            "p05": -0.04444149659863861,
+            "p50": -0.005419501133786753,
+            "p95": 0.04005102040816322,
+            "max": 0.04547052154194986
+          },
+          "falseRests": 34,
+          "falseRestSeconds": 0.7202192743764182,
+          "filledReferenceRestSeconds": 0.2666752834467143,
+          "performanceReattacks": 9,
+          "scoreReattacks": 9
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.040723356009070955,
+          "maxOffsetError": 0.031052154195011283
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.040723356009070955,
+          "maxOffsetError": 0.031052154195011283,
+          "outputAttacksVerified": 47,
+          "issues": [
+            {
+              "sourceIds": [
+                25,
+                26
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            }
+          ]
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 34,
+              "fp": 13,
+              "fn": 23,
+              "precision": 0.723404255319149,
+              "recall": 0.5964912280701754,
+              "f1": 0.6538461538461539
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 26,
+              "fn": 36,
+              "precision": 0.44680851063829785,
+              "recall": 0.3684210526315789,
+              "f1": 0.40384615384615385
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 25,
+              "fp": 22,
+              "fn": 32,
+              "precision": 0.5319148936170213,
+              "recall": 0.43859649122807015,
+              "f1": 0.4807692307692308
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 36,
+              "fn": 46,
+              "precision": 0.23404255319148937,
+              "recall": 0.19298245614035087,
+              "f1": 0.21153846153846154
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 28,
+              "fp": 19,
+              "fn": 29,
+              "precision": 0.5957446808510638,
+              "recall": 0.49122807017543857,
+              "f1": 0.5384615384615384
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 32,
+              "fn": 42,
+              "precision": 0.3191489361702128,
+              "recall": 0.2631578947368421,
+              "f1": 0.28846153846153844
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 34,
+              "fp": 13,
+              "fn": 21,
+              "precision": 0.723404255319149,
+              "recall": 0.6181818181818182,
+              "f1": 0.6666666666666666
+            },
+            "offset": {
+              "tp": 19,
+              "fp": 28,
+              "fn": 36,
+              "precision": 0.40425531914893614,
+              "recall": 0.34545454545454546,
+              "f1": 0.37254901960784315
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 22,
+              "fp": 25,
+              "fn": 33,
+              "precision": 0.46808510638297873,
+              "recall": 0.4,
+              "f1": 0.43137254901960786
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 39,
+              "fn": 47,
+              "precision": 0.1702127659574468,
+              "recall": 0.14545454545454545,
+              "f1": 0.1568627450980392
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 27,
+              "fp": 20,
+              "fn": 28,
+              "precision": 0.574468085106383,
+              "recall": 0.4909090909090909,
+              "f1": 0.5294117647058824
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 32,
+              "fn": 40,
+              "precision": 0.3191489361702128,
+              "recall": 0.2727272727272727,
+              "f1": 0.29411764705882354
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_34",
+      "method": "yin",
+      "duration": 24.853479166666666,
+      "stageSha256": "7a49c396ce2121ceb2b351a18437b7479e65c80e96429033a97d901b4d4a5617",
+      "inputHash": "20cfdd9a6d4b0fa24fe1f230742447b9106597b45761a0edbc45eccdf4cb05fc",
+      "inputNotes": 112,
+      "before": {
+        "attacks": 71,
+        "omittedNotes": 38,
+        "eventCount": 147,
+        "buildMs": 0.020332999999993717,
+        "diagnostics": {
+          "lost": 41,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 71,
+            "mean": 0.036760563380282656,
+            "min": -0.0799999999999983,
+            "p05": -0.05499999999999616,
+            "p50": 0.03500000000000014,
+            "p95": 0.11000000000000032,
+            "max": 0.2650000000000041
+          },
+          "falseRests": 77,
+          "falseRestSeconds": 2.949999999999947,
+          "filledReferenceRestSeconds": 2.000000000000032,
+          "performanceReattacks": 12,
+          "scoreReattacks": 14
+        },
+        "lostReattacksByOverlap": 3,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.060000000000002274,
+          "maxOffsetError": 0.28000000000000114
+        }
+      },
+      "after": {
+        "attacks": 112,
+        "omittedNotes": 0,
+        "eventCount": 356,
+        "buildMs": 0.14008400000000165,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 112,
+            "mean": -0.0000446428571417995,
+            "min": -0.027499999999999858,
+            "p05": -0.018749999999997158,
+            "p50": 0.0012500000000006395,
+            "p95": 0.01625000000000032,
+            "max": 0.022500000000004405
+          },
+          "falseRests": 78,
+          "falseRestSeconds": 0.7799999999999623,
+          "filledReferenceRestSeconds": 0.45875000000003086,
+          "performanceReattacks": 12,
+          "scoreReattacks": 12
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.019999999999999574,
+          "maxOffsetError": 0.019999999999999574
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.019999999999999574,
+          "maxOffsetError": 0.019999999999999574,
+          "outputAttacksVerified": 112,
+          "issues": [
+            {
+              "sourceIds": [
+                41,
+                42
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            }
+          ]
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 27,
+              "fp": 85,
+              "fn": 62,
+              "precision": 0.24107142857142858,
+              "recall": 0.30337078651685395,
+              "f1": 0.26865671641791045
+            },
+            "offset": {
+              "tp": 15,
+              "fp": 97,
+              "fn": 74,
+              "precision": 0.13392857142857142,
+              "recall": 0.16853932584269662,
+              "f1": 0.14925373134328357
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 22,
+              "fp": 49,
+              "fn": 67,
+              "precision": 0.30985915492957744,
+              "recall": 0.24719101123595505,
+              "f1": 0.275
+            },
+            "offset": {
+              "tp": 10,
+              "fp": 61,
+              "fn": 79,
+              "precision": 0.14084507042253522,
+              "recall": 0.11235955056179775,
+              "f1": 0.125
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 26,
+              "fp": 86,
+              "fn": 63,
+              "precision": 0.23214285714285715,
+              "recall": 0.29213483146067415,
+              "f1": 0.25870646766169153
+            },
+            "offset": {
+              "tp": 14,
+              "fp": 98,
+              "fn": 75,
+              "precision": 0.125,
+              "recall": 0.15730337078651685,
+              "f1": 0.13930348258706468
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 30,
+              "fp": 82,
+              "fn": 65,
+              "precision": 0.26785714285714285,
+              "recall": 0.3157894736842105,
+              "f1": 0.2898550724637681
+            },
+            "offset": {
+              "tp": 16,
+              "fp": 96,
+              "fn": 79,
+              "precision": 0.14285714285714285,
+              "recall": 0.16842105263157894,
+              "f1": 0.15458937198067632
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 21,
+              "fp": 50,
+              "fn": 74,
+              "precision": 0.29577464788732394,
+              "recall": 0.22105263157894736,
+              "f1": 0.25301204819277107
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 62,
+              "fn": 86,
+              "precision": 0.1267605633802817,
+              "recall": 0.09473684210526316,
+              "f1": 0.10843373493975904
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 30,
+              "fp": 82,
+              "fn": 65,
+              "precision": 0.26785714285714285,
+              "recall": 0.3157894736842105,
+              "f1": 0.2898550724637681
+            },
+            "offset": {
+              "tp": 14,
+              "fp": 98,
+              "fn": 81,
+              "precision": 0.125,
+              "recall": 0.14736842105263157,
+              "f1": 0.13526570048309178
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_34",
+      "method": "basicPitch",
+      "duration": 24.853479166666666,
+      "stageSha256": "7a49c396ce2121ceb2b351a18437b7479e65c80e96429033a97d901b4d4a5617",
+      "inputHash": "5ba8efe5892d0a24dfece771387bb97f2866dfc377bbd87ad74b29c64fbad5e2",
+      "inputNotes": 55,
+      "before": {
+        "attacks": 55,
+        "omittedNotes": 0,
+        "eventCount": 119,
+        "buildMs": 0.027749999999969077,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 55,
+            "mean": 0.0010424819624819236,
+            "min": -0.10719954648526109,
+            "p05": -0.08939909297052129,
+            "p50": 0.006961451247165407,
+            "p95": 0.06424036281179113,
+            "max": 0.10526077097505748
+          },
+          "falseRests": 42,
+          "falseRestSeconds": 1.620675736961451,
+          "filledReferenceRestSeconds": 0.5604072562358255,
+          "performanceReattacks": 3,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.06082040816326284,
+          "maxOffsetError": 0.06004943310657396
+        }
+      },
+      "after": {
+        "attacks": 55,
+        "omittedNotes": 0,
+        "eventCount": 232,
+        "buildMs": 0.10775000000001,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 55,
+            "mean": -0.0012302453102453492,
+            "min": -0.02950963718820887,
+            "p05": -0.025059523809523476,
+            "p50": -0.0015815192743762196,
+            "p95": 0.017800453514738912,
+            "max": 0.019441609977324248
+          },
+          "falseRests": 40,
+          "falseRestSeconds": 0.4240960317460338,
+          "filledReferenceRestSeconds": 0.10027562358276554,
+          "performanceReattacks": 3,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.015308616780044915,
+          "maxOffsetError": 0.020549773242630298
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.015308616780044915,
+          "maxOffsetError": 0.020549773242630298,
+          "outputAttacksVerified": 55,
+          "issues": [
+            {
+              "sourceIds": [
+                3,
+                4
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            }
+          ]
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 40,
+              "fp": 15,
+              "fn": 49,
+              "precision": 0.7272727272727273,
+              "recall": 0.449438202247191,
+              "f1": 0.5555555555555556
+            },
+            "offset": {
+              "tp": 19,
+              "fp": 36,
+              "fn": 70,
+              "precision": 0.34545454545454546,
+              "recall": 0.21348314606741572,
+              "f1": 0.2638888888888889
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 27,
+              "fp": 28,
+              "fn": 62,
+              "precision": 0.4909090909090909,
+              "recall": 0.30337078651685395,
+              "f1": 0.375
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 46,
+              "fn": 80,
+              "precision": 0.16363636363636364,
+              "recall": 0.10112359550561797,
+              "f1": 0.125
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 40,
+              "fp": 15,
+              "fn": 49,
+              "precision": 0.7272727272727273,
+              "recall": 0.449438202247191,
+              "f1": 0.5555555555555556
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 34,
+              "fn": 68,
+              "precision": 0.38181818181818183,
+              "recall": 0.23595505617977527,
+              "f1": 0.2916666666666667
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 39,
+              "fp": 16,
+              "fn": 56,
+              "precision": 0.7090909090909091,
+              "recall": 0.4105263157894737,
+              "f1": 0.52
+            },
+            "offset": {
+              "tp": 13,
+              "fp": 42,
+              "fn": 82,
+              "precision": 0.23636363636363636,
+              "recall": 0.1368421052631579,
+              "f1": 0.17333333333333334
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 28,
+              "fp": 27,
+              "fn": 67,
+              "precision": 0.509090909090909,
+              "recall": 0.29473684210526313,
+              "f1": 0.37333333333333335
+            },
+            "offset": {
+              "tp": 9,
+              "fp": 46,
+              "fn": 86,
+              "precision": 0.16363636363636364,
+              "recall": 0.09473684210526316,
+              "f1": 0.12
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 38,
+              "fp": 17,
+              "fn": 57,
+              "precision": 0.6909090909090909,
+              "recall": 0.4,
+              "f1": 0.5066666666666667
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 44,
+              "fn": 84,
+              "precision": 0.2,
+              "recall": 0.11578947368421053,
+              "f1": 0.14666666666666667
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_40",
+      "method": "yin",
+      "duration": 18.5778125,
+      "stageSha256": "d191b178523eab05dc29739d74628b923c89358f2fee66007358375824adb5f7",
+      "inputHash": "ad6e931b4b4e972a1ffb69ab59341158d5b51deafd88cd355c3ddbd32fc357d9",
+      "inputNotes": 53,
+      "before": {
+        "attacks": 44,
+        "omittedNotes": 9,
+        "eventCount": 97,
+        "buildMs": 0.02295800000001691,
+        "diagnostics": {
+          "lost": 9,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 44,
+            "mean": 0.004886363636363896,
+            "min": -0.09499999999999975,
+            "p05": -0.07499999999999929,
+            "p50": 0.015000000000000568,
+            "p95": 0.07500000000000284,
+            "max": 0.11500000000000199
+          },
+          "falseRests": 39,
+          "falseRestSeconds": 1.8000000000000056,
+          "filledReferenceRestSeconds": 0.7650000000000068,
+          "performanceReattacks": 3,
+          "scoreReattacks": 1
+        },
+        "lostReattacksByOverlap": 2,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.05999999999999961,
+          "maxOffsetError": 0.0600000000000005
+        }
+      },
+      "after": {
+        "attacks": 53,
+        "omittedNotes": 0,
+        "eventCount": 141,
+        "buildMs": 0.12320799999997689,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 53,
+            "mean": -0.004339622641509107,
+            "min": -0.05999999999999961,
+            "p05": -0.04749999999999943,
+            "p50": -0.0074999999999967315,
+            "p95": 0.03249999999999886,
+            "max": 0.03750000000000142
+          },
+          "falseRests": 40,
+          "falseRestSeconds": 0.9925000000000042,
+          "filledReferenceRestSeconds": 0.42500000000001004,
+          "performanceReattacks": 3,
+          "scoreReattacks": 3
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.04499999999999993,
+          "maxOffsetError": 0.04499999999999993
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.04499999999999993,
+          "maxOffsetError": 0.04499999999999993,
+          "outputAttacksVerified": 53,
+          "issues": [
+            {
+              "sourceIds": [
+                25,
+                26
+              ],
+              "reason": "原音符間の休符が最短の128分音符より短いため、間隔を確認してください。"
+            }
+          ]
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 28,
+              "fp": 25,
+              "fn": 17,
+              "precision": 0.5283018867924528,
+              "recall": 0.6222222222222222,
+              "f1": 0.5714285714285714
+            },
+            "offset": {
+              "tp": 20,
+              "fp": 33,
+              "fn": 25,
+              "precision": 0.37735849056603776,
+              "recall": 0.4444444444444444,
+              "f1": 0.40816326530612246
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 21,
+              "fp": 23,
+              "fn": 24,
+              "precision": 0.4772727272727273,
+              "recall": 0.4666666666666667,
+              "f1": 0.47191011235955055
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 27,
+              "fn": 28,
+              "precision": 0.38636363636363635,
+              "recall": 0.37777777777777777,
+              "f1": 0.38202247191011235
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 25,
+              "fp": 28,
+              "fn": 20,
+              "precision": 0.4716981132075472,
+              "recall": 0.5555555555555556,
+              "f1": 0.5102040816326531
+            },
+            "offset": {
+              "tp": 21,
+              "fp": 32,
+              "fn": 24,
+              "precision": 0.39622641509433965,
+              "recall": 0.4666666666666667,
+              "f1": 0.42857142857142855
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 23,
+              "fp": 30,
+              "fn": 13,
+              "precision": 0.4339622641509434,
+              "recall": 0.6388888888888888,
+              "f1": 0.5168539325842697
+            },
+            "offset": {
+              "tp": 16,
+              "fp": 37,
+              "fn": 20,
+              "precision": 0.3018867924528302,
+              "recall": 0.4444444444444444,
+              "f1": 0.3595505617977528
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 17,
+              "fp": 27,
+              "fn": 19,
+              "precision": 0.38636363636363635,
+              "recall": 0.4722222222222222,
+              "f1": 0.425
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 33,
+              "fn": 25,
+              "precision": 0.25,
+              "recall": 0.3055555555555556,
+              "f1": 0.275
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 19,
+              "fp": 34,
+              "fn": 17,
+              "precision": 0.3584905660377358,
+              "recall": 0.5277777777777778,
+              "f1": 0.42696629213483145
+            },
+            "offset": {
+              "tp": 13,
+              "fp": 40,
+              "fn": 23,
+              "precision": 0.24528301886792453,
+              "recall": 0.3611111111111111,
+              "f1": 0.29213483146067415
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "vocadito_40",
+      "method": "basicPitch",
+      "duration": 18.5778125,
+      "stageSha256": "d191b178523eab05dc29739d74628b923c89358f2fee66007358375824adb5f7",
+      "inputHash": "64796088fa187824db124a6a18e924bd63b327b82a8eedb2d35a4ddd883299a6",
+      "inputNotes": 43,
+      "before": {
+        "attacks": 42,
+        "omittedNotes": 1,
+        "eventCount": 88,
+        "buildMs": 0.027124999999955435,
+        "diagnostics": {
+          "lost": 1,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 42,
+            "mean": -0.00689327286470138,
+            "min": -0.12151927437641596,
+            "p05": -0.08397959183673542,
+            "p50": -0.0027097505668933763,
+            "p95": 0.049920634920635365,
+            "max": 0.11068027210884246
+          },
+          "falseRests": 32,
+          "falseRestSeconds": 1.6051251700680198,
+          "filledReferenceRestSeconds": 0.1250802721088422,
+          "performanceReattacks": 2,
+          "scoreReattacks": 2
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.06101768707483002,
+          "maxOffsetError": 0.06085941043083842
+        }
+      },
+      "after": {
+        "attacks": 43,
+        "omittedNotes": 0,
+        "eventCount": 129,
+        "buildMs": 0.08887500000003001,
+        "diagnostics": {
+          "lost": 0,
+          "added": 0,
+          "durationErrorSeconds": {
+            "n": 43,
+            "mean": 0.0010114591573064005,
+            "min": -0.05237233560090715,
+            "p05": -0.04198979591836727,
+            "p50": 0.0034807256235831474,
+            "p95": 0.041020408163265465,
+            "max": 0.04547052154195086
+          },
+          "falseRests": 28,
+          "falseRestSeconds": 0.5878029478458089,
+          "filledReferenceRestSeconds": 0.15072811791383112,
+          "performanceReattacks": 2,
+          "scoreReattacks": 2
+        },
+        "lostReattacksByOverlap": 0,
+        "overlapMatchedTiming": {
+          "maxOnsetError": 0.030618367346939124,
+          "maxOffsetError": 0.030618367346939124
+        },
+        "identity": {
+          "lost": 0,
+          "lostSourceIds": [],
+          "added": 0,
+          "duplicateAttacks": 0,
+          "changedPitches": 0,
+          "lostReattacks": 0,
+          "maxOnsetError": 0.030618367346939124,
+          "maxOffsetError": 0.030618367346939124,
+          "outputAttacksVerified": 43,
+          "issues": []
+        }
+      },
+      "annotations": {
+        "A1": {
+          "performance": {
+            "onset": {
+              "tp": 28,
+              "fp": 15,
+              "fn": 17,
+              "precision": 0.6511627906976745,
+              "recall": 0.6222222222222222,
+              "f1": 0.6363636363636364
+            },
+            "offset": {
+              "tp": 20,
+              "fp": 23,
+              "fn": 25,
+              "precision": 0.46511627906976744,
+              "recall": 0.4444444444444444,
+              "f1": 0.45454545454545453
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 21,
+              "fp": 21,
+              "fn": 24,
+              "precision": 0.5,
+              "recall": 0.4666666666666667,
+              "f1": 0.4827586206896552
+            },
+            "offset": {
+              "tp": 11,
+              "fp": 31,
+              "fn": 34,
+              "precision": 0.2619047619047619,
+              "recall": 0.24444444444444444,
+              "f1": 0.25287356321839083
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 28,
+              "fp": 15,
+              "fn": 17,
+              "precision": 0.6511627906976745,
+              "recall": 0.6222222222222222,
+              "f1": 0.6363636363636364
+            },
+            "offset": {
+              "tp": 23,
+              "fp": 20,
+              "fn": 22,
+              "precision": 0.5348837209302325,
+              "recall": 0.5111111111111111,
+              "f1": 0.5227272727272727
+            }
+          }
+        },
+        "A2": {
+          "performance": {
+            "onset": {
+              "tp": 26,
+              "fp": 17,
+              "fn": 10,
+              "precision": 0.6046511627906976,
+              "recall": 0.7222222222222222,
+              "f1": 0.6582278481012658
+            },
+            "offset": {
+              "tp": 17,
+              "fp": 26,
+              "fn": 19,
+              "precision": 0.3953488372093023,
+              "recall": 0.4722222222222222,
+              "f1": 0.43037974683544306
+            }
+          },
+          "before": {
+            "onset": {
+              "tp": 20,
+              "fp": 22,
+              "fn": 16,
+              "precision": 0.47619047619047616,
+              "recall": 0.5555555555555556,
+              "f1": 0.5128205128205128
+            },
+            "offset": {
+              "tp": 8,
+              "fp": 34,
+              "fn": 28,
+              "precision": 0.19047619047619047,
+              "recall": 0.2222222222222222,
+              "f1": 0.20512820512820512
+            }
+          },
+          "after": {
+            "onset": {
+              "tp": 26,
+              "fp": 17,
+              "fn": 10,
+              "precision": 0.6046511627906976,
+              "recall": 0.7222222222222222,
+              "f1": 0.6582278481012658
+            },
+            "offset": {
+              "tp": 20,
+              "fp": 23,
+              "fn": 16,
+              "precision": 0.46511627906976744,
+              "recall": 0.5555555555555556,
+              "f1": 0.5063291139240507
+            }
+          }
+        }
+      }
+    }
+  ],
+  "synthetic": [
+    {
+      "id": "cdc",
+      "input": [
+        {
+          "start": 0,
+          "end": 0.2,
+          "midi": 60,
+          "contour": []
+        },
+        {
+          "start": 0.2,
+          "end": 0.3,
+          "midi": 62,
+          "contour": []
+        },
+        {
+          "start": 0.3,
+          "end": 1,
+          "midi": 60,
+          "contour": []
+        }
+      ],
+      "duration": 1,
+      "beforeScore": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 8,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false
+            },
+            {
+              "tick": 8,
+              "ticks": 8,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 1
+      },
+      "afterScore": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 120,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 0
+            },
+            {
+              "tick": 120,
+              "ticks": 60,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 0
+            },
+            {
+              "tick": 180,
+              "ticks": 60,
+              "midi": 62,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 1
+            },
+            {
+              "tick": 240,
+              "ticks": 60,
+              "midi": 62,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 1
+            },
+            {
+              "tick": 300,
+              "ticks": 60,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 2
+            },
+            {
+              "tick": 360,
+              "ticks": 120,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": true,
+              "sourceId": 2
+            },
+            {
+              "tick": 480,
+              "ticks": 480,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 2
+            },
+            {
+              "tick": 960,
+              "ticks": 960,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 0,
+        "ppq": 480,
+        "sourceNotes": [
+          {
+            "start": 0,
+            "end": 0.2,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 0
+          },
+          {
+            "start": 0.2,
+            "end": 0.3,
+            "midi": 62,
+            "contour": [],
+            "sourceId": 1
+          },
+          {
+            "start": 0.3,
+            "end": 1,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 2
+          }
+        ],
+        "issues": []
+      }
+    },
+    {
+      "id": "reattack",
+      "input": [
+        {
+          "start": 0,
+          "end": 0.46,
+          "midi": 60,
+          "contour": []
+        },
+        {
+          "start": 0.46,
+          "end": 0.48,
+          "midi": 60,
+          "contour": []
+        },
+        {
+          "start": 0.48,
+          "end": 1,
+          "midi": 60,
+          "contour": []
+        }
+      ],
+      "duration": 1,
+      "beforeScore": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 4,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false
+            },
+            {
+              "tick": 4,
+              "ticks": 4,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false
+            },
+            {
+              "tick": 8,
+              "ticks": 8,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 1
+      },
+      "afterScore": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 240,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 0
+            },
+            {
+              "tick": 240,
+              "ticks": 120,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": true,
+              "sourceId": 0
+            },
+            {
+              "tick": 360,
+              "ticks": 60,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 0
+            },
+            {
+              "tick": 420,
+              "ticks": 60,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false,
+              "sourceId": 1
+            },
+            {
+              "tick": 480,
+              "ticks": 480,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": false,
+              "sourceId": 2
+            },
+            {
+              "tick": 960,
+              "ticks": 960,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 0,
+        "ppq": 480,
+        "sourceNotes": [
+          {
+            "start": 0,
+            "end": 0.46,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 0
+          },
+          {
+            "start": 0.46,
+            "end": 0.48,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 1
+          },
+          {
+            "start": 0.48,
+            "end": 1,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 2
+          }
+        ],
+        "issues": []
+      }
+    },
+    {
+      "id": "long",
+      "input": [
+        {
+          "start": 0,
+          "end": 5,
+          "midi": 60,
+          "contour": []
+        }
+      ],
+      "duration": 5,
+      "beforeScore": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 16,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true
+            }
+          ],
+          [
+            {
+              "tick": 16,
+              "ticks": 16,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": true
+            }
+          ],
+          [
+            {
+              "tick": 32,
+              "ticks": 8,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false
+            },
+            {
+              "tick": 40,
+              "ticks": 8,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 0
+      },
+      "afterScore": {
+        "bpm": 120,
+        "origin": 0,
+        "measures": [
+          [
+            {
+              "tick": 0,
+              "ticks": 1920,
+              "midi": 60,
+              "tieIn": false,
+              "tieOut": true,
+              "sourceId": 0
+            }
+          ],
+          [
+            {
+              "tick": 1920,
+              "ticks": 1920,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": true,
+              "sourceId": 0
+            }
+          ],
+          [
+            {
+              "tick": 3840,
+              "ticks": 960,
+              "midi": 60,
+              "tieIn": true,
+              "tieOut": false,
+              "sourceId": 0
+            },
+            {
+              "tick": 4800,
+              "ticks": 960,
+              "midi": null,
+              "tieIn": false,
+              "tieOut": false
+            }
+          ]
+        ],
+        "omittedNotes": 0,
+        "ppq": 480,
+        "sourceNotes": [
+          {
+            "start": 0,
+            "end": 5,
+            "midi": 60,
+            "contour": [],
+            "sourceId": 0
+          }
+        ],
+        "issues": []
+      }
+    }
+  ]
+}

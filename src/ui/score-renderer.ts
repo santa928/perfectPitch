@@ -4,7 +4,8 @@ import type { ScoreEvent } from '../notation/score.ts'
 
 /** 各小節を独立したSVGへ記譜する。フォントは同梱版を使い外部通信しない。 */
 export async function renderMeasures(host: HTMLElement, measures: ScoreEvent[][], firstMeasure: number,
-  options: { onSelect?: (tick: number) => void } = {}): Promise<void> {
+  options: { onSelect?: (tick: number) => void; ppq?: number } = {}): Promise<void> {
+  const ppq = options.ppq ?? 4, bar = ppq * 4
   await document.fonts.ready
   // FontFace.load()が開始済みであることを待ち、豆腐文字での寸法計算を防ぐ。
   await document.fonts.load('16px Bravura')
@@ -32,7 +33,7 @@ export async function renderMeasures(host: HTMLElement, measures: ScoreEvent[][]
       const pitch = event.midi === null ? null : spellPitch(event.midi)
       const note = new StaveNote({
         keys: [pitch?.key ?? (clef === 'treble' ? 'b/4' : 'd/3')],
-        duration: `${16 / event.ticks}${pitch ? '' : 'r'}`,
+        duration: `${bar / event.ticks}${pitch ? '' : 'r'}`,
         clef,
         autoStem: true,
       })
@@ -90,7 +91,7 @@ export async function renderMeasures(host: HTMLElement, measures: ScoreEvent[][]
         group.classList.add('selectable-note')
         group.setAttribute('role', 'button')
         group.setAttribute('tabindex', '0')
-        group.setAttribute('aria-label', `${caption.textContent} ${event.tick % 16 / 4 + 1}拍 ${spellPitch(event.midi).label}の音符を直す`)
+        group.setAttribute('aria-label', `${caption.textContent} ${event.tick % bar / ppq + 1}拍 ${spellPitch(event.midi).label}の音符を直す`)
         group.addEventListener('click', () => options.onSelect?.(event.tick))
         group.addEventListener('keydown', eventKey => {
           if (eventKey.key === 'Enter' || eventKey.key === ' ') { eventKey.preventDefault(); options.onSelect?.(event.tick) }

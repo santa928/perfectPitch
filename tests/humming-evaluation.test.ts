@@ -64,13 +64,15 @@ test('同一話者・旋律・録音派生のsplit跨ぎを拒否する', () => 
   }
 })
 
-test('正しいPerformanceNotesからC-D-CのScore消失を検出する（#22の未修正baseline）', () => {
+test('旧C-D-C消失を診断でき、修正後Scoreでは消失しない', () => {
   const notes = [{ start: 0, end: .2, midi: 60 }, { start: .2, end: .3, midi: 62 }, { start: .3, end: 1, midi: 60 }]
     .map(n => ({ ...n, contour: [{ t: n.start, midi: n.midi }] }))
   const score = buildScore(notes, 1, 120)
   const result = scoreDiagnostics(notes, scoreToPiano(score).notes, 1)
-  assert.equal(score.omittedNotes, 1)
-  assert.equal(result.lost, 2) // Dだけでなく後ろのCの独立発音も消失
+  assert.equal(score.omittedNotes, 0)
+  assert.equal(result.lost, 0)
+  const oldResult = scoreDiagnostics(notes, [{ start: 0, end: 1, midi: 60 }], 1)
+  assert.equal(oldResult.lost, 2) // 旧版の誤出力でも診断器自体の検出力を維持する
   assert.equal(result.added, 0)
   assert.equal(evaluateNoteEvents(notes, notes).onset.f1, 1)
 })
