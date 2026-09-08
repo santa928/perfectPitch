@@ -1,0 +1,943 @@
+{
+  "baselineSha": "470c21cdf6d38a9c7e6f535a0a66d6b64b9036e8",
+  "node": "v24.18.0",
+  "platform": "linux/arm64",
+  "results": [
+    {
+      "sr": 16000,
+      "kind": "background",
+      "path": "live",
+      "elapsedMs": 113.25091699999999,
+      "samples": 48000,
+      "total": 161,
+      "voiced": 161,
+      "correct": 161,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.95
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 173.74402347635677,
+        "midi": 52.913517941743564,
+        "rms": 0.005937272710818707,
+        "periodicity": 0.9132633256192736,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 173.74402347635677,
+          "candidatePeriodicity": 0.9132633256192736,
+          "noiseFloor": 0.0017543803249558125,
+          "noiseFloorAfter": 0.0017543803249558125,
+          "backgroundFloor": 0.02845227431415928,
+          "effectiveNoiseFloor": 0.0017543803249558125,
+          "requiredRms": 0.0049122649098762745,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 175.40597950831358,
+        "midi": 53.0783328680927,
+        "rms": 0.00589995840854031,
+        "periodicity": 0.9257137764096043,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 175.40597950831358,
+          "candidatePeriodicity": 0.9257137764096043,
+          "noiseFloor": 0.0017543803249558125,
+          "noiseFloorAfter": 0.0017543803249558125,
+          "backgroundFloor": 0.02845227431415928,
+          "effectiveNoiseFloor": 0.0017543803249558125,
+          "requiredRms": 0.0049122649098762745,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 16000,
+      "kind": "background",
+      "path": "offline",
+      "elapsedMs": 113.115208,
+      "samples": 48000,
+      "total": 161,
+      "voiced": 161,
+      "correct": 161,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.95
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 173.74402347635677,
+        "midi": 52.913517941743564,
+        "rms": 0.005937272710818707,
+        "periodicity": 0.9132633256192736,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 173.74402347635677,
+          "candidatePeriodicity": 0.9132633256192736,
+          "noiseFloor": 0.0017543803249558125,
+          "noiseFloorAfter": 0.0017543803249558125,
+          "backgroundFloor": 0.02845227431415928,
+          "effectiveNoiseFloor": 0.0017543803249558125,
+          "requiredRms": 0.0049122649098762745,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 175.40597950831358,
+        "midi": 53.0783328680927,
+        "rms": 0.00589995840854031,
+        "periodicity": 0.9257137764096043,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 175.40597950831358,
+          "candidatePeriodicity": 0.9257137764096043,
+          "noiseFloor": 0.0017543803249558125,
+          "noiseFloorAfter": 0.0017543803249558125,
+          "backgroundFloor": 0.02845227431415928,
+          "effectiveNoiseFloor": 0.0017543803249558125,
+          "requiredRms": 0.0049122649098762745,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 16000,
+      "kind": "noisy-jump",
+      "path": "live",
+      "elapsedMs": 98.684416,
+      "samples": 48000,
+      "total": 11,
+      "voiced": 6,
+      "correct": 6,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        0.06000000000000005
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 220.08919923066836,
+        "midi": 57.00701788399571,
+        "rms": 0.014340488129630619,
+        "periodicity": 0.9851792752615802,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.08919923066836,
+          "candidatePeriodicity": 0.9851792752615802,
+          "noiseFloor": 0.0017543803249558125,
+          "noiseFloorAfter": 0.0017543803249558125,
+          "backgroundFloor": 0.02845227431415928,
+          "effectiveNoiseFloor": 0.0017458167461517377,
+          "requiredRms": 0.004888286889224865,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 220.3936340925544,
+        "midi": 57.03094835495471,
+        "rms": 0.014253892692108625,
+        "periodicity": 0.9849463653406557,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.3936340925544,
+          "candidatePeriodicity": 0.9849463653406557,
+          "noiseFloor": 0.0017234529469374558,
+          "noiseFloorAfter": 0.0017234529469374558,
+          "backgroundFloor": 0.02845227431415928,
+          "effectiveNoiseFloor": 0.0017234529469374558,
+          "requiredRms": 0.004825668251424876,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 16000,
+      "kind": "noisy-jump",
+      "path": "offline",
+      "elapsedMs": 99.30245800000006,
+      "samples": 48000,
+      "total": 11,
+      "voiced": 6,
+      "correct": 6,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        0.06000000000000005
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 220.08919923066836,
+        "midi": 57.00701788399571,
+        "rms": 0.014340488129630619,
+        "periodicity": 0.9851792752615802,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.08919923066836,
+          "candidatePeriodicity": 0.9851792752615802,
+          "noiseFloor": 0.0017543803249558125,
+          "noiseFloorAfter": 0.0017543803249558125,
+          "backgroundFloor": 0.02845227431415928,
+          "effectiveNoiseFloor": 0.0017458167461517377,
+          "requiredRms": 0.004888286889224865,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 220.3936340925544,
+        "midi": 57.03094835495471,
+        "rms": 0.014253892692108625,
+        "periodicity": 0.9849463653406557,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.3936340925544,
+          "candidatePeriodicity": 0.9849463653406557,
+          "noiseFloor": 0.0017234529469374558,
+          "noiseFloorAfter": 0.0017234529469374558,
+          "backgroundFloor": 0.02845227431415928,
+          "effectiveNoiseFloor": 0.0017234529469374558,
+          "requiredRms": 0.004825668251424876,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 16000,
+      "kind": "restart",
+      "path": "live",
+      "elapsedMs": 102.43508300000008,
+      "samples": 48000,
+      "total": 121,
+      "voiced": 121,
+      "correct": 121,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.55
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": null,
+        "midi": null,
+        "rms": 0.0017290412747093503,
+        "periodicity": 0.09126465524690641,
+        "state": "silence",
+        "initialGate": {
+          "candidateHz": null,
+          "candidatePeriodicity": 0.09126465524690641,
+          "noiseFloor": 0.001751629401555137,
+          "noiseFloorAfter": 0.001751516460920908,
+          "backgroundFloor": 0.026146046602982132,
+          "effectiveNoiseFloor": 0.026268745122219682,
+          "requiredRms": 0.0735524863422151,
+          "reason": "below-energy"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 172.43000835106605,
+        "midi": 52.78208817275647,
+        "rms": 0.01435756257693134,
+        "periodicity": 0.9655999482893185,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 172.43000835106605,
+          "candidatePeriodicity": 0.9655999482893185,
+          "noiseFloor": 0.001803488557767254,
+          "noiseFloorAfter": 0.001803488557767254,
+          "backgroundFloor": 0.023981928384785977,
+          "effectiveNoiseFloor": 0.001803488557767254,
+          "requiredRms": 0.005049767961748311,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 16000,
+      "kind": "restart",
+      "path": "offline",
+      "elapsedMs": 97.07712499999991,
+      "samples": 48000,
+      "total": 121,
+      "voiced": 121,
+      "correct": 121,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.55
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": null,
+        "midi": null,
+        "rms": 0.0017290412747093503,
+        "periodicity": 0.09126465524690641,
+        "state": "silence",
+        "initialGate": {
+          "candidateHz": null,
+          "candidatePeriodicity": 0.09126465524690641,
+          "noiseFloor": 0.001751629401555137,
+          "noiseFloorAfter": 0.001751516460920908,
+          "backgroundFloor": 0.026146046602982132,
+          "effectiveNoiseFloor": 0.026268745122219682,
+          "requiredRms": 0.0735524863422151,
+          "reason": "below-energy"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 172.43000835106605,
+        "midi": 52.78208817275647,
+        "rms": 0.01435756257693134,
+        "periodicity": 0.9655999482893185,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 172.43000835106605,
+          "candidatePeriodicity": 0.9655999482893185,
+          "noiseFloor": 0.001803488557767254,
+          "noiseFloorAfter": 0.001803488557767254,
+          "backgroundFloor": 0.023981928384785977,
+          "effectiveNoiseFloor": 0.001803488557767254,
+          "requiredRms": 0.005049767961748311,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 44100,
+      "kind": "background",
+      "path": "live",
+      "elapsedMs": 682.465875,
+      "samples": 132300,
+      "total": 161,
+      "voiced": 161,
+      "correct": 161,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.95
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 175.658662454486,
+        "midi": 53.103254397821715,
+        "rms": 0.0059023210294204854,
+        "periodicity": 0.912096504720594,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 175.658662454486,
+          "candidatePeriodicity": 0.912096504720594,
+          "noiseFloor": 0.001738201804489894,
+          "noiseFloorAfter": 0.001738201804489894,
+          "backgroundFloor": 0.02865504672319672,
+          "effectiveNoiseFloor": 0.001738201804489894,
+          "requiredRms": 0.004866965052571703,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 176.9388218068331,
+        "midi": 53.2289651754638,
+        "rms": 0.005966959901041891,
+        "periodicity": 0.914530019177174,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 176.9388218068331,
+          "candidatePeriodicity": 0.914530019177174,
+          "noiseFloor": 0.001738201804489894,
+          "noiseFloorAfter": 0.001738201804489894,
+          "backgroundFloor": 0.02865504672319672,
+          "effectiveNoiseFloor": 0.001738201804489894,
+          "requiredRms": 0.004866965052571703,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 44100,
+      "kind": "background",
+      "path": "offline",
+      "elapsedMs": 668.2822919999999,
+      "samples": 132300,
+      "total": 161,
+      "voiced": 161,
+      "correct": 161,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.95
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 175.658662454486,
+        "midi": 53.103254397821715,
+        "rms": 0.0059023210294204854,
+        "periodicity": 0.912096504720594,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 175.658662454486,
+          "candidatePeriodicity": 0.912096504720594,
+          "noiseFloor": 0.001738201804489894,
+          "noiseFloorAfter": 0.001738201804489894,
+          "backgroundFloor": 0.02865504672319672,
+          "effectiveNoiseFloor": 0.001738201804489894,
+          "requiredRms": 0.004866965052571703,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 176.9388218068331,
+        "midi": 53.2289651754638,
+        "rms": 0.005966959901041891,
+        "periodicity": 0.914530019177174,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 176.9388218068331,
+          "candidatePeriodicity": 0.914530019177174,
+          "noiseFloor": 0.001738201804489894,
+          "noiseFloorAfter": 0.001738201804489894,
+          "backgroundFloor": 0.02865504672319672,
+          "effectiveNoiseFloor": 0.001738201804489894,
+          "requiredRms": 0.004866965052571703,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 44100,
+      "kind": "noisy-jump",
+      "path": "live",
+      "elapsedMs": 672.7210419999997,
+      "samples": 132300,
+      "total": 11,
+      "voiced": 6,
+      "correct": 6,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        0.06000000000000005
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 220.17918891130515,
+        "midi": 57.01409507625156,
+        "rms": 0.014210881779886008,
+        "periodicity": 0.9853001381230999,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.17918891130515,
+          "candidatePeriodicity": 0.9853001381230999,
+          "noiseFloor": 0.001738201804489894,
+          "noiseFloorAfter": 0.001738201804489894,
+          "backgroundFloor": 0.02865504672319672,
+          "effectiveNoiseFloor": 0.0017229697537379282,
+          "requiredRms": 0.004824315310466199,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 219.72299970347683,
+        "midi": 56.97818843186738,
+        "rms": 0.014295874143716325,
+        "periodicity": 0.9851660117156489,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 219.72299970347683,
+          "candidatePeriodicity": 0.9851660117156489,
+          "noiseFloor": 0.0017237050741017183,
+          "noiseFloorAfter": 0.0017237050741017183,
+          "backgroundFloor": 0.02865504672319672,
+          "effectiveNoiseFloor": 0.0017237050741017183,
+          "requiredRms": 0.004826374207484811,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 44100,
+      "kind": "noisy-jump",
+      "path": "offline",
+      "elapsedMs": 669.8364590000001,
+      "samples": 132300,
+      "total": 11,
+      "voiced": 6,
+      "correct": 6,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        0.06000000000000005
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 220.17918891130515,
+        "midi": 57.01409507625156,
+        "rms": 0.014210881779886008,
+        "periodicity": 0.9853001381230999,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.17918891130515,
+          "candidatePeriodicity": 0.9853001381230999,
+          "noiseFloor": 0.001738201804489894,
+          "noiseFloorAfter": 0.001738201804489894,
+          "backgroundFloor": 0.02865504672319672,
+          "effectiveNoiseFloor": 0.0017229697537379282,
+          "requiredRms": 0.004824315310466199,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 219.72299970347683,
+        "midi": 56.97818843186738,
+        "rms": 0.014295874143716325,
+        "periodicity": 0.9851660117156489,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 219.72299970347683,
+          "candidatePeriodicity": 0.9851660117156489,
+          "noiseFloor": 0.0017237050741017183,
+          "noiseFloorAfter": 0.0017237050741017183,
+          "backgroundFloor": 0.02865504672319672,
+          "effectiveNoiseFloor": 0.0017237050741017183,
+          "requiredRms": 0.004826374207484811,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 44100,
+      "kind": "restart",
+      "path": "live",
+      "elapsedMs": 680.6170419999999,
+      "samples": 132300,
+      "total": 121,
+      "voiced": 121,
+      "correct": 121,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.55
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": null,
+        "midi": null,
+        "rms": 0.0017268688123061792,
+        "periodicity": 0.08531591371999425,
+        "state": "silence",
+        "initialGate": {
+          "candidateHz": null,
+          "candidatePeriodicity": 0.08531591371999425,
+          "noiseFloor": 0.0017365254995254796,
+          "noiseFloorAfter": 0.0017364772160893833,
+          "backgroundFloor": 0.026331068271253436,
+          "effectiveNoiseFloor": 0.02645470746451448,
+          "requiredRms": 0.07407318090064054,
+          "reason": "below-energy"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 173.09584101185692,
+        "midi": 52.84881045141023,
+        "rms": 0.014461817789678618,
+        "periodicity": 0.9615011162583841,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 173.09584101185692,
+          "candidatePeriodicity": 0.9615011162583841,
+          "noiseFloor": 0.0017905797750203609,
+          "noiseFloorAfter": 0.0017905797750203609,
+          "backgroundFloor": 0.02415090623388445,
+          "effectiveNoiseFloor": 0.0017905797750203609,
+          "requiredRms": 0.00501362337005701,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 44100,
+      "kind": "restart",
+      "path": "offline",
+      "elapsedMs": 782.944375,
+      "samples": 132300,
+      "total": 121,
+      "voiced": 121,
+      "correct": 121,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.55
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": null,
+        "midi": null,
+        "rms": 0.0017268688123061792,
+        "periodicity": 0.08531591371999425,
+        "state": "silence",
+        "initialGate": {
+          "candidateHz": null,
+          "candidatePeriodicity": 0.08531591371999425,
+          "noiseFloor": 0.0017365254995254796,
+          "noiseFloorAfter": 0.0017364772160893833,
+          "backgroundFloor": 0.026331068271253436,
+          "effectiveNoiseFloor": 0.02645470746451448,
+          "requiredRms": 0.07407318090064054,
+          "reason": "below-energy"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 173.09584101185692,
+        "midi": 52.84881045141023,
+        "rms": 0.014461817789678618,
+        "periodicity": 0.9615011162583841,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 173.09584101185692,
+          "candidatePeriodicity": 0.9615011162583841,
+          "noiseFloor": 0.0017905797750203609,
+          "noiseFloorAfter": 0.0017905797750203609,
+          "backgroundFloor": 0.02415090623388445,
+          "effectiveNoiseFloor": 0.0017905797750203609,
+          "requiredRms": 0.00501362337005701,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 48000,
+      "kind": "background",
+      "path": "live",
+      "elapsedMs": 1147.5991679999997,
+      "samples": 144000,
+      "total": 161,
+      "voiced": 161,
+      "correct": 160,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.95
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 176.3495418790784,
+        "midi": 53.17121165022303,
+        "rms": 0.005892765455926049,
+        "periodicity": 0.9105140746526832,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 176.3495418790784,
+          "candidatePeriodicity": 0.9105140746526832,
+          "noiseFloor": 0.0017318199125783249,
+          "noiseFloorAfter": 0.0017318199125783249,
+          "backgroundFloor": 0.028526324637305436,
+          "effectiveNoiseFloor": 0.0017318199125783249,
+          "requiredRms": 0.004849095755219309,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 175.855820493021,
+        "midi": 53.12267474956879,
+        "rms": 0.005875116843044149,
+        "periodicity": 0.9135102884679102,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 175.855820493021,
+          "candidatePeriodicity": 0.9135102884679102,
+          "noiseFloor": 0.0017318199125783249,
+          "noiseFloorAfter": 0.0017318199125783249,
+          "backgroundFloor": 0.028526324637305436,
+          "effectiveNoiseFloor": 0.0017318199125783249,
+          "requiredRms": 0.004849095755219309,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 48000,
+      "kind": "background",
+      "path": "offline",
+      "elapsedMs": 849.6913329999998,
+      "samples": 144000,
+      "total": 161,
+      "voiced": 161,
+      "correct": 160,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.95
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 176.3495418790784,
+        "midi": 53.17121165022303,
+        "rms": 0.005892765455926049,
+        "periodicity": 0.9105140746526832,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 176.3495418790784,
+          "candidatePeriodicity": 0.9105140746526832,
+          "noiseFloor": 0.0017318199125783249,
+          "noiseFloorAfter": 0.0017318199125783249,
+          "backgroundFloor": 0.028526324637305436,
+          "effectiveNoiseFloor": 0.0017318199125783249,
+          "requiredRms": 0.004849095755219309,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 175.855820493021,
+        "midi": 53.12267474956879,
+        "rms": 0.005875116843044149,
+        "periodicity": 0.9135102884679102,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 175.855820493021,
+          "candidatePeriodicity": 0.9135102884679102,
+          "noiseFloor": 0.0017318199125783249,
+          "noiseFloorAfter": 0.0017318199125783249,
+          "backgroundFloor": 0.028526324637305436,
+          "effectiveNoiseFloor": 0.0017318199125783249,
+          "requiredRms": 0.004849095755219309,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 48000,
+      "kind": "noisy-jump",
+      "path": "live",
+      "elapsedMs": 915.253084,
+      "samples": 144000,
+      "total": 11,
+      "voiced": 6,
+      "correct": 6,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        0.06000000000000005
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 220.97831856257642,
+        "midi": 57.07681562171087,
+        "rms": 0.014329767648882457,
+        "periodicity": 0.985631041050237,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.97831856257642,
+          "candidatePeriodicity": 0.985631041050237,
+          "noiseFloor": 0.0017318199125783249,
+          "noiseFloorAfter": 0.0017318199125783249,
+          "backgroundFloor": 0.028526324637305436,
+          "effectiveNoiseFloor": 0.0017177177386657973,
+          "requiredRms": 0.004809609668264232,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 220.05313601295666,
+        "midi": 57.00418089852252,
+        "rms": 0.014372633198467924,
+        "periodicity": 0.9860459031069885,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.05313601295666,
+          "candidatePeriodicity": 0.9860459031069885,
+          "noiseFloor": 0.0017065099580024221,
+          "noiseFloorAfter": 0.0017065099580024221,
+          "backgroundFloor": 0.028526324637305436,
+          "effectiveNoiseFloor": 0.0016978026585369227,
+          "requiredRms": 0.004753847443903383,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 48000,
+      "kind": "noisy-jump",
+      "path": "offline",
+      "elapsedMs": 990.3915829999996,
+      "samples": 144000,
+      "total": 11,
+      "voiced": 6,
+      "correct": 6,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        0.06000000000000005
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": 220.97831856257642,
+        "midi": 57.07681562171087,
+        "rms": 0.014329767648882457,
+        "periodicity": 0.985631041050237,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.97831856257642,
+          "candidatePeriodicity": 0.985631041050237,
+          "noiseFloor": 0.0017318199125783249,
+          "noiseFloorAfter": 0.0017318199125783249,
+          "backgroundFloor": 0.028526324637305436,
+          "effectiveNoiseFloor": 0.0017177177386657973,
+          "requiredRms": 0.004809609668264232,
+          "reason": "periodic"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 220.05313601295666,
+        "midi": 57.00418089852252,
+        "rms": 0.014372633198467924,
+        "periodicity": 0.9860459031069885,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 220.05313601295666,
+          "candidatePeriodicity": 0.9860459031069885,
+          "noiseFloor": 0.0017065099580024221,
+          "noiseFloorAfter": 0.0017065099580024221,
+          "backgroundFloor": 0.028526324637305436,
+          "effectiveNoiseFloor": 0.0016978026585369227,
+          "requiredRms": 0.004753847443903383,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 48000,
+      "kind": "restart",
+      "path": "live",
+      "elapsedMs": 848.0034169999999,
+      "samples": 144000,
+      "total": 121,
+      "voiced": 121,
+      "correct": 121,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.55
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": null,
+        "midi": null,
+        "rms": 0.0017237145274585787,
+        "periodicity": 0.062412388176385614,
+        "state": "silence",
+        "initialGate": {
+          "candidateHz": null,
+          "candidatePeriodicity": 0.062412388176385614,
+          "noiseFloor": 0.0017310519389715539,
+          "noiseFloorAfter": 0.0017310152519139888,
+          "backgroundFloor": 0.026213821027279163,
+          "effectiveNoiseFloor": 0.026336886889087308,
+          "requiredRms": 0.07374328328944446,
+          "reason": "below-energy"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 175.51620030629314,
+        "midi": 53.089208100017515,
+        "rms": 0.014433491688040957,
+        "periodicity": 0.9572027636879766,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 175.51620030629314,
+          "candidatePeriodicity": 0.9572027636879766,
+          "noiseFloor": 0.0017861798219009424,
+          "noiseFloorAfter": 0.0017861798219009424,
+          "backgroundFloor": 0.024044875993683126,
+          "effectiveNoiseFloor": 0.0017861798219009424,
+          "requiredRms": 0.005001303501322638,
+          "reason": "periodic"
+        }
+      }
+    },
+    {
+      "sr": 48000,
+      "kind": "restart",
+      "path": "offline",
+      "elapsedMs": 785.5245419999992,
+      "samples": 144000,
+      "total": 121,
+      "voiced": 121,
+      "correct": 121,
+      "lastFrame": 2.97,
+      "lastVoiced": 2.97,
+      "newNoteDurations": [
+        1.55
+      ],
+      "transitions": [],
+      "atBoundary": {
+        "t": 1.2,
+        "frequency": null,
+        "midi": null,
+        "rms": 0.0017237145274585787,
+        "periodicity": 0.062412388176385614,
+        "state": "silence",
+        "initialGate": {
+          "candidateHz": null,
+          "candidatePeriodicity": 0.062412388176385614,
+          "noiseFloor": 0.0017310519389715539,
+          "noiseFloorAfter": 0.0017310152519139888,
+          "backgroundFloor": 0.026213821027279163,
+          "effectiveNoiseFloor": 0.026336886889087308,
+          "requiredRms": 0.07374328328944446,
+          "reason": "below-energy"
+        }
+      },
+      "atEnd": {
+        "t": 2.97,
+        "frequency": 175.51620030629314,
+        "midi": 53.089208100017515,
+        "rms": 0.014433491688040957,
+        "periodicity": 0.9572027636879766,
+        "state": "voiced",
+        "initialGate": {
+          "candidateHz": 175.51620030629314,
+          "candidatePeriodicity": 0.9572027636879766,
+          "noiseFloor": 0.0017861798219009424,
+          "noiseFloorAfter": 0.0017861798219009424,
+          "backgroundFloor": 0.024044875993683126,
+          "effectiveNoiseFloor": 0.0017861798219009424,
+          "requiredRms": 0.005001303501322638,
+          "reason": "periodic"
+        }
+      }
+    }
+  ]
+}

@@ -3,6 +3,29 @@ import { detectYin, type YinCandidate } from './detectors.ts'
 
 type Observation = { frame: PitchFrame; candidates: YinCandidate[] }
 
+/**
+ * 連続候補が校正値の過大さを確認した区間だけ、その先頭の棄却を見直す。
+ * 原PCMから測った各窓自身のHz/周期性/RMSを再評価し、休符や候補欠落は埋めない。
+ * 支持区間は100ms程度に限られ、録音全体へ未来の低いfloorを流用しない。
+ */
+function reviewRecoveredFloor(frames: PitchFrame[]): void {
+  for (let end = 0; end < frames.length; end++) {
+    const confirmation = frames[end].initialGate
+    if (confirmation?.recoveryStart === undefined) continue
+    const requiredRms = Math.max(.0028, confirmation.noiseFloorAfter * 2.8)
+    for (let i = end - 1; i >= 0 && frames[i].t >= confirmation.recoveryStart; i--) {
+      const frame = frames[i], evidence = frame.initialGate
+      if (frame.state !== 'uncertain' || !evidence || evidence.candidateHz === null ||
+        evidence.candidatePeriodicity < .9 || frame.rms < requiredRms) continue
+      frames[i] = { ...frame, frequency: evidence.candidateHz,
+        midi: 69 + 12 * Math.log2(evidence.candidateHz / 440),
+        periodicity: evidence.candidatePeriodicity, state: 'voiced',
+        voicingReview: { source: 'confirmed-noise-floor', noiseFloor: confirmation.noiseFloorAfter,
+          supportStart: confirmation.recoveryStart, supportEnd: frames[end].t } }
+    }
+  }
+}
+
 /** Keep the live choice plus only a strongly periodic, evidenced upper-octave alternative. */
 function optionsFor({ frame, candidates }: Observation, preserve: boolean): YinCandidate[] {
   if (frame.frequency === null) return []
@@ -101,6 +124,9 @@ export function analyzeOffline(samples: Float32Array, sampleRate: number, mode: 
   }, calibrate)
   const frames = [...analyzer.push(samples), ...analyzer.finish()]
   onProgress?.(.8)
+  reviewRecoveredFloor(frames)
+  // 候補追跡にも再判定済みの各窓を渡す。一次診断と元PCMは変更しない。
+  observations.forEach((observation, index) => { observation.frame = frames[index] })
   let start = 0
   while (start < frames.length) {
     if (frames[start].frequency === null) { start++; continue }

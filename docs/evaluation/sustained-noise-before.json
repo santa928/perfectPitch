@@ -1,0 +1,162 @@
+[
+  {
+    "mode": "song",
+    "kind": "silence",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "song",
+    "kind": "silence",
+    "calibrate": false,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "song",
+    "kind": "white",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "song",
+    "kind": "white",
+    "calibrate": false,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "song",
+    "kind": "breath",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "song",
+    "kind": "breath",
+    "calibrate": false,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "song",
+    "kind": "consonant",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "song",
+    "kind": "consonant",
+    "calibrate": false,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "song",
+    "kind": "hum",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "song",
+    "kind": "hum",
+    "calibrate": false,
+    "voiced": 231,
+    "total": 231,
+    "notes": 1
+  },
+  {
+    "mode": "speech",
+    "kind": "silence",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "speech",
+    "kind": "silence",
+    "calibrate": false,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "speech",
+    "kind": "white",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "speech",
+    "kind": "white",
+    "calibrate": false,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "speech",
+    "kind": "breath",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "speech",
+    "kind": "breath",
+    "calibrate": false,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "speech",
+    "kind": "consonant",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "speech",
+    "kind": "consonant",
+    "calibrate": false,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "speech",
+    "kind": "hum",
+    "calibrate": true,
+    "voiced": 0,
+    "total": 231,
+    "notes": 0
+  },
+  {
+    "mode": "speech",
+    "kind": "hum",
+    "calibrate": false,
+    "voiced": 231,
+    "total": 231,
+    "notes": 1
+  }
+]

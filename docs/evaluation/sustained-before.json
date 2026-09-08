@@ -1,0 +1,350 @@
+{
+  "node": "v24.18.0",
+  "platform": "linux/arm64",
+  "results": [
+    {
+      "sr": 16000,
+      "noise": false,
+      "calibrate": false,
+      "samples": 96000,
+      "duration": 6,
+      "correct": 481,
+      "total": 481,
+      "lastVoiced": 5.96,
+      "lastFrame": 5.96,
+      "liveMs": 333.605251,
+      "sample": {
+        "t": 5,
+        "frequency": 220.01548115710483,
+        "midi": 57.001218207424856,
+        "rms": 0.014179577200291884,
+        "periodicity": 0.9997238447796982,
+        "state": "voiced",
+        "raw": {
+          "frequency": 220.01548115710483,
+          "periodicity": 0.9997238447796982
+        },
+        "noiseFloorAfterInput": 0.0008911090557802089
+      }
+    },
+    {
+      "sr": 16000,
+      "noise": false,
+      "calibrate": true,
+      "samples": 96000,
+      "duration": 6,
+      "correct": 481,
+      "total": 481,
+      "lastVoiced": 5.96,
+      "lastFrame": 5.96,
+      "liveMs": 297.329167,
+      "sample": {
+        "t": 5,
+        "frequency": 220.01548115710483,
+        "midi": 57.001218207424856,
+        "rms": 0.014179577200291884,
+        "periodicity": 0.9997238447796982,
+        "state": "voiced",
+        "raw": {
+          "frequency": 220.01548115710483,
+          "periodicity": 0.9997238447796982
+        },
+        "noiseFloorAfterInput": 0.0003
+      }
+    },
+    {
+      "sr": 16000,
+      "noise": true,
+      "calibrate": false,
+      "samples": 96000,
+      "duration": 6,
+      "correct": 481,
+      "total": 481,
+      "lastVoiced": 5.96,
+      "lastFrame": 5.96,
+      "liveMs": 277.8186259999999,
+      "sample": {
+        "t": 5,
+        "frequency": 220.01548115710483,
+        "midi": 57.001218207424856,
+        "rms": 0.014179577200291884,
+        "periodicity": 0.9997238447796982,
+        "state": "voiced",
+        "raw": {
+          "frequency": 220.01548115710483,
+          "periodicity": 0.9997238447796982
+        },
+        "noiseFloorAfterInput": 0.001
+      }
+    },
+    {
+      "sr": 16000,
+      "noise": true,
+      "calibrate": true,
+      "samples": 96000,
+      "duration": 6,
+      "correct": 0,
+      "total": 481,
+      "lastVoiced": 0.8,
+      "lastFrame": 5.96,
+      "liveMs": 280.53987499999994,
+      "sample": {
+        "t": 5,
+        "frequency": null,
+        "midi": null,
+        "rms": 0.014179577200291884,
+        "periodicity": 0.9997238447796982,
+        "state": "silence",
+        "raw": {
+          "frequency": 220.01548115710483,
+          "periodicity": 0.9997238447796982
+        },
+        "noiseFloorAfterInput": 0.015238975511212609
+      }
+    },
+    {
+      "sr": 44100,
+      "noise": false,
+      "calibrate": false,
+      "samples": 264600,
+      "duration": 6,
+      "correct": 481,
+      "total": 481,
+      "lastVoiced": 5.96,
+      "lastFrame": 5.96,
+      "liveMs": 1903.317501,
+      "sample": {
+        "t": 5,
+        "frequency": 220.0010517116176,
+        "midi": 57.00008276157319,
+        "rms": 0.014179658246892927,
+        "periodicity": 0.9998997202372598,
+        "state": "voiced",
+        "raw": {
+          "frequency": 220.0010517116176,
+          "periodicity": 0.9998997202372598
+        },
+        "noiseFloorAfterInput": 0.0008911090557802089
+      }
+    },
+    {
+      "sr": 44100,
+      "noise": false,
+      "calibrate": true,
+      "samples": 264600,
+      "duration": 6,
+      "correct": 481,
+      "total": 481,
+      "lastVoiced": 5.96,
+      "lastFrame": 5.96,
+      "liveMs": 1910.4352919999997,
+      "sample": {
+        "t": 5,
+        "frequency": 220.0010517116176,
+        "midi": 57.00008276157319,
+        "rms": 0.014179658246892927,
+        "periodicity": 0.9998997202372598,
+        "state": "voiced",
+        "raw": {
+          "frequency": 220.0010517116176,
+          "periodicity": 0.9998997202372598
+        },
+        "noiseFloorAfterInput": 0.0003
+      }
+    },
+    {
+      "sr": 44100,
+      "noise": true,
+      "calibrate": false,
+      "samples": 264600,
+      "duration": 6,
+      "correct": 481,
+      "total": 481,
+      "lastVoiced": 5.96,
+      "lastFrame": 5.96,
+      "liveMs": 1969.6698340000003,
+      "sample": {
+        "t": 5,
+        "frequency": 220.0010517116176,
+        "midi": 57.00008276157319,
+        "rms": 0.014179658246892927,
+        "periodicity": 0.9998997202372598,
+        "state": "voiced",
+        "raw": {
+          "frequency": 220.0010517116176,
+          "periodicity": 0.9998997202372598
+        },
+        "noiseFloorAfterInput": 0.001
+      }
+    },
+    {
+      "sr": 44100,
+      "noise": true,
+      "calibrate": true,
+      "samples": 264600,
+      "duration": 6,
+      "correct": 0,
+      "total": 481,
+      "lastVoiced": 0.8,
+      "lastFrame": 5.96,
+      "liveMs": 1970.4931260000003,
+      "sample": {
+        "t": 5,
+        "frequency": null,
+        "midi": null,
+        "rms": 0.014179658246892927,
+        "periodicity": 0.9998997202372598,
+        "state": "silence",
+        "raw": {
+          "frequency": 220.0010517116176,
+          "periodicity": 0.9998997202372598
+        },
+        "noiseFloorAfterInput": 0.015265882642439664
+      }
+    },
+    {
+      "sr": 48000,
+      "noise": false,
+      "calibrate": false,
+      "samples": 288000,
+      "duration": 6,
+      "correct": 481,
+      "total": 481,
+      "lastVoiced": 5.96,
+      "lastFrame": 5.96,
+      "liveMs": 2227.1411260000004,
+      "sample": {
+        "t": 5,
+        "frequency": 220.00209149375118,
+        "midi": 57.00016458399928,
+        "rms": 0.014179660161253473,
+        "periodicity": 0.9999864370876347,
+        "state": "voiced",
+        "raw": {
+          "frequency": 220.00209149375118,
+          "periodicity": 0.9999864370876347
+        },
+        "noiseFloorAfterInput": 0.0008911090557802089
+      }
+    },
+    {
+      "sr": 48000,
+      "noise": false,
+      "calibrate": true,
+      "samples": 288000,
+      "duration": 6,
+      "correct": 481,
+      "total": 481,
+      "lastVoiced": 5.96,
+      "lastFrame": 5.96,
+      "liveMs": 2231.876626000001,
+      "sample": {
+        "t": 5,
+        "frequency": 220.00209149375118,
+        "midi": 57.00016458399928,
+        "rms": 0.014179660161253473,
+        "periodicity": 0.9999864370876347,
+        "state": "voiced",
+        "raw": {
+          "frequency": 220.00209149375118,
+          "periodicity": 0.9999864370876347
+        },
+        "noiseFloorAfterInput": 0.0003
+      }
+    },
+    {
+      "sr": 48000,
+      "noise": true,
+      "calibrate": false,
+      "samples": 288000,
+      "duration": 6,
+      "correct": 481,
+      "total": 481,
+      "lastVoiced": 5.96,
+      "lastFrame": 5.96,
+      "liveMs": 2360.223876,
+      "sample": {
+        "t": 5,
+        "frequency": 220.00209149375118,
+        "midi": 57.00016458399928,
+        "rms": 0.014179660161253473,
+        "periodicity": 0.9999864370876347,
+        "state": "voiced",
+        "raw": {
+          "frequency": 220.00209149375118,
+          "periodicity": 0.9999864370876347
+        },
+        "noiseFloorAfterInput": 0.001
+      }
+    },
+    {
+      "sr": 48000,
+      "noise": true,
+      "calibrate": true,
+      "samples": 288000,
+      "duration": 6,
+      "correct": 0,
+      "total": 481,
+      "lastVoiced": 0.8,
+      "lastFrame": 5.96,
+      "liveMs": 2317.8197919999984,
+      "sample": {
+        "t": 5,
+        "frequency": null,
+        "midi": null,
+        "rms": 0.014179660161253473,
+        "periodicity": 0.9999864370876347,
+        "state": "silence",
+        "raw": {
+          "frequency": 220.00209149375118,
+          "periodicity": 0.9999864370876347
+        },
+        "noiseFloorAfterInput": 0.015265569071008352
+      }
+    },
+    {
+      "seconds": 6,
+      "sr": 48000,
+      "samples": 288000,
+      "frames": 593,
+      "offlineMs": 2338.6135429999995,
+      "lastFrame": 5.96,
+      "lastVoiced": 0.8,
+      "noteEnd": 0.805,
+      "melodyEnd": 0.805
+    },
+    {
+      "seconds": 10,
+      "sr": 48000,
+      "samples": 480000,
+      "frames": 993,
+      "offlineMs": 3883.492252,
+      "lastFrame": 9.96,
+      "lastVoiced": 0.8,
+      "noteEnd": 0.805,
+      "melodyEnd": 0.8049999999999999
+    },
+    {
+      "seconds": 30,
+      "sr": 48000,
+      "samples": 1440000,
+      "frames": 2993,
+      "offlineMs": 11702.280796999996,
+      "lastFrame": 29.96,
+      "lastVoiced": 0.8,
+      "noteEnd": 0.805,
+      "melodyEnd": 0.8049999999999999
+    },
+    {
+      "seconds": 60,
+      "sr": 48000,
+      "samples": 2880000,
+      "frames": 5993,
+      "offlineMs": 23396.819635,
+      "lastFrame": 59.96,
+      "lastVoiced": 0.8,
+      "noteEnd": 0.805,
+      "melodyEnd": 0.8049999999999999
+    }
+  ]
+}
