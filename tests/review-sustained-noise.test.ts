@@ -160,7 +160,7 @@ test('回復後の静かな背景でも非周期PCM由来の基準が追従し�
   }
 })
 
-test('未解決: 明瞭な先行音の回復値を別音高の周期背景音へ引き継がない', () => {
+test('明瞭な先行音の回復値を別音高の周期背景音へ引き継がない', () => {
   const sr = 16000
   let seed = 923
   const pcm = Float32Array.from({ length: sr * 3 }, (_, i) => {
@@ -173,6 +173,6 @@ test('未解決: 明瞭な先行音の回復値を別音高の周期背景音へ
   })
   const counts = [new PitchAnalyzer(sr, 'speech').push(pcm), analyzeOffline(pcm, sr, 'speech')]
     .map(frames => frames.filter(f => f.t >= 1.2 && f.t <= 2.8 && f.frequency !== null).length)
-  // Draftのブロッカー。期待を実装結果へ合わせず、解消が必要な回帰として失敗させる。
+  // レビュー5140703429の反例。期待値は失敗時から変更しない。
   assert.deepEqual(counts, [0, 0], '別音高の背景音はlive/offlineとも有声0窓が必要')
 })

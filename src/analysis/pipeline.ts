@@ -18,6 +18,9 @@ export type PitchFrame = {
     requiredRms: number
     /** floor更新を支持した連続候補列の開始時刻。offlineの同区間再判定に使う。 */
     recoveryStart?: number
+    recoveryKind?: 'stable-source' | 'level-continuous-transition'
+    /** 回復値が適用された発声の支持期限。候補のない窓を有声にはしない。 */
+    recoveryExpiresAt?: number
     reason: 'noise-floor-recovery' | 'periodic-recovery' | 'periodic' | 'calibration' | 'below-energy' | 'aperiodic' | 'ambiguous'
   }
   /** 同じPCMの連続候補でfloor回復を確認後、一次棄却を見直した根拠。 */
@@ -27,6 +30,9 @@ export const ANALYSIS_SETTINGS = {
   song: { windowMs: 80, hopMs: 10, periodicity: 0.9 },
   speech: { windowMs: 60, hopMs: 10, periodicity: 0.85 },
 } as const
+
+type RecoveryEvidence = { t: number; frequency: number; residual: number; clear: boolean; rms: number; tailRms: number }
+type RecoveredSource = { frequency: number; floor: number; lastSupport: number; levels: number[] }
 
 /** PCM sample-clock analyzer shared by live/offline review; one window and one accepted estimate. */
 export class PitchAnalyzer {
@@ -40,7 +46,9 @@ export class PitchAnalyzer {
   /** 周期信号による回復を含まない、低周期性PCMだけから得た基準。 */
   private backgroundFloor = 0.001
   private quietRms: number[] = []
-  private recoveryEvidence: { t: number; frequency: number; residual: number; clear: boolean }[] = []
+  private recoveryEvidence: RecoveryEvidence[] = []
+  private recoveredSource: RecoveredSource | null = null
+  private backgroundEvidence: number[] = []
   private ended = false
   private previousDetection: Detection | null = null
   private readonly onEvidence?: (frame: PitchFrame, candidates: YinCandidate[]) => void
@@ -87,16 +95,21 @@ export class PitchAnalyzer {
   }
 
   /**
-   * 連続100ms・音高幅100c以内、うち30ms以上の強い周期候補で校正値を更新する。
-   * 採用済みstateを根拠にせず、最大残差を使って小さく見積もりすぎない。
-   * 非周期音・微小音・急な音高変化で支持を破棄し、休符をまたいで蓄積しない。
+   * 回復値を支持した発声に帰属させ、現在候補で支持されない限り期限を延長しない。
+   * 新音高は連続2窓の実測候補と末尾波形の音量連続性（前発声の半分以上）を要求する。
+   * 境界混在窓の全体RMSで新音源の弱さを隠さず、直近20msのPCMも確認する。
    */
-  private recoverNoiseFloor(detection: Detection, rms: number, t: number): number | undefined {
+  private recoverNoiseFloor(detection: Detection, rms: number, tailRms: number, t: number):
+    { start: number; kind: 'stable-source' | 'level-continuous-transition' } | undefined {
+    const lifetime = .1 + this.buffer.length / this.sampleRate
+    if (this.recoveredSource && t - this.recoveredSource.lastSupport > lifetime)
+      this.recoveredSource = null
+    this.noiseFloor = this.backgroundFloor
     if (detection.frequency === null || detection.periodicity < .9 || rms < .0028) {
       this.recoveryEvidence = []
       return undefined
     }
-    const evidence = { t, frequency: detection.frequency,
+    const evidence = { t, frequency: detection.frequency, rms, tailRms,
       clear: detection.periodicity >= .97,
       residual: Math.max(.001, rms * Math.sqrt(1 - detection.periodicity)) }
     const frequencies = [...this.recoveryEvidence.map(item => item.frequency), evidence.frequency]
@@ -105,13 +118,55 @@ export class PitchAnalyzer {
     this.recoveryEvidence.push(evidence)
     const required = Math.ceil(.1 * this.sampleRate / this.hop) + 1
     if (this.recoveryEvidence.length > required) this.recoveryEvidence.shift()
-    if (this.recoveryEvidence.length < required) return undefined
-    if (this.recoveryEvidence.filter(item => item.clear).length < Math.ceil(.03 * this.sampleRate / this.hop) + 1)
-      return undefined
+    const source = this.recoveredSource
+    const matches = source !== null && Math.abs(1200 * Math.log2(detection.frequency / source.frequency)) <= 100
+    if (matches && rms >= source.floor * 2.8) {
+      source.frequency = detection.frequency
+      source.lastSupport = t
+      source.levels.push(rms)
+      if (source.levels.length > required) source.levels.shift()
+      this.noiseFloor = Math.min(this.backgroundFloor, source.floor)
+    }
     const estimate = Math.max(...this.recoveryEvidence.map(item => item.residual))
-    if (estimate >= this.noiseFloor) return undefined
-    this.noiseFloor = estimate
-    return this.recoveryEvidence[0].t
+    const clearRun = this.recoveryEvidence.length >= required &&
+      this.recoveryEvidence.filter(item => item.clear).length >= Math.ceil(.03 * this.sampleRate / this.hop) + 1
+    if (clearRun && estimate < this.noiseFloor) {
+      this.recoveredSource = { frequency: detection.frequency, floor: estimate, lastSupport: t,
+        levels: this.recoveryEvidence.map(item => item.rms) }
+      this.noiseFloor = estimate
+      return { start: this.recoveryEvidence[0].t, kind: 'stable-source' }
+    }
+    // 各窓は既に60/80msを観測済み。追加の確認待ちは1hopに抑え、100ms音を削らない。
+    const transitionFrames = 2
+    if (source && !matches && this.recoveryEvidence.length >= transitionFrames) {
+      const levels = [...source.levels].sort((a, b) => a - b)
+      const minimumLevel = levels[Math.floor(levels.length / 2)] * .5
+      const floor = Math.max(source.floor, estimate)
+      if (this.recoveryEvidence.every(item => item.tailRms >= minimumLevel) && rms >= floor * 2.8) {
+        this.recoveredSource = { frequency: detection.frequency, floor, lastSupport: t,
+          levels: this.recoveryEvidence.map(item => item.rms) }
+        this.noiseFloor = Math.min(this.backgroundFloor, floor)
+        return { start: this.recoveryEvidence[0].t, kind: 'level-continuous-transition' }
+      }
+    }
+    return undefined
+  }
+
+  /** 発声の混在窓を避け、100ms続く非周期PCMの最大RMSで現在の背景を再測定する。 */
+  private observeBackground(rms: number, periodicity: number, t: number): void {
+    if (periodicity >= .6 || (this.recoveredSource &&
+      t - this.recoveredSource.lastSupport <= this.buffer.length / this.sampleRate)) {
+      this.backgroundEvidence = []
+      return
+    }
+    this.backgroundEvidence.push(rms)
+    const required = Math.ceil(.1 * this.sampleRate / this.hop) + 1
+    if (this.backgroundEvidence.length > required) this.backgroundEvidence.shift()
+    if (this.backgroundEvidence.length === required) {
+      // 発声開始の混在窓で既に確認済みの静かな基準を引き上げない。
+      this.backgroundFloor = Math.min(this.backgroundFloor, Math.max(.0003, ...this.backgroundEvidence))
+      this.noiseFloor = this.backgroundFloor
+    }
   }
 
   /** 現在の波形で判定する。強い周期信号を雑音学習せず、古い雑音量だけで棄却しない。 */
@@ -127,7 +182,10 @@ export class PitchAnalyzer {
         : { frequency: null, periodicity: 0 }
     const t = (this.count - this.buffer.length / 2) / this.sampleRate
     const noiseFloor = this.noiseFloor
-    const recoveryStart = this.recoverNoiseFloor(detection, rms, t)
+    let tailEnergy = 0
+    const tailLength = Math.round(.02 * this.sampleRate)
+    for (let i = this.buffer.length - tailLength; i < this.buffer.length; i++) tailEnergy += this.buffer[i] ** 2
+    const recovery = this.recoverNoiseFloor(detection, rms, Math.sqrt(tailEnergy / tailLength), t)
     // CMNDFの不一致分を保守的な残差振幅として使う（雑音の実測値や確率ではない）。
     // 通常の有声閾値より強い根拠を要求し、前のHzや時間による補間は使わない。
     const clearPeriodic = detection.frequency !== null && detection.periodicity >= .97
@@ -155,7 +213,7 @@ export class PitchAnalyzer {
       }
     } else if (voiced) {
       state = 'voiced'
-      reason = recoveryStart !== undefined ? 'noise-floor-recovery'
+      reason = recovery !== undefined ? 'noise-floor-recovery'
         : rms < this.noiseFloor * 2.8 ? 'periodic-recovery' : 'periodic'
     } else if (rms < .001 || (detection.periodicity < .6 && rms < effectiveNoiseFloor * 1.6)) {
       state = 'silence'
@@ -171,6 +229,7 @@ export class PitchAnalyzer {
       this.noiseFloor = Math.max(0.0003, this.noiseFloor * 0.995 + rms * 0.005)
       this.backgroundFloor = Math.max(0.0003, this.backgroundFloor * 0.995 + rms * 0.005)
     }
+    if (this.count / this.sampleRate > .3) this.observeBackground(rms, detection.periodicity, t)
     const frequency = state === 'voiced' ? detection.frequency : null
     // Only consecutive accepted frames provide context; never bridge gaps or recordings.
     this.previousDetection = frequency === null ? null : detection
@@ -184,7 +243,9 @@ export class PitchAnalyzer {
       initialGate: { candidateHz: detection.frequency, candidatePeriodicity: detection.periodicity,
         noiseFloor, noiseFloorAfter: this.noiseFloor, backgroundFloor: this.backgroundFloor,
         effectiveNoiseFloor, requiredRms, reason,
-        ...(recoveryStart === undefined ? {} : { recoveryStart }) },
+        ...(recovery === undefined ? {} : { recoveryStart: recovery.start, recoveryKind: recovery.kind }),
+        ...(this.recoveredSource && effectiveNoiseFloor < this.backgroundFloor
+          ? { recoveryExpiresAt: this.recoveredSource.lastSupport + .1 + this.buffer.length / this.sampleRate } : {}) },
     }
     this.onEvidence?.(frame, candidates)
     return frame
