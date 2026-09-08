@@ -22,6 +22,8 @@
 
 ## 起動・検証（Docker）
 
+採譜の精度評価は[正解付き評価基盤と比較結果](docs/evaluation/humming-evaluation.md)を参照してください。話者を分離した公開歌唱40曲と合成18条件でF0・音符・Scoreを別々に測定しています。実鼻歌・実機での目標達成は未検証です。
+
 ```sh
 # 開発サーバー http://localhost:4173/perfectPitch/
 docker compose -f docker-compose.test.yml up dev

@@ -1,0 +1,4 @@
+# 評価コードの変更時
+
+- 性能測定でHTTPキャッシュの効果を報告する場合はrequest routingを使わず、各回のサーバー要求・status・送信body bytesとブラウザ応答を突き合わせる。同一資産のCache-Control付き二回取得でcache hitを検証し、資産サイズや二回目の処理速度だけをcacheの証拠にしない。
+- 公開集計は完走済みrawから再計算する。rawのhash一致だけで保存済みsummaryの数値を信頼しない。holdout実行後の集計・性能runner修正は、元seal・rawを保持したまま適用範囲と新しい出典hashを別記し、精度設定を再調整しない。
