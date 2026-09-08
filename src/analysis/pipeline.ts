@@ -7,6 +7,15 @@ export type PitchFrame = {
   rms: number
   periodicity: number
   state: 'voiced' | 'unvoiced' | 'uncertain' | 'silence' | 'calibrating'
+  /** 一次判定の開発用記録。録音後の候補追跡/短窓再測定で最終Hzが変わっても保持する。 */
+  initialGate?: {
+    candidateHz: number | null
+    candidatePeriodicity: number
+    noiseFloor: number
+    effectiveNoiseFloor: number
+    requiredRms: number
+    reason: 'periodic-recovery' | 'periodic' | 'calibration' | 'below-energy' | 'aperiodic' | 'ambiguous'
+  }
 }
 export const ANALYSIS_SETTINGS = {
   song: { windowMs: 80, hopMs: 10, periodicity: 0.9 },
@@ -28,7 +37,7 @@ export class PitchAnalyzer {
   private readonly onEvidence?: (frame: PitchFrame, candidates: YinCandidate[]) => void
   private readonly calibrate: boolean
 
-  /** マイクは最初の300msで校正。録音済みファイルは冒頭の発声を除外しない。 */
+  /** マイクは最初の300msの非周期音で校正。有声の即発声は校正中も保持する。 */
   constructor(sampleRate: number, mode: AnalysisMode,
     onEvidence?: (frame: PitchFrame, candidates: YinCandidate[]) => void, calibrate = true) {
     if (
@@ -68,7 +77,7 @@ export class PitchAnalyzer {
     return []
   }
 
-  /** Estimate raw pitch, classify energy/periodicity, and freeze the noise floor during voiced input. */
+  /** 現在の波形で判定する。強い周期信号を雑音学習せず、古い雑音量だけで棄却しない。 */
   private frame(): PitchFrame {
     let energy = 0
     for (const value of this.buffer) energy += value * value
@@ -80,9 +89,22 @@ export class PitchAnalyzer {
           this.onEvidence ? values => { candidates = values } : undefined)
         : { frequency: null, periodicity: 0 }
     const t = (this.count - this.buffer.length / 2) / this.sampleRate
+    const noiseFloor = this.noiseFloor
+    // CMNDFの不一致分を保守的な残差振幅として使う（雑音の実測値や確率ではない）。
+    // 通常の有声閾値より強い根拠を要求し、前のHzや時間による補間は使わない。
+    const clearPeriodic = detection.frequency !== null && detection.periodicity >= .97
+    const effectiveNoiseFloor = clearPeriodic
+      // 回復だけで未校正時のfloor .001より感度を上げない。静かな校正値はminで維持。
+      ? Math.min(noiseFloor, Math.max(.001, rms * Math.sqrt(1 - detection.periodicity)))
+      : noiseFloor
+    const requiredRms = Math.max(.001, effectiveNoiseFloor * 2.8)
+    const voiced = detection.frequency !== null &&
+      detection.periodicity >= ANALYSIS_SETTINGS[this.mode].periodicity && rms >= requiredRms
     let state: PitchFrame['state']
-    if (this.calibrate && this.count / this.sampleRate <= 0.3) {
+    let reason: NonNullable<PitchFrame['initialGate']>['reason']
+    if (this.calibrate && this.count / this.sampleRate <= 0.3 && !voiced) {
       state = 'calibrating'
+      reason = 'calibration'
       if (detection.periodicity < 0.6) {
         this.quietRms.push(rms)
         const ordered = [...this.quietRms].sort((a, b) => a - b)
@@ -91,16 +113,20 @@ export class PitchAnalyzer {
           ordered[Math.floor(ordered.length * 0.25)],
         )
       }
-    } else if (rms < Math.max(0.001, this.noiseFloor * 1.6)) state = 'silence'
-    else if (
-      detection.frequency !== null &&
-      detection.periodicity >= ANALYSIS_SETTINGS[this.mode].periodicity &&
-      rms >= this.noiseFloor * 2.8
-    )
+    } else if (voiced) {
       state = 'voiced'
-    else if (detection.periodicity < 0.6) state = 'unvoiced'
-    else state = 'uncertain'
-    if (state === 'silence')
+      reason = rms < noiseFloor * 2.8 ? 'periodic-recovery' : 'periodic'
+    } else if (rms < .001 || (detection.periodicity < .6 && rms < noiseFloor * 1.6)) {
+      state = 'silence'
+      reason = 'below-energy'
+    } else if (detection.periodicity < .6) {
+      state = 'unvoiced'
+      reason = 'aperiodic'
+    } else {
+      state = 'uncertain'
+      reason = 'ambiguous'
+    }
+    if (state === 'silence' && detection.periodicity < .6)
       this.noiseFloor = Math.max(0.0003, this.noiseFloor * 0.995 + rms * 0.005)
     const frequency = state === 'voiced' ? detection.frequency : null
     // Only consecutive accepted frames provide context; never bridge gaps or recordings.
@@ -112,6 +138,8 @@ export class PitchAnalyzer {
       rms,
       periodicity: detection.periodicity,
       state,
+      initialGate: { candidateHz: detection.frequency, candidatePeriodicity: detection.periodicity,
+        noiseFloor, effectiveNoiseFloor, requiredRms, reason },
     }
     this.onEvidence?.(frame, candidates)
     return frame
